@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App;
 use App\User;
 use Lang;
@@ -12,6 +13,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+    protected $redirectTo = '/';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -69,7 +72,9 @@ class AuthController extends Controller
      * @return \Illuminate\View\View
      */
     public function getRegister() {
-        return view('auth.register');
+        return view('auth.register', [
+            'lang' => 'ca',
+            'title' => Lang::get('messages.title_register')]);
 
     }
 
