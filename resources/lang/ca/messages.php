@@ -6,5 +6,6 @@ return array(
     'register' => 'Registra\'t',
     'login' => 'Login',
     'logout' => 'Tanca sessió',
-    'error_resumee' => 'Oops! Han sorgit alguns errors'
+    'error_resumee' => 'Oops! Han sorgit alguns errors',
+    'register_successful' => 'S\'ha registrat amb éxit. Rebrà un mail en uns moments per confirmar el seu compte d\'usuari.'
 );

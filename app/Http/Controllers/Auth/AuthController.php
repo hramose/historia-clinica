@@ -110,7 +110,8 @@ class AuthController extends Controller
                 ->subject('Verify your email address');
         });
 
-        return redirect($this->redirectPath());
+        Session::flash('alert-success', trans('messages.register_successful'));
+        return redirect($this->loginPath());
     }
 
 
@@ -119,7 +120,6 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        Session::flash('alert-success', 'You have successfully verified your account.');
         return view('auth.login', [
             'lang' => 'ca',
             'title' => Lang::get('messages.title_inicia')
