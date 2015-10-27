@@ -34,7 +34,7 @@
 <footer id="footer">
 
     <blocks cols="2">
-        <div><p>© Imperavi 2009-2015. All rights reserved.</p></div>
+        <div><p>© Helena Cabo Santos {{ date('Y') }}. All rights reserved.</p></div>
         @if (Auth::check())
             <div class="text-right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></div>
         @endif

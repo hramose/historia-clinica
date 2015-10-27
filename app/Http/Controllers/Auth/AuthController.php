@@ -106,7 +106,7 @@ class AuthController extends Controller
         $user = $this->create($request->all());
         $confirmation_code = $user->token;
         Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
-            $message->from('rcamara9@gmail.com', 'Administració');
+            $message->from('rcamara9@gmail.com', 'Administraciï¿½');
             $message->to(Input::get('email'), Input::get('name'))
                 ->subject('Verify your email address');
         });
@@ -149,7 +149,13 @@ class AuthController extends Controller
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            return $this->handleUserWasAuthenticated($request, $throttles);
+            $sixmonths = $this->checkForPasswordChange(6, $request);
+            if ($sixmonths) {
+                //show password reset view
+                Auth::logout();
+            } else {
+                return $this->handleUserWasAuthenticated($request, $throttles);
+            }
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -212,5 +218,39 @@ class AuthController extends Controller
         Session::flash('alert-success', 'You have successfully verified your account.');
 
         return redirect($this->loginPath());
+    }
+
+    public function getSendVerificationMail(Request $request) {
+        if ($request->isMethod('post'))
+        {
+            $user = User::whereEmail($request->input('email'))->firstOrFail();
+            $confirmation_code = $user->token;
+            Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
+                $message->from('rcamara9@gmail.com', 'AdministraciÃ³');
+                $message->to(Input::get('email'), Input::get('name'))
+                    ->subject('Verify your email address');
+            });
+
+            Session::flash('alert-success', trans('messages.sendver_correctly'));
+
+            return redirect($this->loginPath());
+        }
+        else {
+            return view('emails.sendverificationmail', [
+                'lang' => 'ca',
+                'title' => Lang::get('messages.title_sendmailver')
+            ]);
+        }
+    }
+
+    public function checkForPasswordChange($months, $request) {
+        $user = User::whereEmail($request->input('email'))->first();
+        $date_created = new \DateTime($user->created_at);
+        $date_now = new \DateTime('NOW');
+        $diff = $date_created->diff($date_now);
+        if ($diff->m >= $months) {
+            return false;
+        }
+        return true;
     }
 }

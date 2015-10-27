@@ -34,3 +34,12 @@ Route::get('auth/verify/{confirmationCode}', [
     'uses' => 'Auth\AuthController@getConfirmation'
 ]);
 
+Route::get('auth/sendverificationmail', [
+    'as' => 'sendverificationmail',
+    'uses' => 'Auth\AuthController@getSendVerificationMail'
+]);
+
+Route::post('auth/sendverificationmail', [
+    'as' => 'sendverificationmail',
+    'uses' => 'Auth\AuthController@getSendVerificationMail'
+]);
