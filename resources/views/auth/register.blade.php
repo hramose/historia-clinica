@@ -1,30 +1,31 @@
 @extends('layouts.layout')
 
 @section('content')
-    {!! Form::open(['route' => 'auth/register', 'class' => 'form']) !!}
+    {!! Form::open(['route' => 'auth/register', 'class' => 'forms register-form']) !!}
 
-    <div class="form-group">
-        <label>name</label>
-        {!! Form::input('text', 'name', '', ['class'=> 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        {!! Form::email('email', '', ['class'=> 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        {!! Form::password('password', ['class'=> 'form-control']) !!}
-    </div>
+    <section>
+        <label>{{ trans('models.Username') }}</label>
+        {!! Form::input('text', 'name', '', ['class'=> '']) !!}
+    </section>
+    <section>
+        <label>{{ trans('models.Useremail') }}</label>
+        {!! Form::email('email', '', ['class'=> '']) !!}
+    </section>
+    <section>
+        <label>{{ trans('models.Userpassword') }}</label>
+        {!! Form::password('password', ['class'=> '']) !!}
+    </section>
 
-    <div class="form-group">
-        <label>Password confirmation</label>
-        {!! Form::password('password_confirmation', ['class'=> 'form-control']) !!}
-    </div>
+    <section>
+        <label>{{ trans('models.Userconfirmationpassword') }}</label>
+        {!! Form::password('password_confirmation', ['class'=> '']) !!}
+    </section>
 
-    <div>
-        {!! Form::submit('send',['class' => 'btn btn-primary']) !!}
-    </div>
+    <section>
+        {!! Form::button(trans('messages.register'),['type' => 'primary']) !!}
+    </section>
     {!! Form::close() !!}
-
-    <a href="{{ URL::to('auth/login') }}">{{ trans('messages.login') }}</a>
+    <div id="link-container">
+        <a href="{{ URL::to('auth/login') }}">{{ trans('messages.login') }}</a>
+    </div>
 @endsection

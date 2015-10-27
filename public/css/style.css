@@ -1,4 +1,9 @@
-.register-form {
+[class*="-form"] {
   margin-top: 60px; }
+
+#main-page .alert {
+  margin-top: 20px; }
+#main-page #link-container {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

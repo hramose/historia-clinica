@@ -1,21 +1,25 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="{{ URL::to('auth/login') }}">
-        <input type="hidden" value="{{ csrf_token() }}" name="_token">
+    {!! Form::open(['route' => 'auth/login', 'class' => 'forms login-form']) !!}
+    <section>
+        <label>{{ trans('models.Useremail') }}</label>
+        {!! Form::email('email', '', ['class'=> '']) !!}
+    </section>
+    <section>
+        <label>{{ trans('models.Userpassword') }}</label>
+        {!! Form::password('password', ['class'=> '']) !!}
+    </section>
 
-        <div>
-            <input type="email" name="email">
-        </div>
-        <div>
-            <input type="password" name="password">
-        </div>
+    <section>
+        <label><input type="checkbox" name="remember"> {{ trans('models.Userrememberme') }}</label>
+    </section>
 
-        <div>
-            <input type="submit" value="Login">
-        </div>
-
-    </form>
-
-    <a href="{{ URL::to('auth/register') }}">{{ trans('messages.register') }}</a>
+    <section>
+        {!! Form::button(trans('messages.login'),['type' => 'primary']) !!}
+    </section>
+    {!! Form::close() !!}
+    <div id="link-container">
+        <a href="{{ URL::to('auth/register') }}">{{ trans('messages.register') }}</a>
+    </div>
 @endsection

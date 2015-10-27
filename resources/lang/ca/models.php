@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: usu_adm
- * Date: 27/10/2015
- * Time: 11:07
- */
+
+return array(
+    'Username' => 'Nom',
+    'Useremail' => 'Email',
+    'Userpassword' => 'Contrasenya',
+    'Userconfirmationpassword' => 'Tornar a introduir la contrasenya',
+    'Userrememberme' => 'Recorda\'m'
+);
