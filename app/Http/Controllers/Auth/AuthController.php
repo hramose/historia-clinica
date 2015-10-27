@@ -11,6 +11,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -98,7 +101,14 @@ class AuthController extends Controller
             );
         }
 
-        Auth::login($this->create($request->all()));
+        //Auth::login($this->create($request->all()));
+        $user = $this->create($request->all());
+        $confirmation_code = $user->token;
+        Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
+            $message->from('rcamara9@gmail.com', 'Administració');
+            $message->to(Input::get('email'), Input::get('name'))
+                ->subject('Verify your email address');
+        });
 
         return redirect($this->redirectPath());
     }
@@ -109,6 +119,7 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
+        Session::flash('alert-success', 'You have successfully verified your account.');
         return view('auth.login', [
             'lang' => 'ca',
             'title' => Lang::get('messages.title_inicia')
@@ -175,9 +186,30 @@ class AuthController extends Controller
     protected function getCredentials(Request $request)
     {
         return [
-            'email'    => $request->input('email'),
+            'email' => $request->input('email'),
             'password' => $request->input('password'),
             'verified' => true
         ];
+    }
+
+    public function getConfirmation($confirmation_code)
+    {
+        if (!$confirmation_code) {
+            throw new InvalidTokenException;
+        }
+
+        $user = User::whereToken($confirmation_code)->first();
+
+        if (!$user) {
+            throw new InvalidTokenException;
+        }
+
+        $user->verified = 1;
+        $user->token = null;
+        $user->save();
+
+        Session::flash('alert-success', 'You have successfully verified your account.');
+
+        return redirect($this->loginPath());
     }
 }

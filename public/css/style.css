@@ -1,9 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+body, button, select, textarea, input, .btn {
+  font-family: 'Montserrat', sans-serif; }
+
 [class*="-form"] {
   margin-top: 60px; }
 
 #main-page .alert {
   margin-top: 20px; }
+  #main-page .alert a {
+    color: #2581AF; }
 #main-page #link-container {
   text-align: center; }
+
+#footer {
+  padding: 48px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6); }
 
 /*# sourceMappingURL=style.css.map */

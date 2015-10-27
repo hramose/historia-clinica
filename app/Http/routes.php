@@ -28,3 +28,9 @@ Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController
     Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
 /*});*/
 
+// Verify email routes
+Route::get('auth/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'Auth\AuthController@getConfirmation'
+]);
+
