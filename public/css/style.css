@@ -9,6 +9,8 @@ body, button, select, textarea, input, .btn {
   margin-top: 20px; }
   #main-page .alert a {
     color: #2581AF; }
+#main-page section:last-child {
+  text-align: center; }
 #main-page #link-container {
   text-align: center; }
 

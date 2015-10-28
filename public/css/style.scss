@@ -15,14 +15,21 @@ body, button, select, textarea, input, .btn {
       color: #2581AF;
     }
   }
+  section {
+    &:last-child {
+      text-align: center;
+    }
+  }
+
   #link-container {
     text-align: center;
   }
+
 }
 
 #footer {
   padding: 48px;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 13px;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
 }
