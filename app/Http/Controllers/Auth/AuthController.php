@@ -105,10 +105,10 @@ class AuthController extends Controller
         //Auth::login($this->create($request->all()));
         $user = $this->create($request->all());
         $confirmation_code = $user->token;
-        Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
-            $message->from('rcamara9@gmail.com', 'Administraci�');
+        Mail::send('emails.verify', ['lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
+            $message->from('rcamara9@gmail.com', 'Administració');
             $message->to(Input::get('email'), Input::get('name'))
-                ->subject('Verify your email address');
+                ->subject(trans('messages.title_verify_email'));
         });
 
         Session::flash('alert-success', trans('messages.register_successful'));
@@ -149,13 +149,7 @@ class AuthController extends Controller
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            $sixmonths = $this->checkForPasswordChange(6, $request);
-            if ($sixmonths) {
-                //show password reset view
-                Auth::logout();
-            } else {
-                return $this->handleUserWasAuthenticated($request, $throttles);
-            }
+            return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -215,42 +209,54 @@ class AuthController extends Controller
         $user->token = null;
         $user->save();
 
-        Session::flash('alert-success', 'You have successfully verified your account.');
+        Session::flash('alert-success', trans('messages.succesful_verified'));
 
         return redirect($this->loginPath());
     }
 
-    public function getSendVerificationMail(Request $request) {
-        if ($request->isMethod('post'))
-        {
+    public function getSendVerificationMail(Request $request)
+    {
+        if ($request->isMethod('post')) {
             $user = User::whereEmail($request->input('email'))->firstOrFail();
             $confirmation_code = $user->token;
-            Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) {
-                $message->from('rcamara9@gmail.com', 'Administració');
-                $message->to(Input::get('email'), Input::get('name'))
-                    ->subject('Verify your email address');
-            });
+            if ($confirmation_code != '') {
+                Mail::send('emails.verify', ['lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
+                    $message->from('rcamara9@gmail.com', 'Administració');
+                    $message->to(Input::get('email'), Input::get('name'))
+                        ->subject(trans('messages.title_verify_email'));
+                });
 
-            Session::flash('alert-success', trans('messages.sendver_correctly'));
+                Session::flash('alert-success', trans('messages.sendver_correctly'));
+            } else {
+                Session::flash('alert-success', trans('messages.already_verified'));
+            }
 
             return redirect($this->loginPath());
-        }
-        else {
-            return view('emails.sendverificationmail', [
+        } else {
+            return view('auth.sendverificationmail', [
                 'lang' => 'ca',
                 'title' => Lang::get('messages.title_sendmailver')
             ]);
         }
     }
 
-    public function checkForPasswordChange($months, $request) {
-        $user = User::whereEmail($request->input('email'))->first();
-        $date_created = new \DateTime($user->created_at);
-        $date_now = new \DateTime('NOW');
-        $diff = $date_created->diff($date_now);
-        if ($diff->m >= $months) {
-            return false;
+    public function getResetPassword(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $user = $request->user();
+            $user->password = $request->input('password');
+            $user->save();
+
+            Auth::logout();
+            Session::flash('alert-success', trans('messages.already_changed_pass'));
+
+            return redirect($this->loginPath());
+        } else {
+            return view('auth.reset_password', [
+                'lang' => 'ca',
+                'title' => trans('title_reset')
+            ]);
         }
-        return true;
+
     }
 }

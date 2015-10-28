@@ -43,3 +43,14 @@ Route::post('auth/sendverificationmail', [
     'as' => 'sendverificationmail',
     'uses' => 'Auth\AuthController@getSendVerificationMail'
 ]);
+
+Route::get('auth/reset_password', [
+    'as' => 'reset_password',
+    'uses' => 'Auth\AuthController@getResetPassword'
+]);
+
+Route::post('auth/reset_password', [
+    'as' => 'reset_password',
+    'uses' => 'Auth\AuthController@getResetPassword'
+]);
+
