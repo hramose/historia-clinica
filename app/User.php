@@ -49,4 +49,8 @@ class User extends Model implements AuthenticatableContract,
             $user->token = str_random(30);
         });
     }
+
+    public function setPassword($password) {
+        $this->password = bcrypt($password);
+    }
 }

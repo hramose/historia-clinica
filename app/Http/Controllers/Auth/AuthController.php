@@ -243,19 +243,37 @@ class AuthController extends Controller
     public function getResetPassword(Request $request)
     {
         if ($request->isMethod('post')) {
-            $user = $request->user();
-            $user->password = $request->input('password');
-            $user->save();
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'min:6|required',
+                'password_confirmation' => 'same:password|required'
+            ]);
+            
+            if (isset($request->user()->email)) {
+                $user = $request->user();
+                $user->setPassword($request->input('password'));
+                $user->save();
 
-            Auth::logout();
-            Session::flash('alert-success', trans('messages.already_changed_pass'));
+                Auth::logout();
+                Session::flash('alert-success', trans('messages.already_changed_pass'));
+            } else {
+                $user = User::whereEmail($request->input('email'))->first();
+                $user->setPassword($request->input('password'));
+                $user->save();
+
+                Session::flash('alert-success', trans('messages.already_changed_pass'));
+            }
 
             return redirect($this->loginPath());
         } else {
-            return view('auth.reset_password', [
+            $data = [
                 'lang' => 'ca',
                 'title' => trans('title_reset')
-            ]);
+            ];
+            if (isset(Auth::user()->email)) {
+                $data['email'] = Auth::user()->email;
+            }
+            return view('auth.reset_password', $data);
         }
 
     }

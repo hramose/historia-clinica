@@ -3,6 +3,13 @@
 @section('content')
     {!! Form::open(['route' => 'reset_password', 'class' => 'forms register-form']) !!}
 
+    @if (!isset($email))
+        <section>
+            <label>{{ trans('models.Useremail') }}</label>
+            {!! Form::email('email', '', ['class'=> '']) !!}
+        </section>
+    @endif
+
     <section>
         <label>{{ trans('models.Userpassword') }}</label>
         {!! Form::password('password', ['class'=> '']) !!}
