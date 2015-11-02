@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Menu;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
@@ -25,6 +26,38 @@ class FrontController extends Controller
         ]);
     }
 
+    public function getFormMenu()
+    {
+        $allMenu = Menu::all();
+        $menus = [0 => ''];
+
+        foreach ($allMenu as $menu) {
+            $menus[$menu['id']] = $menu['title'];
+        }
+        return view('front/form_menu', [
+            'lang' => 'ca',
+            'menus' => $menus,
+            'title' => 'Creació de les opcions de menú'
+        ]);
+    }
+
+    public function postCreateMenu(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'url' => 'required'
+        ]);
+
+        Menu::create([
+            'title' => $request->input('title'),
+            'father_id' => $request->input('father_id')
+        ]);
+
+        Session::flash('alert-success', 'Menú creado correctamente');
+
+        return redirect('crear_menus');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +71,7 @@ class FrontController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,7 +82,7 @@ class FrontController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -60,7 +93,7 @@ class FrontController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -71,8 +104,8 @@ class FrontController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -83,7 +116,7 @@ class FrontController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

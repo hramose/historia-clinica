@@ -23,7 +23,7 @@
 
     <section>
         <label>{{ trans('models.Userrol') }}</label>
-        {!! Form::select('rol', $rols, ['class'=> '']) !!}
+        {!! Form::select('rol_id', $rols, ['class'=> '']) !!}
     </section>
 
     <section>
