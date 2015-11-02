@@ -11,7 +11,7 @@
 </head>
 <body>
 <row id="main-page" @if (!Auth::check()) centered @endif>
-    @if (Auth::check())
+    @if (Auth::check() && !isset($email))
         @include('layouts.menu')
     @endif
     <column cols="4" centered>

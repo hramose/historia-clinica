@@ -114,7 +114,7 @@ class AuthController extends Controller
         //Auth::login($this->create($request->all()));
         $user = $this->create($request->all());
         $confirmation_code = $user->token;
-        Mail::send('emails.verify', ['lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
+        Mail::send('emails.verify', ['email' => true, 'lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
             $message->from('rcamara9@gmail.com', 'Administració');
             $message->to(Input::get('email'), Input::get('name'))
                 ->subject(trans('messages.title_verify_email'));
