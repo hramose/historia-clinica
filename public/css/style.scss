@@ -16,6 +16,7 @@ body, button, select, textarea, input, .btn {
   .navigation {
     padding: 0 20px;
     margin-top: 5px;
+    font-size: 16px;
   }
   .alert {
     margin-top: 20px;
@@ -40,11 +41,18 @@ body, button, select, textarea, input, .btn {
       .metismenu {
         li {
           text-align: inherit;
-          &> span {
+          & > span {
             display: none;
           }
           a {
-            display: block;
+            span {
+              &:first-child {
+                display: block;
+              }
+              &:nth-child(2) {
+                display: none;
+              }
+            }
           }
         }
       }
@@ -59,7 +67,11 @@ body, button, select, textarea, input, .btn {
         padding: 15px;
         list-style: none;
         a {
-          display: none;
+          span {
+            &:first-child {
+              display: none;
+            }
+          }
           color: #ffffff;
           text-decoration: none;
         }

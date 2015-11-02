@@ -11,7 +11,8 @@ body, button, select, textarea, input, .btn {
   margin: 0; }
   #main-page .navigation {
     padding: 0 20px;
-    margin-top: 5px; }
+    margin-top: 5px;
+    font-size: 16px; }
   #main-page .alert {
     margin-top: 20px; }
     #main-page .alert a {
@@ -29,8 +30,10 @@ body, button, select, textarea, input, .btn {
         text-align: inherit; }
         #main-page nav.expanded .metismenu li > span {
           display: none; }
-        #main-page nav.expanded .metismenu li a {
+        #main-page nav.expanded .metismenu li a span:first-child {
           display: block; }
+        #main-page nav.expanded .metismenu li a span:nth-child(2) {
+          display: none; }
     #main-page nav .metismenu {
       background: #000000;
       margin: 0; }
@@ -41,9 +44,10 @@ body, button, select, textarea, input, .btn {
         padding: 15px;
         list-style: none; }
         #main-page nav .metismenu li a {
-          display: none;
           color: #ffffff;
           text-decoration: none; }
+          #main-page nav .metismenu li a span:first-child {
+            display: none; }
 
 #footer {
   padding: 48px;
