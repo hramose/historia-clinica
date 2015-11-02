@@ -54,3 +54,6 @@ Route::post('auth/reset_password', [
     'uses' => 'Auth\AuthController@getResetPassword'
 ]);
 
+Route::group(['prefix' => 'patients'], function () {
+    Route::get('/', 'PatientController@index');
+});

@@ -22,6 +22,11 @@
     </section>
 
     <section>
+        <label>{{ trans('models.Userrol') }}</label>
+        {!! Form::select('rol', $rols, ['class'=> '']) !!}
+    </section>
+
+    <section>
         {!! Form::button(trans('messages.register'),['type' => 'primary']) !!}
     </section>
     {!! Form::close() !!}

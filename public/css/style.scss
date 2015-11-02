@@ -9,6 +9,9 @@ body, button, select, textarea, input, .btn {
 }
 
 #main-page {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
   .alert {
     margin-top: 20px;
     a {
@@ -24,7 +27,39 @@ body, button, select, textarea, input, .btn {
   #link-container {
     text-align: center;
   }
-
+  nav {
+    width: 60px;
+    &.expanded {
+      width: 200px;
+      .metismenu {
+        li {
+          text-align: inherit;
+          &> span {
+            display: none;
+          }
+          a {
+            display: block;
+          }
+        }
+      }
+    }
+    .metismenu {
+      background: #000000;
+      margin: 0;
+      li {
+        text-align: center;
+        font-size: 18px;
+        color: #ffffff;
+        padding: 15px;
+        list-style: none;
+        a {
+          display: none;
+          color: #ffffff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }
 
 #footer {
@@ -32,4 +67,11 @@ body, button, select, textarea, input, .btn {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+nav, li.active {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }

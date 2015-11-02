@@ -6,10 +6,15 @@
     <title>Gestió pacients - {{ $title }}</title>
     <link rel="stylesheet" href="{{ URL::asset('/css/kube.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/style.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/metismenu.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-<row id="main-page" centered>
-    <column cols="4">
+<row id="main-page" @if (!Auth::check()) centered @endif>
+    @if (Auth::check())
+        @include('layouts.menu')
+    @endif
+    <column cols="4" centered>
         @if (Session::has('errors'))
             <div class="alert alert-warning" role="alert">
                 <ul>
@@ -40,6 +45,9 @@
         @endif
     </blocks>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+{!! Html::script('js/metismenu.js') !!}
+{!! Html::script('js/index.js') !!}
 </body>
 </html>
