@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => ['getLogout', 'getRegister', 'postRegister']]);
+        $this->middleware('guest', ['except' => ['getLogout', 'getResetPassword', 'getRegister', 'postRegister']]);
     }
 
     /**
@@ -80,6 +80,7 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
+        if ($this->checkForPasswordExpiration()) return redirect('auth/reset_password');
         return view('auth.register', [
             'lang' => 'ca',
             'title' => Lang::get('messages.title_register')]);
@@ -149,7 +150,15 @@ class AuthController extends Controller
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            return $this->handleUserWasAuthenticated($request, $throttles);
+            if ((strtotime(Auth::user()->created_at) < strtotime('6 month ago')) && is_null(Auth::user()->password_reset)) {
+                Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
+                return redirect('auth/reset_password');//redirect to password reset page
+            } else if ((strtotime(Auth::user()->password_reset) < strtotime('6 month ago'))) {
+                Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
+                return redirect('auth/reset_password');//redirect to password reset page
+            } else {
+                return $this->handleUserWasAuthenticated($request, $throttles);
+            }
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -171,9 +180,12 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function getLogout()
+    public
+    function getLogout()
     {
         Auth::logout();
+
+        Session::forget('password_expiration');
 
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
@@ -184,7 +196,8 @@ class AuthController extends Controller
      * @param  Request $request
      * @return array
      */
-    protected function getCredentials(Request $request)
+    protected
+    function getCredentials(Request $request)
     {
         return [
             'email' => $request->input('email'),
@@ -193,7 +206,8 @@ class AuthController extends Controller
         ];
     }
 
-    public function getConfirmation($confirmation_code)
+    public
+    function getConfirmation($confirmation_code)
     {
         if (!$confirmation_code) {
             throw new InvalidTokenException;
@@ -214,7 +228,8 @@ class AuthController extends Controller
         return redirect($this->loginPath());
     }
 
-    public function getSendVerificationMail(Request $request)
+    public
+    function getSendVerificationMail(Request $request)
     {
         if ($request->isMethod('post')) {
             $user = User::whereEmail($request->input('email'))->firstOrFail();
@@ -240,15 +255,17 @@ class AuthController extends Controller
         }
     }
 
-    public function getResetPassword(Request $request)
+    public
+    function getResetPassword(Request $request)
     {
+        $this->checkForPasswordExpiration();
         if ($request->isMethod('post')) {
             $this->validate($request, [
                 'email' => 'required|email',
                 'password' => 'min:6|required',
                 'password_confirmation' => 'same:password|required'
             ]);
-            
+
             if (isset($request->user()->email)) {
                 $user = $request->user();
                 $user->setPassword($request->input('password'));
@@ -266,9 +283,10 @@ class AuthController extends Controller
 
             return redirect($this->loginPath());
         } else {
+            Session::put('password_expired', true);
             $data = [
                 'lang' => 'ca',
-                'title' => trans('title_reset')
+                'title' => trans('messages.title_reset')
             ];
             if (isset(Auth::user()->email)) {
                 $data['email'] = Auth::user()->email;
@@ -276,5 +294,14 @@ class AuthController extends Controller
             return view('auth.reset_password', $data);
         }
 
+    }
+
+    public static function checkForPasswordExpiration() {
+        if (Session::has('password_expired')) {
+            Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
+            return true;
+        }
+
+        return false;
     }
 }

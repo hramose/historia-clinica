@@ -1,7 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+/*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body, button, select, textarea, input, .btn {
-  font-family: 'Montserrat', sans-serif;
+  /*font-family: 'Montserrat', sans-serif;*/
+  font-family: 'Open Sans', sans-serif;
 }
 
 [class*="-form"] {

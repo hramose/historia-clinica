@@ -11,9 +11,9 @@
         {!! Form::password('password', ['class'=> '']) !!}
     </section>
 
-    <section>
+    {{--<section>
         <label><input type="checkbox" name="remember"> {{ trans('models.Userrememberme') }}</label>
-    </section>
+    </section>--}}
 
     <section>
         {!! Form::button(trans('messages.login'),['type' => 'primary']) !!}
