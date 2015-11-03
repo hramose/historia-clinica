@@ -16,7 +16,8 @@ body, button, select, textarea, input, .btn {
     margin-top: 5px;
     font-size: 16px;
     margin: 2px auto 0 auto;
-    display: block; }
+    display: block;
+    background: #000; }
   #main-page .alert {
     margin-top: 20px; }
     #main-page .alert a {
@@ -52,6 +53,7 @@ body, button, select, textarea, input, .btn {
         padding: 15px;
         list-style: none; }
         #main-page nav .metismenu li a {
+          font-size: 14px;
           color: #ffffff;
           text-decoration: none; }
           #main-page nav .metismenu li a span:first-child {

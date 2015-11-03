@@ -21,6 +21,7 @@ body, button, select, textarea, input, .btn {
     font-size: 16px;
     margin: 2px auto 0 auto;
     display: block;
+    background: #000;
   }
   .alert {
     margin-top: 20px;
@@ -76,6 +77,7 @@ body, button, select, textarea, input, .btn {
         padding: 15px;
         list-style: none;
         a {
+          font-size: 14px;
           span {
             &:first-child {
               display: none;
