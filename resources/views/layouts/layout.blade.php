@@ -9,43 +9,41 @@
     <link rel="stylesheet" href="{{ URL::asset('/css/metismenu.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body>
+<body @if (!Auth::check()) class="no-login" @endif>
 @if (Auth::check() && !isset($email))
     @include('layouts.menu')
 @endif
 <row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>
-    <column cols="6">
-        @if (Session::has('errors'))
-            <div class="alert alert-warning" role="alert">
-                <ul>
-                    <strong>{{ trans('messages.error_resumee') }}: </strong>
-                    @foreach ($errors->all() as $error)
-                        <li>{!!  $error !!}</li>
-                    @endforeach
-                </ul>
+    <block cols="1">
+        <column cols="6">
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <ul>
+                        <strong>{{ trans('messages.error_resumee') }}: </strong>
+                        @foreach ($errors->all() as $error)
+                            <li>{!!  $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <div class="flash-message">
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                        <div class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</div>
+                    @endif
+                @endforeach
             </div>
-        @endif
-        <div class="flash-message">
-            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                @if(Session::has('alert-' . $msg))
-                    <div class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</div>
-                @endif
-            @endforeach
-        </div>
-        <!-- end .flash-message -->
-        @yield('content')
-    </column>
-    <row>
-        <footer id="footer">
+            <!-- end .flash-message -->
+            @yield('content')
+        </column>
+    </block>
 
-            <blocks cols="2">
-                <div><p>© Helena Cabo Santos {{ date('Y') }}. All rights reserved.</p></div>
-                @if (Auth::check())
-                    <div class="text-right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></div>
-                @endif
-            </blocks>
-        </footer>
-    </row>
+    <footer id="footer">
+        <div><p>© Helena Cabo Santos {{ date('Y') }}. All rights reserved.</p></div>
+        @if (Auth::check())
+            <div class="text-right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></div>
+        @endif
+    </footer>
 </row>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>

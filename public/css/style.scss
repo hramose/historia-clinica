@@ -6,6 +6,12 @@ body, button, select, textarea, input, .btn {
   font-family: 'Open Sans', sans-serif;
 }
 
+body.no-login {
+  #main-page {
+    margin: 0;
+  }
+}
+
 [class*="-form"] {
   margin-top: 60px;
 }
@@ -103,10 +109,16 @@ nav {
 }
 
 #footer {
+  width: 100%;
   padding: 48px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.6);
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
 }
 
 nav, li.active, #main-page {
