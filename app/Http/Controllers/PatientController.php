@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Menu;
-use Auth;
-use Illuminate\Support\Facades\Session;
 
-class FrontController extends Controller
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class PatientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,47 +16,7 @@ class FrontController extends Controller
      */
     public function index()
     {
-        if (AuthController::checkForPasswordExpiration()) return redirect('auth/reset_password');
-
-        if (!Auth::check()) {
-            return redirect()->action('Auth\AuthController@getLogin');
-        }
-        return view('front/index', [
-            'lang' => 'ca',
-            'title' => 'Pàgina principal'
-        ]);
-    }
-
-    public function getFormMenu()
-    {
-        $allMenu = Menu::all();
-        $menus = [0 => ''];
-
-        foreach ($allMenu as $menu) {
-            $menus[$menu['id']] = $menu['title'];
-        }
-        return view('front/form_menu', [
-            'lang' => 'ca',
-            'menus' => $menus,
-            'title' => 'Creació de les opcions de menú'
-        ]);
-    }
-
-    public function postCreateMenu(Request $request)
-    {
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'url' => 'required'
-        ]);
-
-        Menu::create([
-            'title' => $request->input('title'),
-            'father_id' => $request->input('father_id')
-        ]);
-
-        Session::flash('alert-success', 'Menú creado correctamente');
-
-        return redirect('crear_menus');
+        //
     }
 
     /**

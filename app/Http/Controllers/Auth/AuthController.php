@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => ['getLogout', 'getResetPassword', 'getRegister', 'postRegister']]);
+        $this->middleware('guest', ['except' => ['getLogout', 'getRegister', 'postRegister']]);
     }
 
     /**
@@ -80,7 +80,12 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        if ($this->checkForPasswordExpiration()) return redirect('auth/reset_password');
+        $allRols = Rol::all();
+        $rols = [0 => ''];
+
+        foreach ($allRols as $rol) {
+            $rols[$rol['id']] = $rol['title'];
+        }
         return view('auth.register', [
             'lang' => 'ca',
             'title' => Lang::get('messages.title_register')]);
@@ -106,7 +111,7 @@ class AuthController extends Controller
         //Auth::login($this->create($request->all()));
         $user = $this->create($request->all());
         $confirmation_code = $user->token;
-        Mail::send('emails.verify', ['lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
+        Mail::send('emails.verify', ['email' => true, 'lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
             $message->from('rcamara9@gmail.com', 'Administració');
             $message->to(Input::get('email'), Input::get('name'))
                 ->subject(trans('messages.title_verify_email'));
@@ -196,8 +201,7 @@ class AuthController extends Controller
      * @param  Request $request
      * @return array
      */
-    protected
-    function getCredentials(Request $request)
+    protected function getCredentials(Request $request)
     {
         return [
             'email' => $request->input('email'),
@@ -206,8 +210,7 @@ class AuthController extends Controller
         ];
     }
 
-    public
-    function getConfirmation($confirmation_code)
+    public function getConfirmation($confirmation_code)
     {
         if (!$confirmation_code) {
             throw new InvalidTokenException;
@@ -228,8 +231,7 @@ class AuthController extends Controller
         return redirect($this->loginPath());
     }
 
-    public
-    function getSendVerificationMail(Request $request)
+    public function getSendVerificationMail(Request $request)
     {
         if ($request->isMethod('post')) {
             $user = User::whereEmail($request->input('email'))->firstOrFail();
@@ -255,17 +257,15 @@ class AuthController extends Controller
         }
     }
 
-    public
-    function getResetPassword(Request $request)
+    public function getResetPassword(Request $request)
     {
-        $this->checkForPasswordExpiration();
         if ($request->isMethod('post')) {
             $this->validate($request, [
                 'email' => 'required|email',
                 'password' => 'min:6|required',
                 'password_confirmation' => 'same:password|required'
             ]);
-
+            
             if (isset($request->user()->email)) {
                 $user = $request->user();
                 $user->setPassword($request->input('password'));
@@ -286,7 +286,7 @@ class AuthController extends Controller
             Session::put('password_expired', true);
             $data = [
                 'lang' => 'ca',
-                'title' => trans('messages.title_reset')
+                'title' => trans('title_reset')
             ];
             if (isset(Auth::user()->email)) {
                 $data['email'] = Auth::user()->email;

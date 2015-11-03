@@ -15,17 +15,18 @@
     return view('welcome');
 });*/
 
-Route:get('/', 'FrontController@index');
+Route:
+get('/', 'FrontController@index');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', ['as' =>'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
+Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 /*Route::group(['middleware' => 'auth'], function(){*/
-    // Registration routes...
-    Route::get('auth/register', 'Auth\AuthController@getRegister');
-    Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
 /*});*/
 
 // Verify email routes
@@ -54,3 +55,12 @@ Route::post('auth/reset_password', [
     'uses' => 'Auth\AuthController@getResetPassword'
 ]);
 
+Route::group(['prefix' => 'patients'], function () {
+    Route::get('/', 'PatientController@index');
+});
+
+Route::get('crear_menus', 'FrontController@getFormMenu');
+
+Route::post('crear_menu', [
+    'as' => 'crear_menu',
+    'uses' => 'FrontController@postCreateMenu']);
