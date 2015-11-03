@@ -21,10 +21,10 @@
         {!! Form::password('password_confirmation', ['class'=> '']) !!}
     </section>
 
-    <section>
+    {{--<section>
         <label>{{ trans('models.Userrol') }}</label>
         {!! Form::select('rol_id', $rols, ['class'=> '']) !!}
-    </section>
+    </section>--}}
 
     <section>
         {!! Form::button(trans('messages.register'),['type' => 'primary']) !!}

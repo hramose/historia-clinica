@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class HistoryController extends Controller
 {
 
     public function __construct()

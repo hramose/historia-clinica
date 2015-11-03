@@ -19,6 +19,8 @@ body, button, select, textarea, input, .btn {
     padding: 0 20px;
     margin-top: 5px;
     font-size: 16px;
+    margin: 2px auto 0 auto;
+    display: block;
   }
   .alert {
     margin-top: 20px;
@@ -34,12 +36,17 @@ body, button, select, textarea, input, .btn {
 
   #link-container {
     text-align: center;
+    margin-bottom: 5px;
   }
   nav {
     width: 60px;
     display: inline-block;
+    background: #000000;
     &.expanded {
       width: 200px;
+      .navigation {
+        margin: 2px 0 0 2px;
+      }
       .metismenu {
         li {
           text-align: inherit;

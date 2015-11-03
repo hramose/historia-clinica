@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
 use App;
+use App\Exceptions\InvalidTokenException;
+use App\Http\Controllers\Controller;
 use App\User;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Lang;
 use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
-use App\Exceptions\InvalidTokenException;
 
 class AuthController extends Controller
 {
@@ -57,6 +57,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            /*'id_rol' => 'required|not_in:0'*/
         ]);
     }
 
@@ -80,14 +81,15 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        $allRols = Rol::all();
+        /*$allRols = Rol::all();
         $rols = [0 => ''];
 
         foreach ($allRols as $rol) {
             $rols[$rol['id']] = $rol['title'];
-        }
+        }*/
         return view('auth.register', [
             'lang' => 'ca',
+            /*'rols' => $rols,*/
             'title' => Lang::get('messages.title_register')]);
 
     }
@@ -265,7 +267,7 @@ class AuthController extends Controller
                 'password' => 'min:6|required',
                 'password_confirmation' => 'same:password|required'
             ]);
-            
+
             if (isset($request->user()->email)) {
                 $user = $request->user();
                 $user->setPassword($request->input('password'));
@@ -296,7 +298,8 @@ class AuthController extends Controller
 
     }
 
-    public static function checkForPasswordExpiration() {
+    public static function checkForPasswordExpiration()
+    {
         if (Session::has('password_expired')) {
             Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
             return true;

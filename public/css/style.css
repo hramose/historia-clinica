@@ -14,7 +14,9 @@ body, button, select, textarea, input, .btn {
   #main-page .navigation {
     padding: 0 20px;
     margin-top: 5px;
-    font-size: 16px; }
+    font-size: 16px;
+    margin: 2px auto 0 auto;
+    display: block; }
   #main-page .alert {
     margin-top: 20px; }
     #main-page .alert a {
@@ -22,12 +24,16 @@ body, button, select, textarea, input, .btn {
   #main-page section:last-child {
     text-align: center; }
   #main-page #link-container {
-    text-align: center; }
+    text-align: center;
+    margin-bottom: 5px; }
   #main-page nav {
     width: 60px;
-    display: inline-block; }
+    display: inline-block;
+    background: #000000; }
     #main-page nav.expanded {
       width: 200px; }
+      #main-page nav.expanded .navigation {
+        margin: 2px 0 0 2px; }
       #main-page nav.expanded .metismenu li {
         text-align: inherit; }
         #main-page nav.expanded .metismenu li > span {
