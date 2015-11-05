@@ -13,9 +13,10 @@
 @if (Auth::check() && !isset($email))
     @include('layouts.menu')
 @endif
-<row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>
-    <block cols="1">
+<div class="wrap-content">
+    <row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>
         <column cols="6">
+            Hello, World
             @if (Session::has('errors'))
                 <div class="alert alert-warning" role="alert">
                     <ul>
@@ -26,25 +27,26 @@
                     </ul>
                 </div>
             @endif
-            <div class="flash-message">
-                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                    @if(Session::has('alert-' . $msg))
-                        <div class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</div>
-                    @endif
-                @endforeach
-            </div>
-            <!-- end .flash-message -->
+            @if (Session::has('alert'))
+                <div class="flash-message">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if(Session::has('alert-' . $msg))
+                            <div class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</div>
+                        @endif
+                    @endforeach
+                </div>
+                <!-- end .flash-message -->
+            @endif
             @yield('content')
         </column>
-    </block>
-
-    <footer id="footer">
-        <div><p>© Helena Cabo Santos {{ date('Y') }}. All rights reserved.</p></div>
-        @if (Auth::check())
-            <div class="text-right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></div>
-        @endif
-    </footer>
-</row>
+    </row>
+</div>
+<footer id="footer">
+    <span class="left">© Helena Cabo Santos {{ date('Y') }}. All rights reserved.</span>
+    @if (Auth::check())
+        <span class="right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></span>
+    @endif
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 {!! Html::script('js/metismenu.js') !!}
