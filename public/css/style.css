@@ -1,8 +1,11 @@
 /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
-  font-family: 'Open Sans', sans-serif; }
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: 'Raleway', sans-serif;
+  height: 100%; }
 
 body.no-login #main-page, body.no-login #footer {
   margin: 0; }
@@ -11,59 +14,89 @@ body.no-login #main-page, body.no-login #footer {
   margin-top: 60px; }
 
 nav {
-  width: 60px;
   display: inline-block;
   background: #000000;
-  height: 100%; }
+  height: 100%;
+  width: 200px; }
   @media (min-width: 768px) {
     nav {
       z-index: 2001;
       position: absolute; } }
-  nav .navigation {
-    padding: 0 20px;
-    margin-top: 5px;
-    font-size: 16px;
-    margin: 2px auto 0 auto;
-    display: block;
-    background: #000; }
-    nav .navigation:hover {
-      background: #333; }
-  nav.expanded {
-    width: 200px; }
-    nav.expanded .navigation {
-      margin: 2px 0 0 2px; }
-    nav.expanded .metismenu li {
-      text-align: inherit; }
-      nav.expanded .metismenu li > span {
-        display: none; }
-      nav.expanded .metismenu li a span:first-child {
-        display: block; }
-      nav.expanded .metismenu li a span:nth-child(2) {
-        display: none; }
+  nav .nav-button {
+    width: 100%;
+    display: inline-block; }
+    nav .nav-button .navigation {
+      float: right;
+      padding: 0 20px;
+      margin-top: 5px;
+      font-size: 16px;
+      margin: 2px 2px 0 auto;
+      display: block;
+      background: #000; }
+      nav .nav-button .navigation:hover {
+        background: #333; }
   nav .metismenu {
     background: #000000;
     margin: 0; }
     nav .metismenu li {
-      text-align: center;
-      font-size: 18px;
+      text-align: inherit;
       color: #ffffff;
       padding: 15px;
-      list-style: none; }
+      list-style: none;
+      position: relative;
+      background: #000;
+      /*&:hover {
+        ul.nav-second-level {
+          display: inherit;
+          position: inherit;
+          top: inherit;
+          left: inherit;
+          margin: 0 0 0 24px;
+        }
+      }*/
+      /*ul {
+        &.nav-second-level {
+          li {
+            padding: 0;
+          }
+        }
+      }*/ }
+      nav .metismenu li.active {
+        border-left: 4px solid #19aa8d; }
       nav .metismenu li a {
-        font-size: 14px;
         color: #ffffff;
-        text-decoration: none; }
-        nav .metismenu li a span:first-child {
+        text-decoration: none;
+        display: block;
+        position: relative; }
+        nav .metismenu li a span.text {
+          display: inline-block; }
+        nav .metismenu li a span.arrow {
+          display: inline-block; }
+  nav.closed {
+    width: 60px; }
+    nav.closed .metismenu li {
+      font-size: 18px; }
+      nav.closed .metismenu li:hover ul.nav-second-level {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 60px;
+        margin: 0; }
+      nav.closed .metismenu li a {
+        font-size: 14px; }
+        nav.closed .metismenu li a span.text {
+          display: none; }
+        nav.closed .metismenu li a span.arrow {
           display: none; }
 
 .wrap-content {
-  padding: 20px 0 20px 0; }
+  padding: 20px 0 20px 0;
+  margin: 0 0 0 60px; }
+  .wrap-content.compress {
+    margin: 0 0 0 200px; }
   .wrap-content #main-page {
     height: 100%;
-    min-height: 100%;
-    margin: 0 0 0 60px; }
-    .wrap-content #main-page.compress {
-      margin: 0 0 0 200px; }
+    min-height: 100%; }
     .wrap-content #main-page .alert {
       margin-top: 20px; }
       .wrap-content #main-page .alert a {
@@ -87,7 +120,7 @@ nav {
   #footer.compress {
     margin: 0 0 0 200px; }
 
-nav, li.active, #main-page, #footer {
+nav, li.active, .wrap-content, #footer {
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;

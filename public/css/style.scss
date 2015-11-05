@@ -1,9 +1,12 @@
 /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: 'Raleway', sans-serif;
+  height: 100%;
 }
 
 body.no-login {
@@ -18,7 +21,6 @@ body.no-login {
 }
 
 nav {
-  width: 60px;
   display: inline-block;
   background: #000000;
   height: 100%;
@@ -26,34 +28,89 @@ nav {
     z-index: 2001;
     position: absolute;
   }
-  .navigation {
-    &:hover {
-      background: #333;
-    }
-    padding: 0 20px;
-    margin-top: 5px;
-    font-size: 16px;
-    margin: 2px auto 0 auto;
-    display: block;
-    background: #000;
-  }
-  &.expanded {
-    width: 200px;
+  .nav-button {
+    width: 100%;
+    display: inline-block;
     .navigation {
-      margin: 2px 0 0 2px;
+      &:hover {
+        background: #333;
+      }
+      float: right;
+      padding: 0 20px;
+      margin-top: 5px;
+      font-size: 16px;
+      margin: 2px 2px 0 auto;
+      display: block;
+      background: #000;
     }
+  }
+  width: 200px;
+  .metismenu {
+    background: #000000;
+    margin: 0;
+    li {
+      text-align: inherit;
+      color: #ffffff;
+      padding: 15px;
+      list-style: none;
+      position: relative;
+      background: #000;
+      &.active {
+        border-left: 4px solid #19aa8d;
+      }
+      /*&:hover {
+        ul.nav-second-level {
+          display: inherit;
+          position: inherit;
+          top: inherit;
+          left: inherit;
+          margin: 0 0 0 24px;
+        }
+      }*/
+      /*ul {
+        &.nav-second-level {
+          li {
+            padding: 0;
+          }
+        }
+      }*/
+      a {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        span {
+          &.text {
+            display: inline-block;
+          }
+          &.arrow {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  &.closed {
+    width: 60px;
     .metismenu {
       li {
-        text-align: inherit;
-        & > span {
-          display: none;
+        font-size: 18px;
+        &:hover {
+          ul.nav-second-level {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 60px;
+            margin: 0;
+          }
         }
         a {
+          font-size: 14px;
           span {
-            &:first-child {
-              display: block;
+            &.text {
+              display: none;
             }
-            &:nth-child(2) {
+            &.arrow {
               display: none;
             }
           }
@@ -61,38 +118,18 @@ nav {
       }
     }
   }
-  .metismenu {
-    background: #000000;
-    margin: 0;
-    li {
-      text-align: center;
-      font-size: 18px;
-      color: #ffffff;
-      padding: 15px;
-      list-style: none;
-      a {
-        font-size: 14px;
-        span {
-          &:first-child {
-            display: none;
-          }
-        }
-        color: #ffffff;
-        text-decoration: none;
-      }
-    }
-  }
 }
 
 .wrap-content {
   padding: 20px 0 20px 0;
+  margin: 0 0 0 60px;
+  &.compress {
+    margin: 0 0 0 200px;
+  }
   #main-page {
     height: 100%;
     min-height: 100%;
-    margin: 0 0 0 60px;
-    &.compress {
-      margin: 0 0 0 200px;
-    }
+
     .alert {
       margin-top: 20px;
       a {
@@ -128,7 +165,7 @@ nav {
   }
 }
 
-nav, li.active, #main-page, #footer {
+nav, li.active, .wrap-content, #footer {
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
