@@ -57,6 +57,10 @@ nav {
       background: #000;
       &.active {
         border-left: 4px solid #19aa8d;
+        background: #2b2a2a;
+      }
+      &:hover {
+        background: #2b2a2a;
       }
       /*&:hover {
         ul.nav-second-level {
@@ -74,6 +78,11 @@ nav {
           }
         }
       }*/
+      .nav-second-level {
+        li {
+          background: #2b2a2a;
+        }
+      }
       a {
         color: #ffffff;
         text-decoration: none;
@@ -95,17 +104,29 @@ nav {
     .metismenu {
       li {
         font-size: 18px;
-        &:hover {
+        ul.nav-second-level {
+          position: absolute;
+          left: 56px;
+          top: 0;
+          margin: 0;
+        }
+        /*&:hover {
           ul.nav-second-level {
             display: block;
             position: absolute;
             top: 0;
             left: 60px;
             margin: 0;
+            li {
+              a {
+                margin-left: 0;
+              }
+            }
           }
-        }
+        }*/
         a {
           font-size: 14px;
+          margin-left: 10px;
           span {
             &.text {
               display: none;
@@ -122,9 +143,9 @@ nav {
 
 .wrap-content {
   padding: 20px 0 20px 0;
-  margin: 0 0 0 60px;
+  margin: 0 0 0 200px;
   &.compress {
-    margin: 0 0 0 200px;
+    margin: 0 0 0 60px;
   }
   #main-page {
     height: 100%;
@@ -154,14 +175,14 @@ nav {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.6);
-  margin: 0 0 0 60px;
+  margin: 0 0 0 200px;
   &:after {
     content: "";
     display: block;
     clear: both;
   }
   &.compress {
-    margin: 0 0 0 200px;
+    margin: 0 0 0 60px;
   }
 }
 

@@ -30,7 +30,9 @@
         {!! Form::button(trans('messages.register'),['type' => 'primary']) !!}
     </section>
     {!! Form::close() !!}
+    @if (!Auth::check()))
     <div id="link-container">
         <a href="{{ URL::to('auth/login') }}">{{ trans('messages.login') }}</a>
     </div>
+    @endif
 @endsection
