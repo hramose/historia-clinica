@@ -34,6 +34,7 @@ class PatientController extends Controller
     {
         Session::flash('alert-warning', trans('messages.succesful_verified'));
         //return redirect('auth/reset_password');
+
         return view('pacients/form', [
             'lang' => 'ca',
             'title' => 'Crea un nou pacient'
