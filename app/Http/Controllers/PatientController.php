@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PatientController extends Controller
 {
@@ -28,9 +29,14 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        Session::flash('alert-warning', trans('messages.succesful_verified'));
+        //return redirect('auth/reset_password');
+        return view('pacients/form', [
+            'lang' => 'ca',
+            'title' => 'Crea un nou pacient'
+        ]);
     }
 
     /**

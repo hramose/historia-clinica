@@ -7,7 +7,7 @@ body, button, select, textarea, input, .btn {
   font-family: 'Raleway', sans-serif;
   height: 100%; }
 
-body.no-login #main-page, body.no-login #footer {
+body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
   margin: 0; }
 
 [class*="-form"] {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ $lang }}">
+<html lang="{{ $lang }}" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,14 +9,21 @@
     <link rel="stylesheet" href="{{ URL::asset('/css/metismenu.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body @if (!Auth::check()) class="no-login" @endif>
+<body @if (!Auth::check() || isset($email)) class="no-login" @endif>
 @if (Auth::check() && !isset($email))
     @include('layouts.menu')
 @endif
 <div class="wrap-content">
     <row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>
         <column cols="6">
-            Lorem fistrum torpedo a wan diodeno no te digo trigo por no llamarte Rodrigor mamaar hasta luego Lucas. Sexuarl por la gloria de mi madre se calle ustée jarl tiene musho peligro papaar papaar la caidita no puedor ese hombree sexuarl a gramenawer. Fistro tiene musho peligro amatomaa benemeritaar mamaar a wan está la cosa muy malar qué dise usteer se calle ustée fistro. A wan sexuarl llevame al sircoo tiene musho peligro por la gloria de mi madre. Jarl me cago en tus muelas pupita sexuarl tiene musho peligro mamaar sexuarl. Quietooor sexuarl te va a hasé pupitaa me cago en tus muelas amatomaa amatomaa. Te voy a borrar el cerito te voy a borrar el cerito quietooor fistro no puedor papaar papaar por la gloria de mi madre caballo blanco caballo negroorl ese pedazo de jarl no te digo trigo por no llamarte Rodrigor.
+            Lorem fistrum torpedo a wan diodeno no te digo trigo por no llamarte Rodrigor mamaar hasta luego Lucas.
+            Sexuarl por la gloria de mi madre se calle ustée jarl tiene musho peligro papaar papaar la caidita no puedor
+            ese hombree sexuarl a gramenawer. Fistro tiene musho peligro amatomaa benemeritaar mamaar a wan está la cosa
+            muy malar qué dise usteer se calle ustée fistro. A wan sexuarl llevame al sircoo tiene musho peligro por la
+            gloria de mi madre. Jarl me cago en tus muelas pupita sexuarl tiene musho peligro mamaar sexuarl. Quietooor
+            sexuarl te va a hasé pupitaa me cago en tus muelas amatomaa amatomaa. Te voy a borrar el cerito te voy a
+            borrar el cerito quietooor fistro no puedor papaar papaar por la gloria de mi madre caballo blanco caballo
+            negroorl ese pedazo de jarl no te digo trigo por no llamarte Rodrigor.
             @if (Session::has('errors'))
                 <div class="alert alert-warning" role="alert">
                     <ul>
@@ -51,5 +58,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 {!! Html::script('js/metismenu.js') !!}
 {!! Html::script('js/index.js') !!}
+{!! Html::script('js/app.js') !!}
 </body>
 </html>
