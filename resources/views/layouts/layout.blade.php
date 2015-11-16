@@ -59,5 +59,6 @@
 {!! Html::script('js/metismenu.js') !!}
 {!! Html::script('js/index.js') !!}
 {!! Html::script('js/app.js') !!}
+{!! Html::script('js/directives/validnif.js') !!}
 </body>
 </html>

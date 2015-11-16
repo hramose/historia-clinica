@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -47,7 +48,20 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!is_null(Patient::create([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'lastname' => $request->input('lastname'),
+            'nif' => $request->input('nif'),
+            'birth_date' => $request->input('birth_date'),
+            'age' => $request->input('age'),
+            'profession' => $request->input('profession'),
+            'hobbies' => $request->input('hobbies'),
+            'address' => $request->input('address'),
+        ]))) {
+            Session::flash('alert-success', 'Pacient creat correctament');
+            return redirect('pacients/nou');
+        }
     }
 
     /**

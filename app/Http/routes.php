@@ -61,6 +61,11 @@ Route::group(['prefix' => 'pacients'], function () {
         'as' => 'pacients/nou',
         'uses' => 'PatientController@create'
     ]);
+
+    Route::post('/nou', [
+        'as' => 'pacients/nou',
+        'uses' => 'PatientController@store'
+    ]);
 });
 
 Route::group(['prefix' => 'histories'], function () {
