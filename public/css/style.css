@@ -1,6 +1,5 @@
 /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
 /*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
-@import url(https://fonts.googleapis.com/css?family=Raleway);
 body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
   /*font-family: 'Open Sans', sans-serif;*/
@@ -126,6 +125,17 @@ nav {
     .wrap-content #main-page #link-container {
       text-align: center;
       margin-bottom: 5px; }
+    .wrap-content #main-page input[name="nif"] {
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s; }
+      .wrap-content #main-page input[name="nif"].ng-valid {
+        background: rgba(10, 135, 84, 0.13);
+        border-color: rgba(10, 135, 84, 0.13); }
+        .wrap-content #main-page input[name="nif"].ng-valid:-webkit-autofill {
+          background: rgba(10, 135, 84, 0.13) !important;
+          -webkit-box-shadow: 0 0 0px 1000px rgba(10, 135, 84, 0.13) inset; }
 
 #footer {
   padding: 48px;

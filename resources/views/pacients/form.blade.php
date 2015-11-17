@@ -22,10 +22,11 @@
         <section>
             <label>{{ trans('models.Pacientnif') }}</label>
             {!! Form::input('text', 'nif', '', ['class'=> '', 'ng-model' => 'pacient.nif', 'validnif' => '', 'required' => '']) !!}
+            <span class="alert alert-success" ng-if="form.nif.$valid">DNI correcte</span>
         </section>
         <section>
             <label>{{ trans('models.Pacientbirth_date') }}</label>
-            {!! Form::input('text', 'birth_date', '', ['class'=> '', 'ng-model' => 'pacient.birth_date', 'required' => '', 'placeholder' => 'DD/MM/YYYYr', 'ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
+            {!! Form::input('text', 'birth_date', '', ['class'=> '', 'ng-model' => 'pacient.birth_date', 'required' => '', 'placeholder' => 'DD/MM/YYYY', 'ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientage') }}</label>
