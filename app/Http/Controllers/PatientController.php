@@ -59,8 +59,9 @@ class PatientController extends Controller
             'profession' => $request->input('profession'),
             'hobbies' => $request->input('hobbies'),
             'address' => $request->input('address'),
-        ]))) {
-            Session::flash('alert-success', 'Pacient creat correctament');
+        ]))
+        ) {
+            $request->session()->flash('alert-success', 'Pacient creat correctament');
             return redirect('pacients/nou');
         }
     }
