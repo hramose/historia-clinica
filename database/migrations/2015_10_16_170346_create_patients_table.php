@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatePatientsTable extends Migration
 {
@@ -18,7 +18,7 @@ class CreatePatientsTable extends Migration
             $table->string('surname');
             $table->string('lastname');
             $table->string('nif');
-            $table->integer('birth_date');
+            $table->date('birth_date');
             $table->integer('age');
             $table->string('profession');
             $table->string('hobbies');

@@ -52,11 +52,20 @@ Route::get('auth/reset_password', [
 
 Route::post('auth/reset_password', [
     'as' => 'reset_password',
-    'uses' => 'Auth\AuthController@getResetPassword'
+    'uses' => 'Auth\AuthController@postResetPassword'
 ]);
 
 Route::group(['prefix' => 'pacients'], function () {
     Route::get('/', 'PatientController@index');
+    Route::get('/nou', [
+        'as' => 'pacients/nou',
+        'uses' => 'PatientController@create'
+    ]);
+
+    Route::post('/nou', [
+        'as' => 'pacients/nou',
+        'uses' => 'PatientController@store'
+    ]);
 });
 
 Route::group(['prefix' => 'histories'], function () {
