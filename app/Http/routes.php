@@ -66,6 +66,11 @@ Route::group(['prefix' => 'pacients'], function () {
         'as' => 'pacients/nou',
         'uses' => 'PatientController@store'
     ]);
+
+    Route::get('/llista', [
+        'as' => 'pacients/llista',
+        'uses' => 'PatientController@index'
+    ]);
 });
 
 Route::group(['prefix' => 'histories'], function () {

@@ -36,10 +36,6 @@
             <label>{{ trans('models.Pacientprofession') }}</label>
             {!! Form::input('text', 'profession', '', ['class'=> '', 'ng-model' => 'pacient.profession', 'required' => '']) !!}
         </section>
-        <section>
-            <label>{{ trans('models.Pacienthobbies') }}</label>
-            {!! Form::input('text', 'hobbies', '', ['class'=> '', 'ng-model' => 'pacient.hobbies', 'required' => '']) !!}
-        </section>
 
         <section>
             {!! Form::button(trans('messages.save'),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}

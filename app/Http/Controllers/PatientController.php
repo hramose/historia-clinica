@@ -20,9 +20,15 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $number = $request->input('limit') !== null ? $request->input('limit') : 5;
+
+        return view('pacients/index', [
+            'lang' => 'ca',
+            'title' => 'Crea un nou pacient',
+            'pacients' => Patient::all()->take($number)
+        ]);
     }
 
     /**
@@ -62,7 +68,7 @@ class PatientController extends Controller
         ]))
         ) {
             $request->session()->flash('alert-success', 'Pacient creat correctament');
-            return redirect('pacients/nou');
+            return redirect('pacients/llista');
         }
     }
 

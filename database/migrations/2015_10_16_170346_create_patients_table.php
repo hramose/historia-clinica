@@ -21,7 +21,7 @@ class CreatePatientsTable extends Migration
             $table->date('birth_date');
             $table->integer('age');
             $table->string('profession');
-            $table->string('hobbies');
+            $table->string('hobbies')->nullable();
             $table->string('address');
             $table->timestamps();
         });

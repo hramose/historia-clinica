@@ -16,14 +16,6 @@
 <div class="wrap-content">
     <row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>
         <column cols="6">
-            Lorem fistrum torpedo a wan diodeno no te digo trigo por no llamarte Rodrigor mamaar hasta luego Lucas.
-            Sexuarl por la gloria de mi madre se calle ustée jarl tiene musho peligro papaar papaar la caidita no puedor
-            ese hombree sexuarl a gramenawer. Fistro tiene musho peligro amatomaa benemeritaar mamaar a wan está la cosa
-            muy malar qué dise usteer se calle ustée fistro. A wan sexuarl llevame al sircoo tiene musho peligro por la
-            gloria de mi madre. Jarl me cago en tus muelas pupita sexuarl tiene musho peligro mamaar sexuarl. Quietooor
-            sexuarl te va a hasé pupitaa me cago en tus muelas amatomaa amatomaa. Te voy a borrar el cerito te voy a
-            borrar el cerito quietooor fistro no puedor papaar papaar por la gloria de mi madre caballo blanco caballo
-            negroorl ese pedazo de jarl no te digo trigo por no llamarte Rodrigor.
             @if (Session::has('errors'))
                 <div class="alert alert-warning" role="alert">
                     <ul>

@@ -7,6 +7,7 @@
                 <span class="fa arrow"></span>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ URL::to('pacients/nou') }}">Crear nous pacients</a></li>
+                    <li><a href="{{ URL::to('pacients/llista') }}">Tots els pacients</a></li>
                 </ul>
             </a></li>
         <li><a href="{{ URL::to('histories') }}"><span class="retain-icon fa fa-folder"></span> <span class="text">Històries</span></a>
