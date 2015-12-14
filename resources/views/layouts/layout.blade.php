@@ -36,6 +36,7 @@
             @endif
             @yield('content')
         </column>
+        <a href="{{ URL::previous() }}" type="primary">{{trans('messages.tornar')}}</a>
     </row>
 </div>
 <footer id="footer">
