@@ -125,7 +125,6 @@ nav {
       .wrap-content #main-page .review-text span {
         cursor: pointer; }
       .wrap-content #main-page .review-text article {
-        text-overflow: ellipsis;
         padding: 0.9rem 1rem;
         width: 100%;
         flex: 1;
@@ -133,8 +132,7 @@ nav {
         display: block;
         border-radius: 0 2px 2px 0;
         border: 1px solid #dfdfdf;
-        height: 40px;
-        overflow: hidden; }
+        word-wrap: break-word; }
     .wrap-content #main-page form .input-prepend span {
       padding-top: 13px; }
     .wrap-content #main-page .add_date {

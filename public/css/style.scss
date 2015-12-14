@@ -165,7 +165,6 @@ nav {
         cursor: pointer;
       }
       article {
-        text-overflow: ellipsis;
         padding: 0.9rem 1rem;
         width: 100%;
         flex: 1;
@@ -173,8 +172,8 @@ nav {
         display: block;
         border-radius: 0 2px 2px 0;
         border: 1px solid #dfdfdf;
-        height: 40px;
-        overflow: hidden;
+        word-wrap: break-word;
+
       }
     }
 

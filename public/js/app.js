@@ -54,13 +54,13 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
         e.preventDefault();
         var obj = null;
         for (var i = 0; i < $scope.review.length; i++) {
-            if ($scope.isToday($scope.review[i].date)) {
+            if ($scope.isToday($scope.review[i].id)) {
                 obj = $scope.review[i];
                 break;
             }
         }
         for (var i = 0; i < $scope.dates.length; i++) {
-            if ($scope.isToday($scope.dates[i].date)) {
+            if ($scope.isToday($scope.dates[i].id)) {
                 obj = $scope.dates[i];
                 break;
             }
@@ -97,7 +97,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
             $scope.animate = false;
         $scope.edit = dateObject.id;
 
-        $timeout(function() {
+        $timeout(function () {
             $scope.animate = false;
         }, 500);
     }
@@ -107,6 +107,10 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
             $scope.edit = '';
         }
     }
+
+    $scope.showReview = function (dateObj) {
+
+    };
 });
 
 

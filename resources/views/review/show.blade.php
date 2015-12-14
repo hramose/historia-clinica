@@ -4,11 +4,12 @@
     <div ng-controller="ReviewController">
         <h2>{{ $pacient->name . ' ' . $pacient->surname . ' ' . $pacient->lastname }}</h2>
 
+        <h4>{{trans('messages.valoracions')}}</h4>
         <div class="review-text">
-            <div ng-repeat="date in review">
+            <div ng-repeat="date in review | orderBy:'id'">
                 <div class="input-prepend width-12">
-                    <span  ng-if="!isToday(date.date)">[[date.date]]</span>
-                    <span title="{{trans('messages.edita_review')}}" ng-if="isToday(date.date)" ng-click="editDateReview(date)">[[date.date]]</span>
+                    <span  ng-if="!isToday(date.id)">[[date.date]]</span>
+                    <span title="{{trans('messages.edita_review')}}" ng-if="isToday(date.id)" ng-click="editDateReview(date)">[[date.date]]</span>
 
                     <article ng-click="showReview(date)" ng-if="edit != [[date.id]]">[[date.text]]</article>
                     <textarea ng-if="edit == [[date.id]]" ng-class="{'show-review' : animate}"

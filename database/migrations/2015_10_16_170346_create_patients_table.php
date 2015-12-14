@@ -20,6 +20,7 @@ class CreatePatientsTable extends Migration
             $table->string('nif');
             $table->date('birth_date');
             $table->integer('age');
+            $table->string('gender');
             $table->string('profession');
             $table->string('hobbies')->nullable();
             $table->string('address');

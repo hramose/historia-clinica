@@ -24,5 +24,6 @@ return array(
     'create' => 'Crear :name',
     'add_date' => 'Afegir data d\'avui ([[data|date]])',
     'no_items' => 'No s\'han trobat elements',
-    'edita_review' => 'Edita aquesta valoració'
+    'edita_review' => 'Edita aquesta valoració',
+    'valoracions' => 'Valoracions del pacient'
 );
