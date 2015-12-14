@@ -16,4 +16,5 @@ return array(
     'Pacientage' => 'Edat',
     'Pacientprofession' => 'Professió',
     'Pacienthobbies' => 'Hobbies',
+    'Reviewmsgsavedcorrectly' => 'Valoració guardada correctament'
 );

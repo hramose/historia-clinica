@@ -12,4 +12,9 @@ class Patient extends Model
     {
         return $this->hasMany('App\Visit', 'patient_id');
     }
+
+    public function review()
+    {
+        return $this->hasOne('App\Review', 'patient_id');
+    }
 }

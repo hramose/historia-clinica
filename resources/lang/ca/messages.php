@@ -19,5 +19,8 @@ return array(
     'password_reset' => 'La teva contrasenya té :mesos o més mesos d\'antiguitat, si us plau, per motius de seguretat ha de canviar-la per una nova.',
     'email_verify' => 'S\'ha completat el registre, per tal de poder iniciar sessió per primera vegada al teu compte hauràs de verificar-lo.',
     'title_verify_email' => 'Verificació del compte d\'usuari',
-    'title_verify_email_doc' => 'Verificació del compte d\'usuari'
+    'title_verify_email_doc' => 'Verificació del compte d\'usuari',
+    'save' => 'Guardar :name',
+    'create' => 'Crear :name',
+    'add_date' => 'Afegir data d\'avui ([[data|date]])'
 );

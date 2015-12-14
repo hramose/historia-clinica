@@ -2,7 +2,7 @@
 
 @section('content')
     <div ng-controller="PacientsController">
-        {!! Form::open(['route' => 'pacients/nou', 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '']) !!}
+        {!! Form::open(['route' => 'pacientsNou', 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '']) !!}
         <section>
             <label>{{ trans('models.Pacientname') }}</label>
             {!! Form::input('text', 'name', '', ['class'=> '', 'ng-model' => 'pacient.name', 'required' => '']) !!}
@@ -38,7 +38,7 @@
         </section>
 
         <section>
-            {!! Form::button(trans('messages.save'),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}
+            {!! Form::button(trans('messages.save', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}
         </section>
         {!! Form::close() !!}
     </div>

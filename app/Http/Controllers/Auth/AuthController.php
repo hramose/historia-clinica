@@ -119,7 +119,8 @@ class AuthController extends Controller
                 ->subject(trans('messages.title_verify_email'));
         });
 
-        Session::flash('alert-success', trans('messages.register_successful'));
+        Session::flash('alert', trans('messages.register_successful'));
+        Session::flash('status', 'success');
         return redirect($this->loginPath());
     }
 
@@ -232,7 +233,8 @@ class AuthController extends Controller
         $user->token = null;
         $user->save();
 
-        Session::flash('alert-success', trans('messages.succesful_verified'));
+        Session::flash('alert', trans('messages.succesful_verified'));
+        Session::flash('status', 'success');
 
         return redirect($this->loginPath());
     }
@@ -249,9 +251,11 @@ class AuthController extends Controller
                         ->subject(trans('messages.title_verify_email'));
                 });
 
-                Session::flash('alert-success', trans('messages.sendver_correctly'));
+                Session::flash('alert', trans('messages.sendver_correctly'));
+                Session::flash('status', 'success');
             } else {
-                Session::flash('alert-success', trans('messages.already_verified'));
+                Session::flash('alert', trans('messages.already_verified'));
+                Session::flash('status', 'success');
             }
 
             return redirect($this->loginPath());
@@ -296,7 +300,8 @@ class AuthController extends Controller
             $user->save();
 
             Auth::logout();
-            Session::flash('alert-success', trans('messages.already_changed_pass'));
+            Session::flash('success', trans('messages.already_changed_pass'));
+            Session::flash('status', 'success');
         } else {
             $user = User::whereEmail($request->input('email'))->first();
             $user->setPassword($request->input('password'));
@@ -311,7 +316,8 @@ class AuthController extends Controller
     public static function checkForPasswordExpiration()
     {
         if (Session::has('password_expired')) {
-            Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
+            Session::flash('alert', trans('messages.password_reset', ['mesos' => 6]));
+            Session::flash('status', 'warning');
             return true;
         }
 

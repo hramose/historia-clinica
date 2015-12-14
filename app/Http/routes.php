@@ -57,24 +57,44 @@ Route::post('auth/reset_password', [
 
 Route::group(['prefix' => 'pacients'], function () {
     Route::get('/', 'PatientController@index');
+
     Route::get('/nou', [
-        'as' => 'pacients/nou',
+        'as' => 'pacientsNouGet',
         'uses' => 'PatientController@create'
     ]);
 
     Route::post('/nou', [
-        'as' => 'pacients/nou',
+        'as' => 'pacientsNou',
         'uses' => 'PatientController@store'
     ]);
 
     Route::get('/llista', [
-        'as' => 'pacients/llista',
+        'as' => 'pacientsLlista',
         'uses' => 'PatientController@index'
+    ]);
+
+    Route::get('/eliminar/{id}', [
+        'as' => 'pacientsDelete',
+        'uses' => 'PatientController@destroy'
     ]);
 });
 
 Route::group(['prefix' => 'histories'], function () {
     Route::get('/', 'HistoryController@index');
+});
+
+Route::group(['prefix' => 'valoracions'], function () {
+    Route::get('/', 'ReviewController@index');
+    Route::get('/pacient/{id}',
+        [
+            'as' => 'valoracions.pacient.show',
+            'uses' => 'ReviewController@show'
+        ]);
+    Route::post('/pacient/{id}',
+        [
+            'as' => 'valoracions.pacient.nou',
+            'uses' => 'ReviewController@store'
+        ]);
 });
 
 Route::get('crear_menus', 'FrontController@getFormMenu');

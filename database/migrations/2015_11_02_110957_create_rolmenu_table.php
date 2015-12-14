@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolmenuTable extends Migration
+class CreateRolMenuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,10 @@ class CreateRolmenuTable extends Migration
     {
         Schema::create('rolmenu', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('menu_id')->references('id')->on('menu');
-            $table->integer('rol_id')->references('id')->on('rol');
+            $table->integer('menu_id')->unsigned();
+            $table->foreign('menu_id')->references('id')->on('menu');
+            $table->integer('rol_id')->unsigned();
+            $table->foreign('rol_id')->references('id')->on('rol');
         });
     }
 

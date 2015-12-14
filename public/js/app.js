@@ -20,6 +20,51 @@ app.controller('PacientsController', function ($scope) {
         }
     }
 
+    $scope.showDeleteModal = function(e) {
+        e.preventDefault();
+        var href = $(e.target).parent().attr('href');
+        var confirmDelete = confirm('Estàs segur d\'eliminar aquest pacient?');
+        if (confirmDelete) {
+            window.location.href = href;
+        }
+    };
+
+});
+
+app.controller('FlashController', function($scope, $timeout) {
+    $scope.timeOut = false;
+
+    $timeout(function() {
+        $scope.timeOut = true;
+    }, 3000);
+});
+
+app.controller('ReviewController', function ($scope, $filter, $timeout) {
+    $scope.data = new Date();
+    $scope.actualDate = new Date();
+    $scope.form = {};
+
+    $timeout(function() {
+        $scope.form.review = $('#review').val();
+        $('.review-text').html($('.review-text span').text());
+    }, 100);
+
+    $scope.addDateToReview = function (e) {
+        e.preventDefault();
+        if (typeof $scope.form.review == 'undefined')
+            $scope.form.review = '';
+
+        $scope.form.review += (($scope.form.review != '') ? "\n" : "") + $filter('date')(new Date(), 'dd MMM yyyy H:mm') + "\n";
+    };
+
+    $scope.submitForm = function (e) {
+        var text = $scope.form.review;
+        $('#review').val(text);
+    };
+
+    $scope.showActualHour = function() {
+        $scope.actualDate = $filter('date')(new Date(), 'dd MMM yyyy H:m');
+    }
 });
 
 

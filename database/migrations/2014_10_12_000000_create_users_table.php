@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->boolean('verified')->default(false);
             $table->string('token')->nullable();
             $table->timestamp('password_reset')->nullable();
-            $table->integer('rol_id')->references('id')->on('rol')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

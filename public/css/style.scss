@@ -152,6 +152,34 @@ nav {
     min-height: 100%;
     text-align: justify;
 
+    h1, h2, h3, h4, h5, h6 {
+      text-align: center;
+    }
+
+    .review-text {
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #f4f2f2;
+    }
+
+    .add_date {
+      padding: 0 22px;
+    }
+
+    .nou_pacient {
+      border-radius: 50%;
+      padding: 15px;
+      background-color: #009926;
+      color: #fff;
+      display: inline-block;
+      width: 55px;
+      text-align: center;
+      font-size: 19px;
+
+    }
+
     .alert {
       margin-top: 20px;
       a {

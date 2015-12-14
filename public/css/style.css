@@ -116,6 +116,25 @@ nav {
     height: 100%;
     min-height: 100%;
     text-align: justify; }
+    .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
+      text-align: center; }
+    .wrap-content #main-page .review-text {
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #f4f2f2; }
+    .wrap-content #main-page .add_date {
+      padding: 0 22px; }
+    .wrap-content #main-page .nou_pacient {
+      border-radius: 50%;
+      padding: 15px;
+      background-color: #009926;
+      color: #fff;
+      display: inline-block;
+      width: 55px;
+      text-align: center;
+      font-size: 19px; }
     .wrap-content #main-page .alert {
       margin-top: 20px; }
       .wrap-content #main-page .alert a {

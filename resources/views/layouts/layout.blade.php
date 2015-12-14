@@ -27,12 +27,8 @@
                 </div>
             @endif
             @if (Session::has('alert'))
-                <div class="flash-message">
-                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                        @if(Session::has('alert-' . $msg))
-                            <div class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</div>
-                        @endif
-                    @endforeach
+                <div class="flash-message" ng-controller="FlashController">
+                    <div ng-hide="timeOut" class="alert alert-{{ Session::get('status') }}">{{ Session::get('alert') }}</div>
                 </div>
                 <!-- end .flash-message -->
             @endif
@@ -48,6 +44,7 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+{!! Html::script('../bower_components/angular-i18n/angular-locale_ca-es.js') !!}
 {!! Html::script('js/metismenu.js') !!}
 {!! Html::script('js/index.js') !!}
 {!! Html::script('js/app.js') !!}

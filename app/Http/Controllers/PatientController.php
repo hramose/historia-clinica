@@ -38,9 +38,6 @@ class PatientController extends Controller
      */
     public function create(Request $request)
     {
-        Session::flash('alert-warning', trans('messages.succesful_verified'));
-        //return redirect('auth/reset_password');
-
         return view('pacients/form', [
             'lang' => 'ca',
             'title' => 'Crea un nou pacient'
@@ -55,6 +52,10 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nif' => 'required|unique:patients,nif',
+        ]);
+
         if (!is_null(Patient::create([
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
@@ -67,7 +68,8 @@ class PatientController extends Controller
             'address' => $request->input('address'),
         ]))
         ) {
-            $request->session()->flash('alert-success', 'Pacient creat correctament');
+            Session::flash('alert', 'Pacient creat correctament');
+            Session::flash('status', 'success');
             return redirect('pacients/llista');
         }
     }
@@ -114,6 +116,11 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $patient = Patient::findOrFail($id);
+        $patient->delete();
+
+        Session::flash('alert', 'Pacient eliminat correctament');
+        Session::flash('status', 'success');
+        return redirect('pacients/llista');
     }
 }
