@@ -119,11 +119,24 @@ nav {
     .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
       text-align: center; }
     .wrap-content #main-page .review-text {
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 5px;
-      background-color: #f4f2f2; }
+      margin-bottom: 10px; }
+      .wrap-content #main-page .review-text div {
+        margin: 0; }
+      .wrap-content #main-page .review-text span {
+        cursor: pointer; }
+      .wrap-content #main-page .review-text article {
+        text-overflow: ellipsis;
+        padding: 0.9rem 1rem;
+        width: 100%;
+        flex: 1;
+        margin-bottom: 0 !important;
+        display: block;
+        border-radius: 0 2px 2px 0;
+        border: 1px solid #dfdfdf;
+        height: 40px;
+        overflow: hidden; }
+    .wrap-content #main-page form .input-prepend span {
+      padding-top: 13px; }
     .wrap-content #main-page .add_date {
       padding: 0 22px; }
     .wrap-content #main-page .nou_pacient {
@@ -174,5 +187,16 @@ nav, li.active, .wrap-content, #footer {
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s; }
+
+/* when hiding the picture */
+.ng-hide-add {
+  animation: 0.5s lightSpeedOut ease; }
+
+/* when showing the picture */
+.ng-hide-remove {
+  animation: 0.5s flipInX ease; }
+
+.show-review {
+  animation: 0.5s shake ease; }
 
 /*# sourceMappingURL=style.css.map */

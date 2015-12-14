@@ -157,11 +157,33 @@ nav {
     }
 
     .review-text {
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 5px;
-      background-color: #f4f2f2;
+      div {
+        margin: 0;
+      }
+      margin-bottom: 10px;
+      span {
+        cursor: pointer;
+      }
+      article {
+        text-overflow: ellipsis;
+        padding: 0.9rem 1rem;
+        width: 100%;
+        flex: 1;
+        margin-bottom: 0 !important;
+        display: block;
+        border-radius: 0 2px 2px 0;
+        border: 1px solid #dfdfdf;
+        height: 40px;
+        overflow: hidden;
+      }
+    }
+
+    form {
+      .input-prepend {
+        span {
+          padding-top: 13px;
+        }
+      }
     }
 
     .add_date {
@@ -237,4 +259,18 @@ nav, li.active, .wrap-content, #footer {
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+/* when hiding the picture */
+.ng-hide-add {
+  animation: 0.5s lightSpeedOut ease;
+}
+
+/* when showing the picture */
+.ng-hide-remove {
+  animation: 0.5s flipInX ease;
+}
+
+.show-review {
+  animation: 0.5s shake ease;
 }

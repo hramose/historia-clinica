@@ -2,28 +2,43 @@
 
 @section('content')
     <div ng-controller="ReviewController">
-        <h2>{{--Valoració del pacient --}}{{ $pacient->name . ' ' . $pacient->surname . ' ' . $pacient->lastname }}</h2>
+        <h2>{{ $pacient->name . ' ' . $pacient->surname . ' ' . $pacient->lastname }}</h2>
 
         <div class="review-text">
-            <span style="display:none">{{ nl2br($review->review) }}</span>
+            <div ng-repeat="date in review">
+                <div class="input-prepend width-12">
+                    <span  ng-if="!isToday(date.date)">[[date.date]]</span>
+                    <span title="{{trans('messages.edita_review')}}" ng-if="isToday(date.date)" ng-click="editDateReview(date)">[[date.date]]</span>
+
+                    <article ng-click="showReview(date)" ng-if="edit != [[date.id]]">[[date.text]]</article>
+                    <textarea ng-if="edit == [[date.id]]" ng-class="{'show-review' : animate}"
+                              ng-model="date.text" ng-keypress="checkKey($event)"></textarea>
+                </div>
+            </div>
+            <div ng-if="review.length == 0">
+                {{ trans('messages.no_items') }}
+            </div>
         </div>
+
         {!! Form::model($review, array('class' => 'forms', 'name' => 'form', 'ng-submit' => 'submitForm($event)')) !!}
 
         {!! Form::hidden('review', null, ['id' => 'review']) !!}
         {!! Form::hidden('patient_id') !!}
         {!! Form::hidden('id') !!}
         <section>
-            {!! Form::label('Valoració editable') !!}
-            <section>
-                {!! Form::button('<i class="fa fa-clock-o"></i>',['type' => 'primary', 'title' => '[[actualDate]]', 'class' => 'add_date', 'ng-mouseover' => 'showActualHour()', 'ng-click' => 'addDateToReview($event)']) !!}
-            </section>
-            {!! Form::textarea('fake_review', '', ['ng-model' => 'form.review']) !!}
+            {!! Form::button('<i class="fa fa-clock-o"></i>',['type' => 'primary', 'title' => '[[actualDate]]', 'class' => 'add_date', 'ng-mouseover' => 'showActualHour()', 'ng-click' => 'addDateToReview($event)']) !!}
         </section>
+        <div ng-repeat="date in dates">
+            <div class="input-prepend width-12">
+                <span>[[date.date]]</span>
+                <textarea ng-model="date.text"></textarea>
+            </div>
+        </div>
         <section>
             @if ($review->id == '')
-                {!! Form::button(trans('messages.create', ['name' => 'valoració']),['type' => 'primary']) !!}
+                {!! Form::button(trans('messages.create', ['name' => 'valoració']),['type' => 'primary', 'ng-show' => 'dates.length || review.length']) !!}
             @else
-                {!! Form::button(trans('messages.save', ['name' => 'valoració']),['type' => 'primary']) !!}
+                {!! Form::button(trans('messages.save', ['name' => 'valoració']),['type' => 'primary', 'ng-show' => 'dates.length || review.length']) !!}
             @endif
         </section>
         {!! Form::close() !!}

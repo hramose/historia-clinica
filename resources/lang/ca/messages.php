@@ -22,5 +22,7 @@ return array(
     'title_verify_email_doc' => 'Verificació del compte d\'usuari',
     'save' => 'Guardar :name',
     'create' => 'Crear :name',
-    'add_date' => 'Afegir data d\'avui ([[data|date]])'
+    'add_date' => 'Afegir data d\'avui ([[data|date]])',
+    'no_items' => 'No s\'han trobat elements',
+    'edita_review' => 'Edita aquesta valoració'
 );
