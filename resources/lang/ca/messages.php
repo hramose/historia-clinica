@@ -25,5 +25,6 @@ return array(
     'add_date' => 'Afegir data d\'avui ([[data|date]])',
     'no_items' => 'No s\'han trobat elements',
     'edita_review' => 'Edita aquesta valoració',
-    'valoracions' => 'Anotacions al curs clínic'
+    'valoracions' => 'Anotacions al curs clínic',
+    'tornar' => 'Tornar'
 );

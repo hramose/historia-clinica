@@ -127,12 +127,16 @@ nav {
       .wrap-content #main-page .review-text article {
         padding: 0.9rem 1rem;
         width: 100%;
-        flex: 1;
         margin-bottom: 0 !important;
         display: block;
         border-radius: 0 2px 2px 0;
-        border: 1px solid #dfdfdf;
-        word-wrap: break-word; }
+        border: 1px solid #dfdfdf; }
+        .wrap-content #main-page .review-text article pre {
+          background: #fff;
+          padding: 0;
+          margin-bottom: 0; }
+      .wrap-content #main-page .review-text textarea {
+        min-height: 250px; }
     .wrap-content #main-page form .input-prepend span {
       padding-top: 13px; }
     .wrap-content #main-page .add_date {
@@ -166,6 +170,17 @@ nav {
         .wrap-content #main-page input[name="nif"].ng-valid:-webkit-autofill {
           background: rgba(10, 135, 84, 0.13) !important;
           -webkit-box-shadow: 0 0 0px 1000px rgba(10, 135, 84, 0.13) inset; }
+    .wrap-content #main-page .back_button {
+      border: 1px solid #aaaaaa;
+      border-radius: 2px;
+      padding: 10px;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #000;
+      width: 65px;
+      display: block; }
+      .wrap-content #main-page .back_button :hover {
+        color: inherit; }
 
 #footer {
   padding: 48px;

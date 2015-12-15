@@ -68,7 +68,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
 
         if (obj === null) {
             var date = new Date();
-            $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy H:mm'), text: '', id: date.getTime()});
+            $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
         } else {
             $scope.animate = true;
             $scope.editDateReview(obj, true);
@@ -84,7 +84,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
     };
 
     $scope.showActualHour = function () {
-        $scope.actualDate = $filter('date')(new Date(), 'dd MMM yyyy H:m');
+        $scope.actualDate = $filter('date')(new Date(), 'dd MMM yyyy HH:m');
     }
 
     $scope.isToday = function (date) {

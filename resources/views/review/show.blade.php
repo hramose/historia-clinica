@@ -11,7 +11,7 @@
                     <span  ng-if="!isToday(date.id)">[[date.date]]</span>
                     <span title="{{trans('messages.edita_review')}}" ng-if="isToday(date.id)" ng-click="editDateReview(date)">[[date.date]]</span>
 
-                    <article ng-click="showReview(date)" ng-if="edit != [[date.id]]">[[date.text]]</article>
+                    <article ng-click="showReview(date)" ng-if="edit != [[date.id]]"><pre>[[date.text]]</pre></article>
                     <textarea ng-if="edit == [[date.id]]" ng-class="{'show-review' : animate}"
                               ng-model="date.text" ng-keypress="checkKey($event)"></textarea>
                 </div>
