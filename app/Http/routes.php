@@ -56,7 +56,10 @@ Route::post('auth/reset_password', [
 ]);
 
 Route::group(['prefix' => 'pacients'], function () {
-    Route::get('/', 'PatientController@index');
+    Route::get('/', [
+        'as' => 'pacientsIndex',
+        'uses' => 'PatientController@index'
+    ]);
 
     Route::get('/nou', [
         'as' => 'pacientsNouGet',

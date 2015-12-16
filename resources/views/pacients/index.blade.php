@@ -32,5 +32,7 @@
         @endif
         </tbody>
     </table>
+
+    {!! $pacients->render() !!}
     <a class="nou_pacient" href="{{ URL::route('pacientsNouGet') }}"><i class="fa fa-plus"></i></a>
 @endsection

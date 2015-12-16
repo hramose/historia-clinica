@@ -22,12 +22,13 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $number = $request->input('limit') !== null ? $request->input('limit') : 5;
-
+        $pacients = Patient::paginate(15);
+        $pacients->setPath('llista');
         return view('pacients/index', [
             'lang' => 'ca',
             'title' => 'Crea un nou pacient',
-            'pacients' => Patient::all()->take($number)
+            'pacients' => /*Patient::all()->take($number)*/
+                $pacients
         ]);
     }
 
