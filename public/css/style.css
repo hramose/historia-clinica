@@ -115,33 +115,8 @@ nav {
   .wrap-content #main-page {
     height: 100%;
     min-height: 100%;
-    text-align: justify; }
-    .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
-      text-align: center; }
-    .wrap-content #main-page .review-text {
-      margin-bottom: 10px; }
-      .wrap-content #main-page .review-text div {
-        margin: 0; }
-      .wrap-content #main-page .review-text span {
-        cursor: pointer; }
-      .wrap-content #main-page .review-text article {
-        padding: 0.9rem 1rem;
-        width: 100%;
-        margin-bottom: 0 !important;
-        display: block;
-        border-radius: 0 2px 2px 0;
-        border: 1px solid #dfdfdf; }
-        .wrap-content #main-page .review-text article pre {
-          background: #fff;
-          padding: 0;
-          margin-bottom: 0; }
-      .wrap-content #main-page .review-text textarea {
-        min-height: 250px; }
-    .wrap-content #main-page form .input-prepend span {
-      padding-top: 13px; }
-    .wrap-content #main-page .add_date {
-      padding: 0 22px; }
-    .wrap-content #main-page .nou_pacient {
+    text-align: justify;
+    /*.nou_pacient {
       border-radius: 50%;
       padding: 15px;
       background-color: #009926;
@@ -149,7 +124,39 @@ nav {
       display: inline-block;
       width: 55px;
       text-align: center;
-      font-size: 19px; }
+      font-size: 19px;
+
+    }*/ }
+    .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
+      text-align: center; }
+    .wrap-content #main-page .main-pacients {
+      width: 100%; }
+      .wrap-content #main-page .main-pacients .review-text {
+        width: 100%;
+        margin-bottom: 10px; }
+        .wrap-content #main-page .main-pacients .review-text div {
+          width: 100%;
+          margin: 0; }
+        .wrap-content #main-page .main-pacients .review-text span {
+          cursor: pointer; }
+        .wrap-content #main-page .main-pacients .review-text article {
+          width: 100%;
+          margin-bottom: 0 !important;
+          display: block;
+          border-radius: 0 2px 2px 0;
+          border: 1px solid #dfdfdf;
+          overflow: auto; }
+          .wrap-content #main-page .main-pacients .review-text article pre {
+            background: #fff;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0;
+            word-wrap: break-word; }
+        .wrap-content #main-page .main-pacients .review-text textarea {
+          min-height: 250px; }
+    .wrap-content #main-page form .input-prepend span {
+      padding-top: 13px; }
+    .wrap-content #main-page .add_date {
+      padding: 0 22px; }
     .wrap-content #main-page .alert {
       margin-top: 20px; }
       .wrap-content #main-page .alert a {
@@ -170,16 +177,15 @@ nav {
         .wrap-content #main-page input[name="nif"].ng-valid:-webkit-autofill {
           background: rgba(10, 135, 84, 0.13) !important;
           -webkit-box-shadow: 0 0 0px 1000px rgba(10, 135, 84, 0.13) inset; }
-    .wrap-content #main-page .back_button {
+    .wrap-content #main-page .buttons {
       border: 1px solid #aaaaaa;
       border-radius: 2px;
       padding: 10px;
       margin-top: 10px;
       text-decoration: none;
       color: #000;
-      width: 65px;
-      display: block; }
-      .wrap-content #main-page .back_button :hover {
+      display: inline-block; }
+      .wrap-content #main-page .buttons :hover {
         color: inherit; }
 
 #footer {

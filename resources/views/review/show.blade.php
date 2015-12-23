@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div ng-controller="ReviewController">
+    <div ng-controller="ReviewController" class="main-pacients">
         <h2>{{ $pacient->name . ' ' . $pacient->surname . ' ' . $pacient->lastname }}</h2>
 
         <h4>{{trans('messages.valoracions')}}</h4>

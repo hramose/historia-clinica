@@ -35,7 +35,6 @@
                 <!-- end .flash-message -->
             @endif
             @yield('content')
-            <a href="{{ URL::previous() }}" class="back_button">{{trans('messages.tornar')}}</a>
         </column>
     </row>
 </div>
