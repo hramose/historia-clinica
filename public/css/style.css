@@ -150,7 +150,8 @@ nav {
             background: #fff;
             padding: 0.9rem 1rem;
             margin-bottom: 0;
-            word-wrap: break-word; }
+            word-wrap: break-word;
+            font-family: Arial; }
         .wrap-content #main-page .main-pacients .review-text textarea {
           min-height: 250px; }
     .wrap-content #main-page form .input-prepend span {

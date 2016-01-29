@@ -72,6 +72,16 @@ Route::group(['prefix' => 'pacients'], function () {
         'uses' => 'PatientController@store'
     ]);
 
+    Route::get('/dades/{id}', [
+        'as' => 'pacientsDades',
+        'uses' => 'PatientController@show'
+    ]);
+
+    Route::post('/dades/{id}', [
+        'as' => 'pacientsDadesUpdate',
+        'uses' => 'PatientController@update'
+    ]);
+
     Route::get('/llista', [
         'as' => 'pacientsLlista',
         'uses' => 'PatientController@index'

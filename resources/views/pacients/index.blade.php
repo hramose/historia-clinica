@@ -16,7 +16,10 @@
                 <td>{{ $pacient->name }}</td>
                 <td>{{ $pacient->surname }}</td>
                 <td>{{ $pacient->lastname }}</td>
-                <td><a title="Veure història" href="{{ URL::to('histories/pacient/'.$pacient->id) }}"><i
+                <td>
+                    <a title="Dades del pacient" href="{{ URL::to('pacients/dades/'.$pacient->id) }}"><i
+                                class="fa fa-user"></i></a>
+                    <a title="Veure història" href="{{ URL::to('histories/pacient/'.$pacient->id) }}"><i
                                 class="fa fa-list"></i></a> <a title="Veure i fer valoraciones"
                                                                href="{{ URL::to('valoracions/pacient/'.$pacient->id) }}"><i
                                 class="fa fa-calendar-check-o"></i></a><a

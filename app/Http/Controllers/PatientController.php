@@ -83,7 +83,12 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return view('pacients/form_dades', [
+            'lang' => 'ca',
+            'title' => 'Crea un nou pacient',
+            'patient' => Patient::findOrFail($id)
+        ]);
     }
 
     /**

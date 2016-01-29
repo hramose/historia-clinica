@@ -307,7 +307,8 @@ class AuthController extends Controller
             $user->setPassword($request->input('password'));
             $user->save();
 
-            Session::flash('alert-success', trans('messages.already_changed_pass'));
+            Session::flash('success', trans('messages.already_changed_pass'));
+            Session::flash('status', 'success');
         }
 
         return redirect($this->loginPath());

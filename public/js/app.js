@@ -103,9 +103,9 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
     }
 
     $scope.checkKey = function (e) {
-        if (e.keyCode == 13 && !e.shiftKey) {
+        /*if (e.keyCode == 13 && !e.shiftKey) {
             $scope.edit = '';
-        }
+        }*/
     }
 
     $scope.showReview = function (dateObj) {

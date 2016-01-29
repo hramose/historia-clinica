@@ -26,5 +26,6 @@ return array(
     'no_items' => 'No s\'han trobat elements',
     'edita_review' => 'Edita aquesta valoració',
     'valoracions' => 'Anotacions al curs clínic',
-    'tornar' => 'Tornar'
+    'tornar' => 'Tornar',
+    'update_patient' => 'Actualitzar pacient'
 );
