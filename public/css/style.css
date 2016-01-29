@@ -14,8 +14,9 @@ body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
 
 nav {
   display: inline-block;
-  background: #000000;
+  background: #373d47;
   height: 100%;
+  overflow: hidden;
   width: 200px; }
   @media (min-width: 768px) {
     nav {
@@ -27,13 +28,10 @@ nav {
     nav .nav-button .navigation {
       float: right;
       padding: 0 20px;
-      margin-top: 5px;
       font-size: 16px;
       margin: 2px 2px 0 auto;
       display: block;
-      background: #000; }
-      nav .nav-button .navigation:hover {
-        background: #333; }
+      background: #373d47; }
   nav .metismenu {
     background: #000000;
     margin: 0; }
@@ -43,7 +41,8 @@ nav {
       padding: 15px;
       list-style: none;
       position: relative;
-      background: #000;
+      background: #373d47;
+      width: 200px;
       /*&:hover {
         ul.nav-second-level {
           display: inherit;
@@ -71,7 +70,10 @@ nav {
         color: #ffffff;
         text-decoration: none;
         display: block;
-        position: relative; }
+        position: relative;
+        margin-left: 10px; }
+        nav .metismenu li a span:first-child {
+          margin-right: 23px; }
         nav .metismenu li a span.text {
           display: inline-block; }
         nav .metismenu li a span.arrow {
@@ -100,12 +102,14 @@ nav {
         top: 0;
         margin: 0; }
       nav.closed .metismenu li a {
-        font-size: 14px;
-        margin-left: 10px; }
-        nav.closed .metismenu li a span.text {
-          display: none; }
-        nav.closed .metismenu li a span.arrow {
-          display: none; }
+        font-size: 15px; }
+        nav.closed .metismenu li a span {
+          /*&.text {
+            display: none;
+          }
+          &.arrow {
+            display: none;
+          }*/ }
 
 .wrap-content {
   padding: 20px 0 20px 0;
@@ -115,33 +119,8 @@ nav {
   .wrap-content #main-page {
     height: 100%;
     min-height: 100%;
-    text-align: justify; }
-    .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
-      text-align: center; }
-    .wrap-content #main-page .review-text {
-      margin-bottom: 10px; }
-      .wrap-content #main-page .review-text div {
-        margin: 0; }
-      .wrap-content #main-page .review-text span {
-        cursor: pointer; }
-      .wrap-content #main-page .review-text article {
-        padding: 0.9rem 1rem;
-        width: 100%;
-        margin-bottom: 0 !important;
-        display: block;
-        border-radius: 0 2px 2px 0;
-        border: 1px solid #dfdfdf; }
-        .wrap-content #main-page .review-text article pre {
-          background: #fff;
-          padding: 0;
-          margin-bottom: 0; }
-      .wrap-content #main-page .review-text textarea {
-        min-height: 250px; }
-    .wrap-content #main-page form .input-prepend span {
-      padding-top: 13px; }
-    .wrap-content #main-page .add_date {
-      padding: 0 22px; }
-    .wrap-content #main-page .nou_pacient {
+    text-align: justify;
+    /*.nou_pacient {
       border-radius: 50%;
       padding: 15px;
       background-color: #009926;
@@ -149,7 +128,39 @@ nav {
       display: inline-block;
       width: 55px;
       text-align: center;
-      font-size: 19px; }
+      font-size: 19px;
+
+    }*/ }
+    .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
+      text-align: center; }
+    .wrap-content #main-page .main-pacients {
+      width: 100%; }
+      .wrap-content #main-page .main-pacients .review-text {
+        width: 100%;
+        margin-bottom: 10px; }
+        .wrap-content #main-page .main-pacients .review-text div {
+          width: 100%;
+          margin: 0; }
+        .wrap-content #main-page .main-pacients .review-text span {
+          cursor: pointer; }
+        .wrap-content #main-page .main-pacients .review-text article {
+          width: 100%;
+          margin-bottom: 0 !important;
+          display: block;
+          border-radius: 0 2px 2px 0;
+          border: 1px solid #dfdfdf;
+          overflow: auto; }
+          .wrap-content #main-page .main-pacients .review-text article pre {
+            background: #fff;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0;
+            word-wrap: break-word; }
+        .wrap-content #main-page .main-pacients .review-text textarea {
+          min-height: 250px; }
+    .wrap-content #main-page form .input-prepend span {
+      padding-top: 13px; }
+    .wrap-content #main-page .add_date {
+      padding: 0 22px; }
     .wrap-content #main-page .alert {
       margin-top: 20px; }
       .wrap-content #main-page .alert a {
@@ -170,16 +181,15 @@ nav {
         .wrap-content #main-page input[name="nif"].ng-valid:-webkit-autofill {
           background: rgba(10, 135, 84, 0.13) !important;
           -webkit-box-shadow: 0 0 0px 1000px rgba(10, 135, 84, 0.13) inset; }
-    .wrap-content #main-page .back_button {
+    .wrap-content #main-page .buttons {
       border: 1px solid #aaaaaa;
       border-radius: 2px;
       padding: 10px;
       margin-top: 10px;
       text-decoration: none;
       color: #000;
-      width: 65px;
-      display: block; }
-      .wrap-content #main-page .back_button :hover {
+      display: inline-block; }
+      .wrap-content #main-page .buttons :hover {
         color: inherit; }
 
 #footer {
