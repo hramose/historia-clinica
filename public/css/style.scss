@@ -22,8 +22,10 @@ body.no-login {
 
 nav {
   display: inline-block;
-  background: #000000;
+  background: #373d47;
   height: 100%;
+  overflow: hidden;
+  width: 200px;
   @media (min-width: 768px) {
     z-index: 2001;
     position: absolute;
@@ -32,19 +34,14 @@ nav {
     width: 100%;
     display: inline-block;
     .navigation {
-      &:hover {
-        background: #333;
-      }
       float: right;
       padding: 0 20px;
-      margin-top: 5px;
       font-size: 16px;
       margin: 2px 2px 0 auto;
       display: block;
-      background: #000;
+      background: #373d47;
     }
   }
-  width: 200px;
   .metismenu {
     background: #000000;
     margin: 0;
@@ -54,7 +51,8 @@ nav {
       padding: 15px;
       list-style: none;
       position: relative;
-      background: #000;
+      background: #373d47;
+      width: 200px;
       &.active {
         border-left: 4px solid #19aa8d;
         background: #2b2a2a;
@@ -88,7 +86,11 @@ nav {
         text-decoration: none;
         display: block;
         position: relative;
+        margin-left: 10px;
         span {
+          &:first-child {
+            margin-right: 23px;
+          }
           &.text {
             display: inline-block;
           }
@@ -125,15 +127,14 @@ nav {
           }
         }*/
         a {
-          font-size: 14px;
-          margin-left: 10px;
+          font-size: 15px;
           span {
-            &.text {
+            /*&.text {
               display: none;
             }
             &.arrow {
               display: none;
-            }
+            }*/
           }
         }
       }
@@ -179,7 +180,6 @@ nav {
             padding: 0.9rem 1rem;
             margin-bottom: 0;
             word-wrap: break-word;
-            font-family: Arial;
           }
         }
         textarea {
