@@ -36,8 +36,12 @@
                 {!! Form::text('profession', null, ['class'=> '', 'required' => '']) !!}
             </section>
             <section>
+                {!! Form::token() !!}
                 {!! Form::button(trans('messages.update_patient', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}
             </section>
         {!! Form::close() !!}
+        <div class="pacient_json" style="display: none">
+            {!! $patient->toJson() !!}
+        </div>
     </div>
 @endsection

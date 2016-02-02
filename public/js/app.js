@@ -6,6 +6,10 @@ var app = angular.module('app', ['ngAnimate'], function ($interpolateProvider) {
 app.controller('PacientsController', function ($scope) {
     $scope.pacient = {};
 
+    if (document.querySelector('pacient_json').length) {
+        $scope.pacient = JSON.parse(document.querySelector('pacient_json'));
+    }
+
     $scope.putAgeFromDate = function (date) {
         var regexp = /^\d{2}([./-])\d{2}\1\d{4}$/;
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Patient;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class PatientController extends Controller
@@ -86,7 +88,7 @@ class PatientController extends Controller
 
         return view('pacients/form_dades', [
             'lang' => 'ca',
-            'title' => 'Crea un nou pacient',
+            'title' => 'Actualitza dades d\'un pacient',
             'patient' => Patient::findOrFail($id)
         ]);
     }
@@ -111,7 +113,21 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inputs = Input::all();
+
+        $patient = Patient::findOrFail($id);
+        $patient->fill($inputs);
+
+        if ($patient->save()) {
+            Session::flash('alert', trans('messages.patient_update_correctly'));
+            Session::flash('status', 'success');
+
+            return view('pacients/form_dades', [
+                'lang' => 'ca',
+                'title' => 'Actualitza dades d\'un pacient',
+                'patient' => Patient::findOrFail($id)
+            ]);
+        }
     }
 
     /**

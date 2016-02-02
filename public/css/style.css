@@ -1,71 +1,225 @@
-/*
-Error: Invalid CSS after "...t-family: Arial": expected "{", was ";"
-        on line 184 of style.scss
+/*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
+body, button, select, textarea, input, .btn {
+  /*font-family: 'Montserrat', sans-serif;*/
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: 'Raleway', sans-serif;
+  height: 100%; }
 
-179:             background: #fff;
-180:             padding: 0.9rem 1rem;
-181:             margin-bottom: 0;
-182:             word-wrap: break-word;
-183: <<<<<<< HEAD
-184:             font-family: Arial;
-185: =======
-186: >>>>>>> 9a4ce66f14568711f00cf268009b26ff72e20c32
-187:           }
-188:         }
-189:         textarea {
+body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
+  margin: 0; }
 
-Backtrace:
-style.scss:184
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:1161:in `expected'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:1097:in `expected'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:1092:in `tok!'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:637:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:707:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:657:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:638:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:707:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:657:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:638:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:707:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:657:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:638:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:707:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:657:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:638:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:707:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:657:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:638:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:707:in `declaration_or_ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:657:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:638:in `block'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:631:in `ruleset'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:656:in `block_child'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:649:in `block_contents'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:117:in `stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/scss/parser.rb:42:in `parse'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/engine.rb:403:in `_to_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/engine.rb:378:in `_render_with_sourcemap'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/engine.rb:295:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:209:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/plugin.rb:82:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/sass_scss.rb:361:in `watch_or_update'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/sass_scss.rb:51:in `process_result'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/base.rb:52:in `parse'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/lib/sass/exec/base.rb:19:in `parse!'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.19/bin/scss:13:in `<top (required)>'
-/usr/local/bin/scss:23:in `load'
-/usr/local/bin/scss:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...t-family: Arial\": expected \"{\", was \";\"\A         on line 184 of style.scss\A \A 179:             background: #fff;\A 180:             padding: 0.9rem 1rem;\A 181:             margin-bottom: 0;\A 182:             word-wrap: break-word;\A 183: <<<<<<< HEAD\A 184:             font-family: Arial;\A 185: =======\A 186: >>>>>>> 9a4ce66f14568711f00cf268009b26ff72e20c32\A 187:           }\A 188:         }\A 189:         textarea {"; }
+[class*="-form"] {
+  margin-top: 60px; }
+
+nav {
+  display: inline-block;
+  background: #373d47;
+  height: 100%;
+  overflow: hidden;
+  width: 200px; }
+  @media (min-width: 768px) {
+    nav {
+      z-index: 2001;
+      position: absolute; } }
+  nav .nav-button {
+    width: 100%;
+    display: inline-block; }
+    nav .nav-button .navigation {
+      float: right;
+      padding: 0 20px;
+      font-size: 16px;
+      margin: 2px 2px 0 auto;
+      display: block;
+      background: #373d47; }
+  nav .metismenu {
+    background: #000000;
+    margin: 0; }
+    nav .metismenu li {
+      text-align: inherit;
+      color: #ffffff;
+      padding: 15px;
+      list-style: none;
+      position: relative;
+      background: #373d47;
+      width: 200px;
+      /*&:hover {
+        ul.nav-second-level {
+          display: inherit;
+          position: inherit;
+          top: inherit;
+          left: inherit;
+          margin: 0 0 0 24px;
+        }
+      }*/
+      /*ul {
+        &.nav-second-level {
+          li {
+            padding: 0;
+          }
+        }
+      }*/ }
+      nav .metismenu li.active {
+        border-left: 4px solid #19aa8d;
+        background: #2b2a2a; }
+      nav .metismenu li:hover {
+        background: #2b2a2a; }
+      nav .metismenu li .nav-second-level li {
+        background: #2b2a2a; }
+      nav .metismenu li a {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        margin-left: 10px; }
+        nav .metismenu li a span:first-child {
+          margin-right: 23px; }
+        nav .metismenu li a span.text {
+          display: inline-block; }
+        nav .metismenu li a span.arrow {
+          display: inline-block; }
+  nav.closed {
+    width: 60px; }
+    nav.closed .metismenu li {
+      font-size: 18px;
+      /*&:hover {
+        ul.nav-second-level {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 60px;
+          margin: 0;
+          li {
+            a {
+              margin-left: 0;
+            }
+          }
+        }
+      }*/ }
+      nav.closed .metismenu li ul.nav-second-level {
+        position: absolute;
+        left: 56px;
+        top: 0;
+        margin: 0; }
+      nav.closed .metismenu li a {
+        font-size: 15px; }
+        nav.closed .metismenu li a span {
+          /*&.text {
+            display: none;
+          }
+          &.arrow {
+            display: none;
+          }*/ }
+
+.wrap-content {
+  padding: 20px 0 20px 0;
+  margin: 0 0 0 200px; }
+  .wrap-content.compress {
+    margin: 0 0 0 60px; }
+  .wrap-content #main-page {
+    height: 100%;
+    min-height: 100%;
+    text-align: justify;
+    /*.nou_pacient {
+      border-radius: 50%;
+      padding: 15px;
+      background-color: #009926;
+      color: #fff;
+      display: inline-block;
+      width: 55px;
+      text-align: center;
+      font-size: 19px;
+
+    }*/ }
+    .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
+      text-align: center; }
+    .wrap-content #main-page .main-pacients {
+      width: 100%; }
+      .wrap-content #main-page .main-pacients .review-text {
+        width: 100%;
+        margin-bottom: 10px; }
+        .wrap-content #main-page .main-pacients .review-text div {
+          width: 100%;
+          margin: 0; }
+        .wrap-content #main-page .main-pacients .review-text span {
+          cursor: pointer; }
+        .wrap-content #main-page .main-pacients .review-text article {
+          width: 100%;
+          margin-bottom: 0 !important;
+          display: block;
+          border-radius: 0 2px 2px 0;
+          border: 1px solid #dfdfdf;
+          overflow: auto; }
+          .wrap-content #main-page .main-pacients .review-text article pre {
+            background: #fff;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0;
+            word-wrap: break-word; }
+        .wrap-content #main-page .main-pacients .review-text textarea {
+          min-height: 250px; }
+    .wrap-content #main-page form .input-prepend span {
+      padding-top: 13px; }
+    .wrap-content #main-page .add_date {
+      padding: 0 22px; }
+    .wrap-content #main-page .alert {
+      margin-top: 20px; }
+      .wrap-content #main-page .alert a {
+        color: #2581AF; }
+    .wrap-content #main-page section:last-child {
+      text-align: center; }
+    .wrap-content #main-page #link-container {
+      text-align: center;
+      margin-bottom: 5px; }
+    .wrap-content #main-page input[name="nif"] {
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s; }
+      .wrap-content #main-page input[name="nif"].ng-valid {
+        background: rgba(10, 135, 84, 0.13);
+        border-color: rgba(10, 135, 84, 0.13); }
+        .wrap-content #main-page input[name="nif"].ng-valid:-webkit-autofill {
+          background: rgba(10, 135, 84, 0.13) !important;
+          -webkit-box-shadow: 0 0 0px 1000px rgba(10, 135, 84, 0.13) inset; }
+    .wrap-content #main-page .buttons {
+      border: 1px solid #aaaaaa;
+      border-radius: 2px;
+      padding: 10px;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #000;
+      display: inline-block; }
+      .wrap-content #main-page .buttons :hover {
+        color: inherit; }
+
+#footer {
+  padding: 48px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 0 200px; }
+  #footer:after {
+    content: "";
+    display: block;
+    clear: both; }
+  #footer.compress {
+    margin: 0 0 0 60px; }
+
+nav, li.active, .wrap-content, #footer {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+
+/* when hiding the picture */
+.ng-hide-add {
+  animation: 0.5s lightSpeedOut ease; }
+
+/* when showing the picture */
+.ng-hide-remove {
+  animation: 0.5s flipInX ease; }
+
+.show-review {
+  animation: 0.5s shake ease; }
+
+/*# sourceMappingURL=style.css.map */
