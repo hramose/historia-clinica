@@ -3,11 +3,12 @@ var app = angular.module('app', ['ngAnimate'], function ($interpolateProvider) {
     $interpolateProvider.endSymbol(']]');
 });
 
-app.controller('PacientsController', function ($scope) {
+app.controller('PacientsController', function ($scope, $filter) {
     $scope.pacient = {};
 
-    if (document.querySelector('pacient_json').length) {
-        $scope.pacient = JSON.parse(document.querySelector('pacient_json'));
+    if (document.querySelector('.pacient_json')) {
+        $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
+        $scope.pacient.birth_date = $filter('date')(new Date($scope.pacient.birth_date), 'dd/MM/y');
     }
 
     $scope.putAgeFromDate = function (date) {

@@ -27,5 +27,6 @@ return array(
     'edita_review' => 'Edita aquesta valoració',
     'valoracions' => 'Anotacions al curs clínic',
     'tornar' => 'Tornar',
-    'update_patient' => 'Actualitzar pacient'
+    'update_patient' => 'Actualitzar pacient',
+    'patient_update_correctly' => 'Pacient actualitzat correctament'
 );
