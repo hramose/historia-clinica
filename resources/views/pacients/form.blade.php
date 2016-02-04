@@ -25,6 +25,10 @@
             <span class="alert alert-success" ng-if="form.nif.$valid">DNI correcte</span>
         </section>
         <section>
+            <label>{{ trans('models.Pacientgender') }}</label>
+            {!! Form::select('gender', ['male' => trans('models.male'), 'female' => trans('models.female')], null, ['class'=> '', 'ng-model' => 'pacient.gender', 'required' => '', 'placeholder' => trans('models.select_gender')]) !!}
+        </section>
+        <section>
             <label>{{ trans('models.Pacientbirth_date') }}</label>
             {!! Form::input('text', 'birth_date', '', ['class'=> '', 'ng-model' => 'pacient.birth_date', 'required' => '', 'placeholder' => 'DD/MM/YYYY', 'ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
         </section>

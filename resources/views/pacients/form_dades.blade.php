@@ -24,6 +24,10 @@
                 {!! Form::text('nif', null, ['class'=> '', 'ng-model' => 'pacient.nif', 'required' => '']) !!}
             </section>
             <section>
+                <label>{{ trans('models.Pacientgender') }}</label>
+                {!! Form::select('gender', ['male' => trans('models.male'), 'female' => trans('models.female')], null, ['class'=> '', 'ng-model' => 'pacient.gender', 'required' => '','placeholder' => trans('models.select_gender')]) !!}
+            </section>
+            <section>
                 <label>{{ trans('models.Pacientbirth_date') }}</label>
                 {!! Form::text('birth_date', null, ['class'=> '', 'ng-model' => 'pacient.birth_date',  'required' => '','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
             </section>

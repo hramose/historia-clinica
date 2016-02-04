@@ -64,6 +64,7 @@ class PatientController extends Controller
             'surname' => $request->input('surname'),
             'lastname' => $request->input('lastname'),
             'nif' => $request->input('nif'),
+            'gender' => $request->input('gender'),
             'birth_date' => $request->input('birth_date'),
             'age' => $request->input('age'),
             'profession' => $request->input('profession'),
