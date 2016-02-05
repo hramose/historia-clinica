@@ -17,7 +17,7 @@ nav {
   background: #373d47;
   height: 100%;
   overflow: hidden;
-  width: 200px; }
+  width: 220px; }
   @media (min-width: 768px) {
     nav {
       z-index: 2001;
@@ -42,7 +42,7 @@ nav {
       list-style: none;
       position: relative;
       background: #373d47;
-      width: 200px;
+      width: 220px;
       /*&:hover {
         ul.nav-second-level {
           display: inherit;
@@ -71,7 +71,7 @@ nav {
         text-decoration: none;
         display: block;
         position: relative;
-        margin-left: 5px; }
+        margin-left: 7px; }
         nav .metismenu li a span:first-child {
           margin-right: 23px; }
         nav .metismenu li a span.text {

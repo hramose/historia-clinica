@@ -26,7 +26,7 @@
         </section>
         <section>
             <label>{{ trans('models.Pacientgender') }}</label>
-            {!! Form::select('gender', ['male' => trans('models.male'), 'female' => trans('models.female')], null, ['class'=> '', 'ng-model' => 'pacient.gender', 'placeholder' => trans('models.select_gender')]) !!}
+            {!! Form::select('gender', ['male' => trans('models.male'), 'female' => trans('models.female')], null, ['class'=> 'select', 'ng-model' => 'pacient.gender', 'placeholder' => trans('models.select_gender')]) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientbirth_date') }}</label>

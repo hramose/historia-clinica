@@ -17,7 +17,7 @@ class UpdatePatients extends Migration
             $table->string('lastname')->nullable()->change();
             $table->date('birth_date')->nullable()->default("0000-00-00")->change();
             $table->integer('age')->nullable()->change();
-            $table->string('gender')->nullable()->change();
+            $table->string('gender')->nullable();
             $table->string('profession')->nullable()->change();
             $table->string('address')->nullable()->change();
         });
