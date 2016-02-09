@@ -56,6 +56,11 @@ Route::post('auth/reset_password', [
     'uses' => 'Auth\AuthController@postResetPassword'
 ]);
 
+Route::get('backup/{tables?}', [
+    'as' => 'backupDb',
+    'uses' => 'BackupController@backup_tables'
+]);
+
 Route::group(['prefix' => 'pacients'], function () {
     Route::get('/', [
         'as' => 'pacientsIndex',

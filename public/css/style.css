@@ -113,7 +113,7 @@ nav {
 
 .wrap-content {
   padding: 20px 0 20px 0;
-  margin: 0 0 0 200px; }
+  margin: 0 0 0 220px; }
   .wrap-content.compress {
     margin: 0 0 0 60px; }
   .wrap-content #main-page {
@@ -131,6 +131,9 @@ nav {
       font-size: 19px;
 
     }*/ }
+    .wrap-content #main-page column {
+      margin-right: 0;
+      display: inline-block; }
     .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
       text-align: center; }
     .wrap-content #main-page .main-pacients {
@@ -221,5 +224,22 @@ nav, li.active, .wrap-content, #footer {
 
 .show-review {
   animation: 0.5s shake ease; }
+
+/* animations */
+#check {
+  fill: none;
+  stroke: green;
+  stroke-width: 20;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  -webkit-animation: draw 2s infinite ease;
+  animation: draw 2s infinite ease; }
+
+@-webkit-keyframes draw {
+  to {
+    stroke-dashoffset: 0; } }
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0; } }
 
 /*# sourceMappingURL=style.css.map */

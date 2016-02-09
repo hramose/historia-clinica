@@ -3,6 +3,10 @@ var app = angular.module('app', ['ngAnimate'], function ($interpolateProvider) {
     $interpolateProvider.endSymbol(']]');
 });
 
+app.controller('AppController', function ($scope) {
+
+});
+
 app.controller('PacientsController', function ($scope, $filter) {
     $scope.pacient = {};
 
@@ -93,7 +97,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
     }
 
     $scope.isToday = function (date) {
-        return moment(new Date(date)).isSame(moment(), 'day');
+        /*return moment(new Date(date)).isSame(moment(), 'day');*/
+        return true;
     }
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
@@ -109,8 +114,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
 
     $scope.checkKey = function (e) {
         /*if (e.keyCode == 13 && !e.shiftKey) {
-            $scope.edit = '';
-        }*/
+         $scope.edit = '';
+         }*/
     }
 
     $scope.showReview = function (dateObj) {
