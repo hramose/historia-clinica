@@ -7,6 +7,17 @@ app.controller('AppController', function ($scope) {
 
 });
 
+app.controller('UsersController', function ($scope, $filter) {
+    $scope.showDeleteModal = function (e) {
+        e.preventDefault();
+        var href = $(e.target).parent().attr('href');
+        var confirmDelete = confirm('Estàs segur d\'eliminar aquest usuari?');
+        if (confirmDelete) {
+            window.location.href = href;
+        }
+    };
+});
+
 app.controller('PacientsController', function ($scope, $filter) {
     $scope.pacient = {};
 

@@ -51,6 +51,21 @@ Route::get('auth/reset_password', [
     'uses' => 'Auth\AuthController@getResetPassword'
 ]);
 
+Route::get('users/llista', [
+    'as' => 'llistaUsers',
+    'uses' => 'FrontController@userList'
+]);
+
+Route::get('users/dades/{id}', [
+    'as' => 'userData',
+    'uses' => 'FrontController@showUser'
+]);
+
+Route::get('users/eliminar/{id}', [
+    'as' => 'usersDelete',
+    'uses' => 'FrontController@destroyUser'
+]);
+
 Route::post('auth/reset_password', [
     'as' => 'reset_password',
     'uses' => 'Auth\AuthController@postResetPassword'

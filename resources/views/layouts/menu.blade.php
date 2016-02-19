@@ -16,6 +16,7 @@
                         class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li><a href="{{ URL::to('auth/register') }}">Crear nous usuaris</a></li>
+                <li><a href="{{ URL::to('users/llista') }}">Tots els usuaris</a></li>
             </ul>
         </li>
     </ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests;
 use App\Menu;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -126,5 +127,26 @@ class FrontController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function userList(Request $request)
+    {
+        $users = User::paginate(15);
+        $users->setPath('llistaUsers');
+        return view('auth/list', [
+            'lang' => 'ca',
+            'title' => 'Llista d\'usuaris',
+            'users' => $users
+        ]);
+    }
+
+    public function showUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view('auth/show', [
+            'lang' => 'ca',
+            'title' => 'Dades del usuari: ' . $user->name,
+            'user' => $user
+        ]);
     }
 }
