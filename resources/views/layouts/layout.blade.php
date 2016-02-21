@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('/css/animate.min.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body @if (!Auth::check() || isset($email)) class="no-login" @endif>
+<body @if (!Auth::check() || isset($email)) class="no-login" @endif ng-controller="AppController">
 @if (Auth::check() && !isset($email))
     @include('layouts.menu')
 @endif

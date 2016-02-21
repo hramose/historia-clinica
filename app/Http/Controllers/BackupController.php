@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
+use Request;
 
 class BackupController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -86,54 +92,67 @@ class BackupController extends Controller
         //
     }
 
-    public function backup_tables()
+    public function checkIfBackup()
     {
-        $tables = '*';
-        //get all of the tables
+        $files = Storage::files();
+        foreach ($files as $file) {
+
+        }
+    }
+
+    public function backup_tables($tables = '*')
+    {
         if ($tables == '*') {
             $tables = array();
             $result = DB::select('SHOW TABLES');
             foreach ($result as $item) {
-                $tables[] = $item->Tables_in_hclinicafisio;
+                $tables[] = $item->Tables_in_hfisio;
             }
-
         } else {
             $tables = is_array($tables) ? $tables : explode(',', $tables);
         }
 
-        $return = '';
+        $return = "";
         foreach ($tables as $table) {
-            $result = DB::table($table);
+            $result = DB::table($table)->get();
 
             $return .= 'DROP TABLE ' . $table . ';';
             $row2 = DB::select('SHOW CREATE TABLE ' . $table);
-            $row2 = ($row2[0]->{'Create Table'});
-            $return .= "\n\n" . $row2[1] . ";\n\n";
+            $showTable = $row2[0]->{"Create Table"};
+            $return .= "\n\n" . $showTable . ";\n\n";
 
-            for ($i = 0; $i < $num_fields; $i++) {
-                while ($row = mysql_fetch_row($result)) {
-                    $return .= 'INSERT INTO ' . $table . ' VALUES(';
-                    for ($j = 0; $j < $num_fields; $j++) {
-                        $row[$j] = addslashes($row[$j]);
-                        $row[$j] = ereg_replace("\n", "\\n", $row[$j]);
-                        if (isset($row[$j])) {
-                            $return .= '"' . $row[$j] . '"';
-                        } else {
-                            $return .= '""';
-                        }
-                        if ($j < ($num_fields - 1)) {
-                            $return .= ',';
-                        }
+            $list = Schema::getColumnListing($table);
+            foreach ($result as $item) {
+                $arr = (array)$item;
+                $keys = array_keys($arr);
+                $return .= 'INSERT INTO ' . $table . ' VALUES(';
+                for ($j = 0; $j < count($keys); $j++) {
+                    $value = $item->{$keys[$j]};
+                    $value = addslashes($value);
+                    $value = str_replace("\n", "\\n", $value);
+                    if (isset($value)) {
+                        $return .= '"' . $value . '"';
+                    } else {
+                        $return .= '""';
                     }
-                    $return .= ");\n";
+                    if ($j < (count($list) - 1)) {
+                        $return .= ',';
+                    }
                 }
+                $return .= ");\n";
             }
-            $return .= "\n\n\n";
         }
+        $return .= "\n\n\n";
 
-        //save file
-        $handle = fopen('db-backup-' . time() . '-' . (md5(implode(',', $tables))) . '.sql', 'w+');
-        fwrite($handle, $return);
-        fclose($handle);
+        Storage::put(
+            'db-backup-' . time() . '-' . (md5(implode(',', $tables))) . '.sql',
+            $return
+        );
+
+        if (!Request::ajax()) {
+            return view('backup/index', [
+                'lang' => 'ca',
+                'title' => 'Backup de la bd',]);
+        }
     }
 }

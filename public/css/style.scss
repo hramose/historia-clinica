@@ -144,7 +144,7 @@ nav {
 
 .wrap-content {
   padding: 20px 0 20px 0;
-  margin: 0 0 0 200px;
+  margin: 0 0 0 220px;
   &.compress {
     margin: 0 0 0 60px;
   }
@@ -152,6 +152,11 @@ nav {
     height: 100%;
     min-height: 100%;
     text-align: justify;
+
+    column {
+      margin-right: 0;
+      display: inline-block;
+    }
 
     h1, h2, h3, h4, h5, h6 {
       text-align: center;
@@ -298,4 +303,25 @@ nav, li.active, .wrap-content, #footer {
 
 .show-review {
   animation: 0.5s shake ease;
+}
+
+/* animations */
+#check {
+  fill: none;
+  stroke: green;
+  stroke-width: 20;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  -webkit-animation: draw 2s infinite ease;
+  animation: draw 2s infinite ease;
+}
+@-webkit-keyframes draw {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
