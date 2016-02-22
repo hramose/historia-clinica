@@ -28,5 +28,6 @@ return array(
     'valoracions' => 'Anotacions al curs clínic',
     'tornar' => 'Tornar',
     'update_patient' => 'Actualitzar pacient',
-    'patient_update_correctly' => 'Pacient actualitzat correctament'
+    'patient_update_correctly' => 'Pacient actualitzat correctament',
+    'user_blocked' => 'El teu usuari està bloquejat per què el sistema ha detectat massa intents amb dades errònies, contacta amb l\'administrador.'
 );

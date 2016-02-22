@@ -20,7 +20,7 @@ class AuthController extends Controller
 {
 
     protected $redirectTo = '/';
-    protected $maxLoginAttempts = 5;
+    protected $maxLoginAttempts = 3;
 
     /*
     |--------------------------------------------------------------------------
@@ -143,8 +143,16 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $this->validate($request, [
-            $this->loginUsername() => 'required', 'password' => 'required',
+            $this->loginUsername() => 'required', 'password' => 'required|min:6|',
         ]);
+
+        $userEmail = $request->input('email');
+        $user = User::whereEmail($userEmail)->first();
+        if ($user != null) {
+            if ($user->blocked == 1) {
+                return $this->showBlockedResponse($request);
+            }
+        }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -152,7 +160,11 @@ class AuthController extends Controller
         $throttles = $this->isUsingThrottlesLoginsTrait();
 
         if ($throttles && $this->hasTooManyLoginAttempts($request)) {
-            return $this->sendLockoutResponse($request);
+            $user = User::whereEmail($userEmail)->firstOrFail();
+            $user->blocked = 1;
+            $user->save();
+            /*return $this->sendLockoutResponse($request);*/
+            return $this->showBlockedResponse($request);
         }
 
         $credentials = $this->getCredentials($request);
@@ -323,5 +335,18 @@ class AuthController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function showBlockedResponse(Request $request)
+    {
+        return redirect($this->loginPath())
+            ->withInput($request->only($this->loginUsername(), 'remember'))
+            ->withErrors([
+                $this->loginUsername() => trans('messages.user_blocked'),
+            ]);
     }
 }
