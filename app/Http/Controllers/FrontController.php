@@ -8,12 +8,16 @@ use App\Menu;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
 
+    /**
+     * Create a new authentication controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
