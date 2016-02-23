@@ -7,6 +7,7 @@ return array(
     'Userconfirmationpassword' => 'Tornar a introduir la contrasenya',
     'Userrol' => 'Rol d\'usuari',
     'Userrememberme' => 'Recorda\'m',
+    'Userblocked' => 'Bloquejat?',
     'Pacientname' => 'Nom pacient',
     'Pacientsurname' => 'Primer cognom',
     'Pacientlastname' => 'Segon cognom',

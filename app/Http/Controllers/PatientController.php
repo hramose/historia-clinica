@@ -126,7 +126,7 @@ class PatientController extends Controller
             return view('pacients/form_dades', [
                 'lang' => 'ca',
                 'title' => 'Actualitza dades d\'un pacient',
-                'patient' => Patient::findOrFail($id)
+                'patient' => $patient
             ]);
         }
     }

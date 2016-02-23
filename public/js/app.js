@@ -8,6 +8,14 @@ app.controller('AppController', function ($scope) {
 });
 
 app.controller('UsersController', function ($scope, $filter) {
+    $scope.user = {};
+
+    if (document.querySelector('.user_json')) {
+        $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
+        $scope.user.blocked = $scope.user.blocked == 1;
+        console.log($scope.user)
+    }
+
     $scope.showDeleteModal = function (e) {
         e.preventDefault();
         var href = $(e.target).parent().attr('href');

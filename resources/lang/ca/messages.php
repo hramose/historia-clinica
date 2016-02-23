@@ -28,5 +28,6 @@ return array(
     'valoracions' => 'Anotacions al curs clínic',
     'tornar' => 'Tornar',
     'update_patient' => 'Actualitzar pacient',
+    'update_user' => 'Actualitzar usuari',
     'patient_update_correctly' => 'Pacient actualitzat correctament'
 );

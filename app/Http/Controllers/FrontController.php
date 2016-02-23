@@ -8,10 +8,17 @@ use App\Menu;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -115,7 +122,20 @@ class FrontController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $inputs = Input::except('password');
+        $user->update($inputs);
+
+        if ($user->save()) {
+            Session::flash('alert', trans('messages.user_update_correctly'));
+            Session::flash('status', 'success');
+
+            return view('auth/show', [
+                'lang' => 'ca',
+                'title' => 'Dades del usuari: ' . $user->name,
+                'user' => User::findOrFail($id)
+            ]);
+        }
     }
 
     /**

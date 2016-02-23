@@ -61,6 +61,11 @@ Route::get('users/dades/{id}', [
     'uses' => 'FrontController@showUser'
 ]);
 
+Route::post('users/dades/{id}', [
+    'as' => 'userDadesUpdate',
+    'uses' => 'FrontController@update'
+]);
+
 Route::get('users/eliminar/{id}', [
     'as' => 'usersDelete',
     'uses' => 'FrontController@destroyUser'

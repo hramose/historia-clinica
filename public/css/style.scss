@@ -16,6 +16,11 @@ body.no-login {
 
 }
 
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
+
 [class*="-form"] {
   margin-top: 60px;
 }

@@ -9,6 +9,9 @@ body, button, select, textarea, input, .btn {
 body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
   margin: 0; }
 
+input[type=checkbox] {
+  -webkit-appearance: checkbox; }
+
 [class*="-form"] {
   margin-top: 60px; }
 
