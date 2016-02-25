@@ -15,8 +15,7 @@
     return view('welcome');
 });*/
 
-Route:
-get('/', [
+Route::get('/', [
     'as' => 'home', 'uses' => 'FrontController@index']);
 
 // Authentication routes...

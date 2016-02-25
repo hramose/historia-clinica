@@ -35,6 +35,12 @@ nav {
       margin: 2px 2px 0 auto;
       display: block;
       background: #373d47; }
+  nav #menu-header {
+    background: #000;
+    padding: 10px;
+    border-radius: 1px; }
+    nav #menu-header .responsive {
+      display: none; }
   nav .metismenu {
     background: #000000;
     margin: 0; }
@@ -83,6 +89,10 @@ nav {
           display: inline-block; }
   nav.closed {
     width: 60px; }
+    nav.closed #menu-header .main {
+      display: none; }
+    nav.closed #menu-header .responsive {
+      display: block; }
     nav.closed .metismenu li {
       font-size: 18px;
       /*&:hover {

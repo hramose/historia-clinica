@@ -8,6 +8,7 @@ use App\Menu;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
@@ -127,8 +128,8 @@ class FrontController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $inputs = Input::except('password');
-        $user->update($inputs);
+        $inputs = Input::all();
+        $user->fill($inputs);
 
         if ($user->save()) {
             Session::flash('alert', trans('messages.user_update_correctly'));
