@@ -128,7 +128,7 @@ class FrontController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $inputs = Input::all();
+        $inputs = Input::except('password');
         $user->fill($inputs);
 
         if ($user->save()) {

@@ -121,7 +121,7 @@ class AuthController extends Controller
 
         Session::flash('alert', trans('messages.register_successful'));
         Session::flash('status', 'success');
-        return redirect($this->loginPath());
+        return redirect()->route('getLogin');
     }
 
 
@@ -192,7 +192,7 @@ class AuthController extends Controller
             $this->incrementLoginAttempts($request);
         }
 
-        return redirect($this->loginPath())
+        return redirect()->back()
             ->withInput($request->only($this->loginUsername(), 'remember'))
             ->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
@@ -248,7 +248,7 @@ class AuthController extends Controller
         Session::flash('alert', trans('messages.succesful_verified'));
         Session::flash('status', 'success');
 
-        return redirect($this->loginPath());
+        return redirect()->route('getLogin');
     }
 
     public function getSendVerificationMail(Request $request)
@@ -270,7 +270,7 @@ class AuthController extends Controller
                 Session::flash('status', 'success');
             }
 
-            return redirect($this->loginPath());
+            return redirect()->route('getLogin');
         } else {
             return view('auth.sendverificationmail', [
                 'lang' => 'ca',
@@ -312,18 +312,18 @@ class AuthController extends Controller
             $user->save();
 
             Auth::logout();
-            Session::flash('success', trans('messages.already_changed_pass'));
+            Session::flash('alert', trans('messages.already_changed_pass'));
             Session::flash('status', 'success');
         } else {
             $user = User::whereEmail($request->input('email'))->first();
             $user->setPassword($request->input('password'));
             $user->save();
 
-            Session::flash('success', trans('messages.already_changed_pass'));
+            Session::flash('alert', trans('messages.already_changed_pass'));
             Session::flash('status', 'success');
         }
 
-        return redirect($this->loginPath());
+        return redirect()->route('getLogin');
     }
 
     public static function checkForPasswordExpiration()
@@ -343,7 +343,8 @@ class AuthController extends Controller
      */
     public function showBlockedResponse(Request $request)
     {
-        return redirect($this->loginPath())
+        return redirect()
+            ->back()
             ->withInput($request->only($this->loginUsername(), 'remember'))
             ->withErrors([
                 $this->loginUsername() => trans('messages.user_blocked'),
