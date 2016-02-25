@@ -1,0 +1,18 @@
+{
+  "name": "historia-clinica",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Ricardo Cámara <rcamara9@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/xmarston/historia-clinica",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
