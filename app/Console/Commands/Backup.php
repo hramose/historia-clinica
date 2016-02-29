@@ -1,106 +1,51 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Console\Commands;
 
-use App\Http\Requests;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
-use Request;
 
-class BackupController extends Controller
+class Backup extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'backup_db';
 
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        $this->middleware('auth');
+        parent::__construct();
     }
 
     /**
-     * Display a listing of the resource.
+     * Execute the console command.
      *
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
-    public function index()
+    public function handle()
     {
-        //
+        $this->backup();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function checkIfBackup()
-    {
-        $files = Storage::files();
-        foreach ($files as $file) {
-
-        }
-    }
-
-    public function backup_tables($tables = '*')
+    public function backup($tables = '*')
     {
         if ($tables == '*') {
             $tables = array();
@@ -149,10 +94,11 @@ class BackupController extends Controller
             $return
         );
 
-        if (!Request::ajax()) {
-            return view('backup/index', [
-                'lang' => 'ca',
-                'title' => 'Backup de la bd',]);
-        }
+        $bk = new \App\Backup();
+        $bk->date_of_backup = Carbon::now();
+        $bk->user_id = 'system:cron';
+        $bk->save();
+
+        Log::info($this->signature . ': Backup generado');
     }
 }

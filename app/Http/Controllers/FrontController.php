@@ -158,7 +158,7 @@ class FrontController extends Controller
     {
         $users = User::paginate(15);
         $users->setPath('llistaUsers');
-        return view('auth/list', [
+        return view('auth.list', [
             'lang' => 'ca',
             'title' => 'Llista d\'usuaris',
             'users' => $users
