@@ -25,5 +25,8 @@
                 <li><a href="{{ URL::to('users/llista') }}">Tots els usuaris</a></li>
             </ul>
         </li>
+        <li>
+            <a href="{{ URL::route('backupDb') }}">Copia de seguretat</a>
+        </li>
     </ul>
 </nav>

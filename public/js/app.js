@@ -10,11 +10,13 @@ app.controller('AppController', function ($scope) {
 app.controller('UsersController', function ($scope, $filter) {
     $scope.user = {};
 
-    if (document.querySelector('.user_json')) {
-        $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
-        $scope.user.blocked = $scope.user.blocked == 1;
-        console.log($scope.user)
-    }
+    $scope.randomStr = function (m) {
+        var m = m || 9, s = '', r = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (var i = 0; i < m; i++) {
+            s += r.charAt(Math.floor(Math.random() * r.length));
+        }
+        return s;
+    };
 
     $scope.showDeleteModal = function (e) {
         e.preventDefault();
@@ -24,6 +26,13 @@ app.controller('UsersController', function ($scope, $filter) {
             window.location.href = href;
         }
     };
+
+    if (document.querySelector('.user_json')) {
+        $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
+        $scope.user.blocked = $scope.user.blocked == 1;
+        $scope.user.password = $scope.randomStr(16);
+        console.log($scope.user);
+    }
 });
 
 app.controller('PacientsController', function ($scope, $filter) {

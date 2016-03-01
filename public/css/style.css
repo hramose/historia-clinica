@@ -36,9 +36,10 @@ nav {
       display: block;
       background: #373d47; }
   nav #menu-header {
-    background: #000;
+    background: #FFFFFF;
     padding: 10px;
-    border-radius: 1px; }
+    border-radius: 1px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05); }
     nav #menu-header .responsive {
       display: none; }
   nav .metismenu {

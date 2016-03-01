@@ -59,6 +59,16 @@ Route::group(['middleware' => 'web'], function () {
         'uses' => 'FrontController@showUser'
     ]);
 
+    Route::get('users/nou/', [
+        'as' => 'userNou',
+        'uses' => 'FrontController@create'
+    ]);
+
+    Route::post('users/nou/', [
+        'as' => 'userCreate',
+        'uses' => 'FrontController@store'
+    ]);
+
     Route::post('users/dades/{id}', [
         'as' => 'userDadesUpdate',
         'uses' => 'FrontController@update'

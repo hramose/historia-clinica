@@ -48,9 +48,10 @@ nav {
     }
   }
   #menu-header {
-    background: #000;
+    background: #FFFFFF;
     padding: 10px;
     border-radius: 1px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
     .responsive {
       display: none;
     }

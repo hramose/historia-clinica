@@ -31,4 +31,5 @@
     </table>
 
     {!! $users->render() !!}
+    <a class="buttons" href="{{ URL::route('userNou') }}"><i class="fa fa-plus"></i></a>
 @endsection

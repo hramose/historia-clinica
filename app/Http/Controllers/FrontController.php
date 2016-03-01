@@ -82,7 +82,11 @@ class FrontController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.show', [
+            'lang' => 'ca',
+            'title' => 'Crea nou usuari',
+            'user' => new User()
+        ]);
     }
 
     /**
@@ -93,7 +97,26 @@ class FrontController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+        ]);
+
+        $inputs = $request->all();
+
+        $user = User::create([
+            'name' => $inputs['name'],
+            'email' => $inputs['email'],
+            'password' => bcrypt($inputs['password']),
+        ]);
+
+        if ($user->exists) {
+            Session::flash('alert', 'test');
+            Session::flash('status', 'success');
+        }
+
+        return redirect()->route('llistaUsers');
     }
 
     /**

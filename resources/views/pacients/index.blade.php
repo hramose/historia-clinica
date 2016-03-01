@@ -20,7 +20,7 @@
                     <a title="Dades del pacient" href="{{ URL::to('pacients/dades/'.$pacient->id) }}"><i
                                 class="fa fa-user"></i></a>
                     <a title="Veure història" href="{{ URL::to('histories/pacient/'.$pacient->id) }}"><i
-                                class="fa fa-list"></i></a> <a title="Veure i fer valoraciones"
+                                class="fa fa-list"></i></a> <a title="Realitzar valoració"
                                                                href="{{ URL::to('valoracions/pacient/'.$pacient->id) }}"><i
                                 class="fa fa-calendar-check-o"></i></a><a
                             ng-click="showDeleteModal($event)"
