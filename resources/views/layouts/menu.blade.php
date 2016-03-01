@@ -2,6 +2,12 @@
     <div class="nav-button">
         <button class="navigation" type="primary"><span class="fa fa-navicon"></span></button>
     </div>
+    <div id="menu-header">
+        <a href="{{URL::route('home')  }}">
+            <img class="main" src="{{ asset("img/logo.png") }}" alt="">
+            <img class="responsive" src="{{ asset("img/logo-responsive.png") }}" alt="">
+        </a>
+    </div>
     <ul class="metismenu" id="side-menu">
         <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user-md"></span> <span class="text">Pacients</span>
                 <span class="fa arrow"></span>

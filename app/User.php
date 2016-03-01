@@ -55,11 +55,12 @@ class User extends Model implements AuthenticatableContract,
         $this->password = bcrypt($password);
     }
 
-    public function setBlocked($blocked)
+    public function setBlockedAttribute($blocked)
     {
-        if ($blocked == 'on')
-            $this->blocked = 1;
-        else
-            $this->blocked = $blocked;
+        if ($blocked == 'on') {
+            $this->attributes['blocked'] = 1;
+        } else {
+            $this->attributes['blocked'] = $blocked;
+        }
     }
 }

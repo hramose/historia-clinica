@@ -47,6 +47,14 @@ nav {
       background: #373d47;
     }
   }
+  #menu-header {
+    background: #000;
+    padding: 10px;
+    border-radius: 1px;
+    .responsive {
+      display: none;
+    }
+  }
   .metismenu {
     background: #000000;
     margin: 0;
@@ -108,6 +116,14 @@ nav {
   }
   &.closed {
     width: 60px;
+    #menu-header {
+      .main {
+        display: none;
+      }
+      .responsive {
+        display: block;
+      }
+    }
     .metismenu {
       li {
         font-size: 18px;

@@ -11,133 +11,132 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/', [
+        'as' => 'home', 'uses' => 'FrontController@index']);
+});
 
-Route:
-get('/', [
-    'as' => 'home', 'uses' => 'FrontController@index']);
-
+Route::group(['middleware' => 'web'], function () {
 // Authentication routes...
-Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
-Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
-Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController@getLogout']);
+    Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
+    Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
+    Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController@getLogout']);
 
-/*Route::group(['middleware' => 'auth'], function(){*/
+    /*Route::group(['middleware' => 'auth'], function(){*/
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
-/*});*/
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
+    /*});*/
 
 // Verify email routes
-Route::get('auth/verify/{confirmationCode}', [
-    'as' => 'confirmation_path',
-    'uses' => 'Auth\AuthController@getConfirmation'
-]);
-
-Route::get('auth/sendverificationmail', [
-    'as' => 'sendverificationmail',
-    'uses' => 'Auth\AuthController@getSendVerificationMail'
-]);
-
-Route::post('auth/sendverificationmail', [
-    'as' => 'sendverificationmail',
-    'uses' => 'Auth\AuthController@getSendVerificationMail'
-]);
-
-Route::get('auth/reset_password', [
-    'as' => 'reset_password',
-    'uses' => 'Auth\AuthController@getResetPassword'
-]);
-
-Route::get('users/llista', [
-    'as' => 'llistaUsers',
-    'uses' => 'FrontController@userList'
-]);
-
-Route::get('users/dades/{id}', [
-    'as' => 'userData',
-    'uses' => 'FrontController@showUser'
-]);
-
-Route::post('users/dades/{id}', [
-    'as' => 'userDadesUpdate',
-    'uses' => 'FrontController@update'
-]);
-
-Route::get('users/eliminar/{id}', [
-    'as' => 'usersDelete',
-    'uses' => 'FrontController@destroyUser'
-]);
-
-Route::post('auth/reset_password', [
-    'as' => 'reset_password',
-    'uses' => 'Auth\AuthController@postResetPassword'
-]);
-
-Route::get('backup/{tables?}', [
-    'as' => 'backupDb',
-    'uses' => 'BackupController@backup_tables'
-]);
-
-Route::group(['prefix' => 'pacients'], function () {
-    Route::get('/', [
-        'as' => 'pacientsIndex',
-        'uses' => 'PatientController@index'
+    Route::get('auth/verify/{confirmationCode}', [
+        'as' => 'confirmation_path',
+        'uses' => 'Auth\AuthController@getConfirmation'
     ]);
 
-    Route::get('/nou', [
-        'as' => 'pacientsNouGet',
-        'uses' => 'PatientController@create'
+    Route::get('auth/sendverificationmail', [
+        'as' => 'sendverificationmail',
+        'uses' => 'Auth\AuthController@getSendVerificationMail'
     ]);
 
-    Route::post('/nou', [
-        'as' => 'pacientsNou',
-        'uses' => 'PatientController@store'
+    Route::post('auth/sendverificationmail', [
+        'as' => 'sendverificationmail',
+        'uses' => 'Auth\AuthController@getSendVerificationMail'
     ]);
 
-    Route::get('/dades/{id}', [
-        'as' => 'pacientsDades',
-        'uses' => 'PatientController@show'
+    Route::get('auth/reset_password', [
+        'as' => 'reset_password',
+        'uses' => 'Auth\AuthController@getResetPassword'
     ]);
 
-    Route::post('/dades/{id}', [
-        'as' => 'pacientsDadesUpdate',
-        'uses' => 'PatientController@update'
+    Route::get('users/llista', [
+        'as' => 'llistaUsers',
+        'uses' => 'FrontController@userList'
     ]);
 
-    Route::get('/llista', [
-        'as' => 'pacientsLlista',
-        'uses' => 'PatientController@index'
+    Route::get('users/dades/{id}', [
+        'as' => 'userData',
+        'uses' => 'FrontController@showUser'
     ]);
 
-    Route::get('/eliminar/{id}', [
-        'as' => 'pacientsDelete',
-        'uses' => 'PatientController@destroy'
+    Route::post('users/dades/{id}', [
+        'as' => 'userDadesUpdate',
+        'uses' => 'FrontController@update'
     ]);
-});
 
-Route::group(['prefix' => 'histories'], function () {
-    Route::get('/', 'HistoryController@index');
-});
+    Route::get('users/eliminar/{id}', [
+        'as' => 'usersDelete',
+        'uses' => 'FrontController@destroyUser'
+    ]);
 
-Route::group(['prefix' => 'valoracions'], function () {
-    Route::get('/', 'ReviewController@index');
-    Route::get('/pacient/{id}',
-        [
-            'as' => 'valoracions.pacient.show',
-            'uses' => 'ReviewController@show'
+    Route::post('auth/reset_password', [
+        'as' => 'reset_password',
+        'uses' => 'Auth\AuthController@postResetPassword'
+    ]);
+
+    Route::get('backup/{tables?}', [
+        'as' => 'backupDb',
+        'uses' => 'BackupController@backup_tables'
+    ]);
+
+    Route::group(['prefix' => 'pacients'], function () {
+        Route::get('/', [
+            'as' => 'pacientsIndex',
+            'uses' => 'PatientController@index'
         ]);
-    Route::post('/pacient/{id}',
-        [
-            'as' => 'valoracions.pacient.nou',
-            'uses' => 'ReviewController@store'
+
+        Route::get('/nou', [
+            'as' => 'pacientsNouGet',
+            'uses' => 'PatientController@create'
         ]);
+
+        Route::post('/nou', [
+            'as' => 'pacientsNou',
+            'uses' => 'PatientController@store'
+        ]);
+
+        Route::get('/dades/{id}', [
+            'as' => 'pacientsDades',
+            'uses' => 'PatientController@show'
+        ]);
+
+        Route::post('/dades/{id}', [
+            'as' => 'pacientsDadesUpdate',
+            'uses' => 'PatientController@update'
+        ]);
+
+        Route::get('/llista', [
+            'as' => 'pacientsLlista',
+            'uses' => 'PatientController@index'
+        ]);
+
+        Route::get('/eliminar/{id}', [
+            'as' => 'pacientsDelete',
+            'uses' => 'PatientController@destroy'
+        ]);
+    });
+
+    Route::group(['prefix' => 'histories'], function () {
+        Route::get('/', 'HistoryController@index');
+    });
+
+    Route::group(['prefix' => 'valoracions'], function () {
+        Route::get('/', 'ReviewController@index');
+        Route::get('/pacient/{id}',
+            [
+                'as' => 'valoracions.pacient.show',
+                'uses' => 'ReviewController@show'
+            ]);
+        Route::post('/pacient/{id}',
+            [
+                'as' => 'valoracions.pacient.nou',
+                'uses' => 'ReviewController@store'
+            ]);
+    });
+
+    Route::get('crear_menus', 'FrontController@getFormMenu');
+
+    Route::post('crear_menu', [
+        'as' => 'crear_menu',
+        'uses' => 'FrontController@postCreateMenu']);
 });
-
-Route::get('crear_menus', 'FrontController@getFormMenu');
-
-Route::post('crear_menu', [
-    'as' => 'crear_menu',
-    'uses' => 'FrontController@postCreateMenu']);

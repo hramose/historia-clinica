@@ -18,7 +18,7 @@
         <section>
             <label>{{ trans('models.Userblocked') }}</label>
             {!! Form::hidden('blocked', 0, ['class'=> '', 'autocomplete' => 'off']) !!}
-            {!! Form::checkbox('blocked', null, null, ['class'=> '', 'ng-model' => 'user.blocked', 'autocomplete' => 'off', 'ng-true-value' => '1']) !!}
+            {!! Form::checkbox('blocked', null, null, ['class'=> '', 'ng-model' => 'user.blocked', 'autocomplete' => 'off', 'ng-true-value' => 'true']) !!}
         </section>
         <section>
             {!! Form::button(trans('messages.update_user', ['name' => 'user']),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}
