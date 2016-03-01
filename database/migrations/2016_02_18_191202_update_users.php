@@ -13,7 +13,9 @@ class UpdateUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('blocked')->nullable()->default(0);
+            if (!Schema::hasColumn('users', 'blocked')) {
+                $table->boolean('blocked')->nullable()->default(0);
+            }
         });
     }
 
