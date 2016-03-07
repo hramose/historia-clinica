@@ -20,6 +20,6 @@
     </section>
     {!! Form::close() !!}
     <div id="link-container">
-        <a href="{{ URL::to('auth/register') }}">{{ trans('messages.register') }}</a>
+        {{--<a href="{{ URL::to('auth/register') }}">{{ trans('messages.register') }}</a>--}}
     </div>
 @endsection

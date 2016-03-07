@@ -89,6 +89,16 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'BackupController@backup_tables'
     ]);
 
+    Route::get('decrypt_bp', [
+        'as' => 'decryptBackup',
+        'uses' => 'BackupController@decryptBackup'
+    ]);
+
+    Route::post('decrypt_bp', [
+        'as' => 'decryptBackup',
+        'uses' => 'BackupController@decryptBackup'
+    ]);
+
     Route::group(['prefix' => 'pacients'], function () {
         Route::get('/', [
             'as' => 'pacientsIndex',

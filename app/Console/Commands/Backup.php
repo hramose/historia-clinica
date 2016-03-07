@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -89,9 +90,11 @@ class Backup extends Command
         }
         $return .= "\n\n\n";
 
+        $encriptedValue = Crypt::encrypt($return);
+
         Storage::put(
             'db-backup-' . time() . '-' . (md5(implode(',', $tables))) . '.sql',
-            $return
+            $encriptedValue
         );
 
         $bk = new \App\Backup();
