@@ -11,12 +11,12 @@
 |
 */
 
-Route::group(['middleware' => ['web', 'auth']], function () {
+Route::group(['middleware' => ['web', 'auth', 'access']], function () {
     Route::get('/', [
         'as' => 'home', 'uses' => 'FrontController@index']);
 });
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => ['web', 'access']], function () {
 // Authentication routes...
     Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);

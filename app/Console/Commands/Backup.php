@@ -51,7 +51,7 @@ class Backup extends Command
             $tables = array();
             $result = DB::select('SHOW TABLES');
             foreach ($result as $item) {
-                $tables[] = $item->Tables_in_hfisio;
+                $tables[] = $item->Tables_in_hclinicafisio;
             }
         } else {
             $tables = is_array($tables) ? $tables : explode(',', $tables);

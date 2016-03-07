@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -105,8 +107,9 @@ class BackupController extends Controller
         if ($tables == '*') {
             $tables = array();
             $result = DB::select('SHOW TABLES');
+            $stringTable = "Tables_in_" . env('DB_DATABASE');
             foreach ($result as $item) {
-                $tables[] = $item->Tables_in_hfisio;
+                $tables[] = $item->{$stringTable};
             }
         } else {
             $tables = is_array($tables) ? $tables : explode(',', $tables);
@@ -148,6 +151,11 @@ class BackupController extends Controller
             'db-backup-' . time() . '-' . (md5(implode(',', $tables))) . '.sql',
             $return
         );
+
+        $bk = new \App\Backup();
+        $bk->date_of_backup = Carbon::now();
+        $bk->user_id = Auth::user()->id;
+        $bk->save();
 
         if (!Request::ajax()) {
             return view('backup/index', [
