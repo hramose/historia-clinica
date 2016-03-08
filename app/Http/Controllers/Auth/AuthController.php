@@ -170,7 +170,7 @@ class AuthController extends Controller
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            /*if ((strtotime(Auth::user()->created_at) < strtotime('6 month ago')) && is_null(Auth::user()->password_reset)) {
+            if ((strtotime(Auth::user()->created_at) < strtotime('6 month ago')) && is_null(Auth::user()->password_reset)) {
                 Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
                 Session::put('password_expired', true);
                 return redirect('auth/reset_password');//redirect to password reset page
@@ -180,9 +180,9 @@ class AuthController extends Controller
                 return redirect('auth/reset_password');//redirect to password reset page
             } else {
                 return $this->handleUserWasAuthenticated($request, $throttles);
-            }*/
+            }
 
-            return $this->handleUserWasAuthenticated($request, $throttles);
+            /*return $this->handleUserWasAuthenticated($request, $throttles);*/
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
