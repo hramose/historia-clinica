@@ -103,7 +103,7 @@ class BackupController extends Controller
         }
     }
 
-    public function backup_tables($tables = '*')
+    public function backup_tables(Request $request, $tables = '*')
     {
         if ($tables == '*') {
             $tables = array();
@@ -160,7 +160,7 @@ class BackupController extends Controller
         $bk->user_id = Auth::user()->id;
         $bk->save();
 
-        if (!Request::ajax()) {
+        if (!$request->ajax()) {
             return view('backup/index', [
                 'lang' => 'ca',
                 'title' => 'Backup de la bd',]);
