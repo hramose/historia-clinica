@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestió pacients - {{ $title }}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/kube.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/metismenu.css') }}">
