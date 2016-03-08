@@ -79,10 +79,10 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'FrontController@destroyUser'
     ]);
 
-    /*Route::post('auth/reset_password', [
+    Route::post('auth/reset_password', [
         'as' => 'reset_password',
         'uses' => 'Auth\AuthController@postResetPassword'
-    ]);*/
+    ]);
 
     Route::get('backup/{tables?}', [
         'as' => 'backupDb',

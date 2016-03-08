@@ -7,6 +7,7 @@ use App\Exceptions\InvalidTokenException;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -170,14 +171,17 @@ class AuthController extends Controller
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            if ((strtotime(Auth::user()->created_at) < strtotime('6 month ago')) && is_null(Auth::user()->password_reset)) {
+            $createdDate = new Carbon(Auth::user()->created_at);
+            $passwordResetDate = new Carbon(Auth::user()->password_reset);
+            $nowDate = Carbon::now();
+            if ($createdDate->diff($nowDate)->m >= 6 && is_null(Auth::user()->password_reset)) {
                 Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
                 Session::put('password_expired', true);
-                return redirect('auth/reset_password');//redirect to password reset page
-            } else if ((strtotime(Auth::user()->password_reset) < strtotime('6 month ago'))) {
+                return redirect()->route('reset_password');//redirect to password reset page
+            } else if ($passwordResetDate->diff($nowDate)->m >= 6) {
                 Session::flash('alert-warning', trans('messages.password_reset', ['mesos' => 6]));
                 Session::put('password_expired', true);
-                return redirect('auth/reset_password');//redirect to password reset page
+                return redirect()->route('reset_password');//redirect to password reset page
             } else {
                 return $this->handleUserWasAuthenticated($request, $throttles);
             }
@@ -309,6 +313,7 @@ class AuthController extends Controller
         if (isset($request->user()->email)) {
             $user = $request->user();
             $user->setPassword($request->input('password'));
+            $user->password_reset = Carbon::now();
             $user->save();
 
             Auth::logout();
@@ -317,11 +322,14 @@ class AuthController extends Controller
         } else {
             $user = User::whereEmail($request->input('email'))->first();
             $user->setPassword($request->input('password'));
+            $user->password_reset = Carbon::now();
             $user->save();
 
             Session::flash('alert', trans('messages.already_changed_pass'));
             Session::flash('status', 'success');
         }
+
+        Session::forget('password_expired');
 
         return redirect()->route('getLogin');
     }
