@@ -69,10 +69,10 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $review = Review::where('patient_id', $id)->first();
         $patient = Patient::where('id', $id)->first();
-        if (is_null($review)) {
-            $review = new Review();
+        $review = new Review();
+        if (!is_null($patient->review)) {
+            $review = $patient->review;
         }
 
         return view('review/show', [
