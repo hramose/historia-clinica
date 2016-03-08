@@ -154,10 +154,6 @@ Route::group(['middleware' => ['web', 'access']], function () {
             ]);
     });
 
-    Route::group(['prefix' => 'mails'], function() {
-        Route::get('/', 'MailsController@index');
-    });
-
     Route::get('crear_menus', 'FrontController@getFormMenu');
 
     Route::post('crear_menu', [
