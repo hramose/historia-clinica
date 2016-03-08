@@ -51,8 +51,9 @@ class Backup extends Command
         if ($tables == '*') {
             $tables = array();
             $result = DB::select('SHOW TABLES');
+            $stringTable = "Tables_in_" . env('DB_DATABASE');
             foreach ($result as $item) {
-                $tables[] = $item->Tables_in_hclinicafisio;
+                $tables[] = $item->{$stringTable};
             }
         } else {
             $tables = is_array($tables) ? $tables : explode(',', $tables);
