@@ -211,7 +211,7 @@ nav {
     .wrap-content #main-page .list-backups {
       list-style: none;
       margin: 0 auto;
-      width: 600px; }
+      display: table; }
       .wrap-content #main-page .list-backups li a {
         text-decoration: none; }
 
