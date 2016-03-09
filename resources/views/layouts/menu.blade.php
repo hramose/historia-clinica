@@ -25,8 +25,12 @@
                 <li><a href="{{ URL::to('users/llista') }}">Tots els usuaris</a></li>
             </ul>
         </li>
-        <li>
-            <a href="{{ URL::route('backupDb') }}">Copia de seguretat</a>
+        <li><a href="#"><span class="fa fa-database"></span> <span class="text">Còpia de seguretat</span> <span
+                        class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="{{ URL::route('backupDb') }}">Realitza còpia ara</a></li>
+                <li><a href="{{ URL::route('backupList') }}">Llistat de backups</a></li>
+            </ul>
         </li>
     </ul>
 </nav>

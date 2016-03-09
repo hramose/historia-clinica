@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
-        \App\Console\Commands\Backup::class
+        \App\Console\Commands\Backup::class,
+        \App\Console\Commands\EmptyZipDirectory::class
     ];
 
     /**
@@ -27,5 +28,6 @@ class Kernel extends ConsoleKernel
     {
         /*$schedule->command('inspire')->everyMinute()->appendOutputTo(storage_path('logs/laravel.log'));*/
         $schedule->command('backup_db')->daily();
+        $schedule->command('empty_zip_dir')->daily();
     }
 }

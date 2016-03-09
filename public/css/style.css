@@ -208,6 +208,12 @@ nav {
       display: inline-block; }
       .wrap-content #main-page .buttons :hover {
         color: inherit; }
+    .wrap-content #main-page .list-backups {
+      list-style: none;
+      margin: 0 auto;
+      width: 600px; }
+      .wrap-content #main-page .list-backups li a {
+        text-decoration: none; }
 
 #footer {
   padding: 48px;

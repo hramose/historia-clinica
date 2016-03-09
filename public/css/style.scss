@@ -287,6 +287,17 @@ nav {
         color: inherit;
       }
     }
+
+    .list-backups {
+      list-style: none;
+      margin: 0 auto;
+      width: 600px;
+      li {
+        a {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 

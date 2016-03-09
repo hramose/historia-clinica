@@ -89,15 +89,20 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'BackupController@backup_tables'
     ]);
 
-    Route::get('decrypt_bp', [
-        'as' => 'decryptBackup',
+    Route::get('backup/download/{file}', [
+        'as' => 'backupDownload',
         'uses' => 'BackupController@decryptBackup'
     ]);
 
-    Route::post('decrypt_bp', [
+    Route::get('backup/lista/all', [
+        'as' => 'backupList',
+        'uses' => 'BackupController@listBackups'
+    ]);
+
+   /* Route::post('backup/decrypt_bp', [
         'as' => 'decryptBackup',
         'uses' => 'BackupController@decryptBackup'
-    ]);
+    ]);*/
 
     Route::group(['prefix' => 'pacients'], function () {
         Route::get('/', [

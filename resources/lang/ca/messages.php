@@ -31,5 +31,6 @@ return array(
     'update_user' => 'Actualitzar usuari',
     'patient_update_correctly' => 'Pacient actualitzat correctament',
     'user_blocked' => 'El teu usuari està bloquejat per què el sistema ha detectat massa intents amb dades errònies, contacta amb l\'administrador.',
-    'user_update_correctly' => 'Usuari actualitzat correctament'
+    'user_update_correctly' => 'Usuari actualitzat correctament',
+    'lista_backups' => 'Llista de backups de la base de dades'
 );
