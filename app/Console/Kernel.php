@@ -28,6 +28,6 @@ class Kernel extends ConsoleKernel
     {
         /*$schedule->command('inspire')->everyMinute()->appendOutputTo(storage_path('logs/laravel.log'));*/
         $schedule->command('backup_db')->daily();
-        $schedule->command('empty_zip_dir')->everyMinute()->appendOutputTo(storage_path('logs/laravel.log'));
+        $schedule->command('empty_zip_dir')->daily()->appendOutputTo(storage_path('logs/laravel.log'));
     }
 }
