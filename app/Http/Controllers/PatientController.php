@@ -148,6 +148,7 @@ class PatientController extends Controller
     }
 
     public function getMatchPatients($term) {
-        $patients = Patient::where('id', $term)->orWhere('name', $term)->all();
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('surname', 'like', '%'.$term.'%')->orWhere('lastname', 'like', '%'.$term.'%')->get();
+        echo json_encode($patients);
     }
 }
