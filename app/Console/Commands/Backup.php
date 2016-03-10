@@ -93,8 +93,9 @@ class Backup extends Command
 
         $encriptedValue = Crypt::encrypt($return);
 
+        $time = time();
         Storage::put(
-            'db-backup-' . time() . '-' . (md5(implode(',', $tables))) . '.sql',
+            'db-backup-' . $time . '-' . (md5(implode(',', $tables))) . '.sql',
             $encriptedValue
         );
 
@@ -103,6 +104,9 @@ class Backup extends Command
         $bk->user_id = 'system:cron';
         $bk->save();
 
-        Log::info($this->signature . ': Backup generado');
+        $date = new Carbon();
+        $date = $date->setTimestamp($time)->format('d M Y H:i:s');
+
+        Log::info($this->signature . ' ' . $date . ': Backup generado');
     }
 }

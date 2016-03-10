@@ -153,8 +153,9 @@ class BackupController extends Controller
 
         $encriptedValue = Crypt::encrypt($return);
 
+        $time = time();
         Storage::put(
-            'db-backup-' . time() . '-' . (md5(implode(',', $tables))) . '.sql',
+            'db-backup-' . $time . '-' . (md5(implode(',', $tables))) . '.sql',
             $encriptedValue
         );
 
@@ -162,6 +163,11 @@ class BackupController extends Controller
         $bk->date_of_backup = Carbon::now();
         $bk->user_id = Auth::user()->id;
         $bk->save();
+
+        $date = new Carbon();
+        $date = $date->setTimestamp($time)->format('d M Y H:i:s');
+
+        Log::info('BackupController ' . $date . ': Backup generado');
 
         if (!$request->ajax()) {
             return view('backup/index', [
