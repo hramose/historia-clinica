@@ -39,5 +39,6 @@ class EmptyZipDirectory extends Command
     public function handle()
     {
         File::cleanDirectory(storage_path() . '/app/zip/');
+        $this->comment(PHP_EOL . 'Zip directory cleaned' . PHP_EOL);
     }
 }
