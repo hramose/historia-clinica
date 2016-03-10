@@ -31,7 +31,6 @@ app.controller('UsersController', function ($scope, $filter) {
         $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
         $scope.user.blocked = $scope.user.blocked == 1;
         $scope.user.password = $scope.randomStr(16);
-        console.log($scope.user);
     }
 });
 
@@ -177,6 +176,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
 
 app.controller('SearchController', function ($scope, $filter, $timeout, $http) {
     $scope.search = {term:'', url:$('#url').val()};
+    $scope.autocomplete = false;
+    $scope.pacients = [];
 
     $scope.search_pacient = function () {
         console.log($scope.search.term, $scope.search.url);
@@ -184,7 +185,9 @@ app.controller('SearchController', function ($scope, $filter, $timeout, $http) {
             method: 'POST',
             url: $scope.search.url + '/' + $scope.search.term
         }).then(function mySucces(response) {
-            console.log(response);
+            console.log(response.data);
+            $scope.autocomplete = true;
+            $scope.pacients = response.data;
         }, function myError(response) {
             console.log(response);
         });
