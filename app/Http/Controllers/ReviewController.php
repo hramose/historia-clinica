@@ -51,7 +51,7 @@ class ReviewController extends Controller
             $review = new Review();
         }
         $review->fill(Input::all());
-        if ($review->patiend_id == '') $review->patient_id = $id;
+        if ($review->patient_id == '') $review->patient_id = $id;
 
         $review->save();
 
@@ -67,18 +67,21 @@ class ReviewController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $id_review = null)
     {
         $patient = Patient::where('id', $id)->first();
         $review = new Review();
-        if (!is_null($patient->review)) {
-            $review = $patient->review;
+        if (!is_null($id_review)) {
+            $review = Review::where('id', $id_review)->first();
         }
+
+        $allReviews = $patient->reviews;
 
         return view('review/show', [
             'lang' => 'ca',
             'review' => $review,
             'pacient' => $patient,
+            'reviews' => $allReviews,
             'title' => 'Valoració del pacient: ' . $patient->name . ' ' . $patient->surname . ' ' . $patient->lastname
         ]);
     }

@@ -79,13 +79,35 @@ app.controller('FlashController', function ($scope, $timeout) {
 app.controller('ReviewController', function ($scope, $filter, $timeout) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
-    $scope.form = {};
     $scope.review = [];
     $scope.dates = [];
+    $scope.patient = [];
 
-    if ($('#review').val() != '') {
-        $scope.review = JSON.parse($('#review').val());
+    var $review = $('#review');
+    if ($review.length && $review.html().trim() != '[]') {
+        $scope.review = JSON.parse($review.html());
+        $scope.review.date = $filter('date')(new Date($scope.review.date), 'dd/MM/y H:m');
+        $review.html('');
     }
+
+    var $patient = $('#patient');
+    if ($patient.length && $patient.html() != '') {
+        $scope.patient = JSON.parse($patient.html());
+        $scope.patient.birth_date = $filter('date')(new Date($scope.patient.birth_date), 'dd/MM/y');
+        $patient.html('');
+    }
+
+    $scope.today_date = function () {
+        if ($scope.review.length != 0) {
+            window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id
+        } else {
+            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y H:mm');
+        }
+    };
+
+    $scope.edit_review = function (element) {
+        window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/show/' + $(element).val();
+    };
 
     $scope.addDateToReview = function (e) {
         e.preventDefault();
@@ -103,13 +125,15 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
             }
         }
 
-        if (obj === null) {
-            var date = new Date();
-            $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
-        } else {
-            $scope.animate = true;
-            $scope.editDateReview(obj, true);
-        }
+        /* if (obj === null) {
+         var date = new Date();
+         $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
+         } else {
+         $scope.animate = true;
+         $scope.editDateReview(obj, true);
+         }*/
+        var date = new Date();
+        $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
     };
 
     $scope.submitForm = function (e) {
@@ -151,4 +175,18 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
     };
 });
 
+app.controller('SearchController', function ($scope, $filter, $timeout, $http) {
+    $scope.search = {term:'', url:$('#url').val()};
 
+    $scope.search_pacient = function () {
+        console.log($scope.search.term, $scope.search.url);
+        $http({
+            method: 'POST',
+            url: $scope.search.url + '/' + $scope.search.term
+        }).then(function mySucces(response) {
+            console.log(response);
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+});

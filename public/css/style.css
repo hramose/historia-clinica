@@ -150,30 +150,6 @@ nav {
       display: inline-block; }
     .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
       text-align: center; }
-    .wrap-content #main-page .main-pacients {
-      width: 100%; }
-      .wrap-content #main-page .main-pacients .review-text {
-        width: 100%;
-        margin-bottom: 10px; }
-        .wrap-content #main-page .main-pacients .review-text div {
-          width: 100%;
-          margin: 0; }
-        .wrap-content #main-page .main-pacients .review-text span {
-          cursor: pointer; }
-        .wrap-content #main-page .main-pacients .review-text article {
-          width: 100%;
-          margin-bottom: 0 !important;
-          display: block;
-          border-radius: 0 2px 2px 0;
-          border: 1px solid #dfdfdf;
-          overflow: auto; }
-          .wrap-content #main-page .main-pacients .review-text article pre {
-            background: #fff;
-            padding: 0.9rem 1rem;
-            margin-bottom: 0;
-            word-wrap: break-word; }
-        .wrap-content #main-page .main-pacients .review-text textarea {
-          min-height: 250px; }
     .wrap-content #main-page form .input-prepend span {
       padding-top: 13px; }
     .wrap-content #main-page .add_date {
@@ -214,6 +190,41 @@ nav {
       display: table; }
       .wrap-content #main-page .list-backups li a {
         text-decoration: none; }
+    .wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6 {
+      text-align: inherit; }
+    .wrap-content #main-page #layout12-main form {
+      margin-top: 0; }
+      .wrap-content #main-page #layout12-main form section {
+        text-align: inherit; }
+    .wrap-content #main-page #layout12-main #buscador-content {
+      border-left: 1px solid #ccc; }
+      .wrap-content #main-page #layout12-main #buscador-content form {
+        margin-top: 0;
+        margin-left: 10px; }
+  .wrap-content .main-pacients {
+    width: 100%; }
+    .wrap-content .main-pacients .review-text {
+      width: 100%;
+      margin-bottom: 10px; }
+      .wrap-content .main-pacients .review-text div {
+        width: 100%;
+        margin: 0; }
+      .wrap-content .main-pacients .review-text span {
+        cursor: pointer; }
+      .wrap-content .main-pacients .review-text article {
+        width: 100%;
+        margin-bottom: 0 !important;
+        display: block;
+        border-radius: 0 2px 2px 0;
+        border: 1px solid #dfdfdf;
+        overflow: auto; }
+        .wrap-content .main-pacients .review-text article pre {
+          background: #fff;
+          padding: 0.9rem 1rem;
+          margin-bottom: 0;
+          word-wrap: break-word; }
+      .wrap-content .main-pacients .review-text textarea {
+        min-height: 250px; }
 
 #footer {
   padding: 48px;

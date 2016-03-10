@@ -11,7 +11,7 @@
     "php": ">=5.5.9",
     "laravel/framework": "5.2.*",
     "barryvdh/laravel-debugbar": "^2.0",
-    "laravelcollective/html": "~5.0",
+    "laravelcollective/html": "dev-master",
     "doctrine/dbal": "^2.5",
     "guzzlehttp/guzzle": "~5.3|~6.0",
     "league/flysystem-ziparchive": "^1.0"

@@ -4,11 +4,14 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class Backup extends Command
 {
@@ -108,5 +111,18 @@ class Backup extends Command
         $date = $date->setTimestamp($time)->format('d M Y H:i:s');
 
         Log::info($this->signature . ' ' . $date . ': Backup generado');
+
+        //Envío de mail con el archivo
+        $data = [
+            'lang' => 'ca',
+            'title' => 'Backup generat a ' . URL::to('/'),
+            'date' => $date
+        ];
+        Mail::send('emails.backup', $data, function (Message $message) use ($encriptedValue, $time, $tables) {
+            $message->from('fisioterapia@hcabosantos.cat', 'Administració HCaboSantos.cat');
+            $message->to('ricardo.progweb@gmail.com', 'Backup Manager')
+                ->subject(trans('messages.email_backup'));
+            $message->attachData(Crypt::decrypt($encriptedValue), 'db-backup-' . $time . '-' . (md5(implode(',', $tables))) . '.sql');
+        });
     }
 }

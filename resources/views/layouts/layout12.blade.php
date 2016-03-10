@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="{{ URL::asset('/css/metismenu.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/animate.min.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+        var base_url = "{{ URL::to('/') }}";
+    </script>
 </head>
 <body @if (!Auth::check() || isset($email)) class="no-login" @endif ng-controller="AppController">
 @if (Auth::check() && !isset($email))
@@ -35,7 +38,9 @@
                 </div>
                 <!-- end .flash-message -->
             @endif
-            @yield('content')
+            <row id="layout12-main" around>
+                @yield('content')
+            </row>
         </column>
     </row>
 </div>

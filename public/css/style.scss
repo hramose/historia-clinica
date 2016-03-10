@@ -16,9 +16,8 @@ body.no-login {
 
 }
 
-input[type=checkbox]
-{
-  -webkit-appearance:checkbox;
+input[type=checkbox] {
+  -webkit-appearance: checkbox;
 }
 
 [class*="-form"] {
@@ -183,39 +182,6 @@ nav {
     h1, h2, h3, h4, h5, h6 {
       text-align: center;
     }
-    .main-pacients {
-      width: 100%;
-      .review-text {
-        width: 100%;
-        div {
-          width: 100%;
-          margin: 0;
-        }
-        margin-bottom: 10px;
-        span {
-          cursor: pointer;
-        }
-        article {
-          width: 100%;
-          margin-bottom: 0 !important;
-          display: block;
-          border-radius: 0 2px 2px 0;
-          border: 1px solid #dfdfdf;
-          overflow: auto;
-          pre {
-            background: #fff;
-            padding: 0.9rem 1rem;
-            margin-bottom: 0;
-            word-wrap: break-word;
-          }
-        }
-        textarea {
-          min-height: 250px;
-        }
-      }
-    }
-
-
 
     form {
       .input-prepend {
@@ -298,7 +264,58 @@ nav {
         }
       }
     }
+
+    #layout12-main {
+      h1,h2,h3,h4,h5,h6 {
+        text-align: inherit;
+      }
+      form {
+        margin-top: 0;
+        section {
+          text-align: inherit;
+        }
+      }
+      #buscador-content {
+        border-left: 1px solid #ccc;
+        form {
+          margin-top: 0;
+          margin-left: 10px;
+        }
+      }
+    }
   }
+  .main-pacients {
+    width: 100%;
+    .review-text {
+      width: 100%;
+      div {
+        width: 100%;
+        margin: 0;
+      }
+      margin-bottom: 10px;
+      span {
+        cursor: pointer;
+      }
+      article {
+        width: 100%;
+        margin-bottom: 0 !important;
+        display: block;
+        border-radius: 0 2px 2px 0;
+        border: 1px solid #dfdfdf;
+        overflow: auto;
+        pre {
+          background: #fff;
+          padding: 0.9rem 1rem;
+          margin-bottom: 0;
+          word-wrap: break-word;
+        }
+      }
+      textarea {
+        min-height: 250px;
+      }
+    }
+  }
+
 }
 
 #footer {
@@ -348,11 +365,13 @@ nav, li.active, .wrap-content, #footer {
   -webkit-animation: draw 2s infinite ease;
   animation: draw 2s infinite ease;
 }
+
 @-webkit-keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @keyframes draw {
   to {
     stroke-dashoffset: 0;

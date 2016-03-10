@@ -99,10 +99,10 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'BackupController@listBackups'
     ]);
 
-   /* Route::post('backup/decrypt_bp', [
-        'as' => 'decryptBackup',
-        'uses' => 'BackupController@decryptBackup'
-    ]);*/
+    /* Route::post('backup/decrypt_bp', [
+         'as' => 'decryptBackup',
+         'uses' => 'BackupController@decryptBackup'
+     ]);*/
 
     Route::group(['prefix' => 'pacients'], function () {
         Route::get('/', [
@@ -118,6 +118,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
         Route::post('/nou', [
             'as' => 'pacientsNou',
             'uses' => 'PatientController@store'
+        ]);
+
+        Route::post('/cerca/{term}', [
+            'as' => 'pacientsSearch',
+            'uses' => 'PatientController@getMatchPatients'
         ]);
 
         Route::get('/dades/{id}', [
@@ -155,6 +160,16 @@ Route::group(['middleware' => ['web', 'access']], function () {
         Route::post('/pacient/{id}',
             [
                 'as' => 'valoracions.pacient.nou',
+                'uses' => 'ReviewController@store'
+            ]);
+        Route::get('/pacient/{id}/show/{id_review}',
+            [
+                'as' => 'valoracionsEditar',
+                'uses' => 'ReviewController@show'
+            ]);
+        Route::post('/pacient/{id}/save',
+            [
+                'as' => 'valoracionsGuarda',
                 'uses' => 'ReviewController@store'
             ]);
     });

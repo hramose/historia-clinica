@@ -146,4 +146,8 @@ class PatientController extends Controller
         Session::flash('status', 'success');
         return redirect('pacients/llista');
     }
+
+    public function getMatchPatients($term) {
+        $patients = Patient::where('id', $term)->orWhere('name', $term)->all();
+    }
 }
