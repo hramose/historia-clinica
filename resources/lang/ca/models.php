@@ -8,7 +8,7 @@ return array(
     'Userrol' => 'Rol d\'usuari',
     'Userrememberme' => 'Recorda\'m',
     'Userblocked' => 'Bloquejat?',
-    'Pacientid' => 'Nº Pacient',
+    'Pacientid' => 'Història clínica',
     'Pacientname' => 'Nom pacient',
     'Pacientsurname' => 'Primer cognom',
     'Pacientlastname' => 'Segon cognom',
@@ -24,9 +24,9 @@ return array(
     'female' => 'Dona',
     'select_gender' => 'Selecciona sexe',
     'Reviewmsgsavedcorrectly' => 'Valoració guardada correctament',
-    'Reviewdate' => 'Nova data',
+    'Reviewdate' => 'Nova valoració',
     'Reviewalldates' => 'Data de valoració (anteriors)',
     'Reviewautonom' => 'Autònom',
     'Reviewantecedents' => 'Antecedents Patològics',
-    'Reviewmotiu_rehab' => 'Motiu rehabilitació'
+    'Reviewmotiu_consulta' => 'Motiu consulta'
 );

@@ -12,7 +12,7 @@
                 <column cols="3">
                     <section>
                         <label>{{ trans('models.Pacientid') }}</label>
-                        {!! Form::text('id', null, ['class'=> 'width-7', 'readonly' => 'readonly', 'ng-model' => 'patient.id']) !!}
+                        {!! Form::text('id', null, ['class'=> 'width-11', 'readonly' => 'readonly', 'ng-model' => 'patient.id']) !!}
                     </section>
                     <section>
                         <label>{{ trans('models.Pacientbirth_date') }}</label>
@@ -22,11 +22,11 @@
                 <column cols="6">
                     <section>
                         <label>{{ trans('models.Pacientname') }}</label>
-                        {!! Form::text('fullname', null, ['class'=> 'width-8', 'readonly' => 'readonly', 'ng-model' => 'patient.full_name']) !!}
+                        {!! Form::text('fullname', null, ['class'=> 'width-12', 'readonly' => 'readonly', 'ng-model' => 'patient.full_name']) !!}
                     </section>
                     <section>
                         <label>{{ trans('models.Pacientage') }}</label>
-                        {!! Form::text('age', null, ['class'=> 'width-8', 'readonly' => 'readonly', 'ng-model' => 'patient.age']) !!}
+                        {!! Form::text('age', null, ['class'=> 'width-12', 'readonly' => 'readonly', 'ng-model' => 'patient.age']) !!}
                     </section>
                 </column>
             </row>
@@ -42,24 +42,15 @@
                 <column cols="4">
                     <section>
                         <label>{{ trans('models.Reviewdate') }}</label>
-                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'readonly' => 'readonly', 'class'=> 'width-11', 'ng-model' => 'review.date']) !!}
-                    </section>
-                    <section class="checkbox-list">
-                        <label>{{trans('models.Reviewautonom') }}:</label>
-                        <label class="checkbox"><input type="radio" name="review[autonom]"
-                                                       ng-model="review.review.autonom" ng-value="'true'"
-                                                       ng-checked="review.review.autonom"> Sí</label>
-                        <label class="checkbox"><input type="radio" name="review[autonom]"
-                                                       ng-model="review.review.autonom" ng-value="'false'"
-                                                       ng-checked="!review.review.autonom"> No</label>
+                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-11', 'ng-model' => 'review.date']) !!}
                     </section>
                     <section>
                         <label>{{trans('models.Reviewantecedents') }}:</label>
                         <textarea name="review[antecedents]" ng-model="review.review.antecedents"></textarea>
                     </section>
                     <section>
-                        <label>{{trans('models.Reviewmotiu_rehab') }}:</label>
-                        <textarea name="review[motiu_rehab]" ng-model="review.review.motiu_rehab"></textarea>
+                        <label>{{trans('models.Reviewmotiu_consulta') }}:</label>
+                        <textarea name="review[motiu_consulta]" ng-model="review.review.motiu_consulta"></textarea>
                     </section>
                     <section class="send-button">
                         {!! Form::button(trans('messages.save', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}

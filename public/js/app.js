@@ -82,9 +82,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.review = {
         date: '',
         review: {
-            autonom: 'false',
             antecedents: '',
-            motiu_rehab: ''
+            motiu_consulta: ''
         },
         id: '',
         patient_id: ''
@@ -112,7 +111,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         if ($scope.review.id != '') {
             $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id
         } else {
-            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y H:mm:ss');
+            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y');
         }
     };
 
@@ -163,7 +162,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.isToday = function (date) {
         /*return moment(new Date(date)).isSame(moment(), 'day');*/
         return true;
-    }
+    }/**/
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
         fromOtherFn = fromOtherFn || false;
