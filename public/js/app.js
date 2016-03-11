@@ -39,7 +39,8 @@ app.controller('PacientsController', function ($scope, $filter) {
 
     if (document.querySelector('.pacient_json')) {
         $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
-        $scope.pacient.birth_date = $filter('date')(new Date($scope.pacient.birth_date), 'dd/MM/y');
+        var str = $scope.pacient.birth_date.replace(/-/g, '/');
+        $scope.pacient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
     }
 
     $scope.putAgeFromDate = function (date) {
@@ -75,37 +76,49 @@ app.controller('FlashController', function ($scope, $timeout) {
     }, 3000);
 });
 
-app.controller('ReviewController', function ($scope, $filter, $timeout) {
+app.controller('ReviewController', function ($scope, $filter, $timeout, $window) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
-    $scope.review = [];
+    $scope.review = {
+        date: '',
+        review: {
+            autonom: 'false',
+            antecedents: '',
+            motiu_rehab: ''
+        },
+        id: '',
+        patient_id: ''
+    };
     $scope.dates = [];
     $scope.patient = [];
 
     var $review = $('#review');
     if ($review.length && $review.html().trim() != '[]') {
         $scope.review = JSON.parse($review.html());
-        $scope.review.date = $filter('date')(new Date($scope.review.date), 'dd/MM/y H:m');
+        var str = $scope.review.date.replace(/-/g, '/');
+        $scope.review.date = $filter('date')(new Date(str), 'dd/MM/y H:m');
         $review.html('');
     }
 
     var $patient = $('#patient');
     if ($patient.length && $patient.html() != '') {
         $scope.patient = JSON.parse($patient.html());
-        $scope.patient.birth_date = $filter('date')(new Date($scope.patient.birth_date), 'dd/MM/y');
+        var str = $scope.patient.birth_date.replace(/-/g, '/');
+        $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
         $patient.html('');
     }
 
     $scope.today_date = function () {
-        if ($scope.review.length != 0) {
-            window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id
+        if ($scope.review.id != '') {
+            $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id
         } else {
-            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y H:mm');
+            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y H:mm:ss');
         }
     };
 
     $scope.edit_review = function (element) {
-        window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/show/' + $(element).val();
+        if ($(element).val() != -1)
+            $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/show/' + $(element).val();
     };
 
     $scope.addDateToReview = function (e) {
@@ -172,24 +185,58 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
     $scope.showReview = function (dateObj) {
 
     };
+
+    $scope.submit_form = function (e) {
+        /*e.preventDefault();
+        e.stopPropagation();
+        console.log($scope.review);*/
+    }
 });
 
-app.controller('SearchController', function ($scope, $filter, $timeout, $http) {
-    $scope.search = {term:'', url:$('#url').val()};
+app.controller('SearchController', function ($scope, $filter, $timeout, $http, $sce, $window) {
+    $scope.search = {term: '', url: $('#url').val()};
     $scope.autocomplete = false;
     $scope.pacients = [];
+    $scope.widthSearchInput = '100px';
+
+    $timeout(function () {
+        var $term = $('input[name="term"]');
+        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
+    });
+
+    angular.element($window).bind('resize', function () {
+        var $term = $('input[name="term"]');
+        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
+        console.log('resize');
+    });
 
     $scope.search_pacient = function () {
-        console.log($scope.search.term, $scope.search.url);
+        if ($scope.search.term == '') {
+            $scope.autocomplete = false;
+            return;
+        }
         $http({
             method: 'POST',
             url: $scope.search.url + '/' + $scope.search.term
         }).then(function mySucces(response) {
-            console.log(response.data);
-            $scope.autocomplete = true;
             $scope.pacients = response.data;
+            if ($scope.pacients.length) {
+                $scope.autocomplete = true;
+            } else {
+                $scope.autocomplete = false;
+            }
         }, function myError(response) {
             console.log(response);
         });
+    };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.search.term, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.show_review_from = function (pacient) {
+        $window.location.href = $scope.pacientUrl + '/' + pacient.id;
     };
 });

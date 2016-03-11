@@ -25,5 +25,8 @@ return array(
     'select_gender' => 'Selecciona sexe',
     'Reviewmsgsavedcorrectly' => 'Valoració guardada correctament',
     'Reviewdate' => 'Nova data',
-    'Reviewalldates' => 'Data de valoració (anteriors)'
+    'Reviewalldates' => 'Data de valoració (anteriors)',
+    'Reviewautonom' => 'Autònom',
+    'Reviewantecedents' => 'Antecedents Patològics',
+    'Reviewmotiu_rehab' => 'Motiu rehabilitació'
 );

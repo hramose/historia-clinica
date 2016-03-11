@@ -267,6 +267,9 @@ nav {
 
     #layout12-main {
       h1,h2,h3,h4,h5,h6 {
+        &.backup_title {
+          text-align: center !important;
+        }
         text-align: inherit;
       }
       form {
@@ -275,11 +278,39 @@ nav {
           text-align: inherit;
         }
       }
+      #review-content {
+        form {
+          textarea {
+            height: 60px;
+          }
+        }
+      }
       #buscador-content {
         border-left: 1px solid #ccc;
         form {
           margin-top: 0;
           margin-left: 10px;
+          .autocomplete-list {
+            border-radius: 2px;
+            border-left: 1px solid #dfdfdf;
+            border-right: 1px solid #dfdfdf;
+            border-bottom: 1px solid #dfdfdf;
+            ul {
+              list-style: none;
+              margin: 0;
+              padding-top: 10px;
+              padding-bottom: 5px;
+              li {
+                cursor: pointer;
+                span {
+                  margin-left: 10px;
+                }
+                &:hover {
+                  background: #dfdfdf;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -342,13 +373,23 @@ nav, li.active, .wrap-content, #footer {
 }
 
 /* when hiding the picture */
-.ng-hide-add {
+.alert.ng-hide-add {
   animation: 0.5s lightSpeedOut ease;
 }
 
 /* when showing the picture */
-.ng-hide-remove {
+.alert.ng-hide-remove {
   animation: 0.5s flipInX ease;
+}
+
+/* when hiding the picture */
+.autocomplete-list.ng-hide-add {
+  animation: 0.5s  zoomOut ease;
+}
+
+/* when showing the picture */
+.autocomplete-list.ng-hide-remove {
+  animation: 0.5s zoomIn ease;
 }
 
 .show-review {

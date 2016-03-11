@@ -4,7 +4,7 @@
     <column cols="5" offset="1">
         <div id="review-content" ng-controller="ReviewController">
             <h2>Dades del pacient</h2>
-            {!! Form::model($pacient, array('class' => 'forms', 'name' => 'form', 'ng-submit' => 'submitForm($event)')) !!}
+            {!! Form::model($pacient, array('class' => 'forms', 'name' => 'form')) !!}
             <div id="patient" style="display: none">
                 {!! $pacient->toJson() !!}
             </div>
@@ -32,22 +32,43 @@
             </row>
             {!! Form::close() !!}
             <h2>Valoració de Fisioteràpia</h2>
-            {!! Form::model($review, ['route' => ['valoracionsGuarda', $pacient->id], 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '']) !!}
+            {!! Form::model($review, ['route' => ['valoracionsGuarda', $pacient->id], 'class' => 'forms login-form', 'name' => 'formReview', 'novalidate' => '', 'ng-submit' => 'submit_form($event)']) !!}
             <div id="review" style="display: none">
                 {!! $review->toJson() !!}
             </div>
-            {!! Form::hidden('id') !!}
+            {!! Form::hidden('id', null, ['ng-model' => 'review.id']) !!}
+            {!! Form::hidden('patient_id',  null, ['ng-model' => 'review.patient_id']) !!}
             <row>
                 <column cols="4">
                     <section>
                         <label>{{ trans('models.Reviewdate') }}</label>
                         {!! Form::text('date', null, ['ng-click' => 'today_date()', 'readonly' => 'readonly', 'class'=> 'width-11', 'ng-model' => 'review.date']) !!}
                     </section>
+                    <section class="checkbox-list">
+                        <label>{{trans('models.Reviewautonom') }}:</label>
+                        <label class="checkbox"><input type="radio" name="review[autonom]"
+                                                       ng-model="review.review.autonom" ng-value="'true'"
+                                                       ng-checked="review.review.autonom"> Sí</label>
+                        <label class="checkbox"><input type="radio" name="review[autonom]"
+                                                       ng-model="review.review.autonom" ng-value="'false'"
+                                                       ng-checked="!review.review.autonom"> No</label>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewantecedents') }}:</label>
+                        <textarea name="review[antecedents]" ng-model="review.review.antecedents"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewmotiu_rehab') }}:</label>
+                        <textarea name="review[motiu_rehab]" ng-model="review.review.motiu_rehab"></textarea>
+                    </section>
+                    <section class="send-button">
+                        {!! Form::button(trans('messages.save', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
+                    </section>
                 </column>
                 <column cols="6">
                     <section>
                         <label>{{trans('models.Reviewalldates') }}</label>
-                        {!! Form::select('selected_review', $reviews->lists('date', 'id'), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
+                        {!! Form::select('selected_review', [-1 => trans('messages.empty_option_reviews_dates')] + $reviews->lists('date', 'id')->toArray(), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
                     </section>
                 </column>
             </row>
@@ -55,19 +76,20 @@
         </div>
     </column>
     <column cols="4" id="buscador-content" ng-controller="SearchController">
-        {!! Form::open(['route' => ['pacientsSearch', '#'], 'class' => 'forms login-form', 'novalidate' => '']) !!}
+        {!! Form::open(['route' => ['pacientsSearch', ''], 'class' => 'forms login-form', 'novalidate' => '']) !!}
         <label>{{ trans('models.Pacientcerca') }}</label>
         {!! Form::hidden('url', URL::route('pacientsSearch', ['term' => '']), ['ng-model' => 'search.url', 'name' => 'url', 'id' => 'url']) !!}
         <div class="btn-append">
             {!! Form::input('text', 'term', '', ['class'=> '', 'name' => 'term', 'ng-model' => 'search.term', 'ng-keyup' => 'search_pacient()', 'placeholder' => 'Escriu el nom o el ID del pacient...']) !!}
-            <div ng-show="autocomplete">
-                <ul>
-                    <li ng-repeat="p in pacients">[[p.name]]</li>
-                </ul>
-            </div>
-            <span>
-                    <button class="btn">{{trans('messages.search_patient')}}</button>
-                </span>
+        </div>
+        <div ng-show="autocomplete" class="autocomplete-list" ng-style="{width: widthSearchInput}">
+            <ul>
+                <li ng-repeat="p in pacients" ng-click="show_review_from(p)">
+                    <span ng-bind-html='underline_word(p.full_name)'></span> ([[p.nif]])
+                </li>
+            </ul>
+            <span style="display:none"
+                  ng-init="pacientUrl = '{{ URL::route('valoracions.pacient.show', ['id' => '']) }}'"></span>
         </div>
         {!! Form::close() !!}
     </column>

@@ -167,7 +167,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'valoracionsEditar',
                 'uses' => 'ReviewController@show'
             ]);
-        Route::post('/pacient/{id}/save',
+        Route::post('/pacient/{id}/save/',
             [
                 'as' => 'valoracionsGuarda',
                 'uses' => 'ReviewController@store'

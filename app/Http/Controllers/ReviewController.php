@@ -46,9 +46,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $review = Review::where('patient_id', $id)->first();
-        if (is_null($review)) {
+        /* $review = Review::where('patient_id', $id)->first();
+         if (is_null($review)) {
+             $review = new Review();
+         }*/
+        $inputs = Input::all();
+        if (Input::get('id') == '') {
             $review = new Review();
+        } else {
+            $review = Review::whereId(Input::get('id'))->first();
         }
         $review->fill(Input::all());
         if ($review->patient_id == '') $review->patient_id = $id;
