@@ -108,5 +108,18 @@ class Backup extends Command
         $date = $date->setTimestamp($time)->format('d M Y H:i:s');
 
         Log::info($this->signature . ' ' . $date . ': Backup generado');
+
+        //Envío de mail con el archivo
+        $data = [
+            'lang' => 'ca',
+            'title' => 'Backup generat a ' . URL::to('/'),
+            'date' => $date
+        ];
+        Mail::send('emails.backup', $data, function (Message $message) use ($encriptedValue, $time, $tables) {
+            $message->from('fisioterapia@hcabosantos.cat', 'Administració HCaboSantos.cat');
+            $message->to('ricardo.progweb@gmail.com', 'Backup Manager')
+                ->subject(trans('messages.email_backup'));
+            $message->attachData(Crypt::decrypt($encriptedValue), 'db-backup-' . $time . '-' . (md5(implode(',', $tables))) . '.sql');
+        });
     }
 }
