@@ -29,7 +29,7 @@
         <section>
             {!! Form::button('<i class="fa fa-clock-o"></i>',['type' => 'primary', 'title' => '[[actualDate]]', 'class' => 'add_date', 'ng-mouseover' => 'showActualHour()', 'ng-click' => 'addDateToReview($event)']) !!}
         </section>
-        <div ng-repeat="date in dates">
+        <div print-section ng-repeat="date in dates">
             <div class="input-prepend width-12">
                 <span>[[date.date]]</span>
                 <textarea ng-model="date.text"></textarea>
@@ -43,6 +43,7 @@
             @endif
         </section>
         {!! Form::close() !!}
+        <button ng-click="print()" type="primary"><i class="fa fa-print"></i></button>
     </div>
 
 @endsection

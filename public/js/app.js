@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate'], function ($interpolateProvider) {
+var app = angular.module('app', ['ngAnimate', 'AngularPrint'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 });
@@ -76,7 +76,7 @@ app.controller('FlashController', function ($scope, $timeout) {
     }, 3000);
 });
 
-app.controller('ReviewController', function ($scope, $filter, $timeout) {
+app.controller('ReviewController', function ($scope, $filter, $timeout, $window) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
     $scope.form = {};
@@ -148,6 +148,10 @@ app.controller('ReviewController', function ($scope, $filter, $timeout) {
 
     $scope.showReview = function (dateObj) {
 
+    };
+
+    $scope.print = function() {
+        $window.print();
     };
 });
 
