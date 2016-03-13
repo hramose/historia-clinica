@@ -18,18 +18,20 @@ class AccessMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $access = new Access();
+        if (env('APP_DEBUG') != true) {
+            $access = new Access();
 
-        $user = (Auth::user() != null) ? Auth::user()->id : 'guest';
+            $user = (Auth::user() != null) ? Auth::user()->id : 'guest';
 
-        $access->date = Carbon::now();
-        $access->user_id = $user;
-        $access->ip = $request->ip();
-        $access->route = $request->path();
-        $access->type = $request->getMethod();
-        $access->action = $request->getMethod() == 'GET' ? 'show' : 'save';
+            $access->date = Carbon::now();
+            $access->user_id = $user;
+            $access->ip = $request->ip();
+            $access->route = $request->path();
+            $access->type = $request->getMethod();
+            $access->action = $request->getMethod() == 'GET' ? 'show' : 'save';
 
-        $access->save();
+            $access->save();
+        }
 
         return $next($request);
     }
