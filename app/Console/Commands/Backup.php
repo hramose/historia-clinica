@@ -117,7 +117,7 @@ class Backup extends Command
         ];
         Mail::send('emails.backup', $data, function (Message $message) use ($encriptedValue, $time, $tables) {
             $message->from('fisioterapia@hcabosantos.cat', 'Administració HCaboSantos.cat');
-            $message->to('ricardo.progweb@gmail.com', 'Backup Manager')
+            $message->to('soport@hcabosantos.cat', 'Backup Manager')
                 ->subject(trans('messages.email_backup'));
             $message->attachData(Crypt::decrypt($encriptedValue), 'db-backup-' . $time . '-' . (md5(implode(',', $tables))) . '.sql');
         });
