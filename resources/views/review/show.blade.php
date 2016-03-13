@@ -5,7 +5,7 @@
         <h2>{{ $pacient->name . ' ' . $pacient->surname . ' ' . $pacient->lastname }}</h2>
 
         <h4>{{trans('messages.valoracions')}}</h4>
-        <div class="review-text">
+        <div print-section class="review-text">
             <div ng-repeat="date in review | orderBy:'id'">
                 <div class="input-prepend width-12">
                     <span  ng-if="!isToday(date.id)">[[date.date]]</span>
@@ -29,7 +29,7 @@
         <section>
             {!! Form::button('<i class="fa fa-clock-o"></i>',['type' => 'primary', 'title' => '[[actualDate]]', 'class' => 'add_date', 'ng-mouseover' => 'showActualHour()', 'ng-click' => 'addDateToReview($event)']) !!}
         </section>
-        <div print-section ng-repeat="date in dates">
+        <div ng-repeat="date in dates">
             <div class="input-prepend width-12">
                 <span>[[date.date]]</span>
                 <textarea ng-model="date.text"></textarea>
