@@ -150,6 +150,21 @@ Route::group(['middleware' => ['web', 'access']], function () {
         Route::get('/', 'HistoryController@index');
     });
 
+    Route::group(['prefix' => 'factures'], function () {
+        Route::get('/', 'HistoryController@index');
+
+        Route::get('/list',
+            [
+                'as' => 'veureBills',
+                'uses' => 'BillController@show'
+            ]);
+        Route::get('/create',
+            [
+                'as' => 'ferBills',
+                'uses' => 'BillController@show'
+            ]);
+    });
+
     Route::group(['prefix' => 'valoracions'], function () {
         Route::get('/', 'ReviewController@index');
         Route::get('/pacient/{id}',

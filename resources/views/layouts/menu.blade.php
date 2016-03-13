@@ -25,6 +25,13 @@
                 <li><a href="{{ URL::to('users/llista') }}">Tots els usuaris</a></li>
             </ul>
         </li>
+        <li><a href="#"><span class="fa fa-file-text"></span> <span class="text">Factures</span> <span
+                        class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="{{ URL::route('veureBills') }}">Veure factures</a></li>
+                <li><a href="{{ URL::route('ferBills') }}">Realitzar factura</a></li>
+            </ul>
+        </li>
         <li><a href="#"><span class="fa fa-database"></span> <span class="text">Còpia de seguretat</span> <span
                         class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
