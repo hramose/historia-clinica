@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div ng-controller="ReviewController" class="main-pacients">
+    <div print-section ng-controller="ReviewController" class="main-pacients">
         <h2>{{ $pacient->name . ' ' . $pacient->surname . ' ' . $pacient->lastname }}</h2>
 
         <h4>{{trans('messages.valoracions')}}</h4>
-        <div print-section class="review-text">
+        <div class="review-text">
             <div ng-repeat="date in review | orderBy:'id'">
                 <div class="input-prepend width-12">
                     <span  ng-if="!isToday(date.id)">[[date.date]]</span>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        {!! Form::model($review, array('class' => 'forms', 'name' => 'form', 'ng-submit' => 'submitForm($event)')) !!}
+        {!! Form::model($review, array('class' => 'forms', 'name' => 'form', 'ng-submit' => 'submitForm($event)', 'print-hide' => '')) !!}
 
         {!! Form::hidden('review', null, ['id' => 'review']) !!}
         {!! Form::hidden('patient_id') !!}
@@ -43,7 +43,7 @@
             @endif
         </section>
         {!! Form::close() !!}
-        <button ng-click="print()" type="primary"><i class="fa fa-print"></i></button>
+        <button print-hide ng-click="print()" type="primary"><i class="fa fa-print"></i></button>
     </div>
 
 @endsection
