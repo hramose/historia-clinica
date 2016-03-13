@@ -51,12 +51,14 @@ class ReviewController extends Controller
              $review = new Review();
          }*/
         $inputs = Input::all();
+        $this->clean_dates($inputs);
         if (Input::get('id') == '') {
             $review = new Review();
         } else {
             $review = Review::whereId(Input::get('id'))->first();
+            $inputs = Input::except('date');
         }
-        $review->fill(Input::all());
+        $review->fill($inputs);
         if ($review->patient_id == '') $review->patient_id = $id;
 
         $review->save();
@@ -124,5 +126,17 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function clean_dates(&$input)
+    {
+        $date_names = array('date');
+
+        foreach ($input as $key => $value):
+            if (in_array($key, $date_names)):
+                $input[$key] = date('d-m-Y', strtotime(str_replace('/', '-', $input[$key])));
+            endif;
+        endforeach;
+
     }
 }

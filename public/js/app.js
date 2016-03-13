@@ -95,7 +95,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     if ($review.length && $review.html().trim() != '[]') {
         $scope.review = JSON.parse($review.html());
         var str = $scope.review.date.replace(/-/g, '/');
-        $scope.review.date = $filter('date')(new Date(str), 'dd/MM/y H:m');
+        $scope.review.date = '';
         $review.html('');
     }
 
@@ -108,11 +108,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     }
 
     $scope.today_date = function () {
-        if ($scope.review.id != '') {
-            $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id
-        } else {
+        if ($scope.review.id == '')
             $scope.review.date = $filter('date')(new Date(), 'dd/MM/y');
-        }
     };
 
     $scope.edit_review = function (element) {
@@ -162,7 +159,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.isToday = function (date) {
         /*return moment(new Date(date)).isSame(moment(), 'day');*/
         return true;
-    }/**/
+    }
+    /**/
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
         fromOtherFn = fromOtherFn || false;
@@ -187,8 +185,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
 
     $scope.submit_form = function (e) {
         /*e.preventDefault();
-        e.stopPropagation();
-        console.log($scope.review);*/
+         e.stopPropagation();
+         console.log($scope.review);*/
     }
 });
 

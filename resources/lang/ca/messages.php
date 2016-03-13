@@ -21,6 +21,7 @@ return array(
     'title_verify_email' => 'Verificació del compte d\'usuari',
     'title_verify_email_doc' => 'Verificació del compte d\'usuari',
     'save' => 'Guardar :name',
+    'save_review' => 'Guardar',
     'create' => 'Crear :name',
     'add_date' => 'Afegir data d\'avui ([[data|date]])',
     'no_items' => 'No s\'han trobat elements',

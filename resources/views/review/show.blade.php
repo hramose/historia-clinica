@@ -42,7 +42,7 @@
                 <column cols="4">
                     <section>
                         <label>{{ trans('models.Reviewdate') }}</label>
-                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-11', 'ng-model' => 'review.date']) !!}
+                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-12', 'ng-model' => 'review.date']) !!}
                     </section>
                     <section>
                         <label>{{trans('models.Reviewantecedents') }}:</label>
@@ -53,10 +53,10 @@
                         <textarea name="review[motiu_consulta]" ng-model="review.review.motiu_consulta"></textarea>
                     </section>
                     <section class="send-button">
-                        {!! Form::button(trans('messages.save', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
+                        {!! Form::button(trans('messages.save_review'),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
                     </section>
                 </column>
-                <column cols="6">
+                <column cols="6" class="separation">
                     <section>
                         <label>{{trans('models.Reviewalldates') }}</label>
                         {!! Form::select('selected_review', [-1 => trans('messages.empty_option_reviews_dates')] + $reviews->lists('date', 'id')->toArray(), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
