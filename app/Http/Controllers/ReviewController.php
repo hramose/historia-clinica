@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Patient;
 use App\Review;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -56,7 +57,11 @@ class ReviewController extends Controller
             $review = new Review();
         } else {
             $review = Review::whereId(Input::get('id'))->first();
-            $inputs = Input::except('date');
+            if ($review->date == Carbon::createFromFormat('d/m/Y', $inputs['date'])) {
+                $inputs = Input::except('date');
+            } else {
+                $review = new Review();
+            }
         }
         $review->fill($inputs);
         if ($review->patient_id == '') $review->patient_id = $id;
