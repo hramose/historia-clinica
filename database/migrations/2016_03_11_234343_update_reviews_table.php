@@ -13,7 +13,9 @@ class UpdateReviewsTable extends Migration
     public function up()
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->date('date');
+            if (!Schema::hasColumn('reviews', 'date')) {
+                $table->dateTime('date');
+            }
         });
     }
 

@@ -156,12 +156,12 @@ Route::group(['middleware' => ['web', 'access']], function () {
         Route::get('/list',
             [
                 'as' => 'veureBills',
-                'uses' => 'BillController@show'
+                'uses' => 'BillController@index'
             ]);
         Route::get('/create',
             [
                 'as' => 'ferBills',
-                'uses' => 'BillController@show'
+                'uses' => 'BillController@create'
             ]);
     });
 

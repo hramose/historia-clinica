@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class UpdateReviewsDateNullableTable extends Migration
+class UpdatePatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class UpdateReviewsDateNullableTable extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->date('date')->nullable()->change();
+        Schema::table('patients', function (Blueprint $table) {
+            $table->string('city')->after('address');
         });
     }
 
