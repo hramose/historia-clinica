@@ -266,6 +266,9 @@ nav {
     }
 
     #layout12-main {
+      row {
+        flex-wrap: wrap;
+      }
       h1, h2, h3, h4, h5, h6 {
         &.backup_title {
           text-align: center !important;
@@ -365,6 +368,8 @@ nav {
       }
     }
     .bill_info {
+      text-align: right;
+      padding-right: 20px;
       p {
         &.strong {
           font-weight: bold;
@@ -392,6 +397,9 @@ nav {
         background: #fff;
         top: 16px;
         ul {
+          &+ ul {
+            padding-top: 0px;
+          }
           list-style: none;
           margin: 0;
           padding-top: 16px;
@@ -405,6 +413,28 @@ nav {
               background: #dfdfdf;
             }
           }
+        }
+      }
+    }
+    .bill-payment-info {
+      width: 50%;
+      float: left;
+      .bank-account-number {
+        margin-top: 10px;
+        display: inline-block;
+      }
+    }
+    .bill-amount-info {
+      width: 50%;
+      float: left;
+      padding-right: 20px;
+      .subtotal-info {
+        display: inline;
+        label {
+          float: left;
+        }
+        .subtotal {
+          float: right;
         }
       }
     }

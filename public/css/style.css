@@ -190,6 +190,8 @@ nav {
       display: table; }
       .wrap-content #main-page .list-backups li a {
         text-decoration: none; }
+    .wrap-content #main-page #layout12-main row {
+      flex-wrap: wrap; }
     .wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6 {
       text-align: inherit; }
       .wrap-content #main-page #layout12-main h1.backup_title, .wrap-content #main-page #layout12-main h2.backup_title, .wrap-content #main-page #layout12-main h3.backup_title, .wrap-content #main-page #layout12-main h4.backup_title, .wrap-content #main-page #layout12-main h5.backup_title, .wrap-content #main-page #layout12-main h6.backup_title {
@@ -257,10 +259,13 @@ nav {
           display: inline-block;
           float: right;
           width: 95px; }
-  .wrap-content .bill-content .bill_info p {
-    margin: 0; }
-    .wrap-content .bill-content .bill_info p.strong {
-      font-weight: bold; }
+  .wrap-content .bill-content .bill_info {
+    text-align: right;
+    padding-right: 20px; }
+    .wrap-content .bill-content .bill_info p {
+      margin: 0; }
+      .wrap-content .bill-content .bill_info p.strong {
+        font-weight: bold; }
   .wrap-content .bill-content .client-info {
     width: 300px; }
     .wrap-content .bill-content .client-info section {
@@ -282,12 +287,30 @@ nav {
         margin: 0;
         padding-top: 16px;
         padding-bottom: 5px; }
+        .wrap-content .bill-content .client-info .autocomplete-list ul + ul {
+          padding-top: 0px; }
         .wrap-content .bill-content .client-info .autocomplete-list ul li {
           cursor: pointer; }
           .wrap-content .bill-content .client-info .autocomplete-list ul li span {
             margin-left: 10px; }
           .wrap-content .bill-content .client-info .autocomplete-list ul li:hover {
             background: #dfdfdf; }
+  .wrap-content .bill-content .bill-payment-info {
+    width: 50%;
+    float: left; }
+    .wrap-content .bill-content .bill-payment-info .bank-account-number {
+      margin-top: 10px;
+      display: inline-block; }
+  .wrap-content .bill-content .bill-amount-info {
+    width: 50%;
+    float: left;
+    padding-right: 20px; }
+    .wrap-content .bill-content .bill-amount-info .subtotal-info {
+      display: inline; }
+      .wrap-content .bill-content .bill-amount-info .subtotal-info label {
+        float: left; }
+      .wrap-content .bill-content .bill-amount-info .subtotal-info .subtotal {
+        float: right; }
 
 #footer {
   padding: 48px;

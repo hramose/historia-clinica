@@ -33,6 +33,7 @@ return array(
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billdate' => 'Data',
+    'Billpaymentmethod' => 'Forma de pagament',
     'Clientname' => 'Client',
     'Clientaddress' => 'Domicili',
     'Clientcity' => 'Ciutat',

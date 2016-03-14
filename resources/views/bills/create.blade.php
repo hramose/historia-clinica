@@ -26,9 +26,12 @@
                     <input type="hidden" name="client_id" ng-model="bill.client_id">
                     <input type="hidden" name="patient_id_form" ng-model="patient.id">
                     <input type="hidden" name="patient_id" ng-model="bill.patient_id">
-                    <input type="hidden" name="url_search_patients_clients" value="[[searchUrl = '{{URL::route('urlSearch', ['term' => ''])}}']]">
+                    <input type="hidden" name="url_search_patients_clients"
+                           value="[[searchUrl = '{{URL::route('urlSearch', ['term' => ''])}}']]">
                     <section>
-                        <label>{{trans('models.Clientname')}}</label>: <input type="text" class="width-2" ng-keyup="search_clients_and_patients()" name="client_name"
+                        <label>{{trans('models.Clientname')}}</label>: <input type="text" class="width-2"
+                                                                              ng-keyup="search_clients_and_patients()"
+                                                                              name="client_name"
                                                                               ng-model="client.name">
 
                         <div ng-show="autocomplete" class="autocomplete-list" ng-style="{width: widthSearchInput}">
@@ -72,6 +75,78 @@
                     <p>[[billInfo.city]]</p>
 
                     <p class="strong">[[billInfo.dni]]</p>
+                </div>
+            </column>
+            <column cols="12">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Codi</th>
+                        <th>Servei/Concepte</th>
+                        <th>Unitats</th>
+                        <th>Preu unit.</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{--<input type="text" name="concept_code" ng-model="bill.concept_code">--}}</td>
+                        <td><input type="text" name="concept" ng-model="bill.concept"></td>
+                        <td><input type="text" class="width-3" name="qty" ng-init="bill.qty = 0" ng-model="bill.qty">
+                        </td>
+                        <td><input type="text" class="width-3" name="price_per_unit" ng-init="bill.price_per_unit = 0"
+                                   ng-model="bill.price_per_unit"></td>
+                        <td>[[bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="bill-payment-info">
+                    <section>
+                        <label><strong>{{trans('models.Billpaymentmethod')}}</strong></label>
+                        <select class="width-6" name="payment_method" ng-model="bill.payment_method">
+                            <option value="cash">Efectiu</option>
+                            <option value="bank_transfer">Transferència al compte IBAN</option>
+                        </select>
+                        <span class="bank-account-number" ng-if="bill.payment_method == 'bank_transfer'">[[billInfo.account]]</span>
+                    </section>
+                </div>
+                <div class="bill-amount-info">
+                    <span class="subtotal-info"><label><strong>Subtotal</strong></label> <span class="subtotal">[[bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</span></span>
                 </div>
             </column>
         </row>
