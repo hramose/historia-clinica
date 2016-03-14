@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Requests\Request;
+use App\Bill;
+use Illuminate\Http\Request;
 
 class BillController extends Controller
 {
@@ -15,10 +15,18 @@ class BillController extends Controller
 
     public function create()
     {
+        $bill = new Bill();
+
         return view('bills.create', [
             'lang' => 'ca',
-            'title' => 'Crear nova factura'
+            'title' => 'Crear nova factura',
+            'bill' => $bill
         ]);
+    }
+
+    public function store(Request $request)
+    {
+
     }
 
     public function index()
@@ -26,7 +34,21 @@ class BillController extends Controller
         echo 'Hello, it\'s me';
     }
 
-    public function show(Request $request, $id) {
+    public function show(Request $request, $id)
+    {
 
+    }
+
+    public function getConfig(Request $request)
+    {
+        $billInfo = [
+            'name' => config('app.bill.name'),
+            'address' => config('app.bill.address'),
+            'city' => config('app.bill.city'),
+            'dni' => config('app.bill.dni'),
+            'account' => base64_encode(config('app.bill.account')),
+        ];
+
+        return json_encode($billInfo);
     }
 }

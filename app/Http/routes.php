@@ -163,6 +163,17 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'ferBills',
                 'uses' => 'BillController@create'
             ]);
+        Route::get('/save',
+            [
+                'as' => 'saveBills',
+                'uses' => 'BillController@store'
+            ]);
+        Route::get('/bill-config',
+            [
+                'as' => 'urlBillInfo',
+                'uses' => 'BillController@getConfig'
+            ]);
+
     });
 
     Route::group(['prefix' => 'valoracions'], function () {

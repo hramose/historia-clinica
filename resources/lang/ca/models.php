@@ -29,5 +29,8 @@ return array(
     'Reviewalldates' => 'Data de valoració (anteriors)',
     'Reviewautonom' => 'Autònom',
     'Reviewantecedents' => 'Antecedents Patològics',
-    'Reviewmotiu_consulta' => 'Motiu consulta'
+    'Reviewmotiu_consulta' => 'Motiu consulta',
+    'Billtitle' => 'Factura',
+    'Billid' => 'Número',
+    'Billdate' => 'Data',
 );

@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestió pacients - {{ $title }}</title>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/kube.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/style.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/metismenu.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/animate.min.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    @include('layouts.header')
 </head>
 <body @if (!Auth::check() || isset($email)) class="no-login" @endif ng-controller="AppController">
 @if (Auth::check() && !isset($email))
@@ -45,14 +40,6 @@
         <span class="right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></span>
     @endif
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
-{!! Html::script('/bower_components/angular-i18n/angular-locale_ca-es.js') !!}
-{!! Html::script('js/metismenu.js') !!}
-{!! Html::script('js/index.js') !!}
-{!! Html::script('js/app.js') !!}
-{!! Html::script('js/directives/validnif.js') !!}
-{!! Html::script('js/moment-with-locales.js') !!}
+@include('layouts.scripts')
 </body>
 </html>

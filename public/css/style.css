@@ -247,6 +247,20 @@ nav {
           word-wrap: break-word; }
       .wrap-content .main-pacients .review-text textarea {
         min-height: 250px; }
+  .wrap-content .bill-content .bill_id-date {
+    width: 200px; }
+    .wrap-content .bill-content .bill_id-date section {
+      min-height: 40px; }
+      .wrap-content .bill-content .bill_id-date section label {
+        display: inline-block; }
+        .wrap-content .bill-content .bill_id-date section label + input {
+          display: inline-block;
+          float: right;
+          width: 95px; }
+  .wrap-content .bill-content .bill_info p {
+    margin: 0; }
+    .wrap-content .bill-content .bill_info p.strong {
+      font-weight: bold; }
 
 #footer {
   padding: 48px;
@@ -277,7 +291,7 @@ nav, li.active, .wrap-content, #footer {
 
 /* when hiding the picture */
 .autocomplete-list.ng-hide-add {
-  animation: 0.5s  zoomOut ease; }
+  animation: 0.5s zoomOut ease; }
 
 /* when showing the picture */
 .autocomplete-list.ng-hide-remove {

@@ -266,7 +266,7 @@ nav {
     }
 
     #layout12-main {
-      h1,h2,h3,h4,h5,h6 {
+      h1, h2, h3, h4, h5, h6 {
         &.backup_title {
           text-align: center !important;
         }
@@ -349,7 +349,30 @@ nav {
       }
     }
   }
-
+  .bill-content {
+    .bill_id-date {
+      width: 200px;
+      section {
+        min-height: 40px;
+        label {
+          display: inline-block;
+          & + input {
+            display: inline-block;
+            float: right;
+            width: 95px;
+          }
+        }
+      }
+    }
+    .bill_info {
+      p {
+        &.strong {
+          font-weight: bold;
+        }
+        margin: 0;
+      }
+    }
+  }
 }
 
 #footer {
@@ -387,7 +410,7 @@ nav, li.active, .wrap-content, #footer {
 
 /* when hiding the picture */
 .autocomplete-list.ng-hide-add {
-  animation: 0.5s  zoomOut ease;
+  animation: 0.5s zoomOut ease;
 }
 
 /* when showing the picture */
