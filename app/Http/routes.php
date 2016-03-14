@@ -168,10 +168,20 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'saveBills',
                 'uses' => 'BillController@store'
             ]);
+        Route::get('/show/{id}',
+            [
+                'as' => 'mostrarBill',
+                'uses' => 'BillController@show'
+            ]);
         Route::get('/bill-config',
             [
                 'as' => 'urlBillInfo',
                 'uses' => 'BillController@getConfig'
+            ]);
+        Route::post('/search/{term}',
+            [
+                'as' => 'urlSearch',
+                'uses' => 'BillController@getClientsAndPatients'
             ]);
 
     });

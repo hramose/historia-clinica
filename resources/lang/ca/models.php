@@ -33,4 +33,8 @@ return array(
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billdate' => 'Data',
+    'Clientname' => 'Client',
+    'Clientaddress' => 'Domicili',
+    'Clientcity' => 'Ciutat',
+    'Clientcif' => 'C.I.F',
 );

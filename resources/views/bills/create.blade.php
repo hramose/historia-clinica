@@ -4,6 +4,9 @@
     <column cols="12" offset="1" ng-controller="BillController" class="bill-content">
         <h2>{{trans('models.Billtitle')}}</h2>
         <span style="display: none">[[urlBillInfo = '{{ URL::route('urlBillInfo') }}';""]]</span>
+        @if ($bill->exists)
+            <span id="bill" style="display:none;">{{$bill->toJson()}}</span>
+        @endif
         {!! Form::model($bill, array('route' => array('saveBills'), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
         <row>
             <column cols="6">
@@ -16,6 +19,47 @@
                         <label>{{trans('models.Billdate')}}</label>: <input placeholder="dd/mm/yyyy" type="text"
                                                                             class="width-5" name="date"
                                                                             ng-model="bill.date">
+                    </section>
+                </div>
+                <div class="client-info">
+                    <input type="hidden" name="client_id_form" ng-model="client.id">
+                    <input type="hidden" name="client_id" ng-model="bill.client_id">
+                    <input type="hidden" name="patient_id_form" ng-model="patient.id">
+                    <input type="hidden" name="patient_id" ng-model="bill.patient_id">
+                    <input type="hidden" name="url_search_patients_clients" value="[[searchUrl = '{{URL::route('urlSearch', ['term' => ''])}}']]">
+                    <section>
+                        <label>{{trans('models.Clientname')}}</label>: <input type="text" class="width-2" ng-keyup="search_clients_and_patients()" name="client_name"
+                                                                              ng-model="client.name">
+
+                        <div ng-show="autocomplete" class="autocomplete-list" ng-style="{width: widthSearchInput}">
+                            <ul>
+                                <li ng-repeat="p in pacients" ng-click="put_on_bill(p, 'pacient')">
+                                    <span ng-bind-html='underline_word(p.full_name)'></span> ([[p.nif]])
+                                </li>
+                            </ul>
+                            <ul>
+                                <li ng-repeat="c in clients" ng-click="put_on_bill(c, 'client')">
+                                    <span ng-bind-html='underline_word(c.name)'></span> ([[c.cif]])
+                                </li>
+                            </ul>
+            <span style="display:none"
+                  ng-init="pacientUrl = '{{ URL::route('valoracions.pacient.show', ['id' => '']) }}'"></span>
+                        </div>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Clientaddress')}}</label>: <input type="text" class="width-2"
+                                                                                 name="client_address"
+                                                                                 ng-model="client.address">
+                    </section>
+                    <section>
+                        <label>{{trans('models.Clientcity')}}</label>: <input type="text" class="width-2"
+                                                                              name="client_city"
+                                                                              ng-model="client.city">
+                    </section>
+                    <section>
+                        <label>{{trans('models.Clientcif')}}</label>: <input type="text" class="width-2"
+                                                                             name="client_cif"
+                                                                             ng-model="client.cif">
                     </section>
                 </div>
             </column>

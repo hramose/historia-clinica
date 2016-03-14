@@ -197,11 +197,12 @@ app.controller('SearchController', function ($scope, $filter, $timeout, $http, $
     $scope.widthSearchInput = '100px';
 
     $timeout(function () {
-        var $term = $('input[name="term"]');
-        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
+
     });
 
     angular.element($window).bind('resize', function () {
+        var $term = $('input[name="term"]');
+        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
         var $term = $('input[name="term"]');
         $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
         console.log('resize');
@@ -242,6 +243,14 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     $scope.bill = {};
     $scope.billInfo = {};
     $scope.urlBillInfo = '';
+    $scope.clients = {};
+    $scope.pacients = [];
+    $scope.client = {};
+    $scope.patient = {};
+    $scope.autocomplete = false;
+    $scope.widthSearchInput = '100px';
+    $scope.searchUrl = '';
+
     var Base64 = {
         _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", encode: function (e) {
             var t = "";
@@ -329,8 +338,16 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
         }
     };
 
+    angular.element($window).bind('resize', function () {
+        var $term = $('input[name="client_name"]').parent();
+        $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
+        console.log('resize');
+    });
+
     $timeout(function () {
-        console.log($scope.urlBillInfo);
+        var $term = $('input[name="client_name"]').parent();
+        $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
+
         $http({
             method: 'get',
             url: $scope.urlBillInfo
@@ -346,4 +363,49 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
         /*if ($scope.review.id == '')*/
         $scope.bill.date = $filter('date')(new Date(), 'dd/MM/y');
     };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.client.name, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.search_clients_and_patients = function () {
+        if ($scope.client.name == '') {
+            $scope.autocomplete = false;
+            return;
+        }
+        $timeout(function () {
+            $http({
+                method: 'POST',
+                url: $scope.searchUrl + '/' + $scope.client.name
+            }).then(function mySucces(response) {
+                $scope.pacients = response.data.patients;
+                $scope.clients = response.data.clients;
+                if ($scope.clients.length || $scope.pacients.length) {
+                    $scope.autocomplete = true;
+                } else {
+                    $scope.autocomplete = false;
+                }
+            }, function myError(response) {
+                console.log(response);
+            });
+        });
+    };
+
+    $scope.put_on_bill = function (obj, model) {
+        if (model == 'client') {
+            $scope.client = obj;
+            $scope.bill.client_id = $scope.client.id;
+        } else {
+            $scope.patient = obj;
+            $scope.bill.patient_id = $scope.patient.id;
+            $scope.client.name = $scope.patient.full_name;
+            $scope.client.address = $scope.patient.address;
+            $scope.client.city = $scope.patient.city;
+            $scope.client.cif = $scope.patient.nif;
+        }
+        
+        $scope.autocomplete = false;
+    }
 });

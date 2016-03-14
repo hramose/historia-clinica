@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\Client;
+use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class BillController extends Controller
 {
@@ -26,7 +29,16 @@ class BillController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'id' => 'required:unique:bills',
+            'concept' => 'required'
+        ]);
 
+        $bill = new Bill();
+        $bill->fill(Input::all());
+        $bill->save();
+
+        return redirect()->route('mostrarBill', ['id' => $bill->id]);
     }
 
     public function index()
@@ -36,7 +48,13 @@ class BillController extends Controller
 
     public function show(Request $request, $id)
     {
+        $bill = Bill::firstOrFail($id);
 
+        return view('bills.create', [
+            'lang' => 'ca',
+            'title' => 'Editar factura',
+            'bill' => $bill
+        ]);
     }
 
     public function getConfig(Request $request)
@@ -50,5 +68,16 @@ class BillController extends Controller
         ];
 
         return json_encode($billInfo);
+    }
+
+    public function getClientsAndPatients($term)
+    {
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('surname', 'like', '%'.$term.'%')->orWhere('lastname', 'like', '%'.$term.'%')->limit(15)->get();
+        $clients = Client::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('address', 'like', '%'.$term.'%')->orWhere('city', 'like', '%'.$term.'%')->orWhere('cif', 'like', '%'.$term.'%')->limit(15)->get();
+        $array = [
+            'patients' => $patients,
+            'clients' => $clients
+        ];
+        echo json_encode($array);
     }
 }
