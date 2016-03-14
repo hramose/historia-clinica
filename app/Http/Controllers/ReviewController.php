@@ -57,7 +57,7 @@ class ReviewController extends Controller
             $review = new Review();
         } else {
             $review = Review::whereId(Input::get('id'))->first();
-            if ($review->date == Carbon::createFromFormat('d/m/Y', $inputs['date'])) {
+            if ($review->date == Carbon::createFromFormat('d-m-Y', $inputs['date']) || $inputs['date'] == '01-01-1970') {
                 $inputs = Input::except('date');
             } else {
                 $review = new Review();
