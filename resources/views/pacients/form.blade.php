@@ -16,6 +16,10 @@
             {!! Form::input('text', 'lastname', '', ['class'=> '', 'ng-model' => 'pacient.lastname']) !!}
         </section>
         <section>
+            <label>{{ trans('models.Pacientcity') }}</label>
+            {!! Form::input('text', 'city', '', ['class'=> '', 'ng-model' => 'pacient.city']) !!}
+        </section>
+        <section>
             <label>{{ trans('models.Pacientaddress') }}</label>
             {!! Form::input('text', 'address', '', ['class'=> '', 'ng-model' => 'pacient.address']) !!}
         </section>

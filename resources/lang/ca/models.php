@@ -13,6 +13,7 @@ return array(
     'Pacientsurname' => 'Primer cognom',
     'Pacientlastname' => 'Segon cognom',
     'Pacientaddress' => 'Adreça',
+    'Pacientcity' => 'Ciutat',
     'Pacientnif' => 'DNI/NIF/NIE',
     'Pacientgender' => 'Sexe',
     'Pacientbirth_date' => 'Data naixement',

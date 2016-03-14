@@ -9,7 +9,7 @@ class Patient extends Model
 {
     public $full_name = '';
 
-    protected $fillable = array('name', 'surname', 'lastname', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address');
+    protected $fillable = array('name', 'surname', 'lastname', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city');
 
     protected $dates = ['birth_date'];
 
@@ -17,7 +17,7 @@ class Patient extends Model
 
     public function visits()
     {
-        return $this->hasMany('App\Visit', 'patient_id');
+        return $this->hasMany('App\Visit');
     }
 
     public function reviews()
