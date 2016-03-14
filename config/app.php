@@ -199,4 +199,12 @@ return [
 
     ],
 
+    'bill' => [
+        'name' => 'Helena Cabo Santos',
+        'address' => 'C/ Amadeu Torner 104, 1º 1ª',
+        'city' => '08902 - Hospitalet de Llobregat',
+        'dni' => '47871867N',
+        'account' => 'ES24 1491 0001 2920 3498 6725'
+    ],
+
 ];
