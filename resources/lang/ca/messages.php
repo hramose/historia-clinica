@@ -32,5 +32,7 @@ return array(
     'patient_update_correctly' => 'Pacient actualitzat correctament',
     'user_blocked' => 'El teu usuari està bloquejat per què el sistema ha detectat massa intents amb dades errònies, contacta amb l\'administrador.',
     'user_update_correctly' => 'Usuari actualitzat correctament',
-    'lista_backups' => 'Llista de backups de la base de dades'
+    'lista_backups' => 'Llista de backups de la base de dades',
+    'email_backup' => 'Nou backup de la base de dades generat',
+    'email_backup_msg' => 'Al seguent arxiu tens la còpia de seguretat de la base de dades generada el dia: :date',
 );
