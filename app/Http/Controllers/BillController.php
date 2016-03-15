@@ -61,7 +61,7 @@ class BillController extends Controller
 
     public function show(Request $request, $id)
     {
-        $bill = Bill::whereId($id)->firstOrFail();
+        $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
 
         $config = $this->getConfig($request, false);
         return view('bills.create', [
