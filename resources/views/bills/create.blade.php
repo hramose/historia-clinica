@@ -10,22 +10,24 @@
         {!! Form::model($bill, array('route' => array('saveBills'), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
         <row>
             <column cols="6">
+                <span style="display:none" ng-init="billInfo = {{$billInfo}}"></span>
+
                 <div class="bill_id-date">
                     <section>
                         <label>{{trans('models.Billid')}}</label>: <input type="text" class="width-2" name="id"
                                                                           ng-model="bill.id">
                     </section>
                     <section>
-                        <label>{{trans('models.Billdate')}}</label>: <input placeholder="dd/mm/yyyy" type="text"
-                                                                            class="width-5" name="date"
-                                                                            ng-model="bill.date">
+                        <label>{{trans('models.Billcreationdate')}}</label>: <input placeholder="dd/mm/yyyy" type="text"
+                                                                                    class="width-5" name="creation_date"
+                                                                                    ng-model="bill.creation_date">
                     </section>
                 </div>
                 <div class="client-info">
                     <input type="hidden" name="client_id_form" ng-model="client.id">
-                    <input type="hidden" name="client_id" ng-model="bill.client_id">
+                    <input type="hidden" name="client_id" value="[[bill.client_id]]">
                     <input type="hidden" name="patient_id_form" ng-model="patient.id">
-                    <input type="hidden" name="patient_id" ng-model="bill.patient_id">
+                    <input type="hidden" name="patient_id" value="[[bill.patient_id]]">
                     <input type="hidden" name="url_search_patients_clients"
                            value="[[searchUrl = '{{URL::route('urlSearch', ['term' => ''])}}']]">
                     <section>
@@ -92,9 +94,10 @@
                     <tr>
                         <td>{{--<input type="text" name="concept_code" ng-model="bill.concept_code">--}}</td>
                         <td><input type="text" name="concept" ng-model="bill.concept"></td>
-                        <td><input type="text" class="width-3" name="qty" ng-init="bill.qty = 0" ng-model="bill.qty">
+                        <td><input type="text" class="small-input" name="qty"
+                                   ng-model="bill.qty">
                         </td>
-                        <td><input type="text" class="width-3" name="price_per_unit" ng-init="bill.price_per_unit = '0,00'"
+                        <td><input type="text" class="small-input" name="price_per_unit"
                                    ng-model="bill.price_per_unit"></td>
                         <td>[[bill.total = bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</td>
                     </tr>
@@ -114,7 +117,7 @@
                             <option value="cash">Efectiu</option>
                             <option value="bank_transfer">Transferència al compte IBAN</option>
                         </select>
-                        <span class="bank-account-number" ng-if="bill.payment_method == 'bank_transfer'">[[billInfo.account]]</span>
+                        <span class="bank-account-number" ng-if="bill.payment_method == 'bank_transfer'">[[Base64.decode(billInfo.account)]]</span>
                     </section>
                 </div>
                 <div class="bill-amount-info">
@@ -124,13 +127,37 @@
                     <div class="bill-discount">
                         <label><strong>{{trans('models.Billdiscount')}}</strong></label>
                         <span class="percent">
-                            <input type="text" ng-init="bill.discount = 0" name="discount" ng-model="bill.discount"> %
+                            <input type="text" name="discount" ng-model="bill.discount"> %
                         </span>
-                        <span class="discount-amount">[[bill.amount_w_discount = bill.total * bill.discount / 100|currency]]</span>
+                        <span class="discount-amount">[[bill.amount_discount = bill.total * bill.discount / 100|currency]]</span>
                     </div>
+                    <div class="bill-iva">
+                        <label ng-if="bill.iva == '' || !bill.iva"><strong>{{trans('models.Billwoiva')}}</strong></label>
+                        <span class="iva-amount">[[bill.total_partial = bill.total - bill.amount_discount|currency]]</span>
+                    </div>
+                </div>
+                <div class="bill-expiration-date">
+                    <label><strong>{{trans('models.Billexpirationdate')}}</strong></label>
+                    <input placeholder="dd/mm/yyyy" type="text" class="width-5" name="expiration_date"
+                           ng-model="bill.expiration_date">
+                </div>
+                <div class="bill-irpf">
+                    <label><strong>{{trans('models.Billirpf')}} [[bill.total_partial|currency]]</strong></label>
+                    <span class="percent">
+                            <input type="text" name="irpf" ng-model="bill.irpf"> %
+                        </span>
+                    <span class="discount-amount">-[[bill.amount_irpf = bill.total_partial * bill.irpf / 100|currency]]</span>
+                    <input type="hidden" name="amount" value="[[bill.total_bill]]">
+                </div>
+                <div class="bill-total">
+                    <label><strong>{{trans('models.Billnoiva')}}</strong></label>
+                    <span class="total">[[show_total(bill.total_partial, bill.amount_irpf)]]</span>
                 </div>
             </column>
         </row>
+        <section>
+            {!! Form::button(trans('messages.create_bill', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}
+        </section>
         {!! Form::close() !!}
     </column>
 @endsection

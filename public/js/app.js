@@ -240,7 +240,14 @@ app.controller('SearchController', function ($scope, $filter, $timeout, $http, $
 });
 
 app.controller('BillController', function ($scope, $filter, $timeout, $http, $sce, $window) {
-    $scope.bill = {};
+    $scope.bill = {
+        qty: 0,
+        price_per_unit: 0,
+        discount: 0,
+        iva: 0,
+        irpf: 0,
+        total_bill: 0
+    };
     $scope.billInfo = {};
     $scope.urlBillInfo = '';
     $scope.clients = {};
@@ -251,12 +258,20 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     $scope.widthSearchInput = '100px';
     $scope.searchUrl = '';
 
-    var Base64 = {
+    var $bill = $('#bill');
+    if ($bill.length && $bill.html().trim() != '[]') {
+        $scope.bill = JSON.parse($bill.html());
+       /* var str = $scope.review.date.replace(/-/g, '/');
+        $scope.review.date = '';*/
+        //$bill.html('');
+    }
+
+    $scope.Base64 = {
         _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", encode: function (e) {
             var t = "";
             var n, r, i, s, o, u, a;
             var f = 0;
-            e = Base64._utf8_encode(e);
+            e = $scope.Base64._utf8_encode(e);
             while (f < e.length) {
                 n = e.charCodeAt(f++);
                 r = e.charCodeAt(f++);
@@ -295,7 +310,7 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
                     t = t + String.fromCharCode(i)
                 }
             }
-            t = Base64._utf8_decode(t);
+            t = $scope.Base64._utf8_decode(t);
             return t
         }, _utf8_encode: function (e) {
             e = e.replace(/rn/g, "n");
@@ -346,16 +361,6 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     $timeout(function () {
         var $term = $('input[name="client_name"]').parent();
         $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
-
-        $http({
-            method: 'get',
-            url: $scope.urlBillInfo
-        }).then(function mySucces(response) {
-            $scope.billInfo = response.data;
-            $scope.billInfo.account = Base64.decode($scope.billInfo.account);
-        }, function myError(response) {
-            console.log(response);
-        });
     }, 500);
 
     $scope.today_date = function () {
@@ -410,5 +415,10 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
 
     $scope.count = function (n) {
         return new Array(n);
+    }
+
+    $scope.show_total = function (n1, n2) {
+        $scope.bill.total_bill = n1 - n2;
+        return $filter('currency')($scope.bill.total_bill.toFixed(2));
     }
 });

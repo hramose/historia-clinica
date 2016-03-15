@@ -356,6 +356,15 @@ nav {
     table {
       tr {
         height: 72px;
+        td {
+          .small-input {
+            width: 20%;
+            padding: 0;
+            height: inherit;
+            text-align: center;
+            margin-top: 12px;
+          }
+        }
       }
     }
     .bill_id-date {
@@ -408,7 +417,7 @@ nav {
           list-style: none;
           margin: 0;
           padding-top: 16px;
-          padding-bottom: 5px;
+          padding-bottom: 0px;
           li {
             cursor: pointer;
             span {
@@ -474,6 +483,59 @@ nav {
           display: inline-block;
           text-align: right;
         }
+      }
+      .bill-iva {
+        label {
+          float: left;
+          text-align: center;
+          width: 80%;
+        }
+        .iva-amount {
+          float: left;
+          text-align: right;
+          width: 20%;
+        }
+      }
+    }
+    .bill-expiration-date {
+      width: 20%;
+      float: left;
+      clear: both;
+    }
+    .bill-irpf {
+      width: 80%;
+      float: left;
+      label {
+        float: left;
+        text-align: right;
+        width: 80%;
+      }
+      .percent {
+        float: left;
+        width: 10%;
+        display: inline-block;
+        text-align: center;
+        input {
+          display: inline-block;
+          width: 50%;
+          padding: 0;
+          height: inherit;
+          text-align: center;
+        }
+      }
+    }
+    .bill-total {
+      clear: both;
+      width: 80%;
+      float: right;
+      .total {
+        text-align: right;
+        background: #2ca02c;
+        font-size: 18px;
+        display: inline-block;
+        width: 100%;
+        color: #FAF834;
+        padding-right: 20px;
       }
     }
   }

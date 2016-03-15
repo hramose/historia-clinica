@@ -16,14 +16,16 @@ class BillController extends Controller
         $this->middleware('auth');
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $bill = new Bill();
+        $config = $this->getConfig($request, false);
 
         return view('bills.create', [
             'lang' => 'ca',
             'title' => 'Crear nova factura',
-            'bill' => $bill
+            'bill' => $bill,
+            'billInfo' => json_encode($config)
         ]);
     }
 
@@ -31,15 +33,25 @@ class BillController extends Controller
     {
         $this->validate($request, [
             'id' => 'required:unique:bills',
-            'concept' => 'required'
+            'concept' => 'required',
+            'creation_date' => 'required',
+            'expiration_date' => 'required'
         ]);
         $inputs = Input::all();
-        $kk = "kk";
-        /*$bill = new Bill();
-        $bill->fill(Input::all());
+        $bill = new Bill();
+        $bill->fill($inputs);
+        if ($inputs['client_id'] == "" && $inputs['client_name'] != "" && $inputs["patient_id"] == "") {
+            $client = new Client();
+            $client->name = $inputs['client_name'];
+            $client->address = $inputs['client_address'];
+            $client->city = $inputs['client_city'];
+            $client->cif = $inputs['client_cif'];
+            $client->save();
+            $bill->client_id = $client->id;
+        }
         $bill->save();
 
-        return redirect()->route('mostrarBill', ['id' => $bill->id]);*/
+        return redirect()->route('mostrarBill', ['id' => $bill->id]);
     }
 
     public function index()
@@ -49,16 +61,18 @@ class BillController extends Controller
 
     public function show(Request $request, $id)
     {
-        $bill = Bill::firstOrFail($id);
+        $bill = Bill::whereId($id)->firstOrFail();
 
+        $config = $this->getConfig($request, false);
         return view('bills.create', [
             'lang' => 'ca',
-            'title' => 'Editar factura',
-            'bill' => $bill
+            'title' => 'Crear nova factura',
+            'bill' => $bill,
+            'billInfo' => json_encode($config)
         ]);
     }
 
-    public function getConfig(Request $request)
+    public function getConfig(Request $request, $json = true)
     {
         $billInfo = [
             'name' => config('app.bill.name'),
@@ -68,13 +82,13 @@ class BillController extends Controller
             'account' => base64_encode(config('app.bill.account')),
         ];
 
-        return json_encode($billInfo);
+        return $json ? json_encode($billInfo) : $billInfo;
     }
 
     public function getClientsAndPatients($term)
     {
-        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('surname', 'like', '%'.$term.'%')->orWhere('lastname', 'like', '%'.$term.'%')->limit(15)->get();
-        $clients = Client::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('address', 'like', '%'.$term.'%')->orWhere('city', 'like', '%'.$term.'%')->orWhere('cif', 'like', '%'.$term.'%')->limit(15)->get();
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->limit(15)->get();
+        $clients = Client::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('address', 'like', '%' . $term . '%')->orWhere('city', 'like', '%' . $term . '%')->orWhere('cif', 'like', '%' . $term . '%')->limit(15)->get();
         $array = [
             'patients' => $patients,
             'clients' => $clients

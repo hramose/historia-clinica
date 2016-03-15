@@ -15,6 +15,7 @@ class UpdateBillsTable extends Migration
         Schema::table('bills', function (Blueprint $table) {
             $table->string('payment_method', 20);
             $table->decimal('discount');
+            $table->decimal('price_per_unit');
         });
     }
 

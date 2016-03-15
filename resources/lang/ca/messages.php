@@ -37,5 +37,6 @@ return array(
     'email_backup' => 'Nou backup de la base de dades generat',
     'email_backup_msg' => 'Al seguent arxiu tens la còpia de seguretat de la base de dades generada el dia: :date',
     'search_patient' => 'Cerca pacient',
-    'empty_option_reviews_dates' => 'Selecciona una data anterior'
+    'empty_option_reviews_dates' => 'Selecciona una data anterior',
+    'create_bill' => 'Crea factura'
 );

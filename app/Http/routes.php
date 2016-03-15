@@ -163,7 +163,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'ferBills',
                 'uses' => 'BillController@create'
             ]);
-        Route::get('/save',
+        Route::post('/save',
             [
                 'as' => 'saveBills',
                 'uses' => 'BillController@store'
