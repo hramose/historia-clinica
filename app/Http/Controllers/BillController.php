@@ -33,12 +33,13 @@ class BillController extends Controller
             'id' => 'required:unique:bills',
             'concept' => 'required'
         ]);
-
-        $bill = new Bill();
+        $inputs = Input::all();
+        $kk = "kk";
+        /*$bill = new Bill();
         $bill->fill(Input::all());
         $bill->save();
 
-        return redirect()->route('mostrarBill', ['id' => $bill->id]);
+        return redirect()->route('mostrarBill', ['id' => $bill->id]);*/
     }
 
     public function index()

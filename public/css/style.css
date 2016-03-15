@@ -249,6 +249,8 @@ nav {
           word-wrap: break-word; }
       .wrap-content .main-pacients .review-text textarea {
         min-height: 250px; }
+  .wrap-content .bill-content table tr {
+    height: 72px; }
   .wrap-content .bill-content .bill_id-date {
     width: 200px; }
     .wrap-content .bill-content .bill_id-date section {
@@ -296,21 +298,48 @@ nav {
           .wrap-content .bill-content .client-info .autocomplete-list ul li:hover {
             background: #dfdfdf; }
   .wrap-content .bill-content .bill-payment-info {
-    width: 50%;
+    width: 20%;
     float: left; }
+    .wrap-content .bill-content .bill-payment-info select {
+      width: 250px; }
     .wrap-content .bill-content .bill-payment-info .bank-account-number {
       margin-top: 10px;
       display: inline-block; }
   .wrap-content .bill-content .bill-amount-info {
-    width: 50%;
+    width: 80%;
     float: left;
     padding-right: 20px; }
     .wrap-content .bill-content .bill-amount-info .subtotal-info {
       display: inline; }
       .wrap-content .bill-content .bill-amount-info .subtotal-info label {
-        float: left; }
+        float: left;
+        text-align: center;
+        width: 80%; }
       .wrap-content .bill-content .bill-amount-info .subtotal-info .subtotal {
         float: right; }
+    .wrap-content .bill-content .bill-amount-info .bill-discount {
+      display: block;
+      width: 100%;
+      clear: both; }
+      .wrap-content .bill-content .bill-amount-info .bill-discount label {
+        float: left;
+        text-align: center;
+        width: 80%; }
+      .wrap-content .bill-content .bill-amount-info .bill-discount .percent {
+        float: left;
+        width: 10%;
+        display: inline-block; }
+        .wrap-content .bill-content .bill-amount-info .bill-discount .percent input {
+          display: inline-block;
+          width: 50%;
+          padding: 0;
+          height: inherit;
+          text-align: center; }
+      .wrap-content .bill-content .bill-amount-info .bill-discount .discount-amount {
+        float: left;
+        width: 10%;
+        display: inline-block;
+        text-align: right; }
 
 #footer {
   padding: 48px;

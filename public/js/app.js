@@ -341,7 +341,6 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     angular.element($window).bind('resize', function () {
         var $term = $('input[name="client_name"]').parent();
         $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
-        console.log('resize');
     });
 
     $timeout(function () {
@@ -405,7 +404,11 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
             $scope.client.city = $scope.patient.city;
             $scope.client.cif = $scope.patient.nif;
         }
-        
+
         $scope.autocomplete = false;
+    }
+
+    $scope.count = function (n) {
+        return new Array(n);
     }
 });

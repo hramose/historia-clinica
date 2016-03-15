@@ -353,6 +353,11 @@ nav {
     }
   }
   .bill-content {
+    table {
+      tr {
+        height: 72px;
+      }
+    }
     .bill_id-date {
       width: 200px;
       section {
@@ -417,24 +422,57 @@ nav {
       }
     }
     .bill-payment-info {
-      width: 50%;
+      width: 20%;
       float: left;
+      select {
+        width: 250px;
+      }
       .bank-account-number {
         margin-top: 10px;
         display: inline-block;
       }
     }
     .bill-amount-info {
-      width: 50%;
+      width: 80%;
       float: left;
       padding-right: 20px;
       .subtotal-info {
         display: inline;
         label {
           float: left;
+          text-align: center;
+          width: 80%;
         }
         .subtotal {
           float: right;
+        }
+      }
+      .bill-discount {
+        display: block;
+        width: 100%;
+        clear: both;
+        label {
+          float: left;
+          text-align: center;
+          width: 80%;
+        }
+        .percent {
+          float: left;
+          width: 10%;
+          display: inline-block;
+          input {
+            display: inline-block;
+            width: 50%;
+            padding: 0;
+            height: inherit;
+            text-align: center;
+          }
+        }
+        .discount-amount {
+          float: left;
+          width: 10%;
+          display: inline-block;
+          text-align: right;
         }
       }
     }

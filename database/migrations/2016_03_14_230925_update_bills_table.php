@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class UpdateBillsTable extends Migration
 {
@@ -12,7 +12,10 @@ class UpdateBillsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('bills', function (Blueprint $table) {
+            $table->string('payment_method', 20);
+            $table->decimal('discount');
+        });
     }
 
     /**

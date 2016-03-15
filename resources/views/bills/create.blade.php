@@ -81,11 +81,11 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Codi</th>
-                        <th>Servei/Concepte</th>
-                        <th>Unitats</th>
-                        <th>Preu unit.</th>
-                        <th>Subtotal</th>
+                        <th>{{trans('models.Billcode')}}</th>
+                        <th>{{trans('models.Billconcept')}}</th>
+                        <th>{{trans('models.Billunits')}}</th>
+                        <th>{{trans('models.Billunitprice')}}</th>
+                        <th>{{trans('models.Billsubtotal')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -94,39 +94,11 @@
                         <td><input type="text" name="concept" ng-model="bill.concept"></td>
                         <td><input type="text" class="width-3" name="qty" ng-init="bill.qty = 0" ng-model="bill.qty">
                         </td>
-                        <td><input type="text" class="width-3" name="price_per_unit" ng-init="bill.price_per_unit = 0"
+                        <td><input type="text" class="width-3" name="price_per_unit" ng-init="bill.price_per_unit = '0,00'"
                                    ng-model="bill.price_per_unit"></td>
-                        <td>[[bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</td>
+                        <td>[[bill.total = bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
+                    <tr ng-repeat="t in count(5) track by $index">
                         <td></td>
                         <td></td>
                         <td></td>
@@ -138,7 +110,7 @@
                 <div class="bill-payment-info">
                     <section>
                         <label><strong>{{trans('models.Billpaymentmethod')}}</strong></label>
-                        <select class="width-6" name="payment_method" ng-model="bill.payment_method">
+                        <select name="payment_method" ng-model="bill.payment_method">
                             <option value="cash">Efectiu</option>
                             <option value="bank_transfer">Transferència al compte IBAN</option>
                         </select>
@@ -146,7 +118,16 @@
                     </section>
                 </div>
                 <div class="bill-amount-info">
-                    <span class="subtotal-info"><label><strong>Subtotal</strong></label> <span class="subtotal">[[bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</span></span>
+                    <span class="subtotal-info"><label><strong>{{trans('models.Billsubtotal')}}</strong></label> <span
+                                class="subtotal">[[bill.total|currency]]</span></span>
+
+                    <div class="bill-discount">
+                        <label><strong>{{trans('models.Billdiscount')}}</strong></label>
+                        <span class="percent">
+                            <input type="text" ng-init="bill.discount = 0" name="discount" ng-model="bill.discount"> %
+                        </span>
+                        <span class="discount-amount">[[bill.amount_w_discount = bill.total * bill.discount / 100|currency]]</span>
+                    </div>
                 </div>
             </column>
         </row>
