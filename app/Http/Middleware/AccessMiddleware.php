@@ -28,6 +28,7 @@ class AccessMiddleware
             $access->ip = $request->ip();
             $access->route = $request->path();
             $access->type = $request->getMethod();
+            $access->browser = $request->header('User-Agent');
             $access->action = $request->getMethod() == 'GET' ? 'show' : 'save';
 
             $access->save();
