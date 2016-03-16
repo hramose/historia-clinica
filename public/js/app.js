@@ -246,7 +246,9 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
         discount: 0,
         iva: 0,
         irpf: 0,
-        total_bill: 0
+        total_bill: 0,
+        total_partial: 0,
+        amount_irpf: 0
     };
     $scope.billInfo = {};
     $scope.urlBillInfo = '';
@@ -257,14 +259,6 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     $scope.autocomplete = false;
     $scope.widthSearchInput = '100px';
     $scope.searchUrl = '';
-
-    var $bill = $('#bill');
-    if ($bill.length && $bill.html().trim() != '[]') {
-        $scope.bill = JSON.parse($bill.html());
-       /* var str = $scope.review.date.replace(/-/g, '/');
-        $scope.review.date = '';*/
-        //$bill.html('');
-    }
 
     $scope.Base64 = {
         _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", encode: function (e) {
@@ -420,5 +414,20 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     $scope.show_total = function (n1, n2) {
         $scope.bill.total_bill = n1 - n2;
         return $filter('currency')($scope.bill.total_bill.toFixed(2));
+    }
+
+    var $bill = $('#bill');
+    if ($bill.length && $bill.html().trim() != '[]') {
+        $scope.bill = JSON.parse($bill.html());
+        var str = $scope.bill.creation_date.replace(/-/g, '/');
+        $scope.bill.creation_date = $filter('date')(new Date(str), 'dd/MM/y');
+        var str = $scope.bill.expiration_date.replace(/-/g, '/');
+        $scope.bill.expiration_date = $filter('date')(new Date(str), 'dd/MM/y');
+        if ($scope.bill.patient_id != "" && $scope.bill.patient_id != null) {
+            $scope.put_on_bill($scope.bill.patient, 'patient');
+        }
+        if ($scope.bill.client_id != "" && $scope.bill.client_id != null) {
+            $scope.put_on_bill($scope.bill.client, 'client');
+        }
     }
 });

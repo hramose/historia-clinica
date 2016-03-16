@@ -34,6 +34,7 @@
                         <label>{{trans('models.Clientname')}}</label>: <input type="text" class="width-2"
                                                                               ng-keyup="search_clients_and_patients()"
                                                                               name="client_name"
+                                                                              autocomplete="off"
                                                                               ng-model="client.name">
 
                         <div ng-show="autocomplete" class="autocomplete-list" ng-style="{width: widthSearchInput}">
@@ -156,7 +157,8 @@
             </column>
         </row>
         <section>
-            {!! Form::button(trans('messages.create_bill', ['name' => 'pacient']),['type' => 'primary', 'ng-disabled' => 'form.$invalid']) !!}
+            {!! Form::button(trans('messages.create_bill', ['name' => 'pacient']),['type' => 'primary', 'ng-if'=>!$bill->exists, 'ng-disabled' => 'form.$invalid']) !!}
+            {!! Form::button(trans('messages.update_bill', ['name' => 'pacient']),['type' => 'primary', 'ng-if'=>$bill->exists, 'ng-disabled' => 'form.$invalid']) !!}
         </section>
         {!! Form::close() !!}
     </column>
