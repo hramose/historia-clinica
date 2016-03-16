@@ -168,6 +168,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'saveBills',
                 'uses' => 'BillController@store'
             ]);
+        Route::post('/update/{id}',
+            [
+                'as' => 'updateBill',
+                'uses' => 'BillController@update'
+            ]);
         Route::get('/show/{id}',
             [
                 'as' => 'mostrarBill',

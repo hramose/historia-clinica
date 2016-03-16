@@ -242,13 +242,15 @@ app.controller('SearchController', function ($scope, $filter, $timeout, $http, $
 app.controller('BillController', function ($scope, $filter, $timeout, $http, $sce, $window) {
     $scope.bill = {
         qty: 0,
-        price_per_unit: 0,
-        discount: 0,
-        iva: 0,
-        irpf: 0,
-        total_bill: 0,
-        total_partial: 0,
-        amount_irpf: 0
+        price_per_unit: 0.0,
+        discount: 0.0,
+        iva: 0.0,
+        irpf: 0.0,
+        total_bill: 0.0,
+        total_partial: 0.0,
+        amount_irpf: 0.0,
+        total: 0.0,
+        amount_discount: 0.0
     };
     $scope.billInfo = {};
     $scope.urlBillInfo = '';
@@ -413,8 +415,15 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
 
     $scope.show_total = function (n1, n2) {
         $scope.bill.total_bill = n1 - n2;
+        console.log(n1, n2, $scope.bill.total_bill.toFixed(2));
         return $filter('currency')($scope.bill.total_bill.toFixed(2));
     }
+
+    $scope.autocomplete_id = function () {
+        if ($scope.bill.id == "" || typeof $scope.bill.id == 'undefined') {
+            $scope.bill.id = $scope.lastId + 1;
+        }
+    };
 
     var $bill = $('#bill');
     if ($bill.length && $bill.html().trim() != '[]') {

@@ -20,23 +20,31 @@ class BillController extends Controller
     {
         $bill = new Bill();
         $config = $this->getConfig($request, false);
+        $lastId = Bill::orderBy('id', 'desc')->first()->id;
 
         return view('bills.create', [
             'lang' => 'ca',
             'title' => 'Crear nova factura',
             'bill' => $bill,
-            'billInfo' => json_encode($config)
+            'billInfo' => json_encode($config),
+            'last_id' => $lastId
         ]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required:unique:bills',
+            'id' => 'required|unique:bills,id',
             'concept' => 'required',
             'creation_date' => 'required',
-            'expiration_date' => 'required'
+            'expiration_date' => 'required',
+            'qty' => 'required',
+            'amount' => 'required',
+            'payment_method' => 'required',
+            'price_per_unit' => 'required',
+
         ]);
+
         $inputs = Input::all();
         $bill = new Bill();
         $bill->fill($inputs);

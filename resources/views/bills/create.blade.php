@@ -6,16 +6,20 @@
         <span style="display: none">[[urlBillInfo = '{{ URL::route('urlBillInfo') }}';""]]</span>
         @if ($bill->exists)
             <span id="bill" style="display:none;">{{$bill->toJson()}}</span>
+            {!! Form::model($bill, array('route' => array('updateBill', $bill->id), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
+        @else
+            {!! Form::model($bill, array('route' => array('saveBills'), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
         @endif
-        {!! Form::model($bill, array('route' => array('saveBills'), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
         <row>
             <column cols="6">
                 <span style="display:none" ng-init="billInfo = {{$billInfo}}"></span>
 
                 <div class="bill_id-date">
                     <section>
-                        <label>{{trans('models.Billid')}}</label>: <input type="text" class="width-2" name="id"
+                        <label>{{trans('models.Billid')}}</label>: <input ng-click="autocomplete_id()" type="text"
+                                                                          class="width-2" name="id"
                                                                           ng-model="bill.id">
+                        <input type="hidden" name="last_id" ng-init="lastId = {{$last_id}}" value="[[lastId]]">
                     </section>
                     <section>
                         <label>{{trans('models.Billcreationdate')}}</label>: <input placeholder="dd/mm/yyyy" type="text"
