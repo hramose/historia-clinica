@@ -8,6 +8,9 @@
             <img class="responsive" src="{{ asset("img/logo-responsive.png") }}" alt="">
         </a>
     </div>
+    <div id="menu-user-info">
+        <p title="{{Auth::user()->name}}"><span class="circle-online"></span> {{Auth::user()->email}}</p>
+    </div>
     <ul class="metismenu" id="side-menu">
         <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user-md"></span> <span class="text">Pacients</span>
                 <span class="fa arrow"></span>

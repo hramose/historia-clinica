@@ -42,6 +42,15 @@ nav {
     border-right: 1px solid rgba(0, 0, 0, 0.05); }
     nav #menu-header .responsive {
       display: none; }
+  nav #menu-user-info {
+    text-align: center;
+    color: #fff; }
+    nav #menu-user-info .circle-online {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2ca02c;
+      display: inline-block; }
   nav .metismenu {
     background: #000000;
     margin: 0; }

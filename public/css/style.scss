@@ -16,9 +16,8 @@ body.no-login {
 
 }
 
-input[type=checkbox]
-{
-  -webkit-appearance:checkbox;
+input[type=checkbox] {
+  -webkit-appearance: checkbox;
 }
 
 [class*="-form"] {
@@ -54,6 +53,17 @@ nav {
     border-right: 1px solid rgba(0, 0, 0, 0.05);
     .responsive {
       display: none;
+    }
+  }
+  #menu-user-info {
+    text-align: center;
+    color: #fff;
+    .circle-online {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2ca02c;
+      display: inline-block;
     }
   }
   .metismenu {
@@ -215,8 +225,6 @@ nav {
       }
     }
 
-
-
     form {
       .input-prepend {
         span {
@@ -348,11 +356,13 @@ nav, li.active, .wrap-content, #footer {
   -webkit-animation: draw 2s infinite ease;
   animation: draw 2s infinite ease;
 }
+
 @-webkit-keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
