@@ -151,7 +151,7 @@
                     <span class="percent">
                             <input type="text" name="irpf" ng-model="bill.irpf"> %
                         </span>
-                    <span class="discount-amount">-[[show_amount_irpf(bill.total_partial, bill.irpf.replace(',', '.'))]]</span>
+                    <span class="discount-amount">-[[show_amount_irpf(bill.total_partial, bill.irpf)]]</span>
                     <input type="hidden" name="amount" value="[[bill.total_bill]]">
                 </div>
                 <div class="bill-total">

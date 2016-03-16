@@ -33,7 +33,8 @@ class BillController extends Controller
     {
         $bill = new Bill();
         $config = $this->getConfig($request, false);
-        $lastId = $tempBill = Bill::orderBy('id', 'desc')->first() != null ? $tempBill->id : 99;
+        $tempBill = Bill::orderBy('id', 'desc')->first();
+        $lastId = $tempBill != null ? $tempBill->id : 99;
 
         return view('bills.create', [
             'lang' => 'ca',
