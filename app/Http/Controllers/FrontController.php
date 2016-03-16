@@ -197,4 +197,21 @@ class FrontController extends Controller
             'user' => $user
         ]);
     }
+
+    public function destroyUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        $users = User::paginate(15);
+        $users->setPath('llistaUsers');
+
+        Session::flash('alert', trans('messages.user_deleted_correctly'));
+        Session::flash('status', 'success');
+        return view('auth.list', [
+            'lang' => 'ca',
+            'title' => 'Llista d\'usuaris',
+            'users' => $users
+        ]);
+    }
 }
