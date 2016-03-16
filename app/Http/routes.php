@@ -153,7 +153,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
     Route::group(['prefix' => 'factures'], function () {
         Route::get('/', 'HistoryController@index');
 
-        Route::get('/list',
+        Route::get('/llista',
             [
                 'as' => 'veureBills',
                 'uses' => 'BillController@index'

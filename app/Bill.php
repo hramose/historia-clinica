@@ -46,4 +46,14 @@ class Bill extends Model
         $this->attributes['price_per_unit'] = str_replace(',', '.', $price_per_unit);
     }
 
+    public function setIrpfAttribute($irpf)
+    {
+        $this->attributes['irpf'] = str_replace(',', '.', $irpf);
+    }
+
+    public function setDiscountAttribute($discount)
+    {
+        $this->attributes['discount'] = str_replace(',', '.', $discount);
+    }
+
 }

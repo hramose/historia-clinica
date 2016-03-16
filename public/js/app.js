@@ -414,15 +414,30 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     }
 
     $scope.show_total = function (n1, n2) {
-        $scope.bill.total_bill = n1 - n2;
-        console.log(n1, n2, $scope.bill.total_bill.toFixed(2));
+        $scope.bill.total_bill = (isNaN(n1) ? 0 : n1) - (isNaN(n2) ? 0 : n2);
         return $filter('currency')($scope.bill.total_bill.toFixed(2));
-    }
+    };
+
+    $scope.show_amount_discount = function (n1, n2) {
+        $scope.bill.amount_discount = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
+        $scope.bill.total_partial = $scope.bill.total - $scope.bill.amount_discount;
+        return $filter('currency')($scope.bill.amount_discount.toFixed(2));
+    };
+
+    $scope.show_amount_irpf = function (n1, n2) {
+        $scope.bill.amount_irpf = (isNaN(n1) ? 0 : n1) *(isNaN(n2) ? 0 : n2) / 100;
+        return $filter('currency')($scope.bill.amount_irpf.toFixed(2));
+    };
 
     $scope.autocomplete_id = function () {
         if ($scope.bill.id == "" || typeof $scope.bill.id == 'undefined') {
             $scope.bill.id = $scope.lastId + 1;
         }
+    };
+
+    $scope.format_date = function (date) {
+        var str = date.replace(/-/g, '/');
+        return $filter('date')(new Date(str), 'dd/MM/y');
     };
 
     var $bill = $('#bill');

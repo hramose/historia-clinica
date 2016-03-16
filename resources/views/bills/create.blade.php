@@ -134,11 +134,11 @@
                         <span class="percent">
                             <input type="text" name="discount" ng-model="bill.discount"> %
                         </span>
-                        <span class="discount-amount">[[bill.amount_discount = bill.total * bill.discount / 100|currency]]</span>
+                        <span class="discount-amount">[[show_amount_discount(bill.total, bill.discount.replace(',', '.'))]]</span>
                     </div>
                     <div class="bill-iva">
                         <label ng-if="bill.iva == '' || !bill.iva"><strong>{{trans('models.Billwoiva')}}</strong></label>
-                        <span class="iva-amount">[[bill.total_partial = bill.total - bill.amount_discount|currency]]</span>
+                        {{--<span class="iva-amount">[[bill.total_partial = bill.total - bill.amount_discount|currency]]</span>--}}
                     </div>
                 </div>
                 <div class="bill-expiration-date">
@@ -151,7 +151,7 @@
                     <span class="percent">
                             <input type="text" name="irpf" ng-model="bill.irpf"> %
                         </span>
-                    <span class="discount-amount">-[[bill.amount_irpf = bill.total_partial * bill.irpf / 100|currency]]</span>
+                    <span class="discount-amount">-[[show_amount_irpf(bill.total_partial, bill.irpf.replace(',', '.'))]]</span>
                     <input type="hidden" name="amount" value="[[bill.total_bill]]">
                 </div>
                 <div class="bill-total">

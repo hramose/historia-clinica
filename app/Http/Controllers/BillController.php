@@ -16,11 +16,24 @@ class BillController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $bills = Bill::paginate(15);
+        $bills->setPath('llista');
+
+        return view('bills.index', [
+            'lang' => 'ca',
+            'title' => 'Llista de factures',
+            'bills' => $bills
+        ]);
+
+    }
+
     public function create(Request $request)
     {
         $bill = new Bill();
         $config = $this->getConfig($request, false);
-        $lastId = Bill::orderBy('id', 'desc')->first()->id;
+        $lastId = $tempBill = Bill::orderBy('id', 'desc')->first() != null ? $tempBill->id : 99;
 
         return view('bills.create', [
             'lang' => 'ca',
@@ -62,21 +75,18 @@ class BillController extends Controller
         return redirect()->route('mostrarBill', ['id' => $bill->id]);
     }
 
-    public function index()
-    {
-        echo 'Hello, it\'s me';
-    }
-
     public function show(Request $request, $id)
     {
         $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
+        $lastId = Bill::orderBy('id', 'desc')->first()->id;
 
         $config = $this->getConfig($request, false);
         return view('bills.create', [
             'lang' => 'ca',
             'title' => 'Crear nova factura',
             'bill' => $bill,
-            'billInfo' => json_encode($config)
+            'billInfo' => json_encode($config),
+            'last_id' => $lastId
         ]);
     }
 
