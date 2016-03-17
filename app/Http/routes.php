@@ -188,7 +188,10 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'urlSearch',
                 'uses' => 'BillController@getClientsAndPatients'
             ]);
-
+        Route::get('/pdf/{id}', [
+            'as' => 'billPdf',
+            'uses' => 'BillController@generatePdf'
+        ]);
     });
 
     Route::group(['prefix' => 'valoracions'], function () {

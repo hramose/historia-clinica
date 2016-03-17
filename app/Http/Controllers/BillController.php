@@ -114,4 +114,14 @@ class BillController extends Controller
         ];
         echo json_encode($array);
     }
+
+    public function generatePdf($id)
+    {
+        $bill = Bill::whereId($id)->firstOrFail();
+    }
+
+    private function pdf()
+    {
+
+    }
 }
