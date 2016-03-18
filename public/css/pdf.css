@@ -1,55 +1,152 @@
-#main-bill {
-  width: 100%;
-  font-family: Arial; }
-  #main-bill #titulo-factura {
-    border-top: 1px solid;
-    border-bottom: 2px solid; }
-    #main-bill #titulo-factura h2 {
-      color: #0A8754;
-      padding: 0;
-      margin: 5px; }
-  #main-bill #datos-personales {
+body page[size="A4"] {
+  background: white;
+  width: 21cm;
+  height: 29.7cm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm; }
+  body page[size="A4"] #main-bill {
     width: 100%;
-    display: block;
-    overflow: auto;
-    position: relative; }
-    #main-bill #datos-personales #datos-factura {
-      width: 50%;
-      float: left;
-      vertical-align: bottom;
-      position: absolute;
-      bottom: 0; }
-      #main-bill #datos-personales #datos-factura p {
+    font-family: Arial; }
+    body page[size="A4"] #main-bill #titulo-factura {
+      border-top: 1px solid;
+      border-bottom: 2px solid; }
+      body page[size="A4"] #main-bill #titulo-factura h2 {
+        color: #0A8754;
+        padding: 0;
+        margin: 5px; }
+    body page[size="A4"] #main-bill #datos-personales {
+      width: 100%;
+      display: block;
+      overflow: auto; }
+      body page[size="A4"] #main-bill #datos-personales #datos-factura {
+        width: 50%;
+        float: left;
+        padding-top: 97px; }
+        body page[size="A4"] #main-bill #datos-personales #datos-factura p {
+          width: 100%;
+          display: inline-block;
+          margin: 0; }
+          body page[size="A4"] #main-bill #datos-personales #datos-factura p strong {
+            color: #0A8754;
+            float: left;
+            width: 27%;
+            text-align: right; }
+          body page[size="A4"] #main-bill #datos-personales #datos-factura p span {
+            float: left;
+            width: 50%;
+            margin-left: 5px; }
+      body page[size="A4"] #main-bill #datos-personales #datos-persona {
+        width: 50%;
+        float: left;
+        text-align: right; }
+    body page[size="A4"] #main-bill #datos-cliente {
+      width: 100%;
+      margin-top: 15px; }
+      body page[size="A4"] #main-bill #datos-cliente p {
         width: 100%;
         display: inline-block;
         margin: 0; }
-        #main-bill #datos-personales #datos-factura p strong {
+        body page[size="A4"] #main-bill #datos-cliente p strong {
           color: #0A8754;
           float: left;
-          width: 13%;
+          width: 13.5%;
           text-align: right; }
-        #main-bill #datos-personales #datos-factura p span {
+        body page[size="A4"] #main-bill #datos-cliente p span {
           float: left;
-          width: 50%;
-          margin-left: 35px; }
-    #main-bill #datos-personales #datos-persona {
+          width: 60%;
+          margin-left: 9px; }
+          body page[size="A4"] #main-bill #datos-cliente p span strong {
+            color: inherit;
+            width: inherit;
+            float: inherit;
+            text-align: inherit; }
+    body page[size="A4"] #main-bill table {
       width: 100%;
-      float: left;
-      text-align: right; }
-  #main-bill #datos-cliente {
-    width: 100%; }
-    #main-bill #datos-cliente p {
+      border: 1px solid;
+      border-collapse: collapse;
+      margin-top: 15px; }
+      body page[size="A4"] #main-bill table tr {
+        height: 40px; }
+        body page[size="A4"] #main-bill table tr th, body page[size="A4"] #main-bill table tr td {
+          padding: 0;
+          margin: 0; }
+        body page[size="A4"] #main-bill table tr th {
+          border-right: 1px solid; }
+          body page[size="A4"] #main-bill table tr th:last-child {
+            border: inherit; }
+        body page[size="A4"] #main-bill table tr td {
+          border-right: 1px solid;
+          border-top: 1px solid;
+          text-align: center; }
+          body page[size="A4"] #main-bill table tr td:last-child {
+            border-left: inherit; }
+    body page[size="A4"] #main-bill #datos-factura-total {
       width: 100%;
-      display: inline-block;
-      margin: 0; }
-      #main-bill #datos-cliente p strong {
-        color: #0A8754;
+      font-size: 14px; }
+      body page[size="A4"] #main-bill #datos-factura-total #datos-pago {
         float: left;
-        width: 6.5%;
-        text-align: right; }
-      #main-bill #datos-cliente p span {
+        width: 32%;
+        border: 1px solid; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-pago h3 {
+          padding: 5px 0 0 4px;
+          margin: 0; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-pago span {
+          text-align: center;
+          display: inline-block;
+          width: 100%;
+          margin-top: 5px; }
+          body page[size="A4"] #main-bill #datos-factura-total #datos-pago span:last-child {
+            margin-bottom: 10px; }
+      body page[size="A4"] #main-bill #datos-factura-total #datos-subtotal {
+        width: 66.8%;
         float: left;
-        width: 50%;
-        margin-left: 35px; }
+        text-align: center;
+        padding: 5px 5px 0 0;
+        border: 1px solid; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-subtotal strong {
+          float: left;
+          width: 80%; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-subtotal span {
+          float: left;
+          width: 20%;
+          display: inline-block;
+          text-align: right; }
+      body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento {
+        float: left;
+        width: 32%;
+        border: 1px solid; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento h3 {
+          padding: 5px 0 0 4px;
+          margin: 0; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento span {
+          text-align: center;
+          display: inline-block;
+          width: 100%;
+          margin-top: 5px; }
+          body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento span:last-child {
+            margin-bottom: 10px; }
+      body page[size="A4"] #main-bill #datos-factura-total #datos-descuento {
+        width: 66.8%;
+        border: 1px solid;
+        padding: 5px 5px 5px 0;
+        float: right;
+        max-height: 51px;
+        text-align: center; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-descuento strong {
+          float: left;
+          width: 70%; }
+          body page[size="A4"] #main-bill #datos-factura-total #datos-descuento strong.no_iva {
+            font-size: 12px;
+            padding-top: 12px;
+            text-align: right; }
+        body page[size="A4"] #main-bill #datos-factura-total #datos-descuento span {
+          float: left;
+          width: 15%;
+          display: inline-block;
+          text-align: right; }
+          body page[size="A4"] #main-bill #datos-factura-total #datos-descuento span:last-child {
+            width: 30%;
+            padding-top: 12px; }
 
 /*# sourceMappingURL=pdf.css.map */

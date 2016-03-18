@@ -44,6 +44,8 @@ return array(
     'Billexpirationdate' => 'Venciment',
     'Billirpf' => 'I.R.P.F. s/',
     'Billnoiva' => 'Factura exempta de I.V.A. segons Art. 20 uno.3 de la Llei del IVA',
+    'Billcash' => 'Efectiu',
+    'Billbank_transfer' => 'Transferència al compte IBAN',
     'Clientname' => 'Client',
     'Clientaddress' => 'Domicili',
     'Clientcity' => 'Ciutat',

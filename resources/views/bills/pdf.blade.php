@@ -6,45 +6,115 @@
     <link rel="stylesheet" href="{{ URL::asset('/css/pdf.css') }}">
 </head>
 <body ng-controller="AppController">
-<div id="main-bill" ng-controller="PdfController">
-    <div id="titulo-factura">
-        <h2>FACTURA</h2>
-    </div>
-    <div id="datos-personales">
-        <div id="datos-factura">
-            <p><strong>Número:</strong> <span>{{$bill->id}}</span></p>
-
-            <p><strong>Data:</strong>
-                <span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $bill->creation_date)[0])->format('d/m/Y') }}</span>
-            </p>
+<page size="A4">
+    <div id="main-bill" ng-controller="PdfController">
+        <div id="titulo-factura">
+            <h2>FACTURA</h2>
         </div>
-        <div id="datos-persona">
-            <p><strong>{{$billInfo['name']}}</strong></p>
+        <div id="datos-personales">
+            <div id="datos-factura">
+                <p><strong>Número:</strong> <span>{{$bill->id}}</span></p>
 
-            <p>{{$billInfo['address']}}</p>
+                <p><strong>Data:</strong>
+                    <span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $bill->creation_date)[0])->format('d/m/Y') }}</span>
+                </p>
+            </div>
+            <div id="datos-persona">
+                <p><strong>{{$billInfo['name']}}</strong></p>
 
-            <p>{{$billInfo['city']}}</p>
+                <p>{{$billInfo['address']}}</p>
 
-            <p><strong>{{$billInfo['dni']}}</strong></p>
+                <p>{{$billInfo['city']}}</p>
+
+                <p><strong>{{$billInfo['dni']}}</strong></p>
+            </div>
+            <div class="clearfix">
+
+            </div>
         </div>
-        <div class="clearfix">
-
+        <div id="datos-cliente">
+            @if ($bill->patient_id != null)
+                <p>
+                    <strong>Client:</strong>
+                    <span><strong>{{$bill->patient->name}} {{$bill->patient->surname}} {{$bill->patient->lastname}}</strong></span>
+                </p><p>
+                    <strong>Domicili:</strong> <span>{{$bill->patient->address}}</span>
+                </p><p>
+                    <strong>Ciutat:</strong> <span>{{$bill->patient->city}}</span>
+                </p>
+                <p>
+                    <strong>CIF:</strong> <span>{{$bill->patient->nif}}</span>
+                </p>
+            @endif
+            @if ($bill->client_id != null)
+                <p>
+                    <strong>Client:</strong>
+                    <span><strong>{{$bill->client->name}}</strong></span>
+                </p><p>
+                    <strong>Domicili:</strong> <span>{{$bill->client->address}}</span>
+                </p><p>
+                    <strong>Ciutat:</strong> <span>{{$bill->client->city}}</span>
+                </p>
+                <p>
+                    <strong>CIF:</strong> <span>{{$bill->client->cif}}</span>
+                </p>
+            @endif
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Codi</th>
+                <th>Servei/Concepte</th>
+                <th>Unitats</th>
+                <th>Preu unit.</th>
+                <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td>{{$bill->concept}}</td>
+                <td>{{$bill->qty}}</td>
+                <td>{{number_format($bill->price_per_unit, 2, ',', '.')}} &euro;</td>
+                <td>{{number_format(($bill->qty * $bill->price_per_unit), 2, ',', '.')}} &euro;</td>
+            </tr>
+            @for($i = 0; $i < 12; $i++)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            @endfor
+            </tbody>
+        </table>
+        <div id="datos-factura-total">
+            <div id="datos-pago">
+                <h3>Forma de pagament</h3>
+                <span>{{trans('models.Bill'.$bill->payment_method)}}</span>
+                @if($bill->payment_method == "bank_transfer")
+                    <span>{{base64_decode($billInfo['account'])}}</span>
+                @endif
+            </div>
+            <div id="datos-subtotal">
+                <strong>Subtotal</strong>
+                <span>{{number_format(($bill->qty * $bill->price_per_unit), 2, ',', '.')}} &euro;</span>
+            </div>
+            <div id="datos-descuento">
+                <strong>Descompte</strong>
+                <span>{{number_format(($bill->discount), 2, ',', '.')}} %</span>
+                <span>{{number_format((($bill->qty * $bill->price_per_unit) * $bill->discount) / 100, 2, ',', '.')}}
+                    &euro;</span>
+                <strong class="no_iva">{{trans('models.Billnoiva')}}</strong>
+                <span>{{number_format(($bill->qty * $bill->price_per_unit) - (($bill->qty * $bill->price_per_unit) * $bill->discount) / 100, 2, ',', '.')}} &euro;</span>
+            </div>
+            <div id="datos-vencimiento">
+                <h3>Venciment</h3>
+                <span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $bill->expiration_date)[0])->format('d/m/Y') }}</span>
+            </div>
         </div>
     </div>
-    <div id="datos-cliente">
-        @if ($bill->patient_id != null)
-            <p>
-                <strong>Client:</strong> <span>{{$bill->patient->name}} {{$bill->patient->surname}} {{$bill->patient->lastname}}</span>
-            </p><p>
-                <strong>Domicili:</strong> <span>{{$bill->patient->address}}</span>
-            </p><p>
-                <strong>Ciutat:</strong> <span>{{$bill->patient->city}}</span>
-            </p>
-            <p>
-                <strong>CIF:</strong> <span>{{$bill->patient->nif}}</span>
-            </p>
-        @endif
-    </div>
-</div>
+</page>
 </body>
 </html>
