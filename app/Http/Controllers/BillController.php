@@ -7,13 +7,15 @@ use App\Client;
 use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
+use Illuminate\Support\Facades\Response;
 
 class BillController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['generatePdf']]);
     }
 
     public function index()
@@ -117,7 +119,20 @@ class BillController extends Controller
 
     public function generatePdf($id)
     {
-        $bill = Bill::whereId($id)->firstOrFail();
+        $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
+        $config = $this->getConfig(new Request(), false);
+
+        /*return view('bills.pdf', [
+            'bill' => $bill,
+            'billInfo' => $config
+        ]);*/
+
+        $pdf = PDF::loadView('bills.pdf', [
+            'bill' => $bill,
+            'billInfo' => $config
+        ]);
+
+        return $pdf->stream();
     }
 
     private function pdf()

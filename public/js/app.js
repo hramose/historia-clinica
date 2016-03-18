@@ -427,7 +427,7 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
     $scope.show_amount_irpf = function (n1, n2) {
         if (n2.toString().indexOf(',') != -1)
             n2 = n2.toString().replace(',', '.');
-        $scope.bill.amount_irpf = (isNaN(n1) ? 0 : n1) *(isNaN(n2) ? 0 : n2) / 100;
+        $scope.bill.amount_irpf = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
         return $filter('currency')($scope.bill.amount_irpf.toFixed(2));
     };
 

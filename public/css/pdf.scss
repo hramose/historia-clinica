@@ -1,0 +1,66 @@
+#main-bill {
+  width: 100%;
+  font-family: Arial;
+  #titulo-factura {
+    border-top: 1px solid;
+    border-bottom: 2px solid;
+    h2 {
+      color: #0A8754;
+      padding: 0;
+      margin: 5px;
+    }
+  }
+  #datos-personales {
+    width: 100%;
+    display: block;
+    overflow: auto;
+    position: relative;
+    #datos-factura {
+      width: 50%;
+      float: left;
+      vertical-align: bottom;
+      position: absolute;
+      bottom: 0;
+      p {
+        width: 100%;
+        display: inline-block;
+        margin: 0;
+        strong {
+          color: #0A8754;
+          float: left;
+          width: 13%;
+          text-align: right;
+        }
+        span {
+          float: left;
+          width: 50%;
+          margin-left: 35px;
+        }
+      }
+    }
+    #datos-persona {
+      width: 100%;
+      float: left;
+      text-align: right;
+    }
+  }
+  #datos-cliente {
+    width: 100%;
+    p {
+      width: 100%;
+      display: inline-block;
+      margin: 0;
+      strong {
+        color: #0A8754;
+        float: left;
+        width: 6.5%;
+        text-align: right;
+      }
+      span {
+        float: left;
+        width: 50%;
+        margin-left: 35px;
+      }
+    }
+  }
+}
