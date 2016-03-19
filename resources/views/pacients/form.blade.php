@@ -28,6 +28,10 @@
             {!! Form::input('text', 'address', '', ['class'=> '', 'ng-model' => 'pacient.address']) !!}
         </section>
         <section>
+            <label>{{ trans('models.Pacientcity') }}</label>
+            {!! Form::input('text', 'city', '', ['class'=> '', 'ng-model' => 'pacient.city']) !!}
+        </section>
+        <section>
             <label>{{ trans('models.Pacientpostal_code') }}</label>
             {!! Form::input('text', 'postal_code', '', ['class'=> '', 'ng-model' => 'pacient.postal_code']) !!}
         </section>

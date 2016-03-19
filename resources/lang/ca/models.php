@@ -14,6 +14,7 @@ return array(
     'Pacientemail' => 'Adreça electrònica',
     'Pacientphone' => 'Telèfon',
     'Pacientaddress' => 'Adreça',
+    'Pacientcity' => 'Ciutat',
     'Pacientpostal_code' => 'Codi postal',
     'Pacientnif' => 'DNI/NIF/NIE',
     'Pacientgender' => 'Sexe',

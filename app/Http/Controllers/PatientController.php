@@ -59,19 +59,9 @@ class PatientController extends Controller
             'nif' => 'required|unique:patients,nif',
         ]);
 
-        if (!is_null(Patient::create([
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'lastname' => $request->input('lastname'),
-            'nif' => $request->input('nif'),
-            'gender' => $request->input('gender'),
-            'birth_date' => $request->input('birth_date'),
-            'age' => $request->input('age'),
-            'profession' => $request->input('profession'),
-            'hobbies' => $request->input('hobbies'),
-            'address' => $request->input('address'),
-        ]))
-        ) {
+        $patient = new Patient();
+        $patient->fill(Input::all());
+        if ($patient->save()) {
             Session::flash('alert', 'Pacient creat correctament');
             Session::flash('status', 'success');
             return redirect('pacients/llista');
