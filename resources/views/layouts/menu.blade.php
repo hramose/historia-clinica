@@ -9,7 +9,7 @@
         </a>
     </div>
     <div id="menu-user-info">
-        <p title="{{Auth::user()->name}}"><a href="{{URL::route('pacientsDades', Auth::user()->id)}}"><span class="circle-online"></span> {{Auth::user()->name}}</a></p>
+        <p title="{{Auth::user()->name}}"><a href="{{URL::route('userData', Auth::user()->id)}}"><span class="circle-online"></span> {{Auth::user()->name}}</a></p>
     </div>
     <ul class="metismenu" id="side-menu">
         <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user-md"></span> <span class="text">Pacients</span>
