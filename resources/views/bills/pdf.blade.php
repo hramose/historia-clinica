@@ -28,8 +28,8 @@
 
                 <p><strong>{{$billInfo['dni']}}</strong></p>
             </div>
-            <div class="clearfix">
-
+            <div id="imagotipo">
+                <p><img src="{{asset('img/logo-responsive.png')}}" alt=""></p>
             </div>
         </div>
         <div id="datos-cliente">
@@ -60,7 +60,7 @@
                 </p>
             @endif
         </div>
-        <table>
+        <table cellspacing="0">
             <thead>
             <tr>
                 <th>Codi</th>
@@ -78,8 +78,8 @@
                 <td>{{number_format($bill->price_per_unit, 2, ',', '.')}} &euro;</td>
                 <td>{{number_format(($bill->qty * $bill->price_per_unit), 2, ',', '.')}} &euro;</td>
             </tr>
-            @for($i = 0; $i < 12; $i++)
-                <tr>
+            @for($i = 0; $i < 11; $i++)
+                <tr class="no-ver">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -114,6 +114,7 @@
                 <span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $bill->expiration_date)[0])->format('d/m/Y') }}</span>
             </div>
         </div>
+        <div id="lopd">{!! trans('messages.bill_lopd') !!}</div>
     </div>
 </page>
 </body>

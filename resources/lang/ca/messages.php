@@ -40,4 +40,5 @@ return array(
     'empty_option_reviews_dates' => 'Selecciona una data anterior',
     'create_bill' => 'Crea factura',
     'update_bill' => 'Actualitzar factura',
+    'bill_lopd' => 'De conformitat amb el que estableix la Llei Orgànica 15/1999 de Protecció de Dades de Caràcter Personal, li informem que les seves dades personals proporcionades són confidencials i formen part d\'un fitxter automatizat sota la responsabilitat d\'Helena Cabo Santos, amb la finalitat d\'agilitzar la gestió i serveis contractats, així com proporcionar-li informació referent als nostres serveis, llevat manifestació contraria.<br>En qualsevol cas, té dret a exercir els drets d\'oposició, accés, rectificació i cancel·lació en l\'àmbit reconegut per la Llei Orgànica en Protecció de Dades 15/1999 de 13 de desembre, personalment al carrer Amadeu Torner, núm. 104, pis 1r 1a, 08902, Hospitalet de Llobregat.<br>Si en el termini de 30 dies no ens comunica el contrari, entendrem que les dades no han estat modificades, que es compromet a notificar-nos qualsevol variació i que tenim el consentiment per utilitzar-les a fi de poder fidelitzar la relació entre les parts.'
 );
