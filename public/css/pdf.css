@@ -163,6 +163,8 @@ body page[size="A4"] {
             width: 30%;
             padding-top: 12px; }
     body page[size="A4"] #main-bill #lopd {
-      font-size: 9.5px; }
+      font-size: 9.5px;
+      width: 100%;
+      clear: both; }
 
 /*# sourceMappingURL=pdf.css.map */
