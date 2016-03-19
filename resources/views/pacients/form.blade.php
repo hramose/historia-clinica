@@ -16,8 +16,20 @@
             {!! Form::input('text', 'lastname', '', ['class'=> '', 'ng-model' => 'pacient.lastname']) !!}
         </section>
         <section>
+            <label>{{ trans('models.Pacientemail') }}</label>
+            {!! Form::input('text', 'email', '', ['class'=> '', 'ng-model' => 'pacient.email']) !!}
+        </section>
+        <section>
+            <label>{{ trans('models.Pacientphone') }}</label>
+            {!! Form::input('text', 'phone', '', ['class'=> '', 'ng-model' => 'pacient.phone']) !!}
+        </section>
+        <section>
             <label>{{ trans('models.Pacientaddress') }}</label>
             {!! Form::input('text', 'address', '', ['class'=> '', 'ng-model' => 'pacient.address']) !!}
+        </section>
+        <section>
+            <label>{{ trans('models.Pacientpostal_code') }}</label>
+            {!! Form::input('text', 'postal_code', '', ['class'=> '', 'ng-model' => 'pacient.postal_code']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientnif') }}</label>
