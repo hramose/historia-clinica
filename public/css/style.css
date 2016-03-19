@@ -45,6 +45,9 @@ nav {
   nav #menu-user-info {
     text-align: center;
     color: #fff; }
+    nav #menu-user-info a {
+      text-decoration: none;
+      color: #fff; }
     nav #menu-user-info .circle-online {
       width: 8px;
       height: 8px;

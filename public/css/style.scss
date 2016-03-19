@@ -58,6 +58,10 @@ nav {
   #menu-user-info {
     text-align: center;
     color: #fff;
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
     .circle-online {
       width: 8px;
       height: 8px;
