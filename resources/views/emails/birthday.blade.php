@@ -15,7 +15,7 @@
                 'email' => $pacient->email,
                 'phone' => $pacient->phone,
                 'age' => $pacient->age + 1,
-                'date' => $date->format('d F')
+                'date' => $date->formatLocalized('%d de %B')
             ])
             }}
         </li>

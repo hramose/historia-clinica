@@ -58,6 +58,7 @@ class BirthdayCheck extends Command
         }
 
         if (count($pacientsBirthday) > 0) {
+            setlocale(LC_TIME, 'ca_ES.utf8');
             $data = [
                 'pacients' => $pacientsBirthday
             ];
