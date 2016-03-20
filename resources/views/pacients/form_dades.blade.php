@@ -16,12 +16,24 @@
             {!! Form::text('lastname', null, ['class'=> '', 'ng-model' => 'pacient.lastname']) !!}
         </section>
         <section>
-            <label>{{ trans('models.Pacientemail') }}</label>
-            {!! Form::text('email', null, ['class'=> '', 'ng-model' => 'pacient.email']) !!}
+            <label>{{ trans('models.Pacientbirth_date') }}</label>
+            {!! Form::text('birth_date', null, ['class'=> '', 'ng-model' => 'pacient.birth_date','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
+        </section>
+        <section>
+            <label>{{ trans('models.Pacientage') }}</label>
+            {!! Form::text('age', null, ['class'=> '', 'ng-model' => 'pacient.age']) !!}
+        </section>
+        <section>
+            <label>{{ trans('models.Pacientnif') }}</label>
+            {!! Form::text('nif', null, ['class'=> '', 'ng-model' => 'pacient.nif', 'required' => '']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientphone') }}</label>
             {!! Form::text('phone', null, ['class'=> '', 'ng-model' => 'pacient.phone']) !!}
+        </section>
+        <section>
+            <label>{{ trans('models.Pacientemail') }}</label>
+            {!! Form::text('email', null, ['class'=> '', 'ng-model' => 'pacient.email']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientaddress') }}</label>
@@ -36,20 +48,8 @@
             {!! Form::text('postal_code', null, ['class'=> '', 'ng-model' => 'pacient.postal_code']) !!}
         </section>
         <section>
-            <label>{{ trans('models.Pacientnif') }}</label>
-            {!! Form::text('nif', null, ['class'=> '', 'ng-model' => 'pacient.nif', 'required' => '']) !!}
-        </section>
-        <section>
             <label>{{ trans('models.Pacientgender') }}</label>
             {!! Form::select('gender', ['male' => trans('models.male'), 'female' => trans('models.female')], null, ['class'=> 'select', 'ng-model' => 'pacient.gender', 'placeholder' => trans('models.select_gender')]) !!}
-        </section>
-        <section>
-            <label>{{ trans('models.Pacientbirth_date') }}</label>
-            {!! Form::text('birth_date', null, ['class'=> '', 'ng-model' => 'pacient.birth_date','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
-        </section>
-        <section>
-            <label>{{ trans('models.Pacientage') }}</label>
-            {!! Form::text('age', null, ['class'=> '', 'ng-model' => 'pacient.age']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientprofession') }}</label>
