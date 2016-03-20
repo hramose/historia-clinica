@@ -21,6 +21,8 @@
                 <td>
                     <a title="Editar factura" href="{{ URL::route('mostrarBill', $bill->id) }}"><i
                                 class="fa fa-file-text"></i></a>
+                    <a title="Editar factura" href="{{ URL::route('billPdf', $bill->id) }}"><i
+                                class="fa fa-file-pdf-o"></i></a>
                 </td>
             </tr>
         @endforeach
