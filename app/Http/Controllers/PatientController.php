@@ -24,7 +24,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $pacients = Patient::paginate(15);
+        $pacients = Patient::orderBy('surname', 'ASC')->paginate(15);
         $pacients->setPath('llista');
         return view('pacients/index', [
             'lang' => 'ca',
