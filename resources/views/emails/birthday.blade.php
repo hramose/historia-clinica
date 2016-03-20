@@ -8,12 +8,14 @@
 <ul>
     @foreach($pacients as $pacient)
         <li>
-            {{ $date =  new \Carbon\Carbon($pacient->birth_date)}}
+            {{--*/ @$date =  new \Carbon\Carbon($pacient->birth_date) /*--}}
             {{
             trans('messages.pacient_line_birthday', [
                 'full_name' => $pacient->full_name,
+                'email' => $pacient->email,
+                'phone' => $pacient->phone,
                 'age' => $pacient->age + 1,
-                'date' => $date->format('d/m')
+                'date' => $date->format('d F')
             ])
             }}
         </li>

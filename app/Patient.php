@@ -26,6 +26,11 @@ class Patient extends Model
         $this->attributes['birth_date'] = $date ? Carbon::createFromFormat('d/m/Y', $date) : null;
     }
 
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname . ' ' . $this->lastname;
+    }
+
     /*public function getBirthDateAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');

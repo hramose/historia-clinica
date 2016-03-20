@@ -57,15 +57,17 @@ class BirthdayCheck extends Command
             }
         }
 
-        $data = [
-            'pacients' => $pacientsBirthday
-        ];
+        if (count($pacientsBirthday) > 0) {
+            $data = [
+                'pacients' => $pacientsBirthday
+            ];
 
-        Mail::send('emails.birthday', $data, function (Message $message) {
-            $message->from('fisioterapia@hcabosantos.cat', 'Cercador d\'aniversaris HCaboSantos.cat');
-            $message->to('suport@hcabosantos.cat', 'Fisioteràpia HCaboSantos.cat')
-                ->subject(trans('messages.pacients_birthday_subject'));
-        });
+            Mail::send('emails.birthday', $data, function (Message $message) {
+                $message->from('fisioterapia@hcabosantos.cat', 'Cercador d\'aniversaris HCaboSantos.cat');
+                $message->to('fisioterapia@hcabosantos.cat', 'Fisioteràpia HCaboSantos.cat')
+                    ->subject(trans('messages.pacients_birthday_subject'));
+            });
+        }
 
         $this->comment(PHP_EOL . $date->format("d/m/Y H:i:s") . ' Cumpleaños checkeados' . PHP_EOL);
     }
