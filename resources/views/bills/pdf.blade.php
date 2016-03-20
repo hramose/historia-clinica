@@ -106,12 +106,39 @@
                 <span>{{number_format(($bill->discount), 2, ',', '.')}} %</span>
                 <span>{{number_format((($bill->qty * $bill->price_per_unit) * $bill->discount) / 100, 2, ',', '.')}}
                     &euro;</span>
-                <strong class="no_iva">{{trans('models.Billnoiva')}}</strong>
+                <strong class="no_iva">{{trans('models.Billwoiva')}}</strong>
                 <span>{{number_format(($bill->qty * $bill->price_per_unit) - (($bill->qty * $bill->price_per_unit) * $bill->discount) / 100, 2, ',', '.')}} &euro;</span>
             </div>
             <div id="datos-vencimiento">
                 <h3>Venciment</h3>
                 <span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', explode(' ', $bill->expiration_date)[0])->format('d/m/Y') }}</span>
+            </div>
+            <div id="datos-irpf">
+                <p>
+                    <span>
+                        <strong>
+                            {{trans('models.Billirpf')}} {{number_format(($bill->qty * $bill->price_per_unit), 2, ',', '.')}} &euro;
+                        </strong>
+                    </span>
+                    <span>
+                       <strong>
+                           {{number_format($bill->irpf, 2, ',', '.')}}%
+                       </strong>
+                    </span>
+                    <span>
+                        -{{number_format((($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100, 2, ',', '.')}} &euro;
+                    </span>
+                </p>
+                <span id="bill-no-iva">{{trans('models.Billnoiva')}}</span>
+            </div>
+            <div id="datos-vacio">
+                &nbsp;
+            </div>
+            <div id="datos-total">
+                <strong>{{trans('models.Billtotalbill')}}</strong>
+                <span>
+                    {{number_format($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100, 2, ',', '.')}} &euro;
+                </span>
             </div>
         </div>
         <div id="lopd">{!! trans('messages.bill_lopd') !!}</div>

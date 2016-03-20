@@ -46,6 +46,7 @@ return array(
     'Billnoiva' => 'Factura exempta de I.V.A. segons Art. 20 uno.3 de la Llei del IVA',
     'Billcash' => 'Efectiu',
     'Billbank_transfer' => 'Transferència al compte IBAN',
+    'Billtotalbill' => 'TOTAL FACTURA',
     'Clientname' => 'Client',
     'Clientaddress' => 'Domicili',
     'Clientcity' => 'Ciutat',
