@@ -11,13 +11,16 @@ app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $ht
     $scope.patients = [];
 
     $scope.underline_word = function (word) {
-        var regex = new RegExp($scope.client.name, 'gi');
+        var regex = new RegExp($scope.patient, 'gi');
         var t = word.replace(regex, '<strong>$&</strong>');
         return $sce.trustAsHtml(t);
     };
 
     $scope.search_pacients = function () {
-        if ($scope.patient == '') return;
+        if ($scope.patient == '') {
+            $scope.patients = [];
+            return;
+        }
         $http({
             method: 'POST',
             url: base_url + '/pacients/s/' + $scope.patient
