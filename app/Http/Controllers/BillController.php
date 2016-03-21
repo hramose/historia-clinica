@@ -122,10 +122,10 @@ class BillController extends Controller
         $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
         $config = $this->getConfig(new Request(), false);
 
-        return view('bills.pdf', [
+       /* return view('bills.pdf', [
             'bill' => $bill,
             'billInfo' => $config
-        ]);
+        ]);*/
 
         $pdf = PDF::loadView('bills.pdf', [
             'bill' => $bill,

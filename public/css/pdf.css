@@ -4,7 +4,8 @@ body page[size="A4"] {
   height: 29.7cm;
   display: block;
   margin: 0 auto;
-  margin-bottom: 0.5cm; }
+  margin-bottom: 0.5cm;
+  position: relative; }
   body page[size="A4"] #main-bill {
     width: 100%;
     font-family: Arial; }
@@ -128,7 +129,8 @@ body page[size="A4"] {
       body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento {
         float: left;
         width: 32%;
-        border: 1px solid; }
+        border: 1px solid;
+        border-top: inherit; }
         body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento h3 {
           padding: 5px 0 0 4px;
           margin: 0; }
@@ -142,6 +144,7 @@ body page[size="A4"] {
       body page[size="A4"] #main-bill #datos-factura-total #datos-irpf {
         width: 67.46%;
         border: 1px solid;
+        border-top: inherit;
         float: left; }
         body page[size="A4"] #main-bill #datos-factura-total #datos-irpf p {
           margin-top: 20px;
@@ -164,10 +167,12 @@ body page[size="A4"] {
           display: inline-block;
           width: 100%;
           font-size: 12px;
-          padding-bottom: 10px; }
+          padding-bottom: 5px;
+          padding-left: 6px; }
       body page[size="A4"] #main-bill #datos-factura-total #datos-descuento {
         width: 66.9%;
         border: 1px solid;
+        border-top: inherit;
         padding: 5px 5px 5px 0;
         float: right;
         max-height: 51px;
@@ -191,10 +196,15 @@ body page[size="A4"] {
     body page[size="A4"] #main-bill #datos-vacio {
       width: 32%;
       border: 1px solid;
-      float: left; }
+      border-top: inherit;
+      float: left;
+      position: relative;
+      height: 59px;
+      top: -38px; }
     body page[size="A4"] #main-bill #datos-total {
       width: 67.46%;
       border: 1px solid;
+      border-top: inherit;
       float: left;
       text-align: right;
       background: #40A2C8;
@@ -209,6 +219,9 @@ body page[size="A4"] {
     body page[size="A4"] #main-bill #lopd {
       font-size: 9.5px;
       width: 100%;
-      clear: both; }
+      clear: both;
+      position: absolute;
+      bottom: 0;
+      text-align: justify; }
 
 /*# sourceMappingURL=pdf.css.map */

@@ -78,7 +78,7 @@
                 <td>{{number_format($bill->price_per_unit, 2, ',', '.')}} &euro;</td>
                 <td>{{number_format(($bill->qty * $bill->price_per_unit), 2, ',', '.')}} &euro;</td>
             </tr>
-            @for($i = 0; $i < 11; $i++)
+            @for($i = 0; $i < 10; $i++)
                 <tr class="no-ver">
                     <td></td>
                     <td></td>
