@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
-    protected $fillable = array('name', 'surname', 'lastname', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address');
+    protected $fillable = array('name', 'surname', 'lastname', 'email', 'phone', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city', 'postal_code');
 
     protected $dates = ['birth_date'];
 
@@ -24,6 +24,11 @@ class Patient extends Model
     public function setBirthDateAttribute($date)
     {
         $this->attributes['birth_date'] = $date ? Carbon::createFromFormat('d/m/Y', $date) : null;
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname . ' ' . $this->lastname;
     }
 
     /*public function getBirthDateAttribute($date)

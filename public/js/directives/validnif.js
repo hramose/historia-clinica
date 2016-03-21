@@ -31,7 +31,7 @@ angular.module('app')
                                 break;
                         }
                         value = niePrefix + value.substr(1);
-                        var valid = false;
+                        valid = false;
                         if (validRegex.test(value)) {
                             valid = (value.charAt(8) === dniLetters.charAt(parseInt(value, 10) % 23));
                         }

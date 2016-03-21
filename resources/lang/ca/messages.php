@@ -36,5 +36,8 @@ return array(
     'lista_backups' => 'Llista de backups de la base de dades',
     'email_backup' => 'Nou backup de la base de dades generat',
     'email_backup_msg' => 'Al seguent arxiu tens la còpia de seguretat de la base de dades generada el dia: :date',
-    'search_patient' => 'Cerca pacient'
+    'search_patient' => 'Cerca pacient',
+    'pacients_birthday_subject' => 'Propers aniversaris de pacients',
+    'pacients_birthday' => 'Propers aniversaris de pacients: ',
+    'pacient_line_birthday' => ':full_name (:email) amb núm de telèfon :phone complirà :age anys el proper dia :date'
 );
