@@ -52,6 +52,13 @@
                         <label>{{trans('models.Reviewmotiu_consulta') }}:</label>
                         <textarea name="review[motiu_consulta]" ng-model="review.review.motiu_consulta"></textarea>
                     </section>
+                    <section>
+                        <label>{{trans('models.Reviewbalançarticular') }}:</label>
+                        <div class="container-img-click-bart">
+                            <img id="balancarticular_img" src="{{asset('img/human-body.png')}}" alt="">
+                        </div>
+                        <input type="hidden" name="review[balanc_articular]" ng-model="review.review.balanc_articular">
+                    </section>
                     <section class="send-button">
                         {!! Form::button(trans('messages.save_review'),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
                     </section>
@@ -84,5 +91,6 @@
         </div>
         {!! Form::close() !!}
     </column>
+    {!! Html::script('bower_components/Snap.svg/dist/snap.svg-min.js') !!}
 
 @endsection

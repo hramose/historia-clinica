@@ -83,7 +83,9 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         date: '',
         review: {
             antecedents: '',
-            motiu_consulta: ''
+            motiu_consulta: '',
+            motiu_consulta: '',
+            balanc_articular: []
         },
         id: '',
         patient_id: ''
@@ -106,6 +108,23 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
         $patient.html('');
     }
+
+    var $container_img_bart = $('.container-img-click-bart');
+    $container_img_bart.click(function (e) {
+        var elm = $(this);
+        var xPos = e.pageX - elm.offset().left - 2;
+        var yPos = e.pageY - elm.offset().top  - 2;
+
+        var img = $('<img />');
+        img.attr('src', base_url + '/img/red-dot-high.png');
+        img.css({
+            'width': '8px',
+            'left': xPos,
+            'top':yPos,
+            'position': 'absolute'
+        });
+        $(this).append(img);
+    });
 
     $scope.today_date = function () {
         /*if ($scope.review.id == '')*/
@@ -197,15 +216,13 @@ app.controller('SearchController', function ($scope, $filter, $timeout, $http, $
     $scope.widthSearchInput = '100px';
 
     $timeout(function () {
-
+        var $term = $('input[name="term"]');
+        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
     });
 
     angular.element($window).bind('resize', function () {
         var $term = $('input[name="term"]');
         $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
-        var $term = $('input[name="term"]');
-        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
-        console.log('resize');
     });
 
     $scope.search_pacient = function () {

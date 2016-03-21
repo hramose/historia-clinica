@@ -202,6 +202,8 @@ nav {
         text-align: inherit; }
     .wrap-content #main-page #layout12-main #review-content form textarea {
       height: 60px; }
+    .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart {
+      position: relative; }
     .wrap-content #main-page #layout12-main #review-content .separation {
       margin-left: 10px; }
     .wrap-content #main-page #layout12-main #buscador-content {

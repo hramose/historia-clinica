@@ -30,6 +30,7 @@ return array(
     'Reviewautonom' => 'Autònom',
     'Reviewantecedents' => 'Antecedents Patològics',
     'Reviewmotiu_consulta' => 'Motiu consulta',
+    'Reviewbalançarticular' => 'Balanç articular',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billcreationdate' => 'Data',
