@@ -111,19 +111,26 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
 
     var $container_img_bart = $('.container-img-click-bart');
     $container_img_bart.click(function (e) {
-        var elm = $(this);
-        var xPos = e.pageX - elm.offset().left - 2;
-        var yPos = e.pageY - elm.offset().top  - 2;
+        console.log(e.target);
+        var t = $(e.target);
+        if (t.hasClass('dot')) {
+            t.remove();
+        } else {
+            var elm = $(this);
+            var xPos = e.pageX - elm.offset().left - 2;
+            var yPos = e.pageY - elm.offset().top - 2;
 
-        var img = $('<img />');
-        img.attr('src', base_url + '/img/red-dot-high.png');
-        img.css({
-            'width': '8px',
-            'left': xPos,
-            'top':yPos,
-            'position': 'absolute'
-        });
-        $(this).append(img);
+            var img = $('<img />');
+            img.attr('src', base_url + '/img/red-dot-high.png');
+            img.attr('class', 'high-dot dot');
+            img.css({
+                'width': '8px',
+                'left': xPos,
+                'top': yPos,
+                'position': 'absolute'
+            });
+            $(this).append(img);
+        }
     });
 
     $scope.today_date = function () {
