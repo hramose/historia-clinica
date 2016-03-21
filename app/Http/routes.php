@@ -99,10 +99,10 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'BackupController@listBackups'
     ]);
 
-   /* Route::post('backup/decrypt_bp', [
-        'as' => 'decryptBackup',
-        'uses' => 'BackupController@decryptBackup'
-    ]);*/
+    /* Route::post('backup/decrypt_bp', [
+         'as' => 'decryptBackup',
+         'uses' => 'BackupController@decryptBackup'
+     ]);*/
 
     Route::group(['prefix' => 'pacients'], function () {
         Route::get('/', [
@@ -138,6 +138,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
         Route::get('/eliminar/{id}', [
             'as' => 'pacientsDelete',
             'uses' => 'PatientController@destroy'
+        ]);
+
+        Route::post('/s/{term}', [
+            'as' => 'pacientsListFront',
+            'uses' => 'PatientController@listaFront'
         ]);
     });
 

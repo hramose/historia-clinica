@@ -39,5 +39,6 @@ return array(
     'search_patient' => 'Cerca pacient',
     'pacients_birthday_subject' => 'Propers aniversaris de pacients',
     'pacients_birthday' => 'Propers aniversaris de pacients: ',
-    'pacient_line_birthday' => ':full_name (:email) amb núm de telèfon :phone complirà :age anys el proper dia :date'
+    'pacient_line_birthday' => ':full_name (:email) amb núm de telèfon :phone complirà :age anys el proper dia :date',
+    'patient_seeker' => 'Cercador de pacients'
 );

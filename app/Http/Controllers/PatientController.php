@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Patient;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -135,5 +134,11 @@ class PatientController extends Controller
         Session::flash('alert', 'Pacient eliminat correctament');
         Session::flash('status', 'success');
         return redirect('pacients/llista');
+    }
+
+    public function listaFront($term)
+    {
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->get();
+        echo json_encode($patients);
     }
 }

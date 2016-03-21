@@ -7,6 +7,29 @@ app.controller('AppController', function ($scope) {
 
 });
 
+app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $http) {
+    $scope.patients = [];
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.client.name, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.search_pacients = function () {
+        if ($scope.patient == '') return;
+        $http({
+            method: 'POST',
+            url: base_url + '/pacients/s/' + $scope.patient
+        }).then(function mySucces(response) {
+            $scope.patients = response.data;
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+
+});
+
 app.controller('UsersController', function ($scope, $filter) {
     $scope.user = {};
 
@@ -150,7 +173,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
 
     };
 
-    $scope.print = function() {
+    $scope.print = function () {
         $window.print();
     };
 });

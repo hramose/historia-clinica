@@ -1,4 +1,4 @@
-/*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 /*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
 body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
@@ -106,6 +106,8 @@ nav {
       display: none; }
     nav.closed #menu-header .responsive {
       display: block; }
+    nav.closed #menu-user-info .full-name {
+      display: none; }
     nav.closed .metismenu li {
       font-size: 18px;
       /*&:hover {
@@ -226,6 +228,49 @@ nav {
       display: table; }
       .wrap-content #main-page .list-backups li a {
         text-decoration: none; }
+    .wrap-content #main-page #grid-shortcuts {
+      width: 100%;
+      padding: 25px; }
+      .wrap-content #main-page #grid-shortcuts .box {
+        width: 33%;
+        border-radius: 2px;
+        border: 1px solid #b3b3b3;
+        overflow: hidden;
+        min-height: 250px; }
+        .wrap-content #main-page #grid-shortcuts .box h4 {
+          font-family: Montserrat, sans-serif;
+          background: #e0e0e0;
+          padding: 15px; }
+        .wrap-content #main-page #grid-shortcuts .box .content {
+          padding: 10px; }
+          .wrap-content #main-page #grid-shortcuts .box .content input {
+            width: 100%; }
+          .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul {
+            list-style: none;
+            margin: 5px 0 0 0; }
+            .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li {
+              height: 30px;
+              border-left: 3px solid #e0e0e0;
+              margin-bottom: 5px;
+              padding-left: 10px;
+              cursor: pointer; }
+              .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li:hover {
+                border-color: #4392B2; }
+              .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span {
+                display: inline-block;
+                vertical-align: sub;
+                float: left;
+                width: 63%; }
+                .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span.actions {
+                  float: left;
+                  width: 37%;
+                  text-align: right;
+                  padding-right: 5px; }
+                  .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span.actions a {
+                    text-decoration: none;
+                    color: #c9c9c9; }
+                    .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span.actions a:hover {
+                      color: #4392B2; }
 
 #footer {
   padding: 48px;

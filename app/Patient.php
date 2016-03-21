@@ -11,6 +11,8 @@ class Patient extends Model
 
     protected $dates = ['birth_date'];
 
+    protected $appends = ['full_name'];
+
     public function visits()
     {
         return $this->hasMany('App\Visit', 'patient_id');
