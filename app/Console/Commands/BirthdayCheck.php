@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Patient;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Mail\Message;
@@ -48,12 +47,14 @@ class BirthdayCheck extends Command
 
         foreach ($pacients as $pacient) {
             $birthDate = explode('-', $pacient->birth_date);
-            $birthDate[0] = date('Y');
-            $birthDate = implode('-', $birthDate);
-            $birthDate = new Carbon($birthDate);
-            $days = $date->diffInDays($birthDate, false);
-            if ($days == 5) {
-                $pacientsBirthday[] = $pacient;
+            if ($birthDate[0] != '') {
+                $birthDate[0] = date('Y');
+                $birthDate = implode('-', $birthDate);
+                $birthDate = new Carbon($birthDate);
+                $days = $date->diffInDays($birthDate, false);
+                if ($days == 5) {
+                    $pacientsBirthday[] = $pacient;
+                }
             }
         }
 
@@ -68,8 +69,16 @@ class BirthdayCheck extends Command
                 $message->to('fisioterapia@hcabosantos.cat', 'Fisioteràpia HCaboSantos.cat')
                     ->subject(trans('messages.pacients_birthday_subject'));
             });
+
+            $stringCumpleaños = "";
+            foreach ($pacientsBirthday as $pacient) {
+                $date = new \Carbon\Carbon($pacient->birth_date);
+                $age = $pacient->age + 1;
+                $stringCumpleaños .= "- {$pacient->full_name} cumple años el {$date->formatLocalized('%d de %B')} serán {$age} años.\n";
+            }
+            $this->comment(PHP_EOL . $stringCumpleaños);
         }
 
-        $this->comment(PHP_EOL . $date->format("d/m/Y H:i:s") . ' Cumpleaños checkeados' . PHP_EOL);
+        $this->comment(PHP_EOL . $date->format("d/m/Y H:i:s") . ' Fin Cumpleaños checkeados' . PHP_EOL);
     }
 }

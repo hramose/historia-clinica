@@ -14,7 +14,9 @@ class UpdateClientsAddCityTable extends Migration
     {
 
         Schema::table('patients', function (Blueprint $table) {
-            $table->string('city')->after('address');
+            if (!Schema::hasColumn('patients', 'city')) {
+                $table->string('city')->after('address');
+            }
         });
     }
 
