@@ -7,3 +7,4 @@
 {!! Html::script('js/app.js') !!}
 {!! Html::script('js/directives/validnif.js') !!}
 {!! Html::script('js/moment-with-locales.js') !!}
+{!! Html::script('js/jquery.imagemapster.js') !!}

@@ -286,52 +286,17 @@ nav {
           textarea {
             height: 60px;
           }
-          .container-img-click-bart {
+          .container-img-click-lart {
             position: relative;
             .seleccion-nivel {
-              .dot {
-                background: red;
+              img {
                 width: 16px;
-                border-radius: 50%;
-                display: inline-block;
                 height: 16px;
-                &.low-dot {
-                  border: 1px solid red;
-                  background: transparent !important;
-                }
-                &.medium-dot {
-                  border: 1px solid red;
-                  background: transparent !important;
-                  &:after {
-                    content: ' ';
-                    border-bottom: 1px solid red;
-                    width: 17px;
-                    -webkit-transform: translateY(6px) translateX(-2px) rotate(142deg);
-                    position: absolute;
-                  }
-                }
+                display: inline-block;
               }
             }
-            .dot {
-              width: 6px;
-              border-radius: 50%;
-              height: 6px;
-              &.low {
-                border: 1px solid red;
-                background: transparent !important;
-              }
-              &.medium {
-                border: 1px solid red;
-                background: transparent !important;
-                &:after {
-                  content: ' ';
-                  border-bottom: 0.5px solid red;
-                  width: 5px;
-                  -webkit-transform: translateY(2px) translateX(-1px) rotate(144deg);
-                  position: absolute;
-                }
-              }
-              &.high {
+            map {
+              area {
                 background: red;
               }
             }

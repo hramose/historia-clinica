@@ -93,16 +93,10 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.dates = [];
     $scope.patient = [];
     $scope.selected_dot = '';
-    $scope.dot = {
-        low: 'low',
-        medium: 'medium',
-        high: 'high',
-    };
 
     var $review = $('#review');
     if ($review.length && $review.html().trim() != '[]') {
         $scope.review = JSON.parse($review.html());
-        var str = $scope.review.date.replace(/-/g, '/');
         $scope.review.date = '';
         $review.html('');
     }
@@ -114,48 +108,50 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
         $patient.html('');
     }
-
-    var $container_img_bart = $('.container-img-click-bart');
-    $container_img_bart.click(function (e) {
-        var t = $(e.target);
-        if ($scope.selected_dot == '') {
-            $scope.show_msg = true;
-            $scope.$apply();
-        } else {
-            $scope.show_msg = false;
-            $scope.$apply();
-            if (!t.hasClass('seleccion-nivel') && !t.parent().hasClass('seleccion-nivel')) {
-                if (t.hasClass('dot')) {
-                    t.remove();
-                } else {
-                    var elm = $(this);
-                    var xPos = e.pageX - elm.offset().left - 4;
-                    var yPos = e.pageY - elm.offset().top - 4;
-
-                    var span = $('<span />');
-                    span.attr('class', $scope.selected_dot + ' dot');
-                    span.css({
-                        'width': '6px',
-                        'left': xPos,
-                        'top': yPos,
-                        'position': 'absolute'
-                    });
-                    $(this).append(span);
-                    var obj = {
-                        x: xPos,
-                        y: yPos,
-                        level: $scope.selected_dot
-                    };
-                    console.log($scope.review);
-                    $scope.review.balanc_articular.dots.push(obj);
-                    console.log($scope.review.balanc_articular.dots);
-                }
+    var profiles = [
+        {
+            areas: "md",
+            options: {
+                fillColor: '0000ff'
             }
+        },
+        {
+            areas: "me",
+            options: {
+                fillColor: '00ff00'
+            }
+        }
+    ];
+    var image = $('img#human_body_img');
+    image.mapster({
+        mapKey: 'body_part',
+        fillColor: 'F92525',
+        onClick: function (e) {
+            if ($scope.selected_dot == 'low') {
+                image.mapster('set', true, e.key, {
+                    stroke: 'F92525',
+                    fill: false
+                });
+            } else if ($scope.selected_dot == 'medium') {
+                image.mapster('set', true, e.key, {
+                    fillColor: '77cdaa',
+                });
+            }
+            else if ($scope.selected_dot == 'high') {
+                image.mapster('set', true, e.key, {
+                    fillColor: 'F92525',
+                });
+            } else {
+                image.mapster('set', false);
+                $scope.show_msg = true;
+                $scope.$apply();
+            }
+            return false;
         }
     });
 
     $scope.set_selected_dot = function (dot) {
-        $scope.selected_dot = $scope.dot[dot];
+        $scope.selected_dot = dot;
     };
 
     $scope.today_date = function () {

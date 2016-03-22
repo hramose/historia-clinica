@@ -53,15 +53,35 @@
                         <textarea name="review[motiu_consulta]" ng-model="review.review.motiu_consulta"></textarea>
                     </section>
                     <section>
-                        <label>{{trans('models.Reviewbalançarticular') }}:</label>
+                        <label>{{trans('models.Reviewlimitarticular') }}:</label>
 
-                        <div class="container-img-click-bart">
+                        <div class="container-img-click-lart">
                             <div class="seleccion-nivel">
-                                Lleu <span ng-click="set_selected_dot('low')" class="dot low-dot"></span>
-                                Moderat <span ng-click="set_selected_dot('medium')" class="dot medium-dot"></span>
-                                Greu <span ng-click="set_selected_dot('high')" class="dot high-dot"></span>
+                                Lleu <img ng-src="{{asset('img/dot-low.png')}}" ng-click="set_selected_dot('low')"
+                                          class="low-dot"/>
+                                Moderat <img ng-src="{{asset('img/dot-medium.png')}}"
+                                             ng-click="set_selected_dot('medium')" class="medium-dot"/>
+                                Greu <img ng-src="{{asset('img/dot-high.png')}}" ng-click="set_selected_dot('high')"
+                                          class="high-dot"/>
                             </div>
-                            <img id="balancarticular_img" src="{{asset('img/human-body.png')}}" alt="">
+                            <img id="human_body_img" usemap="#human_body" src="{{asset('img/human-body.png')}}" alt="">
+                            <map id="human_body_image_map" name="human_body">
+                                <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title="" coords="85,113,16" href="#"/>
+                                <area body_part="ee" full="Espatlla esquerra"shape="circle" alt="" title="" coords="223,113,16" href="#"/>
+                                <area body_part="p" full="Pit" shape="circle" alt="" title="" coords="156,165,15" href="#"/>
+                                <area body_part="bd" shape="circle" alt="" title="" coords="67,216,16" href="#"/>
+                                <area body_part="be" shape="circle" alt="" title="" coords="240,217,16" href="#"/>
+                                <area body_part="pi" shape="circle" alt="" title="" coords="154,255,15" href="#"/>
+                                <area body_part="zp" shape="circle" alt="" title="" coords="156,338,16" href="#"/>
+                                <area body_part="md" shape="circle" alt="" title="" coords="46,338,16" href="#"/>
+                                <area body_part="me" shape="circle" alt="" title="" coords="262,340,16" href="#"/>
+                                <area body_part="mud" shape="circle" alt="" title="" coords="95,372,16" href="#"/>
+                                <area body_part="mue" shape="circle" alt="" title="" coords="213,375,16" href="#"/>
+                                <area body_part="rd" shape="circle" alt="" title="" coords="102,481,16" href="#"/>
+                                <area body_part="re" shape="circle" alt="" title="" coords="210,482,16" href="#"/>
+                                <area body_part="pd" shape="circle" alt="" title="" coords="119,603,16" href="#"/>
+                                <area body_part="pe" shape="circle" alt="" title="" coords="190,603,16" href="#"/>
+                            </map>
                         </div>
                         <span ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
                         <input type="hidden" name="review[balanc_articular]" ng-model="review.review.balanc_articular">

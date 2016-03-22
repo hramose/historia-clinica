@@ -31,6 +31,7 @@ return array(
     'Reviewantecedents' => 'Antecedents Patològics',
     'Reviewmotiu_consulta' => 'Motiu consulta',
     'Reviewbalançarticular' => 'Balanç articular',
+    'Reviewlimitarticular' => 'Limitació articular',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billcreationdate' => 'Data',
