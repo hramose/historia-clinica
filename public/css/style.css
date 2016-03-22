@@ -204,6 +204,42 @@ nav {
       height: 60px; }
     .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart {
       position: relative; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .seleccion-nivel .dot {
+        background: red;
+        width: 16px;
+        border-radius: 50%;
+        display: inline-block;
+        height: 16px; }
+        .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .seleccion-nivel .dot.low-dot {
+          border: 1px solid red;
+          background: transparent !important; }
+        .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .seleccion-nivel .dot.medium-dot {
+          border: 1px solid red;
+          background: transparent !important; }
+          .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .seleccion-nivel .dot.medium-dot:after {
+            content: ' ';
+            border-bottom: 1px solid red;
+            width: 17px;
+            -webkit-transform: translateY(6px) translateX(-2px) rotate(142deg);
+            position: absolute; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .dot {
+        width: 6px;
+        border-radius: 50%;
+        height: 6px; }
+        .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .dot.low {
+          border: 1px solid red;
+          background: transparent !important; }
+        .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .dot.medium {
+          border: 1px solid red;
+          background: transparent !important; }
+          .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .dot.medium:after {
+            content: ' ';
+            border-bottom: 0.5px solid red;
+            width: 5px;
+            -webkit-transform: translateY(2px) translateX(-1px) rotate(144deg);
+            position: absolute; }
+        .wrap-content #main-page #layout12-main #review-content form .container-img-click-bart .dot.high {
+          background: red; }
     .wrap-content #main-page #layout12-main #review-content .separation {
       margin-left: 10px; }
     .wrap-content #main-page #layout12-main #buscador-content {

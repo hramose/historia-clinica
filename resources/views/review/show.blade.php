@@ -54,9 +54,16 @@
                     </section>
                     <section>
                         <label>{{trans('models.Reviewbalançarticular') }}:</label>
+
                         <div class="container-img-click-bart">
+                            <div class="seleccion-nivel">
+                                Lleu <span ng-click="set_selected_dot('low')" class="dot low-dot"></span>
+                                Moderat <span ng-click="set_selected_dot('medium')" class="dot medium-dot"></span>
+                                Greu <span ng-click="set_selected_dot('high')" class="dot high-dot"></span>
+                            </div>
                             <img id="balancarticular_img" src="{{asset('img/human-body.png')}}" alt="">
                         </div>
+                        <span ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
                         <input type="hidden" name="review[balanc_articular]" ng-model="review.review.balanc_articular">
                     </section>
                     <section class="send-button">
@@ -91,6 +98,4 @@
         </div>
         {!! Form::close() !!}
     </column>
-    {!! Html::script('bower_components/Snap.svg/dist/snap.svg-min.js') !!}
-
 @endsection

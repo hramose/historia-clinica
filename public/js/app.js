@@ -79,19 +79,25 @@ app.controller('FlashController', function ($scope, $timeout) {
 app.controller('ReviewController', function ($scope, $filter, $timeout, $window) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
+    $scope.show_msg = false;
     $scope.review = {
         date: '',
         review: {
             antecedents: '',
             motiu_consulta: '',
-            motiu_consulta: '',
-            balanc_articular: []
+            balanc_articular: {dots: []}
         },
         id: '',
         patient_id: ''
     };
     $scope.dates = [];
     $scope.patient = [];
+    $scope.selected_dot = '';
+    $scope.dot = {
+        low: 'low',
+        medium: 'medium',
+        high: 'high',
+    };
 
     var $review = $('#review');
     if ($review.length && $review.html().trim() != '[]') {
@@ -111,27 +117,46 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
 
     var $container_img_bart = $('.container-img-click-bart');
     $container_img_bart.click(function (e) {
-        console.log(e.target);
         var t = $(e.target);
-        if (t.hasClass('dot')) {
-            t.remove();
+        if ($scope.selected_dot == '') {
+            $scope.show_msg = true;
+            $scope.$apply();
         } else {
-            var elm = $(this);
-            var xPos = e.pageX - elm.offset().left - 2;
-            var yPos = e.pageY - elm.offset().top - 2;
+            $scope.show_msg = false;
+            $scope.$apply();
+            if (!t.hasClass('seleccion-nivel') && !t.parent().hasClass('seleccion-nivel')) {
+                if (t.hasClass('dot')) {
+                    t.remove();
+                } else {
+                    var elm = $(this);
+                    var xPos = e.pageX - elm.offset().left - 4;
+                    var yPos = e.pageY - elm.offset().top - 4;
 
-            var img = $('<img />');
-            img.attr('src', base_url + '/img/red-dot-high.png');
-            img.attr('class', 'high-dot dot');
-            img.css({
-                'width': '8px',
-                'left': xPos,
-                'top': yPos,
-                'position': 'absolute'
-            });
-            $(this).append(img);
+                    var span = $('<span />');
+                    span.attr('class', $scope.selected_dot + ' dot');
+                    span.css({
+                        'width': '6px',
+                        'left': xPos,
+                        'top': yPos,
+                        'position': 'absolute'
+                    });
+                    $(this).append(span);
+                    var obj = {
+                        x: xPos,
+                        y: yPos,
+                        level: $scope.selected_dot
+                    };
+                    console.log($scope.review);
+                    $scope.review.balanc_articular.dots.push(obj);
+                    console.log($scope.review.balanc_articular.dots);
+                }
+            }
         }
     });
+
+    $scope.set_selected_dot = function (dot) {
+        $scope.selected_dot = $scope.dot[dot];
+    };
 
     $scope.today_date = function () {
         /*if ($scope.review.id == '')*/
@@ -214,7 +239,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
          e.stopPropagation();
          console.log($scope.review);*/
     }
-});
+})
+;
 
 app.controller('SearchController', function ($scope, $filter, $timeout, $http, $sce, $window) {
     $scope.search = {term: '', url: $('#url').val()};
