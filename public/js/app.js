@@ -85,7 +85,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         review: {
             antecedents: '',
             motiu_consulta: '',
-            balanc_articular: {dots: []}
+            limit_articular: {dots: []}
         },
         id: '',
         patient_id: ''
@@ -93,12 +93,90 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.dates = [];
     $scope.patient = [];
     $scope.selected_dot = '';
+    $scope.dots = [];
+
+    var image = $('img#human_body_img');
+    image.mapster({
+        mapKey: 'body_part',
+        fillColor: 'F92525',
+        onClick: function (e) {
+            if ($scope.selected_dot == 'low') {
+                image.mapster('set', false, e.key);
+                image.mapster('set', true, e.key, {
+                    stroke: 'F92525',
+                    fill: false
+                });
+                $scope.show_msg = false;
+                $scope.$apply();
+            } else if ($scope.selected_dot == 'medium') {
+                image.mapster('set', false, e.key);
+                image.mapster('set', true, e.key, {
+                    fillColor: '77cdaa',
+                });
+                $scope.show_msg = false;
+                $scope.$apply();
+            }
+            else if ($scope.selected_dot == 'high') {
+                image.mapster('set', false, e.key);
+                image.mapster('set', true, e.key, {
+                    fillColor: 'F92525',
+                });
+                $scope.show_msg = false;
+                $scope.$apply();
+            } else {
+                image.mapster('set', false);
+                $scope.show_msg = true;
+                $scope.$apply();
+            }
+
+            if ($scope.selected_dot != "") {
+                var obj = {
+                    key: e.key,
+                    level: $scope.selected_dot
+                };
+
+                var dots_temp = $scope.dots.filter(function (a) {
+                    return a.key != obj.key
+                });
+                dots_temp.push(obj)
+                $scope.dots = dots_temp;
+                $scope.review.review.limit_articular.dots = $scope.dots;
+                $scope.$apply();
+            }
+
+            return false;
+        }
+    });
 
     var $review = $('#review');
     if ($review.length && $review.html().trim() != '[]') {
         $scope.review = JSON.parse($review.html());
         $scope.review.date = '';
         $review.html('');
+
+        //pongo puntos en su sitio
+        if ($scope.review.review.limit_articular.dots.length > 0) {
+            var ds = JSON.parse($scope.review.review.limit_articular.dots);
+            for (var i = 0; i < ds.length; i++) {
+                var opts = {};
+                if (ds[i].level == 'low') {
+                    opts = {
+                        fill: false,
+                        stroke: 'F92525'
+                    }
+                } else if (ds[i].level == 'medium') {
+                    opts = {
+                        fillColor: '77cdaa'
+                    };
+                } else {
+                    opts = {
+                        fillColor: 'F92525'
+                    };
+                }
+                image.mapster('set', true, ds[i].key, opts);
+            }
+            $scope.dots = ds;
+        }
     }
 
     var $patient = $('#patient');
@@ -108,47 +186,6 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
         $patient.html('');
     }
-    var profiles = [
-        {
-            areas: "md",
-            options: {
-                fillColor: '0000ff'
-            }
-        },
-        {
-            areas: "me",
-            options: {
-                fillColor: '00ff00'
-            }
-        }
-    ];
-    var image = $('img#human_body_img');
-    image.mapster({
-        mapKey: 'body_part',
-        fillColor: 'F92525',
-        onClick: function (e) {
-            if ($scope.selected_dot == 'low') {
-                image.mapster('set', true, e.key, {
-                    stroke: 'F92525',
-                    fill: false
-                });
-            } else if ($scope.selected_dot == 'medium') {
-                image.mapster('set', true, e.key, {
-                    fillColor: '77cdaa',
-                });
-            }
-            else if ($scope.selected_dot == 'high') {
-                image.mapster('set', true, e.key, {
-                    fillColor: 'F92525',
-                });
-            } else {
-                image.mapster('set', false);
-                $scope.show_msg = true;
-                $scope.$apply();
-            }
-            return false;
-        }
-    });
 
     $scope.set_selected_dot = function (dot) {
         $scope.selected_dot = dot;

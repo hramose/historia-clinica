@@ -208,6 +208,15 @@ nav {
         width: 16px;
         height: 16px;
         display: inline-block; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel .medium-dot {
+        width: 16px;
+        height: 16px;
+        background: #77cdaa;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart img {
+        width: 150px; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart map area {
         background: red; }
     .wrap-content #main-page #layout12-main #review-content .separation {

@@ -59,8 +59,7 @@
                             <div class="seleccion-nivel">
                                 Lleu <img ng-src="{{asset('img/dot-low.png')}}" ng-click="set_selected_dot('low')"
                                           class="low-dot"/>
-                                Moderat <img ng-src="{{asset('img/dot-medium.png')}}"
-                                             ng-click="set_selected_dot('medium')" class="medium-dot"/>
+                                Moderat <span ng-click="set_selected_dot('medium')" class="medium-dot"></span>
                                 Greu <img ng-src="{{asset('img/dot-high.png')}}" ng-click="set_selected_dot('high')"
                                           class="high-dot"/>
                             </div>
@@ -84,7 +83,7 @@
                             </map>
                         </div>
                         <span ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
-                        <input type="hidden" name="review[balanc_articular]" ng-model="review.review.balanc_articular">
+                        <input type="hidden" name="review[limit_articular][dots]" value="[[review.review.limit_articular.dots]]">
                     </section>
                     <section class="send-button">
                         {!! Form::button(trans('messages.save_review'),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
