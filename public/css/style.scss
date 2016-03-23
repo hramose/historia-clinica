@@ -377,11 +377,39 @@ nav {
 
     #test {
       ul {
-        margin: 0 0 10px 0;
+        margin: 0 0 50px 0;
+        list-style: none;
         li {
-          input {
-            width: 50px;
-            text-align: center;
+          padding-left: 10px;
+          height: 40px;
+          border-left: 3px solid #2ca02c;
+          margin-bottom: 5px;
+          background: #e3e3e3;
+          border-radius: 2px;
+          div {
+            display: block;
+            height: 100%;
+            vertical-align: middle;
+            a {
+              width: 58%;
+              float: left;
+              white-space: nowrap;
+              height: 100%;
+              display: inline-block;
+              line-height: 34px;
+            }
+            input {
+              width: 50px;
+              float: left;
+              text-align: center;
+            }
+            span {
+              float: right;
+              height: 100%;
+              display: inline-block;
+              line-height: 34px;
+              margin-right: 10px;
+            }
           }
         }
       }

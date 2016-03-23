@@ -4,16 +4,20 @@
     <div id="test" ng-controller="TestController">
         <ul id="lista-acciones">
             <li>
-                <a href="#" ng-click="show_output('{{URL::to('api/birthday')}}', 'BirthdayCheck', 'days')">BirthdayCheck</a>
-                <input
-                        type="text" ng-model="days">
-                <span>Días vista a consultar cumpleaños</span>
+                <div>
+                    <a href="#" ng-click="show_output('{{URL::to('api/birthday')}}', 'BirthdayCheck', 'days')">BirthdayCheck</a>
+                    <input
+                            type="text" ng-model="days">
+                    <span>Días</span>
+                </div>
             </li>
             <li>
-                <a href="#" ng-click="show_output('{{URL::to('api/birthday-email')}}', 'BirthdayCheck with Email', 'daysMail')">BirthdayCheck with Email</a>
-                <input
-                        type="text" ng-model="daysMail">
-                <span>Días vista a consultar cumpleaños</span>
+                <div>
+                    <a href="#" ng-click="show_output('{{URL::to('api/birthday-email')}}', 'BirthdayCheck with Email', 'daysMail')">BirthdayCheck with Email</a>
+                    <input
+                            type="text" ng-model="daysMail">
+                    <span>Días</span>
+                </div>
             </li>
         </ul>
         <div id="datos-output">

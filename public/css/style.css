@@ -273,10 +273,36 @@ nav {
                     .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span.actions a:hover {
                       color: #4392B2; }
     .wrap-content #main-page #test ul {
-      margin: 0 0 10px 0; }
-      .wrap-content #main-page #test ul li input {
-        width: 50px;
-        text-align: center; }
+      margin: 0 0 50px 0;
+      list-style: none; }
+      .wrap-content #main-page #test ul li {
+        padding-left: 10px;
+        height: 40px;
+        border-left: 3px solid #2ca02c;
+        margin-bottom: 5px;
+        background: #e3e3e3;
+        border-radius: 2px; }
+        .wrap-content #main-page #test ul li div {
+          display: block;
+          height: 100%;
+          vertical-align: middle; }
+          .wrap-content #main-page #test ul li div a {
+            width: 58%;
+            float: left;
+            white-space: nowrap;
+            height: 100%;
+            display: inline-block;
+            line-height: 34px; }
+          .wrap-content #main-page #test ul li div input {
+            width: 50px;
+            float: left;
+            text-align: center; }
+          .wrap-content #main-page #test ul li div span {
+            float: right;
+            height: 100%;
+            display: inline-block;
+            line-height: 34px;
+            margin-right: 10px; }
     .wrap-content #main-page #test #datos-output {
       background: #e0e0e0;
       padding: 15px;
