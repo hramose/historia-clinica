@@ -38,7 +38,7 @@ class ApiController extends Controller
                 $birthDate = implode('-', $birthDate);
                 $birthDate = new Carbon($birthDate);
                 $days = $date->diffInDays($birthDate, false);
-                if ($days <= $test_days) {
+                if ($days >= $test_days) {
                     $pacientsBirthday[] = $pacient;
                 }
             }
