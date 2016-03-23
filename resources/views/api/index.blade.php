@@ -9,6 +9,12 @@
                         type="text" ng-model="days">
                 <span>Días vista a consultar cumpleaños</span>
             </li>
+            <li>
+                <a href="#" ng-click="show_output('{{URL::to('test/birthday-email')}}', 'BirthdayCheck with Email', 'daysMail')">BirthdayCheck with Email</a>
+                <input
+                        type="text" ng-model="daysMail">
+                <span>Días vista a consultar cumpleaños</span>
+            </li>
         </ul>
         <div id="datos-output">
             <label>[[title]]</label><span ng-show="time == 0">[[timeLoader]]</span><span class="ms">[[time|number]] secs</span><span ng-cloak ng-show="status != 0" id="check">&check;</span>

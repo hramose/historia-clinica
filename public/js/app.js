@@ -184,6 +184,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
 app.controller('TestController', function ($scope, $http, $filter, $interval, $timeout, $window, $sce) {
     $scope.output = '';
     $scope.days = 5;
+    $scope.daysMail = 5;
     $scope.title = '';
     $scope.time = 0;
     $scope.timeLoader = '';
