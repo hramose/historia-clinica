@@ -82,7 +82,7 @@ class ApiController extends Controller
         }
 
         if (count($pacientsBirthday) > 0) {
-            setlocale(LC_TIME, 'es_ES.utf8');
+            setlocale(LC_TIME, 'ca_ES.utf8');
             $data = [
                 'pacients' => $pacientsBirthday
             ];
