@@ -7,14 +7,20 @@ use App\Patient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class TestController extends Controller
+class ApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getIndex(Request $request)
     {
-        return view('test.index');
+        return view('api.index');
     }
 
     public function getBirthday($test_days)

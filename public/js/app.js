@@ -186,14 +186,18 @@ app.controller('TestController', function ($scope, $http, $filter, $interval, $t
     $scope.days = 5;
     $scope.title = '';
     $scope.time = 0;
+    $scope.timeLoader = '';
     $scope.first_time = true;
     $scope.status = 0;
 
     $scope.show_output = function (url, title, params) {
+        $scope.timeLoader = '';
         $scope.time = 0;
         var stop = $interval(function () {
-            $scope.time++;
-        }, 1000);
+            if ($scope.timeLoader.length == 3)
+                $scope.timeLoader = '';
+            $scope.timeLoader += '.';
+        }, 100);
         params = params || null;
         if (params != null) {
             url = url + '/' + $scope[params];
