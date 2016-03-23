@@ -186,6 +186,8 @@ app.controller('TestController', function ($scope, $http, $filter, $interval, $t
     $scope.days = 5;
     $scope.title = '';
     $scope.time = 0;
+    $scope.first_time = true;
+    $scope.status = 0;
 
     $scope.show_output = function (url, title, params) {
         $scope.time = 0;
@@ -206,6 +208,8 @@ app.controller('TestController', function ($scope, $http, $filter, $interval, $t
             $interval.cancel(stop);
             $scope.output = $sce.trustAsHtml(response.data.output);
             $scope.time = response.data.time;
+            $scope.status = response.status;
+            $scope.first_time = false;
         }, function myError(response) {
             console.log(response);
         });

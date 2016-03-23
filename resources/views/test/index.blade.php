@@ -10,8 +10,13 @@
             </li>
         </ul>
         <div id="datos-output">
-            <label>[[title]]</label><span class="ms">[[time|number]] secs</span><span ng-cloak ng-show="output != ''" id="check">&check;</span>
+            <label>[[title]]</label><span class="ms">[[time|number]] secs</span><span ng-cloak ng-show="status != 0" id="check">&check;</span>
         </div>
-        <div id="output" ng-cloak ng-bind-html="output"></div>
+        <div id="output" ng-cloak>
+            <span ng-bind-html="output"></span>
+            <span ng-show="output == '' && !first_time" ng-cloak>
+                No ha devuelto resultados...
+            </span>
+        </div>
     </div>
 @endsection

@@ -272,9 +272,11 @@ nav {
                     color: #c9c9c9; }
                     .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span.actions a:hover {
                       color: #4392B2; }
-    .wrap-content #main-page #test ul li input {
-      width: 50px;
-      text-align: center; }
+    .wrap-content #main-page #test ul {
+      margin: 0 0 10px 0; }
+      .wrap-content #main-page #test ul li input {
+        width: 50px;
+        text-align: center; }
     .wrap-content #main-page #test #datos-output {
       background: #e0e0e0;
       padding: 15px;
