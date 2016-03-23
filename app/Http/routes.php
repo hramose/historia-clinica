@@ -54,7 +54,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
     ]);
 
     Route::controllers([
-        'test' => 'ApiController',
+        'api' => 'ApiController',
     ]);
 
     Route::get('users/llista', [

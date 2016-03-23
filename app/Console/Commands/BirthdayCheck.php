@@ -41,20 +41,18 @@ class BirthdayCheck extends Command
      */
     public function handle()
     {
-        $pacients = Patient::all();
+        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
+                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
+                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
         $date = new Carbon();
         $pacientsBirthday = [];
 
         foreach ($pacients as $pacient) {
             $birthDate = explode('-', $pacient->birth_date);
             if ($birthDate[0] != '') {
-                $birthDate[0] = date('Y');
-                $birthDate = implode('-', $birthDate);
-                $birthDate = new Carbon($birthDate);
-                $days = $date->diffInDays($birthDate, false);
-                if ($days == 5) {
-                    $pacientsBirthday[] = $pacient;
-                }
+                $pacientsBirthday[] = $pacient;
             }
         }
 
