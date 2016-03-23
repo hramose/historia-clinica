@@ -14,6 +14,7 @@
         <section>
             <label>{{ trans('models.Userpassword') }}</label>
             {!! Form::password('password', ['class'=> '', 'ng-model' => 'user.password', 'required' => '', 'autocomplete' => 'off']) !!}
+
         </section>
         @if ($user->exists)
             <section>

@@ -1,11 +1,11 @@
 /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
-/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
-@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/*@import url(https://fonts.googleapis.com/css?family=Raleway);*/
 @import url(https://fonts.googleapis.com/css?family=Amaranth);
 body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
   /*font-family: 'Open Sans', sans-serif;*/
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   height: 100%; }
 
 body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
@@ -272,6 +272,27 @@ nav {
                     color: #c9c9c9; }
                     .wrap-content #main-page #grid-shortcuts .box .content .autocomplete ul li span.actions a:hover {
                       color: #4392B2; }
+    .wrap-content #main-page #test ul li input {
+      width: 50px;
+      text-align: center; }
+    .wrap-content #main-page #test #datos-output {
+      background: #e0e0e0;
+      padding: 15px;
+      border-radius: 2px; }
+      .wrap-content #main-page #test #datos-output label {
+        font-weight: bold;
+        margin-right: 15px;
+        min-width: 80px;
+        display: inline-block; }
+        .wrap-content #main-page #test #datos-output label + span {
+          margin-right: 4px; }
+      .wrap-content #main-page #test #datos-output #check {
+        color: #2ca02c;
+        font-weight: bold; }
+    .wrap-content #main-page #test #output {
+      border-radius: 2px;
+      border: 1px solid #e0e0e0;
+      padding: 15px; }
 
 #footer {
   padding: 48px;
@@ -298,6 +319,9 @@ nav, li.active, .wrap-content, #footer {
 
 .autocomplete.ng-hide-remove {
   animation: 0.5s slideInDown ease !important; }
+
+.autocomplete.ng-hide-add {
+  animation: 0.5s slideOutUp ease !important; }
 
 /* when showing the picture */
 .ng-hide-remove {

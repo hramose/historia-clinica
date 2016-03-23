@@ -1,12 +1,12 @@
 /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
-/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
-@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/*@import url(https://fonts.googleapis.com/css?family=Raleway);*/
 @import url(https://fonts.googleapis.com/css?family=Amaranth);
 
 body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
   /*font-family: 'Open Sans', sans-serif;*/
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   height: 100%;
 }
 
@@ -374,6 +374,40 @@ nav {
         }
       }
     }
+
+    #test {
+      ul {
+        li {
+          input {
+            width: 50px;
+            text-align: center;
+          }
+        }
+      }
+      #datos-output {
+        background: #e0e0e0;
+        padding: 15px;
+        border-radius: 2px;
+        label {
+          font-weight: bold;
+          margin-right: 15px;
+          min-width: 80px;
+          display: inline-block;
+          & + span {
+            margin-right: 4px;
+          }
+        }
+        #check {
+          color: #2ca02c;
+          font-weight: bold;
+        }
+      }
+      #output {
+        border-radius: 2px;
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+      }
+    }
   }
 }
 
@@ -407,6 +441,11 @@ nav, li.active, .wrap-content, #footer {
 
 .autocomplete.ng-hide-remove {
   animation: 0.5s slideInDown ease !important;
+
+}
+
+.autocomplete.ng-hide-add {
+  animation: 0.5s slideOutUp ease !important;
 }
 
 /* when showing the picture */

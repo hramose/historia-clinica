@@ -49,6 +49,14 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'Auth\AuthController@getResetPassword'
     ]);
 
+    Route::controllers([
+        'password' => 'Auth\PasswordController',
+    ]);
+
+    Route::controllers([
+        'test' => 'TestController',
+    ]);
+
     Route::get('users/llista', [
         'as' => 'llistaUsers',
         'uses' => 'FrontController@userList'

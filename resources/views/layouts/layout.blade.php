@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="{{ $lang }}" ng-app="app">
+<html lang="{{ $lang or "ca" }}" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestió pacients - {{ $title }}</title>
+    <title>Gestió pacients - {{ $title or "" }}</title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/kube.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/css/style.css') }}">

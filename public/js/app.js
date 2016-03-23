@@ -181,4 +181,35 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     };
 });
 
+app.controller('TestController', function ($scope, $http, $filter, $interval, $timeout, $window, $sce) {
+    $scope.output = '';
+    $scope.days = 5;
+    $scope.title = '';
+    $scope.time = 0;
+
+    $scope.show_output = function (url, title, params) {
+        $scope.time = 0;
+        var stop = $interval(function () {
+            $scope.time++;
+        }, 1000);
+        params = params || null;
+        if (params != null) {
+            url = url + '/' + $scope[params];
+        }
+
+        $scope.title = title;
+
+        $http({
+            method: 'GET',
+            url: url,
+        }).then(function mySucces(response) {
+            $interval.cancel(stop);
+            $scope.output = $sce.trustAsHtml(response.data.output);
+            $scope.time = response.data.time;
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+});
+
 
