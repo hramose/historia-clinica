@@ -166,6 +166,16 @@ nav {
       display: inline-block; }
     .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
       text-align: center; }
+    .wrap-content #main-page #layout12-main row {
+      flex-wrap: wrap; }
+    .wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6 {
+      text-align: inherit; }
+      .wrap-content #main-page #layout12-main h1.backup_title, .wrap-content #main-page #layout12-main h2.backup_title, .wrap-content #main-page #layout12-main h3.backup_title, .wrap-content #main-page #layout12-main h4.backup_title, .wrap-content #main-page #layout12-main h5.backup_title, .wrap-content #main-page #layout12-main h6.backup_title {
+        text-align: center !important; }
+    .wrap-content #main-page #layout12-main form {
+      margin-top: 0; }
+      .wrap-content #main-page #layout12-main form section {
+        text-align: inherit; }
     .wrap-content #main-page .main-pacients {
       width: 100%; }
       .wrap-content #main-page .main-pacients .review-text {
@@ -323,11 +333,11 @@ nav {
       float: right; }
       .wrap-content #main-page .bill-content .bill-total .total {
         text-align: right;
-        background: #2ca02c;
+        background: #40A2C8;
         font-size: 18px;
         display: inline-block;
         width: 100%;
-        color: #FAF834;
+        color: #fff;
         padding-right: 20px; }
     .wrap-content #main-page form .input-prepend span {
       padding-top: 13px; }

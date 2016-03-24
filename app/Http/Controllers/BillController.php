@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Bill;
 use App\Client;
 use App\Patient;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 
 class BillController extends Controller
 {
@@ -78,6 +78,39 @@ class BillController extends Controller
         return redirect()->route('mostrarBill', ['id' => $bill->id]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'concept' => 'required',
+            'creation_date' => 'required',
+            'expiration_date' => 'required',
+            'qty' => 'required',
+            'amount' => 'required',
+            'payment_method' => 'required',
+            'price_per_unit' => 'required',
+
+        ]);
+
+        $inputs = Input::all();
+        $bill = Bill::whereId($id)->firstOrFail();
+        $bill->fill($inputs);
+        if ($inputs['client_id'] == "" && $inputs['client_name'] != "" && $inputs["patient_id"] == "") {
+            $client = new Client();
+            $client->name = $inputs['client_name'];
+            $client->address = $inputs['client_address'];
+            $client->city = $inputs['client_city'];
+            $client->cif = $inputs['client_cif'];
+            $client->save();
+            $bill->client_id = $client->id;
+        }
+        $bill->save();
+
+        Session::flash('alert', 'Factura actualitzada correctament');
+        Session::flash('status', 'success');
+
+        return redirect()->route('mostrarBill', ['id' => $bill->id]);
+    }
+
     public function show(Request $request, $id)
     {
         $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
@@ -122,10 +155,10 @@ class BillController extends Controller
         $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
         $config = $this->getConfig(new Request(), false);
 
-       /* return view('bills.pdf', [
-            'bill' => $bill,
-            'billInfo' => $config
-        ]);*/
+        /* return view('bills.pdf', [
+             'bill' => $bill,
+             'billInfo' => $config
+         ]);*/
 
         $pdf = PDF::loadView('bills.pdf', [
             'bill' => $bill,

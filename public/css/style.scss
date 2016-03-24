@@ -203,6 +203,25 @@ nav {
     h1, h2, h3, h4, h5, h6 {
       text-align: center;
     }
+
+    #layout12-main {
+      row {
+        flex-wrap: wrap;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        &.backup_title {
+          text-align: center !important;
+        }
+        text-align: inherit;
+      }
+      form {
+        margin-top: 0;
+        section {
+          text-align: inherit;
+        }
+      }
+    }
+
     .main-pacients {
       width: 100%;
       .review-text {
@@ -413,11 +432,11 @@ nav {
         float: right;
         .total {
           text-align: right;
-          background: #2ca02c;
+          background: #40A2C8;
           font-size: 18px;
           display: inline-block;
           width: 100%;
-          color: #FAF834;
+          color: #fff;
           padding-right: 20px;
         }
       }

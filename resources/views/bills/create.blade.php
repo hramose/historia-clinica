@@ -104,7 +104,7 @@
                         </td>
                         <td><input type="text" class="small-input" name="price_per_unit"
                                    ng-model="bill.price_per_unit"></td>
-                        <td>[[bill.total = bill.price_per_unit.replace(',', '.') * bill.qty|currency]]</td>
+                        <td>[[bill.total = bill.price_per_unit.toString().replace(',', '.') * bill.qty|currency]]</td>
                     </tr>
                     <tr ng-repeat="t in count(5) track by $index">
                         <td></td>
