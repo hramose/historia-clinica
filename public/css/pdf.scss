@@ -1,0 +1,283 @@
+body {
+  page[size="A4"] {
+    background: white;
+    width: 21cm;
+    height: 29.7cm;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    position: relative;
+    #main-bill {
+      width: 100%;
+      font-family: Arial;
+      #titulo-factura {
+        border-top: 1px solid;
+        border-bottom: 2px solid;
+        h2 {
+          color: #40A2C8;
+          padding: 0;
+          margin: 5px;
+        }
+      }
+      #datos-personales {
+        width: 100%;
+        display: block;
+        overflow: auto;
+        #datos-factura {
+          width: 30%;
+          float: left;
+          margin-top: 140px;
+          border: 1px solid;
+          p {
+            width: 100%;
+            display: inline-block;
+            margin: 0;
+            strong {
+              color: #40A2C8;
+              float: left;
+              width: 44%;
+              text-align: right;
+            }
+            span {
+              float: left;
+              width: 47%;
+              margin-left: 8px;
+            }
+          }
+        }
+        #imagotipo {
+          width: 17.5%;
+          float: right;
+          text-align: right;
+          img {
+            width: 100%;
+          }
+        }
+        #datos-persona {
+          width: 49%;
+          float: left;
+          text-align: right;
+          margin-top: 40px;
+        }
+      }
+      #datos-cliente {
+        width: 100%;
+        margin-top: 15px;
+        border: 1px solid;
+        p {
+          width: 100%;
+          display: inline-block;
+          margin: 0;
+          strong {
+            color: #40A2C8;
+            float: left;
+            width: 13.5%;
+            text-align: right;
+          }
+          span {
+            float: left;
+            width: 60%;
+            margin-left: 9px;
+            strong {
+              color: inherit;
+              width: inherit;
+              float: inherit;
+              text-align: inherit;
+            }
+          }
+        }
+      }
+      table {
+        width: 100%;
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        margin-top: 15px;
+        tr {
+          &.no-ver {
+            td {
+              border-color: #737373;
+            }
+          }
+        ;
+          height: 40px;
+          th, td {
+            padding: 0;
+            margin: 0;
+          }
+          th {
+            border-right: 1px solid;
+            &:last-child {
+              border: inherit;
+            }
+          }
+          td {
+            border-right: 1px solid;
+            border-top: 1px solid;
+            border-left: 1px solid;
+            text-align: center;
+            &:last-child {
+              border-left: inherit;
+            }
+          }
+        }
+      }
+      #datos-factura-total {
+        width: 100%;
+        font-size: 14px;
+        #datos-pago {
+          float: left;
+          width: 32%;
+          border: 1px solid;
+          h3 {
+            padding: 5px 0 0 4px;;
+            margin: 0;
+          }
+          span {
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            margin-top: 5px;
+            &:last-child {
+              margin-bottom: 10px;
+            }
+          }
+        }
+        #datos-subtotal {
+          width: 66.99%;
+          float: left;
+          text-align: center;
+          padding: 5px 5px 0 0;
+          border: 1px solid;
+          border-left: inherit;
+          strong {
+            float: left;
+            width: 80%;
+          }
+          span {
+            float: left;
+            width: 20%;
+            display: inline-block;
+            text-align: right;
+          }
+        }
+        #datos-vencimiento {
+          float: left;
+          width: 32%;
+          border: 1px solid;
+          border-top: inherit;
+          h3 {
+            padding: 5px 0 0 4px;;
+            margin: 0;
+          }
+          span {
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            margin-top: 5px;
+            &:last-child {
+              margin-bottom: 10px;
+            }
+          }
+        }
+        #datos-irpf {
+          width: 67.46%;
+          border: 1px solid;
+          border-top: inherit;
+          float: left;
+          p {
+            margin-top: 20px;
+            margin-bottom: 7px;
+            border: 1px solid;
+            border-right: 0px;
+            width: 70%;
+            float: right;
+            span {
+              &:first-child {
+                width: 40%;
+              }
+              width: 29%;
+              display: inline-block;
+              float: left;
+              text-align: right;
+              border-right: 1px solid;
+              &:last-child {
+                border-right: 0px;
+              }
+            }
+          }
+          #bill-no-iva {
+            display: inline-block;
+            width: 100%;
+            font-size: 12px;
+            padding-bottom: 5px;
+            padding-left: 6px;
+          }
+        }
+        #datos-descuento {
+          width: 66.9%;
+          border: 1px solid;
+          border-top: inherit;
+          padding: 5px 5px 5px 0;
+          float: right;
+          max-height: 51px;
+          text-align: center;
+          border-left: inherit;
+          strong {
+            float: left;
+            width: 70%;
+            &.no_iva {
+              font-size: 10px;
+              padding-top: 15px;
+              text-align: right;
+            }
+          }
+          span {
+            float: left;
+            width: 15%;
+            display: inline-block;
+            text-align: right;
+            &:last-child {
+              width: 30%;
+              padding-top: 12px;
+            }
+          }
+        }
+      }
+      #datos-vacio {
+        width: 32%;
+        border: 1px solid;
+        border-top: inherit;
+        float: left;
+        position: relative;
+        height: 59px;
+        top: -38px;
+      }
+      #datos-total {
+        width: 67.46%;
+        border: 1px solid;
+        border-top: inherit;
+        float: left;
+        text-align: right;
+        background: #40A2C8;
+        font-size: 18px;
+        strong {
+          width: 60%;
+          float: left;
+        }
+        span {
+          width: 39%;
+          float: left;
+          font-weight: bold;
+        }
+      }
+      #lopd {
+        font-size: 9.5px;
+        width: 100%;
+        clear: both;
+        position: absolute;
+        bottom: 0;
+        text-align: justify;
+      }
+    }
+  }
+}

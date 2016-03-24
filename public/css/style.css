@@ -190,6 +190,145 @@ nav {
             word-wrap: break-word; }
         .wrap-content #main-page .main-pacients .review-text textarea {
           min-height: 250px; }
+    .wrap-content #main-page .bill-content table tr {
+      height: 72px; }
+      .wrap-content #main-page .bill-content table tr td .small-input {
+        width: 20%;
+        padding: 0;
+        height: inherit;
+        text-align: center;
+        margin-top: 12px; }
+    .wrap-content #main-page .bill-content .bill_id-date {
+      width: 200px; }
+      .wrap-content #main-page .bill-content .bill_id-date section {
+        min-height: 40px; }
+        .wrap-content #main-page .bill-content .bill_id-date section label {
+          display: inline-block; }
+          .wrap-content #main-page .bill-content .bill_id-date section label + input {
+            display: inline-block;
+            float: right;
+            width: 95px; }
+    .wrap-content #main-page .bill-content .bill_info {
+      text-align: right;
+      padding-right: 20px; }
+      .wrap-content #main-page .bill-content .bill_info p {
+        margin: 0; }
+        .wrap-content #main-page .bill-content .bill_info p.strong {
+          font-weight: bold; }
+    .wrap-content #main-page .bill-content .client-info {
+      width: 300px; }
+      .wrap-content #main-page .bill-content .client-info section {
+        min-height: 40px; }
+        .wrap-content #main-page .bill-content .client-info section label {
+          display: inline-block; }
+          .wrap-content #main-page .bill-content .client-info section label + input {
+            display: inline-block;
+            float: right;
+            width: 195px; }
+      .wrap-content #main-page .bill-content .client-info .autocomplete-list {
+        border-radius: 2px;
+        border: 1px solid #dfdfdf;
+        position: relative;
+        background: #fff;
+        top: 16px; }
+        .wrap-content #main-page .bill-content .client-info .autocomplete-list ul {
+          list-style: none;
+          margin: 0;
+          padding-top: 16px;
+          padding-bottom: 0px; }
+          .wrap-content #main-page .bill-content .client-info .autocomplete-list ul + ul {
+            padding-top: 0px; }
+          .wrap-content #main-page .bill-content .client-info .autocomplete-list ul li {
+            cursor: pointer; }
+            .wrap-content #main-page .bill-content .client-info .autocomplete-list ul li span {
+              margin-left: 10px; }
+            .wrap-content #main-page .bill-content .client-info .autocomplete-list ul li:hover {
+              background: #dfdfdf; }
+    .wrap-content #main-page .bill-content .bill-payment-info {
+      width: 20%;
+      float: left; }
+      .wrap-content #main-page .bill-content .bill-payment-info select {
+        width: 250px; }
+      .wrap-content #main-page .bill-content .bill-payment-info .bank-account-number {
+        margin-top: 10px;
+        display: inline-block; }
+    .wrap-content #main-page .bill-content .bill-amount-info {
+      width: 80%;
+      float: left;
+      padding-right: 20px; }
+      .wrap-content #main-page .bill-content .bill-amount-info .subtotal-info {
+        display: inline; }
+        .wrap-content #main-page .bill-content .bill-amount-info .subtotal-info label {
+          float: left;
+          text-align: center;
+          width: 80%; }
+        .wrap-content #main-page .bill-content .bill-amount-info .subtotal-info .subtotal {
+          float: right; }
+      .wrap-content #main-page .bill-content .bill-amount-info .bill-discount {
+        display: block;
+        width: 100%;
+        clear: both; }
+        .wrap-content #main-page .bill-content .bill-amount-info .bill-discount label {
+          float: left;
+          text-align: center;
+          width: 80%; }
+        .wrap-content #main-page .bill-content .bill-amount-info .bill-discount .percent {
+          float: left;
+          width: 10%;
+          display: inline-block; }
+          .wrap-content #main-page .bill-content .bill-amount-info .bill-discount .percent input {
+            display: inline-block;
+            width: 50%;
+            padding: 0;
+            height: inherit;
+            text-align: center; }
+        .wrap-content #main-page .bill-content .bill-amount-info .bill-discount .discount-amount {
+          float: left;
+          width: 10%;
+          display: inline-block;
+          text-align: right; }
+      .wrap-content #main-page .bill-content .bill-amount-info .bill-iva label {
+        float: left;
+        text-align: center;
+        width: 80%; }
+      .wrap-content #main-page .bill-content .bill-amount-info .bill-iva .iva-amount {
+        float: left;
+        text-align: right;
+        width: 20%; }
+    .wrap-content #main-page .bill-content .bill-expiration-date {
+      width: 20%;
+      float: left;
+      clear: both; }
+    .wrap-content #main-page .bill-content .bill-irpf {
+      width: 80%;
+      float: left; }
+      .wrap-content #main-page .bill-content .bill-irpf label {
+        float: left;
+        text-align: right;
+        width: 80%; }
+      .wrap-content #main-page .bill-content .bill-irpf .percent {
+        float: left;
+        width: 10%;
+        display: inline-block;
+        text-align: center; }
+        .wrap-content #main-page .bill-content .bill-irpf .percent input {
+          display: inline-block;
+          width: 50%;
+          padding: 0;
+          height: inherit;
+          text-align: center; }
+    .wrap-content #main-page .bill-content .bill-total {
+      clear: both;
+      width: 80%;
+      float: right; }
+      .wrap-content #main-page .bill-content .bill-total .total {
+        text-align: right;
+        background: #2ca02c;
+        font-size: 18px;
+        display: inline-block;
+        width: 100%;
+        color: #FAF834;
+        padding-right: 20px; }
     .wrap-content #main-page form .input-prepend span {
       padding-top: 13px; }
     .wrap-content #main-page .add_date {
