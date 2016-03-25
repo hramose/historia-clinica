@@ -239,7 +239,7 @@ nav {
         border: 1px solid #b3b3b3;
         overflow: hidden; }
         .wrap-content #main-page #grid-shortcuts .box h3 {
-          font-family: Amaranth, sans-serif;
+          /*font-family: Amaranth, sans-serif;*/
           background: #e0e0e0;
           padding: 15px; }
         .wrap-content #main-page #grid-shortcuts .box .content {
