@@ -181,6 +181,228 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     };
 });
 
+app.controller('BillController', function ($scope, $filter, $timeout, $http, $sce, $window) {
+    $scope.bill = {
+        qty: 0,
+        price_per_unit: 0.0,
+        discount: 0.0,
+        iva: 0.0,
+        irpf: 0.0,
+        total_bill: 0.0,
+        total_partial: 0.0,
+        amount_irpf: 0.0,
+        total: 0.0,
+        amount_discount: 0.0
+    };
+    $scope.billInfo = {};
+    $scope.urlBillInfo = '';
+    $scope.clients = {};
+    $scope.pacients = [];
+    $scope.client = {};
+    $scope.patient = {};
+    $scope.autocomplete = false;
+    $scope.widthSearchInput = '100px';
+    $scope.searchUrl = '';
+
+    $scope.Base64 = {
+        _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", encode: function (e) {
+            var t = "";
+            var n, r, i, s, o, u, a;
+            var f = 0;
+            e = $scope.Base64._utf8_encode(e);
+            while (f < e.length) {
+                n = e.charCodeAt(f++);
+                r = e.charCodeAt(f++);
+                i = e.charCodeAt(f++);
+                s = n >> 2;
+                o = (n & 3) << 4 | r >> 4;
+                u = (r & 15) << 2 | i >> 6;
+                a = i & 63;
+                if (isNaN(r)) {
+                    u = a = 64
+                } else if (isNaN(i)) {
+                    a = 64
+                }
+                t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
+            }
+            return t
+        }, decode: function (e) {
+            var t = "";
+            var n, r, i;
+            var s, o, u, a;
+            var f = 0;
+            e = e.replace(/[^A-Za-z0-9+/=]/g, "");
+            while (f < e.length) {
+                s = this._keyStr.indexOf(e.charAt(f++));
+                o = this._keyStr.indexOf(e.charAt(f++));
+                u = this._keyStr.indexOf(e.charAt(f++));
+                a = this._keyStr.indexOf(e.charAt(f++));
+                n = s << 2 | o >> 4;
+                r = (o & 15) << 4 | u >> 2;
+                i = (u & 3) << 6 | a;
+                t = t + String.fromCharCode(n);
+                if (u != 64) {
+                    t = t + String.fromCharCode(r)
+                }
+                if (a != 64) {
+                    t = t + String.fromCharCode(i)
+                }
+            }
+            t = $scope.Base64._utf8_decode(t);
+            return t
+        }, _utf8_encode: function (e) {
+            e = e.replace(/rn/g, "n");
+            var t = "";
+            for (var n = 0; n < e.length; n++) {
+                var r = e.charCodeAt(n);
+                if (r < 128) {
+                    t += String.fromCharCode(r)
+                } else if (r > 127 && r < 2048) {
+                    t += String.fromCharCode(r >> 6 | 192);
+                    t += String.fromCharCode(r & 63 | 128)
+                } else {
+                    t += String.fromCharCode(r >> 12 | 224);
+                    t += String.fromCharCode(r >> 6 & 63 | 128);
+                    t += String.fromCharCode(r & 63 | 128)
+                }
+            }
+            return t
+        }, _utf8_decode: function (e) {
+            var t = "";
+            var n = 0;
+            var r = c1 = c2 = 0;
+            while (n < e.length) {
+                r = e.charCodeAt(n);
+                if (r < 128) {
+                    t += String.fromCharCode(r);
+                    n++
+                } else if (r > 191 && r < 224) {
+                    c2 = e.charCodeAt(n + 1);
+                    t += String.fromCharCode((r & 31) << 6 | c2 & 63);
+                    n += 2
+                } else {
+                    c2 = e.charCodeAt(n + 1);
+                    c3 = e.charCodeAt(n + 2);
+                    t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+                    n += 3
+                }
+            }
+            return t
+        }
+    };
+
+    angular.element($window).bind('resize', function () {
+        var $term = $('input[name="client_name"]').parent();
+        $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
+    });
+
+    $timeout(function () {
+        var $term = $('input[name="client_name"]').parent();
+        $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
+    }, 500);
+
+    $scope.today_date = function () {
+        /*if ($scope.review.id == '')*/
+        $scope.bill.date = $filter('date')(new Date(), 'dd/MM/y');
+    };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.client.name, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.search_clients_and_patients = function () {
+        if ($scope.client.name == '') {
+            $scope.autocomplete = false;
+            return;
+        }
+        $timeout(function () {
+            $http({
+                method: 'POST',
+                url: $scope.searchUrl + '/' + $scope.client.name
+            }).then(function mySucces(response) {
+                $scope.pacients = response.data.patients;
+                $scope.clients = response.data.clients;
+                if ($scope.clients.length || $scope.pacients.length) {
+                    $scope.autocomplete = true;
+                } else {
+                    $scope.autocomplete = false;
+                }
+            }, function myError(response) {
+                console.log(response);
+            });
+        });
+    };
+
+    $scope.put_on_bill = function (obj, model) {
+        if (model == 'client') {
+            $scope.client = obj;
+            $scope.bill.client_id = $scope.client.id;
+            $scope.bill.patient_id = '';
+        } else {
+            $scope.patient = obj;
+            $scope.bill.patient_id = $scope.patient.id;
+            $scope.client.name = $scope.patient.full_name;
+            $scope.client.address = $scope.patient.address;
+            $scope.client.city = $scope.patient.city;
+            $scope.client.cif = $scope.patient.nif;
+            $scope.bill.client_id = '';
+        }
+
+        $scope.autocomplete = false;
+    }
+
+    $scope.count = function (n) {
+        return new Array(n);
+    }
+
+    $scope.show_total = function (n1, n2) {
+        $scope.bill.total_bill = (isNaN(n1) ? 0 : n1) - (isNaN(n2) ? 0 : n2);
+        console.log($scope.bill.total_bill);
+        return $filter('currency')($scope.bill.total_bill.toFixed(2));
+    };
+
+    $scope.show_amount_discount = function (n1, n2) {
+        $scope.bill.amount_discount = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
+        $scope.bill.total_partial = $scope.bill.total - $scope.bill.amount_discount;
+        return $filter('currency')($scope.bill.amount_discount.toFixed(2));
+    };
+
+    $scope.show_amount_irpf = function (n1, n2) {
+        if (n2.toString().indexOf(',') != -1)
+            n2 = n2.toString().replace(',', '.');
+        $scope.bill.amount_irpf = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
+        return $filter('currency')($scope.bill.amount_irpf.toFixed(2));
+    };
+
+    $scope.autocomplete_id = function () {
+        if ($scope.bill.id == "" || typeof $scope.bill.id == 'undefined') {
+            $scope.bill.id = $scope.lastId + 1;
+        }
+    };
+
+    $scope.format_date = function (date) {
+        var str = date.replace(/-/g, '/');
+        return $filter('date')(new Date(str), 'dd/MM/y');
+    };
+
+    var $bill = $('#bill');
+    if ($bill.length && $bill.html().trim() != '[]') {
+        $scope.bill = JSON.parse($bill.html());
+        var str = $scope.bill.creation_date.replace(/-/g, '/');
+        $scope.bill.creation_date = $filter('date')(new Date(str), 'dd/MM/y');
+        var str = $scope.bill.expiration_date.replace(/-/g, '/');
+        $scope.bill.expiration_date = $filter('date')(new Date(str), 'dd/MM/y');
+        if ($scope.bill.patient_id != "" && $scope.bill.patient_id != null) {
+            $scope.put_on_bill($scope.bill.patient, 'patient');
+        }
+        if ($scope.bill.client_id != "" && $scope.bill.client_id != null) {
+            $scope.put_on_bill($scope.bill.client, 'client');
+        }
+    }
+});
+
 app.controller('TestController', function ($scope, $http, $filter, $interval, $timeout, $window, $sce) {
     $scope.output = '';
     $scope.days = 5;

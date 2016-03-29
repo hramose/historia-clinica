@@ -8,9 +8,6 @@
             <img class="responsive" src="{{ asset("img/logo-responsive.png") }}" alt="">
         </a>
     </div>
-    <div id="menu-user-info">
-        <p title="{{Auth::user()->name}}"><a href="{{URL::route('userData', Auth::user()->id)}}"><span class="circle-online"></span> <span class="full-name">{{Auth::user()->name}}</span></a></p>
-    </div>
     <ul class="metismenu" id="side-menu">
         <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user-md"></span> <span class="text">Pacients</span>
                 <span class="fa arrow"></span>
@@ -26,6 +23,13 @@
             <ul class="nav nav-second-level">
                 <li><a href="{{ URL::to('auth/register') }}">Crear nous usuaris</a></li>
                 <li><a href="{{ URL::to('users/llista') }}">Tots els usuaris</a></li>
+            </ul>
+        </li>
+        <li><a href="#"><span class="fa fa-file-text"></span> <span class="text">Facturació</span> <span
+                        class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li><a href="{{ URL::route('veureBills') }}">Veure factures</a></li>
+                <li><a href="{{ URL::route('ferBills') }}">Crear nova factura</a></li>
             </ul>
         </li>
         <li><a href="#"><span class="fa fa-database"></span> <span class="text">Còpia de seguretat</span> <span

@@ -158,6 +158,50 @@ Route::group(['middleware' => ['web', 'access']], function () {
         Route::get('/', 'HistoryController@index');
     });
 
+    Route::group(['prefix' => 'factures'], function () {
+        Route::get('/', 'HistoryController@index');
+
+        Route::get('/llista',
+            [
+                'as' => 'veureBills',
+                'uses' => 'BillController@index'
+            ]);
+        Route::get('/create',
+            [
+                'as' => 'ferBills',
+                'uses' => 'BillController@create'
+            ]);
+        Route::post('/save',
+            [
+                'as' => 'saveBills',
+                'uses' => 'BillController@store'
+            ]);
+        Route::post('/update/{id}',
+            [
+                'as' => 'updateBill',
+                'uses' => 'BillController@update'
+            ]);
+        Route::get('/show/{id}',
+            [
+                'as' => 'mostrarBill',
+                'uses' => 'BillController@show'
+            ]);
+        Route::get('/bill-config',
+            [
+                'as' => 'urlBillInfo',
+                'uses' => 'BillController@getConfig'
+            ]);
+        Route::post('/search/{term}',
+            [
+                'as' => 'urlSearch',
+                'uses' => 'BillController@getClientsAndPatients'
+            ]);
+        Route::get('/pdf/{id}', [
+            'as' => 'billPdf',
+            'uses' => 'BillController@generatePdf'
+        ]);
+    });
+
     Route::group(['prefix' => 'valoracions'], function () {
         Route::get('/', 'ReviewController@index');
         Route::get('/pacient/{id}',
