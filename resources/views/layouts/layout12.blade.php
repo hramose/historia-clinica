@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="{{ $lang }}" ng-app="app">
+<html lang="{{ $lang or 'ca' }}" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestió pacients - {{ $title }}</title>
+    <title>Gestió pacients - {{ $title or 'HCaboSantos.cat' }}</title>
     @include('layouts.header')
 </head>
 <body @if (!Auth::check() || isset($email)) class="no-login" @endif ng-controller="AppController">

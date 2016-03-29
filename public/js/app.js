@@ -66,7 +66,8 @@ app.controller('PacientsController', function ($scope, $filter) {
 
     if (document.querySelector('.pacient_json')) {
         $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
-        $scope.pacient.birth_date = $filter('date')(new Date($scope.pacient.birth_date), 'dd/MM/y');
+        $scope.pacient.birth_date = typeof $scope.pacient.birth_date != 'undefined' ? $filter('date')(new Date($scope.pacient.birth_date), 'dd/MM/y') : '';
+        $scope.pacient.age = typeof $scope.pacient.age != 'undefined' ? parseInt($scope.pacient.age) : '';
     }
 
     $scope.putAgeFromDate = function (date) {

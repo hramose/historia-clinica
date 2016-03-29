@@ -243,14 +243,22 @@ body {
           }
         }
       }
-      #datos-vacio {
+      #datos-colegiado {
         width: 32%;
         border: 1px solid;
         border-top: inherit;
         float: left;
         position: relative;
         height: 59px;
-        top: -38px;
+        span {
+          bottom: 0;
+          position: absolute;
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+          font-weight: bold;
+          font-size: 12px;
+        }
       }
       #datos-total {
         width: 67.46%;

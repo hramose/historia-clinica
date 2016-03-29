@@ -2,6 +2,9 @@
 
 @section('content')
     <div ng-controller="PacientsController">
+        <div style="display: none;" class="pacient_json">
+            {{$pacient->toJson()}}
+        </div>
         {!! Form::open(['route' => 'pacientsNou', 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '']) !!}
         <section>
             <label>{{ trans('models.Pacientname') }}</label>

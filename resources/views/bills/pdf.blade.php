@@ -131,8 +131,8 @@
                 </p>
                 <span id="bill-no-iva">{{trans('models.Billnoiva')}}</span>
             </div>
-            <div id="datos-vacio">
-                &nbsp;
+            <div id="datos-colegiado">
+                <span>{!! trans('models.Billcolegiado') !!}</span>
             </div>
             <div id="datos-total">
                 <strong>{{trans('models.Billtotalbill')}}</strong>

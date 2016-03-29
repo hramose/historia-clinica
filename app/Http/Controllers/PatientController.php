@@ -40,9 +40,27 @@ class PatientController extends Controller
      */
     public function create(Request $request)
     {
+        $pacient = new Patient();
+        if ($request->session()->has('errors')) {
+            $pacient->name = Input::old('name');
+            $pacient->surname = Input::old('surname');
+            $pacient->lastname = Input::old('lastname');
+            $pacient->email = Input::old('email');
+            $pacient->phone = Input::old('phone');
+            $pacient->nif = Input::old('nif');
+            $pacient->gender = Input::old('gender');
+            $pacient->birth_date = Input::old('birth_date');
+            $pacient->age = Input::old('age');
+            $pacient->profession = Input::old('profession');
+            $pacient->address = Input::old('address');
+            $pacient->city = Input::old('city');
+            $pacient->postal_code = Input::old('postal_code');
+        }
+
         return view('pacients/form', [
             'lang' => 'ca',
-            'title' => 'Crea un nou pacient'
+            'title' => 'Crea un nou pacient',
+            'pacient' => $pacient
         ]);
     }
 

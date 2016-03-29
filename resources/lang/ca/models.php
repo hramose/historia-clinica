@@ -39,6 +39,7 @@ return array(
     'Billcash' => 'Efectiu',
     'Billbank_transfer' => 'Transferència al compte IBAN',
     'Billtotalbill' => 'TOTAL FACTURA',
+    'Billcolegiado' => 'Fdo. Helena Cabo Santos<br>Num. Col·legiat: 7446',
     'Clientname' => 'Client',
     'Clientaddress' => 'Domicili',
     'Clientcity' => 'Ciutat',
