@@ -4,7 +4,7 @@ body page[size="A4"] {
   height: 29.7cm;
   display: block;
   margin: 0 auto;
-  margin-bottom: 0.5cm;
+  padding-top: 35px;
   position: relative; }
   body page[size="A4"] #main-bill {
     width: 100%;
@@ -96,7 +96,9 @@ body page[size="A4"] {
             border-left: inherit; }
     body page[size="A4"] #main-bill #datos-factura-total {
       width: 100%;
-      font-size: 14px; }
+      font-size: 14px;
+      height: 200px;
+      clear: both; }
       body page[size="A4"] #main-bill #datos-factura-total #datos-pago {
         float: left;
         width: 32%;
@@ -112,7 +114,7 @@ body page[size="A4"] {
           body page[size="A4"] #main-bill #datos-factura-total #datos-pago span:last-child {
             margin-bottom: 10px; }
       body page[size="A4"] #main-bill #datos-factura-total #datos-subtotal {
-        width: 66.99%;
+        width: 67.2%;
         float: left;
         text-align: center;
         padding: 5px 5px 0 0;
@@ -142,7 +144,7 @@ body page[size="A4"] {
           body page[size="A4"] #main-bill #datos-factura-total #datos-vencimiento span:last-child {
             margin-bottom: 10px; }
       body page[size="A4"] #main-bill #datos-factura-total #datos-irpf {
-        width: 67.46%;
+        width: 67.66%;
         border: 1px solid;
         border-top: inherit;
         float: left; }
@@ -154,7 +156,8 @@ body page[size="A4"] {
           width: 70%;
           float: right; }
           body page[size="A4"] #main-bill #datos-factura-total #datos-irpf p span {
-            width: 29%;
+            padding: 5px;
+            width: 23%;
             display: inline-block;
             float: left;
             text-align: right;
@@ -202,7 +205,7 @@ body page[size="A4"] {
       height: 59px;
       top: -38px; }
     body page[size="A4"] #main-bill #datos-total {
-      width: 67.46%;
+      width: 67.66%;
       border: 1px solid;
       border-top: inherit;
       float: left;
@@ -216,12 +219,25 @@ body page[size="A4"] {
         width: 39%;
         float: left;
         font-weight: bold; }
-    body page[size="A4"] #main-bill #lopd {
-      font-size: 9.5px;
-      width: 100%;
-      clear: both;
-      position: absolute;
-      bottom: 0;
-      text-align: justify; }
+    body page[size="A4"] #main-bill #datos-colegiado {
+      clear: both; }
+      body page[size="A4"] #main-bill #datos-colegiado span {
+        display: block;
+        width: 100%;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 15px;
+        margin-left: 5px; }
+        body page[size="A4"] #main-bill #datos-colegiado span:first-child {
+          margin-top: 55px; }
+  body page[size="A4"] #lopd {
+    font-size: 9.5px;
+    width: 100%;
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: justify; }
 
 /*# sourceMappingURL=pdf.css.map */

@@ -7,9 +7,9 @@ use App\Http\Requests;
 use App\Menu;
 use App\Patient;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -38,10 +38,28 @@ class FrontController extends Controller
         }
 
         if (AuthController::checkForPasswordExpiration()) return redirect('auth/reset_password');
+        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
+                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
+                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
+        $birthdays = [];
+        setlocale(LC_TIME, 'ca_ES.utf8');
+        foreach ($pacients as $pacient) {
+            $date = new \Carbon\Carbon($pacient->birth_date);
+            $age = $pacient->age + 1;
+            $birthdays[] = [
+                'full_name' => $pacient->full_name,
+                'date' => $date->formatLocalized('%d de %B'),
+                'age' => $age
+            ];
+        }
 
         return view('front/index', [
             'lang' => 'ca',
-            'title' => 'Pàgina principal'
+            'title' => 'Pàgina principal',
+            'stats_recent_pacents' => Patient::where(DB::raw('MONTH(created_at)'), '=', date('n'))->get()->count(),
+            'birthdays' => $birthdays
         ]);
     }
 

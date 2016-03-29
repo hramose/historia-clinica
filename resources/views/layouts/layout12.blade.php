@@ -13,23 +13,27 @@
 <div class="wrap-content">
     <row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>
         <column cols="12">
-            @if (Session::has('errors'))
-                <div class="alert alert-warning" role="alert">
-                    <ul>
-                        <strong>{{ trans('messages.error_resumee') }}: </strong>
-                        @foreach ($errors->all() as $error)
-                            <li>{!!  $error !!}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @if (Session::has('alert'))
-                <div class="flash-message" ng-controller="FlashController">
-                    <div ng-show="!timeOut"
-                         class="alert alert-{{ Session::get('status') }}">{{ Session::get('alert') }}</div>
-                </div>
-                <!-- end .flash-message -->
-            @endif
+            <row centered>
+                <column cols="6">
+                    @if (Session::has('errors'))
+                        <div class="alert alert-warning" role="alert">
+                            <ul>
+                                <strong>{{ trans('messages.error_resumee') }}: </strong>
+                                @foreach ($errors->all() as $error)
+                                    <li>{!!  $error !!}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (Session::has('alert'))
+                        <div class="flash-message" ng-controller="FlashController">
+                            <div ng-show="!timeOut"
+                                 class="alert alert-{{ Session::get('status') }}">{{ Session::get('alert') }}</div>
+                        </div>
+                        <!-- end .flash-message -->
+                    @endif
+                </column>
+            </row>
             <row id="layout12-main" around>
                 @yield('content')
             </row>

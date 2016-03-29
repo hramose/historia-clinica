@@ -24,7 +24,7 @@
         @endforeach
         @if (count($user) == 0)
             <tr>
-                <td style="text-align: center" colspan="4">No s'han trobat usuaris</td>
+                <td style="text-align: center" colspan="3">No s'han trobat usuaris</td>
             </tr>
         @endif
         </tbody>
