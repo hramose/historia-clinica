@@ -75,6 +75,9 @@ class BillController extends Controller
         }
         $bill->save();
 
+        Session::flash('alert', 'Factura creada correctament');
+        Session::flash('status', 'success');
+
         return redirect()->route('mostrarBill', ['id' => $bill->id]);
     }
 
@@ -126,6 +129,17 @@ class BillController extends Controller
         ]);
     }
 
+    public function destroy(Request $request, $id)
+    {
+        $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
+        $bill->delete();
+
+        Session::flash('alert', 'Factura eliminada correctament');
+        Session::flash('status', 'success');
+
+        return redirect()->route('veureBills');
+    }
+
     public function getConfig(Request $request, $json = true)
     {
         $billInfo = [
@@ -155,21 +169,18 @@ class BillController extends Controller
         $bill = Bill::with(['patient', 'client'])->whereId($id)->firstOrFail();
         $config = $this->getConfig(new Request(), false);
 
-         return view('bills.pdf', [
+        /* return view('bills.pdf', [
              'bill' => $bill,
              'billInfo' => $config
-         ]);
+         ]);*/
 
         $pdf = PDF::loadView('bills.pdf', [
             'bill' => $bill,
             'billInfo' => $config
         ]);
 
+        $pdf->setOption('footer-html', utf8_decode(view('bills.footer')));
+
         return $pdf->stream();
-    }
-
-    private function pdf()
-    {
-
     }
 }

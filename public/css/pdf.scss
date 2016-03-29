@@ -5,7 +5,7 @@ body {
     height: 29.7cm;
     display: block;
     margin: 0 auto;
-    margin-bottom: 0.5cm;
+    padding-top: 35px;
     position: relative;
     #main-bill {
       width: 100%;
@@ -124,6 +124,8 @@ body {
       #datos-factura-total {
         width: 100%;
         font-size: 14px;
+        height: 200px;
+        clear: both;
         #datos-pago {
           float: left;
           width: 32%;
@@ -143,7 +145,7 @@ body {
           }
         }
         #datos-subtotal {
-          width: 66.99%;
+          width: 67.2%;
           float: left;
           text-align: center;
           padding: 5px 5px 0 0;
@@ -180,7 +182,7 @@ body {
           }
         }
         #datos-irpf {
-          width: 67.46%;
+          width: 67.66%;
           border: 1px solid;
           border-top: inherit;
           float: left;
@@ -192,10 +194,11 @@ body {
             width: 70%;
             float: right;
             span {
+              padding: 5px;
               &:first-child {
                 width: 40%;
               }
-              width: 29%;
+              width: 23%;
               display: inline-block;
               float: left;
               text-align: right;
@@ -261,7 +264,7 @@ body {
         }
       }
       #datos-total {
-        width: 67.46%;
+        width: 67.66%;
         border: 1px solid;
         border-top: inherit;
         float: left;
@@ -278,14 +281,30 @@ body {
           font-weight: bold;
         }
       }
-      #lopd {
-        font-size: 9.5px;
-        width: 100%;
+      #datos-colegiado {
         clear: both;
-        position: absolute;
-        bottom: 0;
-        text-align: justify;
+        span {
+          display: block;
+          width: 100%;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 15px;
+          margin-left: 5px;
+          &:first-child {
+            margin-top: 55px;
+          }
+        }
       }
+    }
+    #lopd {
+      font-size: 9.5px;
+      width: 100%;
+      clear: both;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: justify;
     }
   }
 }

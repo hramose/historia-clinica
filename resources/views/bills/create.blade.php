@@ -2,7 +2,9 @@
 
 @section('content')
     <column cols="12" offset="1" ng-controller="BillController" class="bill-content">
-        <h2>{{trans('models.Billtitle')}}</h2>
+        <h2>{{trans('models.Billtitle')}} @if ($bill->exists) <a href="{{URL::route('billPdf', $bill->id)}}"
+                                                                 target="_blank"><i
+                        class="fa fa-file-pdf-o"></i></a> @endif</h2>
         <span style="display: none">[[urlBillInfo = '{{ URL::route('urlBillInfo') }}';""]]</span>
         @if ($bill->exists)
             <span id="bill" style="display:none;">{{$bill->toJson()}}</span>

@@ -141,7 +141,14 @@
                 </span>
             </div>
         </div>
-        <div id="lopd">{!! trans('messages.bill_lopd') !!}</div>
+        <div id="datos-colegiado">
+            <span class="fdo">
+                {{ trans('messages.bill_colegiado_fdo') }}
+            </span>
+             <span class="num">
+                {{ trans('messages.bill_colegiado_num') }}
+            </span>
+        </div>
     </div>
 </page>
 </body>

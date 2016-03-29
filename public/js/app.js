@@ -31,6 +31,27 @@ app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $ht
         });
     };
 
+    $scope.show_birthdays = function (e) {
+        var el = $(e.target);
+        var pacients = el.attr('data-json') ? JSON.parse(el.attr('data-json')) : JSON.parse(el.parent().attr('data-json'));
+        var $div = $('<div>',
+            {
+                'class': 'tooltip tooltip-' + new Date().getTime()
+            });
+        $div.css({
+            'position': 'absolute',
+            top: (el.offset().top + 20) + "px",
+            left: (el.offset().left) + "px"
+        });
+        for(var i in pacients) {
+            $div.append("<p>El pacient " + pacients[i].full_name + " compleix anys el dia " +  pacients[i].date + "</p>");
+        }
+        $('body').append($div);
+    };
+
+    $scope.delete_tooltip = function() {
+        $('.tooltip').remove();
+    };
 });
 
 app.controller('UsersController', function ($scope, $filter) {
@@ -301,6 +322,16 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
         var $term = $('input[name="client_name"]').parent();
         $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
     }, 500);
+
+    $scope.ask_question = function (e) {
+        e.preventDefault();
+        var el = $(e.target).parent();
+        var url = el.attr('href');
+        var msg = confirm('Estàs segur que vols eliminar aquesta factura?');
+        if (msg) {
+            $window.location.href = url;
+        }
+    };
 
     $scope.today_date = function () {
         /*if ($scope.review.id == '')*/

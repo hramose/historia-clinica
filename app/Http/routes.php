@@ -186,6 +186,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'mostrarBill',
                 'uses' => 'BillController@show'
             ]);
+        Route::get('/delete/{id}',
+            [
+                'as' => 'eliminarBill',
+                'uses' => 'BillController@destroy'
+            ]);
         Route::get('/bill-config',
             [
                 'as' => 'urlBillInfo',
