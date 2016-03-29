@@ -27,13 +27,13 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="box widget" id="stats">
+        {{--<div class="box widget" id="stats">
             <div class="content show-stats">
                 <div class="counter-box">
                     <i class="fa fa-user-md"></i>
 
                     <div class="statistics">
-                        <h5>{{$stats_recent_pacents}} {{--<span>%</span>--}}</h5>
+                        <h5>{{$stats_recent_pacents}} <span>%</span></h5>
 
                         <div class="grow bigger">
                             <p>{{trans('messages.recent_pacients')}}</p>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <div class="box widget" id="stats">
             <div class="content show-stats">
                 <div class="counter-box">

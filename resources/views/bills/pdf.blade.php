@@ -131,13 +131,13 @@
                 </p>
                 <span id="bill-no-iva">{{trans('models.Billnoiva')}}</span>
             </div>
-            <div id="datos-colegiado">
-                <span>{!! trans('models.Billcolegiado') !!}</span>
+            <div id="datos-vacio">
             </div>
             <div id="datos-total">
                 <strong>{{trans('models.Billtotalbill')}}</strong>
                 <span>
-                    {{number_format($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100, 2, ',', '.')}} &euro;
+                    {{--*/ @$total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 /*--}}
+                    {{str_replace('.', ',', $total)}} &euro;
                 </span>
             </div>
         </div>
