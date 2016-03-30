@@ -45,15 +45,18 @@
         <div class="box widget" id="stats">
             <div class="content show-stats">
                 <div class="counter-box">
-                    <i class="fa fa-birthday-cake"></i>
+                    <a href="{{URL::route('birthdaysList')}}">
+                        <i class="fa fa-birthday-cake"></i>
 
-                    <div class="statistics">
-                        <h5>{{count($birthdays)}} {{--<span>%</span>--}}</h5>
+                        <div class="statistics">
+                            <h5>{{count($birthdays)}} {{--<span>%</span>--}}</h5>
 
-                        <div class="grow alert-msg" ng-mouseout="delete_tooltip()" ng-mouseover="show_birthdays($event)" data-json="{{json_encode($birthdays)}}">
-                            <p>{{trans('messages.birthdays')}}</p>
+                            <div class="grow alert-msg" ng-mouseout="delete_tooltip()"
+                                 ng-mouseover="show_birthdays($event)" data-json="{{json_encode($birthdays)}}">
+                                <p>{{trans('messages.birthdays')}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

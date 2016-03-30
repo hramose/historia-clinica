@@ -107,7 +107,17 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'BackupController@listBackups'
     ]);
 
-    /* Route::post('backup/decrypt_bp', [
+    Route::get('birthdays/list', [
+        'as' => 'birthdaysList',
+        'uses' => 'FrontController@showNextBirthdays'
+    ]);
+
+    Route::post('birthdays/notify', [
+        'as' => 'notifiedPacientsBirthday',
+        'uses' => 'FrontController@notifyBirthdays'
+    ]);
+
+    /*Route::post('backup/decrypt_bp', [
          'as' => 'decryptBackup',
          'uses' => 'BackupController@decryptBackup'
      ]);*/

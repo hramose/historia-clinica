@@ -11,7 +11,6 @@ use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -245,5 +244,50 @@ class FrontController extends Controller
             'title' => 'Llista d\'usuaris',
             'users' => $users
         ]);
+    }
+
+    public function showNextBirthdays()
+    {
+        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
+                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
+                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")
+            ->whereNotIn('id', function ($query) {
+                $query->select('patient_id')
+                    ->from(with(new BirthdaysNotification())->getTable())
+                    ->where('year', '=', date('Y'));
+            })->get();
+        $pacientsBirthday = [];
+        foreach ($pacients as $pacient) {
+            $birthDate = explode('-', $pacient->birth_date);
+            if ($birthDate[0] != '') {
+                $pacientsBirthday[] = $pacient;
+            }
+        }
+
+        setlocale(LC_TIME, 'ca_ES.utf8');
+        return view('front.birthdays', [
+            'title' => '',
+            'birthdays' => $pacientsBirthday
+        ]);
+    }
+
+    public function notifyBirthdays(Request $request)
+    {
+        $patient_ids = Input::get('patient_id');
+        if (!is_null($patient_ids)) {
+            foreach ($patient_ids as $id) {
+                $bn = new BirthdaysNotification();
+                $bn->patient_id = $id;
+                $bn->year = date('Y');
+                $bn->save();
+            }
+        }
+
+        Session::flash('alert', trans('messages.birthdays_updated'));
+        Session::flash('status', 'success');
+
+        return redirect()->route('birthdaysList');
     }
 }

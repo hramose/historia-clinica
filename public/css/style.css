@@ -187,6 +187,30 @@ nav {
       margin-top: 0; }
       .wrap-content #main-page #layout12-main form section {
         text-align: inherit; }
+    .wrap-content #main-page #birthday-list {
+      text-align: center; }
+      .wrap-content #main-page #birthday-list #birthdays tr td:last-child {
+        text-align: center; }
+        .wrap-content #main-page #birthday-list #birthdays tr td:last-child input[type=checkbox] {
+          display: none; }
+          .wrap-content #main-page #birthday-list #birthdays tr td:last-child input[type=checkbox] + label:before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+            margin-right: 8px;
+            background-color: #aaa;
+            box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 4px; }
+          .wrap-content #main-page #birthday-list #birthdays tr td:last-child input[type=checkbox]:checked + label:before {
+            content: "\2714";
+            /* Tick */
+            color: white;
+            background-color: #666;
+            text-align: center;
+            line-height: 15px;
+            text-shadow: 0px 0px 3px #eee; }
     .wrap-content #main-page .main-pacients {
       width: 100%; }
       .wrap-content #main-page .main-pacients .review-text {
@@ -446,6 +470,9 @@ nav {
             background: #ffffff;
             text-align: center;
             position: relative; }
+            .wrap-content #main-page #grid-shortcuts .box .content .counter-box a {
+              text-decoration: none;
+              color: inherit; }
             .wrap-content #main-page #grid-shortcuts .box .content .counter-box .fa {
               margin-right: 0px;
               width: 66px;

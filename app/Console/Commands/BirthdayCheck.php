@@ -76,9 +76,9 @@ class BirthdayCheck extends Command
 
             $stringCumpleaños = "";
             foreach ($pacientsBirthday as $pacient) {
-                $date = new \Carbon\Carbon($pacient->birth_date);
+                $datePacient = new \Carbon\Carbon($pacient->birth_date);
                 $age = $pacient->age + 1;
-                $stringCumpleaños .= "- {$pacient->full_name} cumple años el {$date->formatLocalized('%d de %B')} serán {$age} años.\n";
+                $stringCumpleaños .= "- {$pacient->full_name} cumple años el {$datePacient->formatLocalized('%d de %B')} serán {$age} años.\n";
                 $bn = new BirthdaysNotification();
                 $bn->patient_id = $pacient->id;
                 $bn->year = date('Y');
