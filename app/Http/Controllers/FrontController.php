@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests;
 use App\Menu;
 use App\Patient;
+use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,10 +65,13 @@ class FrontController extends Controller
             ];
         }
 
+        $reviews = Review::select('patient_id')->groupBy('patient_id')->get();
+
         return view('front/index', [
             'lang' => 'ca',
             'title' => 'Pàgina principal',
-            'birthdays' => $birthdays
+            'birthdays' => $birthdays,
+            'stats_reviews' => $reviews
         ]);
     }
 

@@ -137,7 +137,7 @@
                 <strong>{{trans('models.Billtotalbill')}}</strong>
                 <span>
                     {{--*/ @$total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 /*--}}
-                    @if (!is_float($total) && is_numeric($total))
+                    @if (strpos($total, '.') === FALSE)
                     {{--*/  @$total = $total . ',00'   /*--}}
                     @endif
                     {{str_replace_first('.', ',', $total)}} &euro;

@@ -645,6 +645,9 @@ nav {
                 &.alert-msg {
                   background: #E0CC54;
                 }
+                &.success-msg {
+                  background: #53ab5b;
+                }
                 &.bigger {
                   width: 115px;
                   @media (min-width: 961px) {

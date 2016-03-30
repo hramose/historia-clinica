@@ -479,6 +479,8 @@ nav {
                 cursor: pointer; }
                 .wrap-content #main-page #grid-shortcuts .box .content .counter-box .statistics .grow.alert-msg {
                   background: #E0CC54; }
+                .wrap-content #main-page #grid-shortcuts .box .content .counter-box .statistics .grow.success-msg {
+                  background: #53ab5b; }
                 .wrap-content #main-page #grid-shortcuts .box .content .counter-box .statistics .grow.bigger {
                   width: 115px; }
                   @media (min-width: 961px) {
