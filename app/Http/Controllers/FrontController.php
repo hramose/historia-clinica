@@ -268,7 +268,7 @@ class FrontController extends Controller
 
         setlocale(LC_TIME, 'ca_ES.utf8');
         return view('front.birthdays', [
-            'title' => '',
+            'title' => 'Llistat d\'aniversaris',
             'birthdays' => $pacientsBirthday
         ]);
     }
