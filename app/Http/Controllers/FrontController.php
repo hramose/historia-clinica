@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class FrontController extends Controller
 {
@@ -143,7 +144,7 @@ class FrontController extends Controller
         ]);
 
         if ($user->exists) {
-            Session::flash('alert', 'test');
+            Session::flash('alert', 'Usuari creat correctament');
             Session::flash('status', 'success');
         }
 
@@ -239,11 +240,8 @@ class FrontController extends Controller
 
         Session::flash('alert', trans('messages.user_deleted_correctly'));
         Session::flash('status', 'success');
-        return view('auth.list', [
-            'lang' => 'ca',
-            'title' => 'Llista d\'usuaris',
-            'users' => $users
-        ]);
+
+        return redirect()->route('llistaUsers');
     }
 
     public function showNextBirthdays()
