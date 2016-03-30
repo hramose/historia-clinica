@@ -34,7 +34,7 @@ app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $ht
     $scope.show_birthdays = function (e) {
         var el = $(e.target);
         var pacients = el.attr('data-json') ? JSON.parse(el.attr('data-json')) : JSON.parse(el.parent().attr('data-json'));
-        if (pacients.lenght > 0) {
+        if (Object.keys(pacients).length !== 0 && JSON.stringify(pacients) !== JSON.stringify({})) {
             var $div = $('<div>',
                 {
                     'class': 'tooltip tooltip-' + new Date().getTime()
