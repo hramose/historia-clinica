@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\BirthdaysNotification;
 use App\Patient;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -45,7 +46,12 @@ class BirthdayCheck extends Command
                 INTERVAL YEAR(CURDATE())-YEAR(birth_date)
                          + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
                 YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")
+            ->whereNotIn('id', function ($query) {
+                $query->select('patient_id')
+                    ->from(with(new BirthdaysNotification())->getTable())
+                    ->where('year', '=', date('Y'));
+            })->get();
         $date = new Carbon();
         $pacientsBirthday = [];
 
@@ -73,6 +79,10 @@ class BirthdayCheck extends Command
                 $date = new \Carbon\Carbon($pacient->birth_date);
                 $age = $pacient->age + 1;
                 $stringCumpleaños .= "- {$pacient->full_name} cumple años el {$date->formatLocalized('%d de %B')} serán {$age} años.\n";
+                $bn = new BirthdaysNotification();
+                $bn->patient_id = $pacient->id;
+                $bn->year = date('Y');
+                $bn->save();
             }
             $this->comment(PHP_EOL . $stringCumpleaños);
         }

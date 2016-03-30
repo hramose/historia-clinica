@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BirthdaysNotification;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests;
 use App\Menu;
@@ -33,18 +34,26 @@ class FrontController extends Controller
      */
     public function index()
     {
+        setlocale(LC_TIME, 'ca_ES.utf8');
+
         if (!Auth::check()) {
             return redirect()->action('Auth\AuthController@getLogin');
         }
 
         if (AuthController::checkForPasswordExpiration()) return redirect('auth/reset_password');
+
         $pacients = Patient::whereRaw("DATE_ADD(birth_date,
                 INTERVAL YEAR(CURDATE())-YEAR(birth_date)
                          + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
                 YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")
+            ->whereNotIn('id', function ($query) {
+                $query->select('patient_id')
+                    ->from(with(new BirthdaysNotification())->getTable())
+                    ->where('year', '=', date('Y'));
+            })->get();
+
         $birthdays = [];
-        setlocale(LC_TIME, 'ca_ES.utf8');
         foreach ($pacients as $pacient) {
             $date = new \Carbon\Carbon($pacient->birth_date);
             $age = $pacient->age + 1;
@@ -58,7 +67,6 @@ class FrontController extends Controller
         return view('front/index', [
             'lang' => 'ca',
             'title' => 'Pàgina principal',
-            'stats_recent_pacents' => Patient::where(DB::raw('MONTH(created_at)'), '=', date('n'))->get()->count(),
             'birthdays' => $birthdays
         ]);
     }

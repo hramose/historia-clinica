@@ -137,17 +137,20 @@
                 <strong>{{trans('models.Billtotalbill')}}</strong>
                 <span>
                     {{--*/ @$total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 /*--}}
-                    {{str_replace('.', ',', $total)}} &euro;
-                </span>
+                    @if (!is_float($total) && is_numeric($total))
+                    {{--*/  @$total = $total . ',00'   /*--}}
+                    @endif
+                    {{str_replace_first('.', ',', $total)}} &euro;
+</span>
             </div>
         </div>
         <div id="datos-colegiado">
-            <span class="fdo">
-                {{ trans('messages.bill_colegiado_fdo') }}
-            </span>
-             <span class="num">
-                {{ trans('messages.bill_colegiado_num') }}
-            </span>
+<span class="fdo">
+{{ trans('messages.bill_colegiado_fdo') }}
+</span>
+<span class="num">
+{{ trans('messages.bill_colegiado_num') }}
+</span>
         </div>
     </div>
 </page>

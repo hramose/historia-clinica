@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BirthdaysNotification;
 use App\Http\Requests;
 use App\Patient;
 use Carbon\Carbon;
@@ -33,7 +34,12 @@ class ApiController extends Controller
                 INTERVAL YEAR(CURDATE())-YEAR(birth_date)
                          + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
                 YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL " . $test_days . " DAY)")->get();
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL " . $test_days . " DAY)")
+            ->whereNotIn('id', function ($query) {
+                $query->select('patient_id')
+                    ->from(with(new BirthdaysNotification())->getTable())
+                    ->where('year', '=', date('Y'));
+            })->get();
         $pacientsBirthday = [];
 
         foreach ($pacients as $pacient) {

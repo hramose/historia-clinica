@@ -34,22 +34,24 @@ app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $ht
     $scope.show_birthdays = function (e) {
         var el = $(e.target);
         var pacients = el.attr('data-json') ? JSON.parse(el.attr('data-json')) : JSON.parse(el.parent().attr('data-json'));
-        var $div = $('<div>',
-            {
-                'class': 'tooltip tooltip-' + new Date().getTime()
+        if (pacients.lenght > 0) {
+            var $div = $('<div>',
+                {
+                    'class': 'tooltip tooltip-' + new Date().getTime()
+                });
+            $div.css({
+                'position': 'absolute',
+                top: (el.offset().top + 20) + "px",
+                left: (el.offset().left) + "px"
             });
-        $div.css({
-            'position': 'absolute',
-            top: (el.offset().top + 20) + "px",
-            left: (el.offset().left) + "px"
-        });
-        for(var i in pacients) {
-            $div.append("<p>El pacient " + pacients[i].full_name + " compleix anys el dia " +  pacients[i].date + "</p>");
+            for (var i in pacients) {
+                $div.append("<p>El pacient " + pacients[i].full_name + " compleix anys el dia " + pacients[i].date + "</p>");
+            }
+            $('body').append($div);
         }
-        $('body').append($div);
     };
 
-    $scope.delete_tooltip = function() {
+    $scope.delete_tooltip = function () {
         $('.tooltip').remove();
     };
 });
