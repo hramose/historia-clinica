@@ -6,7 +6,7 @@
         @foreach($files as $file)
             <li>
                 <a href="{{ URL::route('backupDownload', ['file' => base64_encode($file['name'])]) }}"><i
-                            class="fa fa-angle-right"></i> {{$file['name']}} ({{$file['date']}})</a>
+                            class="fa fa-angle-right"></i> {{$file['name']}} ({{$file['date']}}) ({{$file['size']}})</a>
             </li>
         @endforeach
     </ul>
