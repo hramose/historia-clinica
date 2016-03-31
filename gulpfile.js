@@ -11,6 +11,8 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
+elixir(function (mix) {
     mix.sass('app.scss');
+    mix.styles(['kube.min.css', 'style.css', 'metismenu.css', 'animate.min.css'], 'public/css/desktop.css');
+    mix.scripts(['app.js', 'index.js'], 'public/js/desktop.js')
 });
