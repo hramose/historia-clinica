@@ -176,16 +176,18 @@ nav {
       display: inline-block; }
     .wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
       text-align: center; }
-    .wrap-content #main-page #layout12-main row {
+    .wrap-content #main-page #layout12-main {
       flex-wrap: wrap; }
-    .wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6 {
-      text-align: inherit; }
-      .wrap-content #main-page #layout12-main h1.backup_title, .wrap-content #main-page #layout12-main h2.backup_title, .wrap-content #main-page #layout12-main h3.backup_title, .wrap-content #main-page #layout12-main h4.backup_title, .wrap-content #main-page #layout12-main h5.backup_title, .wrap-content #main-page #layout12-main h6.backup_title {
-        text-align: center !important; }
-    .wrap-content #main-page #layout12-main form {
-      margin-top: 0; }
-      .wrap-content #main-page #layout12-main form section {
+      .wrap-content #main-page #layout12-main row {
+        flex-wrap: wrap; }
+      .wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6 {
         text-align: inherit; }
+        .wrap-content #main-page #layout12-main h1.backup_title, .wrap-content #main-page #layout12-main h2.backup_title, .wrap-content #main-page #layout12-main h3.backup_title, .wrap-content #main-page #layout12-main h4.backup_title, .wrap-content #main-page #layout12-main h5.backup_title, .wrap-content #main-page #layout12-main h6.backup_title {
+          text-align: center !important; }
+      .wrap-content #main-page #layout12-main form {
+        margin-top: 0; }
+        .wrap-content #main-page #layout12-main form section {
+          text-align: inherit; }
     .wrap-content #main-page #birthday-list {
       text-align: center; }
       .wrap-content #main-page #birthday-list #birthdays tr td:last-child {
