@@ -22,6 +22,7 @@ return array(
     'Pacientage' => 'Edat',
     'Pacientprofession' => 'Professió',
     'Pacienthobbies' => 'Hobbies',
+    'Pacientcerca' => 'Cercador de pacients',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billcreationdate' => 'Data',

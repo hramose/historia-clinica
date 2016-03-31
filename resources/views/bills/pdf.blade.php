@@ -137,11 +137,8 @@
                 <strong>{{trans('models.Billtotalbill')}}</strong>
                 <span>
                     {{--*/ @$total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 /*--}}
-                    @if (strpos($total, '.') === FALSE)
-                    {{--*/  @$total = $total . ',00'   /*--}}
-                    @endif
-                    {{str_replace_first('.', ',', $total)}} &euro;
-</span>
+                    {{$formatter->formatCurrency($total, 'EUR')}}
+                </span>
             </div>
         </div>
         <div id="datos-colegiado">
