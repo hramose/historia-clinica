@@ -4,8 +4,7 @@
 {!! Html::script('bower_components/angular-i18n/angular-locale_ca-es.js') !!}
 {!! Html::script('/bower_components/angularPrint/angularPrint.js') !!}
 {!! Html::script('js/metismenu.js') !!}
-{!! Html::script('js/index.js') !!}
-{!! Html::script('js/app.js') !!}
+{!! Html::script('js/desktop.js') !!}
 {!! Html::script('js/directives/validnif.js') !!}
 {!! Html::script('js/moment-with-locales.js') !!}
 {!! Html::script('js/jquery.imagemapster.js') !!}
