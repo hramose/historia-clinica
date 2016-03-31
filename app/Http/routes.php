@@ -17,18 +17,19 @@ Route::group(['middleware' => ['web', 'auth', 'access']], function () {
 });
 
 Route::group(['middleware' => ['web', 'access']], function () {
-// Authentication routes...
+
+    // Authentication routes...
     Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
     Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController@getLogout']);
 
     /*Route::group(['middleware' => 'auth'], function(){*/
-// Registration routes...
+    // Registration routes...
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
     /*});*/
 
-// Verify email routes
+    // Verify email routes
     Route::get('auth/verify/{confirmationCode}', [
         'as' => 'confirmation_path',
         'uses' => 'Auth\AuthController@getConfirmation'
@@ -116,11 +117,6 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'as' => 'notifiedPacientsBirthday',
         'uses' => 'FrontController@notifyBirthdays'
     ]);
-
-    /*Route::post('backup/decrypt_bp', [
-         'as' => 'decryptBackup',
-         'uses' => 'BackupController@decryptBackup'
-     ]);*/
 
     Route::group(['prefix' => 'pacients'], function () {
         Route::get('/', [

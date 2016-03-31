@@ -208,6 +208,45 @@ nav {
     min-height: 100%;
     text-align: justify;
 
+    #search_pacient_form {
+      .autocomplete {
+        ul {
+          list-style: none;
+          margin: 5px 0 0 0;
+          li {
+            height: 30px;
+            border-left: 3px solid #e0e0e0;
+            margin-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            &:hover {
+              border-color: #4392B2;
+            }
+            span {
+              display: inline-block;
+              vertical-align: sub;
+              float: left;
+              width: 63%;
+              &.actions {
+                float: left;
+                width: 37%;
+                text-align: right;
+                padding-right: 5px;
+                a {
+                  text-decoration: none;
+                  color: #c9c9c9;
+                  &:hover {
+                    color: #4392B2;
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+    
     column {
       margin-right: 0;
       display: inline-block;

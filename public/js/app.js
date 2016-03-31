@@ -84,8 +84,10 @@ app.controller('UsersController', function ($scope, $filter) {
     }
 });
 
-app.controller('PacientsController', function ($scope, $filter) {
+app.controller('PacientsController', function ($scope, $filter, $http, $sce) {
     $scope.pacient = {};
+    $scope.search = '';
+    $scope.patients = [];
 
     if (document.querySelector('.pacient_json')) {
         $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
@@ -116,6 +118,23 @@ app.controller('PacientsController', function ($scope, $filter) {
         }
     };
 
+    $scope.search_pacient = function (form) {
+        $scope.locationUrl = $scope.location + $scope.search.term;
+        $http({
+            method: 'POST',
+            url: $scope.locationUrl
+        }).then(function mySucces(response) {
+            $scope.patients = response.data;
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.search.term, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
 });
 
 app.controller('FlashController', function ($scope, $timeout) {

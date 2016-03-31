@@ -9,6 +9,7 @@ use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use NumberFormatter;
 
 class BillController extends Controller
 {
@@ -22,11 +23,13 @@ class BillController extends Controller
     {
         $bills = Bill::paginate(15);
         $bills->setPath('llista');
+        $formatter = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
 
         return view('bills.index', [
             'lang' => 'ca',
             'title' => 'Llista de factures',
-            'bills' => $bills
+            'bills' => $bills,
+            'formatter' => $formatter
         ]);
 
     }
@@ -174,9 +177,12 @@ class BillController extends Controller
              'billInfo' => $config
          ]);*/
 
+        $formatter = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
+
         $pdf = PDF::loadView('bills.pdf', [
             'bill' => $bill,
-            'billInfo' => $config
+            'billInfo' => $config,
+            'formatter' => $formatter
         ]);
 
         $pdf->setOption('footer-html', utf8_decode(view('bills.footer')));

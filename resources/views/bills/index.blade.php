@@ -19,7 +19,7 @@
                 <td>[[format_date('{{ $bill->creation_date }}')]]</td>
                 <td>[[format_date('{{ $bill->expiration_date }}')]]</td>
                 <td>{{trans('models.Bill'.$bill->payment_method)}}</td>
-                <td>[['{{$bill->amount}}'|currency]]</td>
+                <td>{{$formatter->formatCurrency($bill->amount, 'EUR')}}</td>
                 <td>
                     <a title="Editar factura" href="{{ URL::route('mostrarBill', $bill->id) }}"><i
                                 class="fa fa-file-text"></i></a>
