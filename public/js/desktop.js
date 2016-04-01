@@ -506,4 +506,3 @@ $(document).ready(function () {
         $('.wrap-content, #footer').toggleClass('compress');
     });
 });
-//# sourceMappingURL=desktop.js.map
