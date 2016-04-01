@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 
 class FrontController extends Controller
 {
@@ -25,7 +24,7 @@ class FrontController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',  ['except' => ['showGuestHome']]);
     }
 
     /**
@@ -287,5 +286,10 @@ class FrontController extends Controller
         Session::flash('status', 'success');
 
         return redirect()->route('birthdaysList');
+    }
+
+    public function showGuestHome(Request $request)
+    {
+        return view('front.home_guest');
     }
 }
