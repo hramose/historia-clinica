@@ -14,6 +14,8 @@ var elixir = require('laravel-elixir');
 elixir.config.sourcemaps = false;
 
 elixir(function (mix) {
-    mix.styles(['kube.min.css', 'style.css', 'metismenu.css', 'animate.min.css'], 'public/css/desktop.css');
-    mix.scripts(['app.js', 'index.js'], 'public/js/desktop.js')
+    mix.sass('app.scss', 'resources/assets/css/style.css')
+        .styles(['kube.min.css', 'style.css', 'metismenu.css', 'animate.min.css'], 'public/css/desktop.css')
+        .scripts(['app.js', 'index.js', 'moment-with-locales.js', 'metismenu.js', 'jquery.imagemapster.js', 'validnif.js'], 'public/js/desktop.js')
+        .version(["public/css/desktop.css", "public/js/desktop.js"]);
 });
