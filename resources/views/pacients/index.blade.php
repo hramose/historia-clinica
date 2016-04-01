@@ -60,7 +60,7 @@
             </tbody>
         </table>
 
-        {!! $pacients->render() !!}
+        {!! str_replace('/?', '?', $pacients->render()) !!}
         <a class="buttons" href="{{ URL::route('pacientsNouGet') }}"><i class="fa fa-plus"></i></a>
     </div>
 @endsection
