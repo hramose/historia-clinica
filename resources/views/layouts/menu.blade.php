@@ -8,8 +8,19 @@
             <img class="responsive" src="{{ asset("img/logo-responsive.png") }}" alt="">
         </a>
     </div>
+    <div id="menu-user-info">
+        @if (session('isMobile'))
+            <a href="{{URL::route('userData', Auth::user()->id)}}">
+                <span class="circle-online"></span> <span class="fa fa-user"></span>
+            </a>
+        @else
+            <p title="{{Auth::user()->name}}"><a href="{{URL::route('userData', Auth::user()->id)}}"><span
+                            class="circle-online"></span> <span class="full-name">{{Auth::user()->name}}</span></a></p>
+        @endif
+    </div>
     <ul class="metismenu" id="side-menu">
-        <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user"></span> <span class="text">Pacients</span>
+        <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user"></span> <span
+                        class="text">Pacients</span>
                 <span class="fa arrow"></span>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ URL::to('pacients/nou') }}">Crear nous pacients</a></li>
@@ -41,3 +52,4 @@
         </li>
     </ul>
 </nav>
+<input type="hidden" name="is_mobile" value="{{session('isMobile')}}" id="is_mobile">
