@@ -290,6 +290,6 @@ class FrontController extends Controller
 
     public function showGuestHome(Request $request)
     {
-        return view('front.home_guest', ['foundPacient' => false, 'check' => true]);
+        return view('front.home_guest', ['foundPacient' => false, 'check' => true, 'mailSend' => false]);
     }
 }

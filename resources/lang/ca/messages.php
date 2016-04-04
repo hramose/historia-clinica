@@ -56,5 +56,12 @@ return array(
     'make_requests_session' => 'Per demanar una sessió necessitem tenir les teves dades',
     'are_you' => 'Hola :name,',
     'choose_in_calendar' => 'Pots escollir la sessió en el seguent calendari',
-    'no_patient' => 'Deixa les teves dades i ens posarem en contacte amb tu el més aviat possible'
+    'no_patient' => 'Deixa les teves dades i ens posarem en contacte amb tu el més aviat possible',
+    'new_pacient_request' => 'Nova petició de sessió d\'un pacient no registrat',
+    'new_pacient_request_email' => 'Un pacient que no està a la base de dades vol fer una sessió, aquestes son les sevess dades: ',
+    'name' => 'Nom',
+    'surnames' => 'Cognoms',
+    'dni' => 'DNI',
+    'phone' => 'Telèfon',
+    'obsv' => 'Observacions'
 );

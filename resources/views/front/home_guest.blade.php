@@ -37,9 +37,11 @@
             </div>
             <input ng-disabled="form.$invalid" type="submit">
             {{Form::close()}}
-        @elseif($foundPacient)
+        @elseif($foundPacient && !$mailSend)
             <h3>{{trans('messages.are_you', ['name' => $patient->name])}}</h3>
             <p>[[ 'CALENDAR' | translate]]</p>
+        @elseif($mailSend && !$foundPacient)
+            <p>Mail enviado corectamente</p>
         @else
             <h3>[[ 'DATA' | translate ]]</h3>
             {{Form::open(['route' => 'requestsNewPatient', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
@@ -58,8 +60,9 @@
             </div>
             <div class="form-group">
                 <label for="name">[[ 'OBSV' | translate ]]</label>
-                <textarea required ng-model="patient.obsv" type="text" name="obsv"></textarea>
+                <textarea ng-model="patient.obsv" type="text" name="obsv"></textarea>
             </div>
+            <input ng-disabled="form.$invalid" type="submit">
             {{Form::close()}}
         @endif
     </section>
