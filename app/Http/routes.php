@@ -23,7 +23,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'FrontController@showGuestHome'
     ]);
 
-    Route::post('requests/dni', [
+    Route::post('requests/check_dni', [
         'as' => 'searchByDni',
         'uses' => 'PatientController@findPacientByDni'
     ]);

@@ -15,17 +15,35 @@
 <body ng-controller="RequestsController">
 <header>
     <section>
-        <img src="{{asset('img/logo.png')}}" alt="">
+        <a href="{{route('homepage')}}"><img src="{{asset('img/logo.png')}}" alt=""></a>
     </section>
 </header>
 <article>
     <section>
-        {{Form::open(['route' => 'searchByDni', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
-        <div class="form-group">
-            <label for="dni">{{trans('messages.search_by_dni')}}</label>
-            <input type="text" name="dni" value="">
-        </div>
-        {{Form::close()}}
+        @if (!$foundPacient && (isset($check)))
+            <h3>{{trans('messages.make_requests_session')}}</h3>
+            {{Form::open(['route' => 'searchByDni', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
+            <div class="form-group">
+                <label for="dni">{{trans('messages.search_by_dni')}}</label>
+                <input validnif required ng-model="nif" type="text" name="dni" value="">
+            </div>
+            <input ng-disabled="form.$invalid" type="submit">
+            {{Form::close()}}
+        @elseif($foundPacient)
+            <h3>{{trans('messages.are_you', ['name' => $patient->name])}}</h3>
+            <div id="pacient-info">
+
+            </div>
+        @else
+            <h3>{{trans('messages.no_patient')}}</h3>
+            nombre,
+            apellidos,
+            telf,
+            obsv
+            {{Form::open(['route' => '', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
+            <input type="hidden" name="dni" value="{{$dni}}">
+            {{Form::close()}}
+        @endif
     </section>
 </article>
 <footer>

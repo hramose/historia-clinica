@@ -8,6 +8,7 @@ return array(
     'Userrol' => 'Rol d\'usuari',
     'Userrememberme' => 'Recorda\'m',
     'Userblocked' => 'Bloquejat?',
+    'Pacientfullname' => 'Nom complet',
     'Pacientname' => 'Nom pacient',
     'Pacientsurname' => 'Primer cognom',
     'Pacientlastname' => 'Segon cognom',

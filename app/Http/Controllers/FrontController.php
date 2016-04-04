@@ -24,7 +24,7 @@ class FrontController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',  ['except' => ['showGuestHome']]);
+        $this->middleware('auth', ['except' => ['showGuestHome']]);
     }
 
     /**
@@ -290,6 +290,6 @@ class FrontController extends Controller
 
     public function showGuestHome(Request $request)
     {
-        return view('front.home_guest');
+        return view('front.home_guest', ['foundPacient' => false, 'check' => true]);
     }
 }

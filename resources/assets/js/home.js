@@ -11,5 +11,5 @@ angular.module('app').controller('RequestsController', RequestsController);
 
 
 function RequestsController($scope) {
-
+    $scope.dni = '';
 }

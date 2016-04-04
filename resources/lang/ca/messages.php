@@ -52,5 +52,8 @@ return array(
     'bill_colegiado_fdo' => 'Fdo. Helena Cabo Santos',
     'bill_colegiado_num' => 'Num. Col·legiat: 7446',
     'dot_not_selected' => 'No s\'ha seleccionat cercle per indicar gravetat',
-    'search_by_dni' => 'Busca si ets a la base de dades introduïnt el teu DNI'
+    'search_by_dni' => 'Cerca si ets a la base de dades introduïnt el teu DNI',
+    'make_requests_session' => 'Per demanar una sessió necessitem tenir les teves dades',
+    'are_you' => 'Hola :name,',
+    'no_patient' => 'Deixa les teves dades i ens posarem en contacte amb tu el més aviat possible'
 );

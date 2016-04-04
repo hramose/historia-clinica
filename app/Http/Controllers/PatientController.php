@@ -14,7 +14,7 @@ class PatientController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'findPacientByDni']);
     }
 
     /**
@@ -159,5 +159,23 @@ class PatientController extends Controller
     {
         $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->get();
         echo json_encode($patients);
+    }
+
+    public function findPacientByDni(Request $request)
+    {
+        $patient = Patient::whereNif(Input::get('dni'))->first();
+        $data = [];
+        $data['dni'] = Input::get('dni');
+
+        if ($patient != null) {
+            $data['title'] = 'Pacient ' . $patient->full_name;
+            $data['foundPacient'] = true;
+            $data['patient'] = $patient;
+        } else {
+            $data['title'] = 'Pacient no trobat';
+            $data['foundPacient'] = false;
+        }
+
+        return view('front.home_guest', $data);
     }
 }
