@@ -28,6 +28,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'PatientController@findPacientByDni'
     ]);
 
+    Route::post('requests/nou_pacient', [
+        'as' => 'requestsNewPatient',
+        'uses' => 'PatientController@requestNewPatient'
+    ]);
+
     // Authentication routes...
     Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);

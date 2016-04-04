@@ -55,5 +55,6 @@ return array(
     'search_by_dni' => 'Cerca si ets a la base de dades introduïnt el teu DNI',
     'make_requests_session' => 'Per demanar una sessió necessitem tenir les teves dades',
     'are_you' => 'Hola :name,',
+    'choose_in_calendar' => 'Pots escollir la sessió en el seguent calendari',
     'no_patient' => 'Deixa les teves dades i ens posarem en contacte amb tu el més aviat possible'
 );

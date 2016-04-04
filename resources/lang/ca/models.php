@@ -11,6 +11,8 @@ return array(
     'Pacientfullname' => 'Nom complet',
     'Pacientname' => 'Nom pacient',
     'Pacientsurname' => 'Primer cognom',
+    'Pacientsurnames' => 'Cognoms',
+    'Pacientrequest_obsv' => 'Observacions',
     'Pacientlastname' => 'Segon cognom',
     'Pacientemail' => 'Adreça electrònica',
     'Pacientphone' => 'Telèfon',

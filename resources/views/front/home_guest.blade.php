@@ -19,29 +19,47 @@
     </section>
 </header>
 <article>
+    <div id="language-selector">
+        <a href="#ca" class="active" id="ca" title="CA" ng-click="change_language($event, 'ca')">
+            <img src="{{asset('img/ca.png')}}" alt="CA">
+        </a>
+        <a href="#es" title="ES" id="es" ng-click="change_language($event, 'es')">
+            <img src="{{asset('img/es.png')}}" alt="ES">
+        </a>
+    </div>
     <section>
         @if (!$foundPacient && (isset($check)))
-            <h3>{{trans('messages.make_requests_session')}}</h3>
+            <h3>[[ 'REQUEST' | translate ]]</h3>
             {{Form::open(['route' => 'searchByDni', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
             <div class="form-group">
-                <label for="dni">{{trans('messages.search_by_dni')}}</label>
-                <input validnif required ng-model="nif" type="text" name="dni" value="">
+                <label for="dni">[[ 'SEARCH' | translate ]]</label>
+                <input validnif required ng-model="nif" type="text" name="dni" value=""/>
             </div>
             <input ng-disabled="form.$invalid" type="submit">
             {{Form::close()}}
         @elseif($foundPacient)
             <h3>{{trans('messages.are_you', ['name' => $patient->name])}}</h3>
-            <div id="pacient-info">
-
-            </div>
+            <p>[[ 'CALENDAR' | translate]]</p>
         @else
-            <h3>{{trans('messages.no_patient')}}</h3>
-            nombre,
-            apellidos,
-            telf,
-            obsv
-            {{Form::open(['route' => '', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
+            <h3>[[ 'DATA' | translate ]]</h3>
+            {{Form::open(['route' => 'requestsNewPatient', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
             <input type="hidden" name="dni" value="{{$dni}}">
+            <div class="form-group">
+                <label for="name">[[ 'PACIENTNAME' | translate ]]</label>
+                <input required ng-model="patient.full_name" type="text" name="name"/>
+            </div>
+            <div class="form-group">
+                <label for="name">[[ 'PACIENTSURNAMES' | translate ]]</label>
+                <input required ng-model="patient.surnames" type="text" name="surnames"/>
+            </div>
+            <div class="form-group">
+                <label for="name">[[ 'PACIENTPHONE' | translate ]]</label>
+                <input required ng-model="patient.phone" type="text" name="phone"/>
+            </div>
+            <div class="form-group">
+                <label for="name">[[ 'OBSV' | translate ]]</label>
+                <textarea required ng-model="patient.obsv" type="text" name="obsv"></textarea>
+            </div>
             {{Form::close()}}
         @endif
     </section>
