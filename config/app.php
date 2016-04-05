@@ -137,7 +137,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
-        Jenssegers\Agent\AgentServiceProvider::class,
+        /*Jenssegers\Agent\AgentServiceProvider::class,*/
 
         /*
          * Application Service Providers...
@@ -200,7 +200,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Image' => Barryvdh\Snappy\Facades\SnappyImage::class,
-        'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        /*'Agent' => Jenssegers\Agent\Facades\Agent::class,*/
 
     ],
 
