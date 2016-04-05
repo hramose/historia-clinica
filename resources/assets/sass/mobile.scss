@@ -73,8 +73,10 @@ nav {
   height: 100%;
   padding: 10px;
   table {
-    overflow-x: auto;
-    display: block;
+    &.larger {
+      overflow-x: auto;
+      display: block;
+    }
     & + p {
       text-align: center;
     }

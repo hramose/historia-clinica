@@ -15,6 +15,7 @@ $(document).ready(function () {
         $('table').each(function(index, element){
             var t = $(element);
             if ($(window).width() < t.find('thead').width()) {
+                t.addClass('larger');
                 t.after('<p>Fes lliscar el dit sobre la taula per veure més dades</p>');
             }
         })
