@@ -8,7 +8,11 @@
 </head>
 <body @if (!Auth::check() || isset($email)) class="no-login" @endif ng-controller="AppController">
 @if (Auth::check() && !isset($email))
-    @include('layouts.menu')
+    @if (session('isMobile'))
+        @include('layouts.menu-mobile')
+    @else
+        @include('layouts.menu')
+    @endif
 @endif
 <div class="wrap-content">
     <row id="main-page" {{--@if (!Auth::check())--}} centered {{--@endif--}}>

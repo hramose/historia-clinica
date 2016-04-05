@@ -29,7 +29,7 @@ class BillController extends Controller
             'lang' => 'ca',
             'title' => 'Llista de factures',
             'bills' => $bills,
-            'formatter' => $formatter
+            'formatter' => $formatter,
         ]);
 
     }

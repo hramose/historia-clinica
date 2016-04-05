@@ -2,15 +2,16 @@
     <div class="nav-button">
         <button class="navigation" type="primary"><span class="fa fa-navicon"></span></button>
     </div>
+    <div id="menu-user-info">
+        <a href="{{URL::route('userData', Auth::user()->id)}}">
+            <span class="circle-online"></span> <span class="fa fa-user"></span>
+        </a>
+    </div>
     <div id="menu-header">
         <a href="{{URL::route('home')  }}">
             <img class="main" src="{{ asset("img/logo.png") }}" alt="">
             <img class="responsive" src="{{ asset("img/logo-responsive.png") }}" alt="">
         </a>
-    </div>
-    <div id="menu-user-info">
-        <p title="{{Auth::user()->name}}"><a href="{{URL::route('userData', Auth::user()->id)}}"><span
-                        class="circle-online"></span> <span class="full-name">{{Auth::user()->name}}</span></a></p>
     </div>
     <ul class="metismenu" id="side-menu">
         <li><a href="{{ URL::to('pacients') }}"><span class="retain-icon fa fa-user"></span> <span
