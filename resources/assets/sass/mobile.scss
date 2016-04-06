@@ -6,17 +6,10 @@ nav {
     height: auto;
     .metismenu {
       display: block;
-      animation: 0.5s slideInDown ease !important;
-    }
-  }
-  &.closed {
-    .metismenu {
-      animation: 0.5s slideInUp ease !important;
     }
   }
   .nav-button {
     display: inline-block;
-    width: 50px;
     height: 100%;
     float: right;
     .navigation {
@@ -29,8 +22,6 @@ nav {
     }
   }
   #menu-header {
-    float: right;
-    display: inline-block;
     height: 100%;
     text-align: center;
     a {
@@ -73,58 +64,50 @@ nav {
     width: 100%;
     margin: 0;
     clear: both;
-    li {
-      text-align: inherit;
-      color: #ffffff;
-      padding: 15px;
-      list-style: none;
-      position: relative;
-      background: #373d47;
-      width: 100%;
-      &.active {
-        border-left: 4px solid #19aa8d;
-        background: #2b2a2a;
-      }
-      &:hover {
-        background: #2b2a2a;
-      }
-      .nav-second-level {
-        li {
-          background: #2b2a2a;
-        }
-      }
-      a {
-        color: #ffffff;
-        text-decoration: none;
-        display: block;
-        position: relative;
-        margin-left: 7px;
-        span {
-          &:first-child {
-            margin-right: 23px;
-          }
-          &.text {
-            display: inline-block;
-          }
-          &.arrow {
-            display: inline-block;
+  }
+
+}
+
+.wrap-content {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  table {
+    &.larger {
+      overflow-x: auto;
+      display: block;
+    }
+    & + p {
+      text-align: center;
+    }
+    tbody {
+      tr {
+        td {
+          &:last-of-type {
+            a {
+              font-size: 24px;
+            }
           }
         }
       }
     }
   }
-}
-.wrap-content {
-  width: 100%;
-  height: 100%;
-  #main-page {
-    padding: 10px;
+  form {
+    &.forms {
+      label {
+        display: inline-block;
+      }
+    }
+    button {
+      &[type="primary"] {
+        margin: 0 auto;
+        display: block;
+      }
+    }
   }
 }
 
-nav, li.active, .wrap-content, #footer {
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+footer {
+  padding: 10px;
+  font-size: 12px;
 }
