@@ -40,6 +40,7 @@
         @elseif($foundPacient && !$mailSend)
             <h3>{{trans('messages.are_you', ['name' => $patient->name])}}</h3>
             <p>[[ 'CALENDAR' | translate]]</p>
+
         @elseif($mailSend && !$foundPacient)
             <p>Mail enviado corectamente</p>
         @else
