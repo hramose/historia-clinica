@@ -33,6 +33,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'PatientController@requestNewPatient'
     ]);
 
+    Route::post('requests/demanar_visita', [
+        'as' => 'requestNewVisit',
+        'uses' => 'VisitRequestController@requestsNewVisit'
+    ]);
+
     // Authentication routes...
     Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);

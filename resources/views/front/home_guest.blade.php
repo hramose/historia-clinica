@@ -40,7 +40,12 @@
         @elseif($foundPacient && !$mailSend)
             <h3>{{trans('messages.are_you', ['name' => $patient->name])}}</h3>
             <p>[[ 'CALENDAR' | translate]]</p>
-
+            {{Form::open(['route' => 'requestNewVisit', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
+            <div class="form-group">
+                <label for="name">[[ 'REQUESTDAY' | translate ]]</label>
+                <input required ng-model="visit_request.day" type="text" name="day"/>
+            </div>
+            {{Form::close()}}
         @elseif($mailSend && !$foundPacient)
             <p>Mail enviado corectamente</p>
         @else

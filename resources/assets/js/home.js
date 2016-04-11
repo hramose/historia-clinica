@@ -6,23 +6,25 @@ angular.module('app').config(['$interpolateProvider', '$translateProvider', func
 
     $translateProvider.translations('es', {
         REQUEST: 'Para pedir una sesión necesitamos tus datos',
+        REQUESTDAY: 'Día',
         DATA: 'Deja tus datos y nos pondremos en contacto contigo lo más pronto posible',
         SEARCH: 'Busca si estás en la base de datos introduciendo tu DNI',
         PACIENTNAME: 'Nombre',
         PACIENTSURNAMES: 'Apellidos',
         PACIENTPHONE: 'Teléfono',
         OBSV: 'Observaciones',
-        CALENDAR: 'Puedes escoger la sesión en el calendario siguiente'
+        CALENDAR: 'Rellena el formulario para concertar una visita'
     });
     $translateProvider.translations('ca', {
         REQUEST: 'Per demanar una sessió necessitem tenir les teves dades',
+        REQUESTDAY: 'Día',
         DATA: 'Deixa les teves dades i ens posarem en contacte amb tu el més aviat possible',
         SEARCH: 'Cerca si ets a la base de dades introduïnt el teu DNI',
         PACIENTNAME: 'Nom',
         PACIENTSURNAMES: 'Cognoms',
         PACIENTPHONE: 'Telèfon',
         OBSV: 'Observacions',
-        CALENDAR: 'Pots escollir la sessió en el seguent calendari'
+        CALENDAR: 'Omple el formulari per concertar una visita'
     });
 
     $translateProvider.preferredLanguage('ca');
