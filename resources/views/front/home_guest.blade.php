@@ -43,7 +43,14 @@
             {{Form::open(['route' => 'requestNewVisit', 'class' => 'forms', 'name' => 'form', 'novalidate' => ''])}}
             <div class="form-group">
                 <label for="name">[[ 'REQUESTDAY' | translate ]]</label>
-                <input required ng-model="visit_request.day" type="text" name="day"/>
+                <input required date-time format="DD/MM/YYYY" auto-close="true" min-view="date" view="date"
+                       ng-model="visit_request.day" type="text" name="day"/>
+            </div>
+            <div class="form-group">
+                <label for="name">[[ 'REQUESTHOUR' | translate ]]</label>
+                <select ng-model="visit_request.hour" name="hour">
+
+                </select>
             </div>
             {{Form::close()}}
         @elseif($mailSend && !$foundPacient)

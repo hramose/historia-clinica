@@ -132,6 +132,18 @@ article {
               font-size: 24px;
             }
           }
+          select {
+            display: block;
+            border: 1px solid rgba(0, 0, 0, .05);
+            width: 52%;
+            height: 48px;
+            padding: 6px 12px;
+            margin: 0 auto;
+            border-radius: 4px;
+            text-align: center;
+            font-family: Consolas, Lucida Console, monospace;
+            font-size: 24px;
+          }
           textarea {
             display: block;
             border: 1px solid rgba(0, 0, 0, .05);
