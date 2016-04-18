@@ -1,6 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 body {
   font-family: 'Lato', sans-serif;
+  .tooltip {
+    background: #000000;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    width: auto;
+    height: auto;
+    font-size: 11px;
+    padding: 5px;
+    p {
+      margin: 0;
+    }
+  }
 }
 nav {
   width: 100%;

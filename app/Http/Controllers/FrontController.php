@@ -42,44 +42,8 @@ class FrontController extends Controller
 
         if (AuthController::checkForPasswordExpiration()) return redirect('auth/reset_password');
 
-        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
-                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
-                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
-                YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")
-            ->whereNotIn('id', function ($query) {
-                $query->select('patient_id')
-                    ->from(with(new BirthdaysNotification())->getTable())
-                    ->where('year', '=', date('Y'));
-            })->get();
-
-        $birthdays = [];
-        foreach ($pacients as $pacient) {
-            $date = new \Carbon\Carbon($pacient->birth_date);
-            $age = $pacient->age + 1;
-            $birthdays[] = [
-                'full_name' => $pacient->full_name,
-                'date' => $date->formatLocalized('%d de %B'),
-                'age' => $age
-            ];
-        }
-
-        $pacients_wo_check = Patient::whereRaw("DATE_ADD(birth_date,
-                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
-                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
-                YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
-
-        $birthdays_wo_check = [];
-        foreach ($pacients_wo_check as $pacient) {
-            $date = new \Carbon\Carbon($pacient->birth_date);
-            $age = $pacient->age + 1;
-            $birthdays_wo_check[] = [
-                'full_name' => $pacient->full_name,
-                'date' => $date->formatLocalized('%d de %B'),
-                'age' => $age
-            ];
-        }
+        $birthdays = Patient::checkBirthdaysNotNotified();
+        $birthdays_wo_check = Patient::checkBirthdays();
 
         $reviews = Review::select('patient_id')->groupBy('patient_id')->get();
 
