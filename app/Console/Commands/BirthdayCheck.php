@@ -79,10 +79,10 @@ class BirthdayCheck extends Command
                 $datePacient = new \Carbon\Carbon($pacient->birth_date);
                 $age = $pacient->age + 1;
                 $stringCumpleaños .= "- {$pacient->full_name} cumple años el {$datePacient->formatLocalized('%d de %B')} serán {$age} años.\n";
-                $bn = new BirthdaysNotification();
+                /*$bn = new BirthdaysNotification();
                 $bn->patient_id = $pacient->id;
                 $bn->year = date('Y');
-                $bn->save();
+                $bn->save()*/;
             }
             $this->comment(PHP_EOL . $stringCumpleaños);
         }
