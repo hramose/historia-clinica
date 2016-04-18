@@ -133,6 +133,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'FrontController@showNextBirthdays'
     ]);
 
+    Route::get('birthdays/list/no_check', [
+        'as' => 'birthdaysListNoCheck',
+        'uses' => 'FrontController@showNextBirthdaysWoNotificationCheck'
+    ]);
+
     Route::post('birthdays/notify', [
         'as' => 'notifiedPacientsBirthday',
         'uses' => 'FrontController@notifyBirthdays'

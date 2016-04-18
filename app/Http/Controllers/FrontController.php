@@ -64,12 +64,30 @@ class FrontController extends Controller
             ];
         }
 
+        $pacients_wo_check = Patient::whereRaw("DATE_ADD(birth_date,
+                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
+                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
+
+        $birthdays_wo_check = [];
+        foreach ($pacients_wo_check as $pacient) {
+            $date = new \Carbon\Carbon($pacient->birth_date);
+            $age = $pacient->age + 1;
+            $birthdays_wo_check[] = [
+                'full_name' => $pacient->full_name,
+                'date' => $date->formatLocalized('%d de %B'),
+                'age' => $age
+            ];
+        }
+
         $reviews = Review::select('patient_id')->groupBy('patient_id')->get();
 
         return view('front/index', [
             'lang' => 'ca',
             'title' => 'Pàgina principal',
             'birthdays' => $birthdays,
+            'birthdays_wo_check' => $birthdays_wo_check,
             'stats_reviews' => $reviews
         ]);
     }
@@ -241,6 +259,29 @@ class FrontController extends Controller
         Session::flash('status', 'success');
 
         return redirect()->route('llistaUsers');
+    }
+
+    public function showNextBirthdaysWoNotificationCheck()
+    {
+        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
+                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
+                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
+        $pacientsBirthday = [];
+        foreach ($pacients as $pacient) {
+            $birthDate = explode('-', $pacient->birth_date);
+            if ($birthDate[0] != '') {
+                $pacientsBirthday[] = $pacient;
+            }
+        }
+
+        setlocale(LC_TIME, 'ca_ES.utf8');
+        return view('front.birthdays', [
+            'title' => 'Llistat d\'aniversaris',
+            'birthdays' => $pacientsBirthday,
+            'no_check' => true
+        ]);
     }
 
     public function showNextBirthdays()

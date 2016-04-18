@@ -74,6 +74,20 @@ function FrontController($scope, $timeout, $filter, $sce, $http) {
     $scope.delete_tooltip = function () {
         $('.tooltip').remove();
     };
+
+    /*-------------------------------*/
+    /*     Center .grow messages     */
+    /*-------------------------------*/
+    var $grow = $('.grow');
+    $.each($grow, function(index, element) {
+        var $el = $(element);
+        var $parentWidth = $el.outerWidth();
+        var position = ($parentWidth / 2) - ($el.width() / 2);
+        $el.css({
+            'left': '50%',
+            'marginLeft': -($el.width() / 2)
+        });
+    });
 }
 
 function UsersController($scope, $filter) {

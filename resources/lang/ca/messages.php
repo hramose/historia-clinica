@@ -44,6 +44,7 @@ return array(
     'patient_seeker' => 'Cercador de pacients',
     'recent_pacients' => 'Pacients recents',
     'birthdays' => 'Aniversaris',
+    'birthdaysreported' => 'Aniversaris no notificats',
     'stats_reviews' => 'Valoracions',
     'birthdays_updated' => 'Actualizat correctament',
     'create_bill' => 'Crea factura',

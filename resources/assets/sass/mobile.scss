@@ -201,11 +201,11 @@ nav {
               .grow {
                 position: absolute;
                 top: 51%;
-                left: 37%;
                 background: #8BC34A;
-                width: 95px;
+                /*width: 95px;*/
                 height: 30px;
-                padding: .4em 0 0;
+                /*padding: .4em 0 0;*/
+                padding: 6px;
                 cursor: pointer;
                 &.alert-msg {
                   background: #E0CC54;
