@@ -233,8 +233,8 @@ function ReviewController($scope, $filter, $timeout, $window) {
     }
 
     $scope.isToday = function (date) {
-        /*return moment(new Date(date)).isSame(moment(), 'day');*/
-        return true;
+        return moment(new Date(date)).isSame(moment(), 'day');
+        /*return true;*/
     }
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
