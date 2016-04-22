@@ -20,7 +20,9 @@ $(document).ready(function () {
 
     /**** Para añadir un indicador si existe una table que tiene el ancho más grande la pantalla ****/
     if ($('#is_mobile') && $('table').length) {
-        $('table').each(function(index, element){
+        alert('test');
+        $('table').each(function (index, element) {
+            alert('test ' + index);
             var t = $(element);
             if ($(window).width() < t.find('thead').width()) {
                 t.addClass('larger');
