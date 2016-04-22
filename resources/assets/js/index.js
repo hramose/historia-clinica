@@ -20,11 +20,10 @@ $(document).ready(function () {
 
     /**** Para añadir un indicador si existe una table que tiene el ancho más grande la pantalla ****/
     if ($('#is_mobile') && $('table').length) {
-        alert('test');
         $('table').each(function (index, element) {
-            alert('test ' + index);
             var t = $(element);
             if ($(window).width() < t.find('thead').width()) {
+                alert('entro');
                 t.addClass('larger');
                 t.after('<p>Fes lliscar el dit sobre la taula per veure més dades</p>');
             }
