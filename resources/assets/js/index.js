@@ -22,8 +22,6 @@ $(document).ready(function () {
     if ($('#is_mobile') && $('table').length) {
         $('table').each(function (index, element) {
             var t = $(element);
-            alert('thead width >' + t.find('thead').outerWidth());
-            alert('window width >' + $(window).outerWidth());
             if ($(window).outerWidth() < t.find('thead').outerWidth()) {
                 t.addClass('larger');
                 t.after('<p>Fes lliscar el dit sobre la taula per veure més dades</p>');
