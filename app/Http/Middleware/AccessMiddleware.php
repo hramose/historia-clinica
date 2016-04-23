@@ -6,6 +6,8 @@ use App\Access;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Jenssegers\Agent\Agent;
 
 class AccessMiddleware
 {
@@ -18,6 +20,9 @@ class AccessMiddleware
      */
     public function handle($request, Closure $next)
     {
+        $agent = new Agent();
+        Session::put('isMobile', $agent->isMobile());
+
         if (env('APP_DEBUG') != true) {
             $access = new Access();
 

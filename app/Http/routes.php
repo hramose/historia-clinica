@@ -18,6 +18,26 @@ Route::group(['middleware' => ['web', 'auth', 'access']], function () {
 
 Route::group(['middleware' => ['web', 'access']], function () {
 
+    Route::get('requests', [
+        'as' => 'homepage',
+        'uses' => 'FrontController@showGuestHome'
+    ]);
+
+    Route::post('requests/check_dni', [
+        'as' => 'searchByDni',
+        'uses' => 'PatientController@findPacientByDni'
+    ]);
+
+    Route::post('requests/nou_pacient', [
+        'as' => 'requestsNewPatient',
+        'uses' => 'PatientController@requestNewPatient'
+    ]);
+
+    Route::post('requests/demanar_visita', [
+        'as' => 'requestNewVisit',
+        'uses' => 'VisitRequestController@requestsNewVisit'
+    ]);
+
     // Authentication routes...
     Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
@@ -111,6 +131,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
     Route::get('birthdays/list', [
         'as' => 'birthdaysList',
         'uses' => 'FrontController@showNextBirthdays'
+    ]);
+
+    Route::get('birthdays/list/no_check', [
+        'as' => 'birthdaysListNoCheck',
+        'uses' => 'FrontController@showNextBirthdaysWoNotificationCheck'
     ]);
 
     Route::post('birthdays/notify', [

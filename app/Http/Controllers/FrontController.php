@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 
 class FrontController extends Controller
 {
@@ -25,7 +24,7 @@ class FrontController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['showGuestHome']]);
     }
 
     /**
@@ -43,27 +42,8 @@ class FrontController extends Controller
 
         if (AuthController::checkForPasswordExpiration()) return redirect('auth/reset_password');
 
-        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
-                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
-                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
-                YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")
-            ->whereNotIn('id', function ($query) {
-                $query->select('patient_id')
-                    ->from(with(new BirthdaysNotification())->getTable())
-                    ->where('year', '=', date('Y'));
-            })->get();
-
-        $birthdays = [];
-        foreach ($pacients as $pacient) {
-            $date = new \Carbon\Carbon($pacient->birth_date);
-            $age = $pacient->age + 1;
-            $birthdays[] = [
-                'full_name' => $pacient->full_name,
-                'date' => $date->formatLocalized('%d de %B'),
-                'age' => $age
-            ];
-        }
+        $birthdays = Patient::checkBirthdaysNotNotified();
+        $birthdays_wo_check = Patient::checkBirthdays();
 
         $reviews = Review::select('patient_id')->groupBy('patient_id')->get();
 
@@ -71,6 +51,7 @@ class FrontController extends Controller
             'lang' => 'ca',
             'title' => 'Pàgina principal',
             'birthdays' => $birthdays,
+            'birthdays_wo_check' => $birthdays_wo_check,
             'stats_reviews' => $reviews
         ]);
     }
@@ -244,6 +225,29 @@ class FrontController extends Controller
         return redirect()->route('llistaUsers');
     }
 
+    public function showNextBirthdaysWoNotificationCheck()
+    {
+        $pacients = Patient::whereRaw("DATE_ADD(birth_date,
+                INTERVAL YEAR(CURDATE())-YEAR(birth_date)
+                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                YEAR)
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")->get();
+        $pacientsBirthday = [];
+        foreach ($pacients as $pacient) {
+            $birthDate = explode('-', $pacient->birth_date);
+            if ($birthDate[0] != '') {
+                $pacientsBirthday[] = $pacient;
+            }
+        }
+
+        setlocale(LC_TIME, 'ca_ES.utf8');
+        return view('front.birthdays', [
+            'title' => 'Llistat d\'aniversaris',
+            'birthdays' => $pacientsBirthday,
+            'no_check' => true
+        ]);
+    }
+
     public function showNextBirthdays()
     {
         $pacients = Patient::whereRaw("DATE_ADD(birth_date,
@@ -287,5 +291,10 @@ class FrontController extends Controller
         Session::flash('status', 'success');
 
         return redirect()->route('birthdaysList');
+    }
+
+    public function showGuestHome(Request $request)
+    {
+        return view('front.home_guest', ['foundPacient' => false, 'check' => true, 'mailSend' => false]);
     }
 }

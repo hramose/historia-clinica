@@ -1,13 +1,33 @@
-var app = angular.module('app', ['ngAnimate', 'AngularPrint'], function ($interpolateProvider) {
+angular.module('app', ['ngAnimate', 'AngularPrint']);
+
+angular.module('app').config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
-});
+}]);
 
-app.controller('AppController', function ($scope) {
+AppController.$inject = ['$scope'];
+FrontController.$inject = ['$scope', '$timeout', '$filter', '$sce', '$http'];
+UsersController.$inject = ['$scope', '$filter'];
+PacientsController.$inject = ['$scope', '$filter', '$http', '$sce'];
+FlashController.$inject = ['$scope', '$timeout'];
+ReviewController.$inject = ['$scope', '$filter', '$timeout', '$window'];
+BillController.$inject = ['$scope', '$filter', '$timeout', '$http', '$sce', '$window'];
+TestController.$inject = ['$scope', '$http', '$filter', '$interval', '$timeout', '$window', '$sce'];
 
-});
+angular.module('app').controller('AppController', AppController);
+angular.module('app').controller('FrontController', FrontController);
+angular.module('app').controller('UsersController', UsersController);
+angular.module('app').controller('PacientsController', PacientsController);
+angular.module('app').controller('FlashController', FlashController);
+angular.module('app').controller('ReviewController', ReviewController);
+angular.module('app').controller('BillController', BillController);
+angular.module('app').controller('TestController', TestController);
 
-app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $http) {
+function AppController($scope) {
+
+}
+
+function FrontController($scope, $timeout, $filter, $sce, $http) {
     $scope.patients = [];
 
     $scope.underline_word = function (word) {
@@ -54,9 +74,23 @@ app.controller('FrontController', function ($scope, $timeout, $filter, $sce, $ht
     $scope.delete_tooltip = function () {
         $('.tooltip').remove();
     };
-});
 
-app.controller('UsersController', function ($scope, $filter) {
+    /*-------------------------------*/
+    /*     Center .grow messages     */
+    /*-------------------------------*/
+    var $grow = $('.grow');
+    $.each($grow, function(index, element) {
+        var $el = $(element);
+        var $parentWidth = $el.outerWidth();
+        var position = ($parentWidth / 2) - ($el.width() / 2);
+        $el.css({
+            'left': '50%',
+            'marginLeft': -($el.width() / 2)
+        });
+    });
+}
+
+function UsersController($scope, $filter) {
     $scope.user = {};
 
     $scope.randomStr = function (m) {
@@ -82,12 +116,13 @@ app.controller('UsersController', function ($scope, $filter) {
         $scope.user.password = $scope.randomStr(16);
         console.log($scope.user);
     }
-});
+}
 
-app.controller('PacientsController', function ($scope, $filter, $http, $sce) {
+function PacientsController($scope, $filter, $http, $sce) {
     $scope.pacient = {};
     $scope.search = '';
     $scope.patients = [];
+    $scope.location = '';
 
     if (document.querySelector('.pacient_json')) {
         $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
@@ -119,6 +154,10 @@ app.controller('PacientsController', function ($scope, $filter, $http, $sce) {
     };
 
     $scope.search_pacient = function (form) {
+        if ($scope.search.term == '') {
+            $scope.patients = [];
+            return;
+        }
         $scope.locationUrl = $scope.location + $scope.search.term;
         $http({
             method: 'POST',
@@ -135,17 +174,17 @@ app.controller('PacientsController', function ($scope, $filter, $http, $sce) {
         var t = word.replace(regex, '<strong>$&</strong>');
         return $sce.trustAsHtml(t);
     };
-});
+}
 
-app.controller('FlashController', function ($scope, $timeout) {
+function FlashController($scope, $timeout) {
     $scope.timeOut = false;
 
     $timeout(function () {
         $scope.timeOut = true;
     }, 3000);
-});
+}
 
-app.controller('ReviewController', function ($scope, $filter, $timeout, $window) {
+function ReviewController($scope, $filter, $timeout, $window) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
     $scope.form = {};
@@ -194,8 +233,8 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     }
 
     $scope.isToday = function (date) {
-        /*return moment(new Date(date)).isSame(moment(), 'day');*/
-        return true;
+        return moment(new Date(date)).isSame(moment(), 'day');
+        /*return true;*/
     }
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
@@ -222,9 +261,9 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.print = function () {
         $window.print();
     };
-});
+}
 
-app.controller('BillController', function ($scope, $filter, $timeout, $http, $sce, $window) {
+function BillController($scope, $filter, $timeout, $http, $sce, $window) {
     $scope.bill = {
         qty: 0,
         price_per_unit: 0.0,
@@ -454,9 +493,9 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
             $scope.put_on_bill($scope.bill.client, 'client');
         }
     }
-});
+}
 
-app.controller('TestController', function ($scope, $http, $filter, $interval, $timeout, $window, $sce) {
+function TestController($scope, $http, $filter, $interval, $timeout, $window, $sce) {
     $scope.output = '';
     $scope.days = 5;
     $scope.daysMail = 5;
@@ -466,7 +505,8 @@ app.controller('TestController', function ($scope, $http, $filter, $interval, $t
     $scope.first_time = true;
     $scope.status = 0;
 
-    $scope.show_output = function (url, title, params) {
+    $scope.show_output = function (e, url, title, params) {
+        e.preventDefault();
         $scope.timeLoader = '';
         $scope.time = 0;
         var stop = $interval(function () {
@@ -494,6 +534,5 @@ app.controller('TestController', function ($scope, $http, $filter, $interval, $t
             console.log(response);
         });
     };
-});
-
+}
 

@@ -27,21 +27,24 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        {{--<div class="box widget" id="stats">
+        <div class="box widget" id="stats">
             <div class="content show-stats">
                 <div class="counter-box">
-                    <i class="fa fa-user-md"></i>
+                    <a href="{{URL::route('birthdaysListNoCheck')}}">
+                        <i class="fa fa-birthday-cake"></i>
 
-                    <div class="statistics">
-                        <h5>{{$stats_recent_pacents}} <span>%</span></h5>
+                        <div class="statistics">
+                            <h5>{{count($birthdays_wo_check)}} {{--<span>%</span>--}}</h5>
 
-                        <div class="grow bigger">
-                            <p>{{trans('messages.recent_pacients')}}</p>
+                            <div class="grow alert-msg" ng-mouseout="delete_tooltip()"
+                                 ng-mouseover="show_birthdays($event)" data-json="{{json_encode($birthdays)}}">
+                                <p>{{trans('messages.birthdays')}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </div>--}}
+        </div>
         <div class="box widget" id="stats">
             <div class="content show-stats">
                 <div class="counter-box">
@@ -53,7 +56,7 @@
 
                             <div class="grow alert-msg" ng-mouseout="delete_tooltip()"
                                  ng-mouseover="show_birthdays($event)" data-json="{{json_encode($birthdays)}}">
-                                <p>{{trans('messages.birthdays')}}</p>
+                                <p>{{trans('messages.birthdaysreported')}}</p>
                             </div>
                         </div>
                     </a>

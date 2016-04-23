@@ -10,7 +10,8 @@
                     <th>Nom</th>
                     <th>Data</th>
                     <th>Edat</th>
-                    <th>Avisat</th>
+                    @if (!isset($no_check))
+                        <th>Avisat</th> @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -25,11 +26,13 @@
                             farà
                             {{ (new \Carbon\Carbon())->diffInYears($b_pacients->birth_date)+1 }}
                         </td>
-                        <td>
-                            <input type="checkbox" id="cb{{$b_pacients->id}}" value="{{$b_pacients->id}}"
-                                   name="patient_id[]">
-                            <label for="cb{{$b_pacients->id}}"></label>
-                        </td>
+                        @if (!isset($no_check))
+                            <td>
+                                <input type="checkbox" id="cb{{$b_pacients->id}}" value="{{$b_pacients->id}}"
+                                       name="patient_id[]">
+                                <label for="cb{{$b_pacients->id}}"></label>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
                 @if (count($birthdays) == 0)
@@ -39,7 +42,9 @@
                 @endif
                 </tbody>
             </table>
-            <button type="primary">{{trans('messages.send')}}</button>
+            @if (!isset($no_check))
+                <button type="primary">{{trans('messages.send')}}</button>
+            @endif
         </form>
     </div>
 @endsection

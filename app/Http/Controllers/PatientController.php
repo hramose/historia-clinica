@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class PatientController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['findPacientByDni', 'requestNewPatient']]);
     }
 
     /**
@@ -24,7 +27,7 @@ class PatientController extends Controller
     public function index(Request $request)
     {
         $pacients = Patient::orderBy('surname', 'ASC')->paginate(15);
-        $pacients->setPath('llista');
+        $pacients->setPath(URL::route('pacientsLlista'));
         return view('pacients/index', [
             'lang' => 'ca',
             'title' => 'Crea un nou pacient',
@@ -158,5 +161,42 @@ class PatientController extends Controller
     {
         $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->get();
         echo json_encode($patients);
+    }
+
+    public function findPacientByDni(Request $request)
+    {
+        $patient = Patient::whereNif(Input::get('dni'))->first();
+        $data = [];
+        $data['dni'] = Input::get('dni');
+
+        if ($patient != null) {
+            $data['title'] = 'Pacient ' . $patient->full_name;
+            $data['foundPacient'] = true;
+            $data['patient'] = $patient;
+            $data['mailSend'] = false;
+        } else {
+            $data['title'] = 'Pacient no trobat';
+            $data['foundPacient'] = false;
+            $data['mailSend'] = false;
+        }
+
+        return view('front.home_guest', $data);
+    }
+
+    public function requestNewPatient(Request $request)
+    {
+        $inputs = Input::all();
+
+        Mail::send('emails.nou_pacient', $inputs, function (Message $message) {
+            $message->from('fisioterapia@hcabosantos.cat', 'Peticions de sessions');
+            $message->to(env('MAIL_PRINCIPAL', 'suport@hcabosantos.cat'), 'Fisioteràpia HCaboSantos.cat')
+                ->subject(trans('messages.new_pacient_request'));
+        });
+
+        $data['title'] = 'Pacient no trobat';
+        $data['foundPacient'] = false;
+        $data['mailSend'] = true;
+
+        return view('front.home_guest', $data);
     }
 }
