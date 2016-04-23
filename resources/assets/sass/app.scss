@@ -253,7 +253,7 @@ nav {
       text-align: center;
     }
 
-    #layout12-main {
+    #layout12-main, #layout11-main {
       & > h2 {
         flex: 1;
         flex-basis: 100%;
@@ -341,6 +341,18 @@ nav {
         }
         textarea {
           min-height: 250px;
+        }
+      }
+    }
+
+    table {
+      &#bills {
+        thead {
+          th {
+            &:nth-of-type(2) {
+              width: 30%;
+            }
+          }
         }
       }
     }

@@ -1,10 +1,11 @@
-@extends('layouts.layout')
+@extends('layouts.layout11')
 
 @section('content')
-    <table ng-controller="BillController">
+    <table id="bills" ng-controller="BillController">
         <thead>
         <tr>
             <th>ID</th>
+            <th>Cliente</th>
             <th>Data creació</th>
             <th>Data venciment</th>
             <th>Tipus pagament</th>
@@ -16,6 +17,7 @@
         @foreach($bills as $bill)
             <tr>
                 <td>{{ $bill->id }}</td>
+                <td>{{ $bill->client != null ? $bill->client->name : $bill->patient->full_name }}</td>
                 <td>[[format_date('{{ $bill->creation_date }}')]]</td>
                 <td>[[format_date('{{ $bill->expiration_date }}')]]</td>
                 <td>{{trans('models.Bill'.$bill->payment_method)}}</td>

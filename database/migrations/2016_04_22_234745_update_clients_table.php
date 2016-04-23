@@ -12,8 +12,8 @@ class UpdateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::table('patients', function (Blueprint $table) {
-
+        Schema::table('clients', function (Blueprint $table) {
+            $table->string('postal_code')->nullable();
         });
     }
 

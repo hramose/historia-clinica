@@ -60,11 +60,11 @@ body page[size="A4"] {
         body page[size="A4"] #main-bill #datos-cliente p strong {
           color: #40A2C8;
           float: left;
-          width: 13.5%;
+          width: 14.5%;
           text-align: right; }
         body page[size="A4"] #main-bill #datos-cliente p span {
           float: left;
-          width: 60%;
+          width: 59%;
           margin-left: 9px; }
           body page[size="A4"] #main-bill #datos-cliente p span strong {
             color: inherit;
@@ -229,7 +229,7 @@ body page[size="A4"] {
         line-height: 15px;
         margin-left: 5px; }
         body page[size="A4"] #main-bill #datos-colegiado span:first-child {
-          margin-top: 55px; }
+          margin-top: 32px; }
   body page[size="A4"] #lopd {
     font-size: 9.5px;
     width: 100%;

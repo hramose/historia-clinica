@@ -43,6 +43,9 @@
                     <strong>Ciutat:</strong> <span>{{$bill->patient->city}}</span>
                 </p>
                 <p>
+                    <strong>Codi postal:</strong> <span>{{$bill->patient->postal_code}}</span>
+                </p>
+                <p>
                     <strong>CIF:</strong> <span>{{$bill->patient->nif}}</span>
                 </p>
             @endif
@@ -54,6 +57,9 @@
                     <strong>Domicili:</strong> <span>{{$bill->client->address}}</span>
                 </p><p>
                     <strong>Ciutat:</strong> <span>{{$bill->client->city}}</span>
+                </p>
+                <p>
+                    <strong>Codi postal:</strong> <span>{{$bill->client->postal_code}}</span>
                 </p>
                 <p>
                     <strong>CIF:</strong> <span>{{$bill->client->cif}}</span>

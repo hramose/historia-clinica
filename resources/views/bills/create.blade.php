@@ -69,6 +69,11 @@
                                                                               ng-model="client.city">
                     </section>
                     <section>
+                        <label>{{trans('models.Clientpostal_code')}}</label>: <input type="text" class="width-2"
+                                                                              name="client_postal_code"
+                                                                              ng-model="client.postal_code">
+                    </section>
+                    <section>
                         <label>{{trans('models.Clientcif')}}</label>: <input type="text" class="width-2"
                                                                              name="client_cif"
                                                                              ng-model="client.cif">

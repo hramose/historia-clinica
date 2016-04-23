@@ -21,7 +21,7 @@ class BillController extends Controller
 
     public function index()
     {
-        $bills = Bill::paginate(15);
+        $bills = Bill::paginate(10);
         $bills->setPath('llista');
         $formatter = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
 
@@ -72,6 +72,7 @@ class BillController extends Controller
             $client->name = $inputs['client_name'];
             $client->address = $inputs['client_address'];
             $client->city = $inputs['client_city'];
+            $client->postal_code = $inputs['client_postal_code'];
             $client->cif = $inputs['client_cif'];
             $client->save();
             $bill->client_id = $client->id;
@@ -105,9 +106,19 @@ class BillController extends Controller
             $client->name = $inputs['client_name'];
             $client->address = $inputs['client_address'];
             $client->city = $inputs['client_city'];
+            $client->postal_code = $inputs['client_postal_code'];
             $client->cif = $inputs['client_cif'];
             $client->save();
             $bill->client_id = $client->id;
+        } else {
+            if ($bill->client != null) {
+                $bill->client->name = $inputs['client_name'];
+                $bill->client->address = $inputs['client_address'];
+                $bill->client->city = $inputs['client_city'];
+                $bill->client->postal_code = $inputs['client_postal_code'];
+                $bill->client->cif = $inputs['client_cif'];
+                $bill->client->save();
+            }
         }
         $bill->save();
 
