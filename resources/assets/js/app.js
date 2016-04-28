@@ -437,6 +437,7 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
             $scope.bill.patient_id = $scope.patient.id;
             $scope.client.name = $scope.patient.full_name;
             $scope.client.address = $scope.patient.address;
+            $scope.client.postal_code = $scope.patient.postal_code;
             $scope.client.city = $scope.patient.city;
             $scope.client.cif = $scope.patient.nif;
             $scope.bill.client_id = '';
