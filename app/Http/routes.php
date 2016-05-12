@@ -11,6 +11,24 @@
 |
 */
 
+
+/**
+ * REST API URLS
+ */
+Route::post('r/auth', [
+    'as' => 'auth.rest',
+    'uses' => 'RestController@authenticate'
+]);
+
+Route::group(['middleware' => ['jwt.auth', 'access']], function () {
+    Route::group(['prefix' => 'r'], function () {
+        Route::get('test', 'RestController@test');
+    });
+});
+/**
+ * End REST API URLS
+ */
+
 Route::group(['middleware' => ['web', 'auth', 'access']], function () {
     Route::get('/', [
         'as' => 'home', 'uses' => 'FrontController@index']);

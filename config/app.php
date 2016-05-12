@@ -138,6 +138,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -201,6 +202,8 @@ return [
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Image' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactgory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 
