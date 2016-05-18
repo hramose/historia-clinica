@@ -25,6 +25,7 @@ return array(
     'female' => 'Dona',
     'select_gender' => 'Selecciona sexe',
     'Reviewmsgsavedcorrectly' => 'Valoració guardada correctament',
+    'Reviewmsgdeletedcorrectly' => 'Valoració eliminada correctament',
     'Reviewdate' => 'Nova valoració',
     'Reviewalldates' => 'Data de valoració (anteriors)',
     'Reviewautonom' => 'Autònom',

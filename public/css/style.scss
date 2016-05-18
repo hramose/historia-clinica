@@ -312,6 +312,21 @@ nav {
               }
             }
           }
+          .right-col {
+            text-align: right;
+            section {
+              select {
+                float: right;
+              }
+            }
+          }
+          .send-button {
+            text-align: center;
+            width: 100%;
+            .error {
+              background: #d11149 !important;
+            }
+          }
         }
         .separation {
           margin-left: 10px;

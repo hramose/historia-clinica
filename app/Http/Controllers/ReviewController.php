@@ -57,11 +57,6 @@ class ReviewController extends Controller
             $review = new Review();
         } else {
             $review = Review::whereId(Input::get('id'))->first();
-            if ($review->date == Carbon::createFromFormat('d-m-Y', $inputs['date']) || $inputs['date'] == '01-01-1970') {
-                $inputs = Input::except('date');
-            } else {
-                $review = new Review();
-            }
         }
         $review->fill($inputs);
         if ($review->patient_id == '') $review->patient_id = $id;
@@ -128,10 +123,20 @@ class ReviewController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $id_review)
     {
-        //
+        /**
+         * @var $review Review
+         */
+        $review = Review::whereId($id_review)->first();
+        $review->delete();
+
+        Session::flash('alert', trans('models.Reviewmsgdeletedcorrectly'));
+        Session::flash('status', 'success');
+
+        return Redirect::route('valoracions.pacient.show', $id);
     }
+
 
     function clean_dates(&$input)
     {
