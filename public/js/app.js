@@ -272,8 +272,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
          e.stopPropagation();
          console.log($scope.review);*/
     }
-})
-;
+});
 
 app.controller('SearchController', function ($scope, $filter, $timeout, $http, $sce, $window) {
     $scope.search = {term: '', url: $('#url').val()};
