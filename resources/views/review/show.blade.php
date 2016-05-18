@@ -1,7 +1,7 @@
 @extends('layouts.layout12')
 
 @section('content')
-    <column cols="5" offset="1">
+    <column cols="7">
         <div id="review-content" ng-controller="ReviewController">
             <h2>Dades del pacient</h2>
             {!! Form::model($pacient, array('class' => 'forms', 'name' => 'form')) !!}
@@ -39,10 +39,10 @@
             {!! Form::hidden('id', null, ['ng-model' => 'review.id']) !!}
             {!! Form::hidden('patient_id',  null, ['ng-model' => 'review.patient_id']) !!}
             <row>
-                <column cols="4">
+                <column cols="5">
                     <section>
                         <label>{{ trans('models.Reviewdate') }}</label>
-                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-12', 'ng-model' => 'review.date']) !!}
+                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-12', 'required' => 'required', 'ng-model' => 'review.date']) !!}
                     </section>
                     <section>
                         <label>{{trans('models.Reviewantecedents') }}:</label>
@@ -65,9 +65,12 @@
                             </div>
                             <img id="human_body_img" usemap="#human_body" src="{{asset('img/human-body.png')}}" alt="">
                             <map id="human_body_image_map" name="human_body">
-                                <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title="" coords="85,113,16" href="#"/>
-                                <area body_part="ee" full="Espatlla esquerra"shape="circle" alt="" title="" coords="223,113,16" href="#"/>
-                                <area body_part="p" full="Pit" shape="circle" alt="" title="" coords="156,165,15" href="#"/>
+                                <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title=""
+                                      coords="85,113,16" href="#"/>
+                                <area body_part="ee" full="Espatlla esquerra" shape="circle" alt="" title=""
+                                      coords="223,113,16" href="#"/>
+                                <area body_part="p" full="Pit" shape="circle" alt="" title="" coords="156,165,15"
+                                      href="#"/>
                                 <area body_part="bd" shape="circle" alt="" title="" coords="67,216,16" href="#"/>
                                 <area body_part="be" shape="circle" alt="" title="" coords="240,217,16" href="#"/>
                                 <area body_part="pi" shape="circle" alt="" title="" coords="154,255,15" href="#"/>
@@ -83,18 +86,22 @@
                             </map>
                         </div>
                         <span ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
-                        <input type="hidden" name="review[limit_articular][dots]" value="[[review.review.limit_articular.dots]]">
-                    </section>
-                    <section class="send-button">
-                        {!! Form::button(trans('messages.save_review'),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
+                        <input type="hidden" name="review[limit_articular][dots]"
+                               value="[[review.review.limit_articular.dots]]">
                     </section>
                 </column>
-                <column cols="6" class="separation">
+                <column class="right-col" cols="6" class="separation">
                     <section>
                         <label>{{trans('models.Reviewalldates') }}</label>
                         {!! Form::select('selected_review', [-1 => trans('messages.empty_option_reviews_dates')] + $reviews->lists('date', 'id')->toArray(), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
                     </section>
                 </column>
+                <section class="send-button">
+                    {!! Form::button(trans('messages.save_review'),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
+                    @if ($review->id != '')
+                        {!! Form::button(trans('messages.delete_review'),['type' => 'primary', 'class' => 'error', 'ng-click' => 'delete_review($event)']) !!}
+                    @endif
+                </section>
             </row>
             {!! Form::close() !!}
         </div>

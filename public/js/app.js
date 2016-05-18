@@ -94,12 +94,14 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.patient = [];
     $scope.selected_dot = '';
     $scope.dots = [];
+    $scope.clickCounts = 0;
 
     var image = $('img#human_body_img');
     image.mapster({
         mapKey: 'body_part',
         fillColor: 'F92525',
         onClick: function (e) {
+
             if ($scope.selected_dot == 'low') {
                 image.mapster('set', false, e.key);
                 image.mapster('set', true, e.key, {
@@ -148,35 +150,42 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         }
     });
 
+    $scope.load_review = function (json) {
+        $scope.review.id = json.id;
+        $scope.review.review = typeof json.review != 'undefined' ? json.review : $scope.review.review;
+        $scope.review.patient_id = json.patient_id;
+        $scope.review.date = json.date;
+        //pongo puntos en su sitio
+        if (typeof $scope.review.review.limit_articular !== 'undefined') {
+            if ($scope.review.review.limit_articular.dots.length > 0) {
+                var ds = JSON.parse($scope.review.review.limit_articular.dots);
+                for (var i = 0; i < ds.length; i++) {
+                    var opts = {};
+                    if (ds[i].level == 'low') {
+                        opts = {
+                            fill: false,
+                            stroke: 'F92525'
+                        }
+                    } else if (ds[i].level == 'medium') {
+                        opts = {
+                            fillColor: '77cdaa'
+                        };
+                    } else {
+                        opts = {
+                            fillColor: 'F92525'
+                        };
+                    }
+                    image.mapster('set', true, ds[i].key, opts);
+                }
+                $scope.dots = ds;
+            }
+        }
+    };
+
     var $review = $('#review');
     if ($review.length && $review.html().trim() != '[]') {
-        $scope.review = JSON.parse($review.html());
-        $scope.review.date = '';
+        $scope.load_review(JSON.parse($review.html()));
         $review.html('');
-
-        //pongo puntos en su sitio
-        if ($scope.review.review.limit_articular.dots.length > 0) {
-            var ds = JSON.parse($scope.review.review.limit_articular.dots);
-            for (var i = 0; i < ds.length; i++) {
-                var opts = {};
-                if (ds[i].level == 'low') {
-                    opts = {
-                        fill: false,
-                        stroke: 'F92525'
-                    }
-                } else if (ds[i].level == 'medium') {
-                    opts = {
-                        fillColor: '77cdaa'
-                    };
-                } else {
-                    opts = {
-                        fillColor: 'F92525'
-                    };
-                }
-                image.mapster('set', true, ds[i].key, opts);
-            }
-            $scope.dots = ds;
-        }
     }
 
     var $patient = $('#patient');
@@ -192,13 +201,18 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     };
 
     $scope.today_date = function () {
-        /*if ($scope.review.id == '')*/
-        $scope.review.date = $filter('date')(new Date(), 'dd/MM/y');
+        if ($scope.review.id == '')
+            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y');
     };
 
     $scope.edit_review = function (element) {
         if ($(element).val() != -1)
             $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/show/' + $(element).val();
+    };
+
+    $scope.delete_review = function (e) {
+        e.preventDefault();
+        $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/delete/' + $scope.review.id;
     };
 
     $scope.addDateToReview = function (e) {

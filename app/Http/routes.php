@@ -211,6 +211,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'valoracionsEditar',
                 'uses' => 'ReviewController@show'
             ]);
+        Route::get('/pacient/{id}/delete/{id_review}',
+            [
+                'as' => 'valoracionsEliminar',
+                'uses' => 'ReviewController@destroy'
+            ]);
         Route::post('/pacient/{id}/save/',
             [
                 'as' => 'valoracionsGuarda',
