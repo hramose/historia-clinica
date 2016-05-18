@@ -207,14 +207,16 @@ nav {
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel img {
         width: 16px;
         height: 16px;
-        display: inline-block; }
+        display: inline-block;
+        cursor: pointer; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel .medium-dot {
         width: 16px;
         height: 16px;
         background: #77cdaa;
         display: inline-block;
         border-radius: 50%;
-        vertical-align: middle; }
+        vertical-align: middle;
+        cursor: pointer; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart img {
         width: 150px; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart map area {
@@ -223,10 +225,31 @@ nav {
       text-align: right; }
       .wrap-content #main-page #layout12-main #review-content form .right-col section select {
         float: right; }
+      .wrap-content #main-page #layout12-main #review-content form .right-col section .button_new {
+        display: inline-block;
+        vertical-align: top;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.4rem;
+        font-weight: normal;
+        white-space: nowrap;
+        padding: 0 32px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        text-decoration: none;
+        -webkit-appearance: none;
+        outline: none;
+        border: none;
+        border-radius: 2px;
+        box-shadow: none;
+        cursor: pointer;
+        margin: 10px 0 0;
+        color: rgba(255, 255, 255, 0.9);
+        background: #049108; }
     .wrap-content #main-page #layout12-main #review-content form .send-button {
       text-align: center;
       width: 100%; }
-      .wrap-content #main-page #layout12-main #review-content form .send-button .error {
+      .wrap-content #main-page #layout12-main #review-content form .send-button .error-button {
         background: #d11149 !important; }
     .wrap-content #main-page #layout12-main #review-content .separation {
       margin-left: 10px; }

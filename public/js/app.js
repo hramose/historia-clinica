@@ -95,13 +95,14 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
     $scope.selected_dot = '';
     $scope.dots = [];
     $scope.clickCounts = 0;
+    $scope.prevDot = '';
 
     var image = $('img#human_body_img');
     image.mapster({
         mapKey: 'body_part',
         fillColor: 'F92525',
         onClick: function (e) {
-
+            console.log(e);
             if ($scope.selected_dot == 'low') {
                 image.mapster('set', false, e.key);
                 image.mapster('set', true, e.key, {
@@ -113,7 +114,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
             } else if ($scope.selected_dot == 'medium') {
                 image.mapster('set', false, e.key);
                 image.mapster('set', true, e.key, {
-                    fillColor: '77cdaa',
+                    fillColor: '77cdaa'
                 });
                 $scope.show_msg = false;
                 $scope.$apply();
@@ -121,7 +122,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
             else if ($scope.selected_dot == 'high') {
                 image.mapster('set', false, e.key);
                 image.mapster('set', true, e.key, {
-                    fillColor: 'F92525',
+                    fillColor: 'F92525'
                 });
                 $scope.show_msg = false;
                 $scope.$apply();

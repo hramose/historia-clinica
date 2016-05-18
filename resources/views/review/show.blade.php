@@ -94,12 +94,14 @@
                     <section>
                         <label>{{trans('models.Reviewalldates') }}</label>
                         {!! Form::select('selected_review', [-1 => trans('messages.empty_option_reviews_dates')] + $reviews->lists('date', 'id')->toArray(), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
+                        <a class="button_new"
+                           href="{{ URL::route('valoracions.pacient.show', $pacient->id) }}">{{trans('messages.new_review')}}</a>
                     </section>
                 </column>
                 <section class="send-button">
                     {!! Form::button(trans('messages.save_review'),['type' => 'primary', 'ng-disabled' => 'formReview.$invalid']) !!}
                     @if ($review->id != '')
-                        {!! Form::button(trans('messages.delete_review'),['type' => 'primary', 'class' => 'error', 'ng-click' => 'delete_review($event)']) !!}
+                        {!! Form::button(trans('messages.delete_review'),['type' => 'primary', 'class' => 'error-button', 'ng-click' => 'delete_review($event)']) !!}
                     @endif
                 </section>
             </row>

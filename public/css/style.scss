@@ -293,6 +293,7 @@ nav {
                 width: 16px;
                 height: 16px;
                 display: inline-block;
+                cursor: pointer;
               }
               .medium-dot {
                 width: 16px;
@@ -301,6 +302,7 @@ nav {
                 display: inline-block;
                 border-radius: 50%;
                 vertical-align: middle;
+                cursor: pointer;
               }
             }
             img {
@@ -318,12 +320,34 @@ nav {
               select {
                 float: right;
               }
+              .button_new {
+                display: inline-block;
+                vertical-align: top;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 1.4rem;
+                font-weight: normal;
+                white-space: nowrap;
+                padding: 0 32px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                text-decoration: none;
+                -webkit-appearance: none;
+                outline: none;
+                border: none;
+                border-radius: 2px;
+                box-shadow: none;
+                cursor: pointer;
+                margin: 10px 0 0;
+                color: rgba(255, 255, 255, 0.9);
+                background: rgb(4,145,8);
+              }
             }
           }
           .send-button {
             text-align: center;
             width: 100%;
-            .error {
+            .error-button {
               background: #d11149 !important;
             }
           }
