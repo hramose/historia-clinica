@@ -17,6 +17,9 @@ body.no-login {
 }
 
 body {
+  .clearfix {
+    clear: both;
+  }
   .modal-overlay {
     position: absolute;
     left: 0;
@@ -399,6 +402,9 @@ nav {
               }
             }
           }
+          .review-separation {
+            margin-top: 71px;
+          }
           .right-col {
             text-align: right;
             section {
@@ -436,9 +442,6 @@ nav {
               background: #d11149 !important;
             }
           }
-        }
-        .separation {
-          margin-left: 10px;
         }
       }
       #buscador-content {

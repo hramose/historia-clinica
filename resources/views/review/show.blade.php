@@ -44,7 +44,7 @@
                         <label>{{ trans('models.Reviewdate') }}</label>
                         {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-12', 'required' => 'required', 'ng-model' => 'review.date']) !!}
                     </section>
-                    <section>
+                    <section class="review-separation">
                         <label>{{trans('models.Reviewantecedents') }}:</label>
                         <textarea name="review[antecedents]" ng-model="review.review.antecedents"></textarea>
                     </section>
@@ -89,17 +89,52 @@
                         <input type="hidden" name="review[limit_articular][dots]"
                                value="[[review.review.limit_articular.dots]]">
                         <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
-                        <textarea type="text" name="review[limit_articular][observacions]" ng-model="review.review.limit_articular.observacions"></textarea>
+                        <textarea type="text" name="review[limit_articular][observacions]"
+                                  ng-model="review.review.limit_articular.observacions"></textarea>
                     </section>
                 </column>
-                <column class="right-col" cols="6" class="separation">
+                <column cols="2"></column>
+                <column class="right-col separation" cols="5">
                     <section>
                         <label>{{trans('models.Reviewalldates') }}</label>
                         {!! Form::select('selected_review', [-1 => trans('messages.empty_option_reviews_dates')] + $reviews->lists('date', 'id')->toArray(), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
                         @if ($review->id != '')
+                            <div class="clearfix"></div>
                             <a class="button_new"
                                href="{{ URL::route('valoracions.pacient.show', $pacient->id) }}">{{trans('messages.new_review')}}</a>
                         @endif
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssensibilitzacio') }}:</label>
+                        <textarea name="review[sensibilitzacio]" ng-model="review.review.sensibilitzacio"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_nervioso') }}:</label>
+                        <textarea name="review[sist_nervioso]" ng-model="review.review.sist_nervioso"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_neural') }}:</label>
+                        <textarea name="review[sist_neural]" ng-model="review.review.sist_neural"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_cardiovascular') }}:</label>
+                        <textarea name="review[sist_cardiovascular]" ng-model="review.review.sist_cardiovascular"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_respiratori') }}:</label>
+                        <textarea name="review[sist_respiratori]" ng-model="review.review.sist_respiratori"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_reproductiu') }}:</label>
+                        <textarea name="review[sist_reproductiu]" ng-model="review.review.sist_reproductiu"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_digestiu') }}:</label>
+                        <textarea name="review[sist_digestiu]" ng-model="review.review.sist_digestiu"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewsaltres') }}:</label>
+                        <textarea name="review[altres]" ng-model="review.review.altres"></textarea>
                     </section>
                 </column>
                 <section class="send-button">

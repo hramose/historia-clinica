@@ -1,6 +1,6 @@
 var app = angular.module('ModalModule', []);
 
-app.service('ModalService', function () {
+app.service('ModalService', function ($window) {
     var _el;
     var _modals = [];
 
@@ -53,17 +53,19 @@ app.service('ModalService', function () {
     };
 
     this.showModal = function (id) {
-        var overlay = document.createElement('div');
-        overlay.className = 'modal-overlay'
-        document.body.appendChild(overlay);
         var modal = this.getModal(id);
-        overlay.onclick = function(e) {
-          document.body.removeChild(modal);
-          document.body.removeChild(overlay);
-        };
         if (typeof modal != 'undefined') {
             modal.style.display = 'block';
-            modal.focus();
+            
+            $window.scrollTo(0, angular.element(modal).offsetTop);
+
+            var overlay = document.createElement('div');
+            overlay.className = 'modal-overlay'
+            document.body.appendChild(overlay);
+            overlay.onclick = function (e) {
+                document.body.removeChild(modal);
+                document.body.removeChild(overlay);
+            };
         }
         else
             console.error('Incorrect ID, modal not found');

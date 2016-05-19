@@ -9,6 +9,8 @@ body, button, select, textarea, input, .btn {
 body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
   margin: 0; }
 
+body .clearfix {
+  clear: both; }
 body .modal-overlay {
   position: absolute;
   left: 0;
@@ -296,6 +298,8 @@ nav {
         width: 150px; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart map area {
         background: red; }
+    .wrap-content #main-page #layout12-main #review-content form .review-separation {
+      margin-top: 71px; }
     .wrap-content #main-page #layout12-main #review-content form .right-col {
       text-align: right; }
       .wrap-content #main-page #layout12-main #review-content form .right-col section select {
@@ -326,8 +330,6 @@ nav {
       width: 100%; }
       .wrap-content #main-page #layout12-main #review-content form .send-button .error-button {
         background: #d11149 !important; }
-    .wrap-content #main-page #layout12-main #review-content .separation {
-      margin-left: 10px; }
     .wrap-content #main-page #layout12-main #buscador-content {
       border-left: 1px solid #ccc; }
       .wrap-content #main-page #layout12-main #buscador-content form {

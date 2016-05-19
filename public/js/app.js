@@ -85,7 +85,18 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
         review: {
             antecedents: '',
             motiu_consulta: '',
-            limit_articular: {dots: [], observacions: ''}
+            limit_articular: {dots: [], observacions: ''},
+            dolor: {dots: [], descripcio: ''},
+            forca_muscular: {dots: [], observacions: ''},
+            transferencies: {},
+            sensibilitzacio: '',
+            sist_neural: '',
+            sist_nervios: '',
+            sist_cardiovascular: '',
+            sist_respiratori: '',
+            sist_reproductiu: '',
+            sist_digestiu: '',
+            altres: ''
         },
         id: '',
         patient_id: ''
