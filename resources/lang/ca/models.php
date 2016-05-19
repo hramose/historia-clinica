@@ -47,6 +47,7 @@ return array(
     'Reviewsistdig' => 'Sist. Digestiu',
     'Reviewaltres' => 'Altres:',
     'Reviewlimitarticular' => 'Limitació articular',
+    'Reviewlimitarticular_observacions' => 'Observacions',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billcreationdate' => 'Data',

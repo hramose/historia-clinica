@@ -88,14 +88,18 @@
                         <span ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
                         <input type="hidden" name="review[limit_articular][dots]"
                                value="[[review.review.limit_articular.dots]]">
+                        <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
+                        <textarea type="text" name="review[limit_articular][observacions]" ng-model="review.review.limit_articular.observacions"></textarea>
                     </section>
                 </column>
                 <column class="right-col" cols="6" class="separation">
                     <section>
                         <label>{{trans('models.Reviewalldates') }}</label>
                         {!! Form::select('selected_review', [-1 => trans('messages.empty_option_reviews_dates')] + $reviews->lists('date', 'id')->toArray(), $review->id, ['class'=> 'width-7', 'onchange' => 'angular.element(this).scope().edit_review(this)']) !!}
-                        <a class="button_new"
-                           href="{{ URL::route('valoracions.pacient.show', $pacient->id) }}">{{trans('messages.new_review')}}</a>
+                        @if ($review->id != '')
+                            <a class="button_new"
+                               href="{{ URL::route('valoracions.pacient.show', $pacient->id) }}">{{trans('messages.new_review')}}</a>
+                        @endif
                     </section>
                 </column>
                 <section class="send-button">

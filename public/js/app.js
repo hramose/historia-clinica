@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate'], function ($interpolateProvider) {
+var app = angular.module('app', ['ngAnimate', 'ModalModule'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 });
@@ -76,7 +76,7 @@ app.controller('FlashController', function ($scope, $timeout) {
     }, 3000);
 });
 
-app.controller('ReviewController', function ($scope, $filter, $timeout, $window) {
+app.controller('ReviewController', function ($scope, $filter, $timeout, $window, ModalService) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
     $scope.show_msg = false;
@@ -85,7 +85,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
         review: {
             antecedents: '',
             motiu_consulta: '',
-            limit_articular: {dots: []}
+            limit_articular: {dots: [], observacions: ''}
         },
         id: '',
         patient_id: ''
@@ -213,7 +213,15 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window)
 
     $scope.delete_review = function (e) {
         e.preventDefault();
-        $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/delete/' + $scope.review.id;
+        var modalId = ModalService.createModal({
+            title: 'Eliminar',
+            message: 'Vols eliminar aquesta valoració?',
+            buttonMsg: 'OK'
+        });
+        ModalService.showModal(modalId);
+        ModalService.callbackFunction(modalId, function (response) {
+            $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/delete/' + $scope.review.id;
+        });
     };
 
     $scope.addDateToReview = function (e) {
