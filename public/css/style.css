@@ -279,6 +279,10 @@ nav {
         text-align: inherit; }
     .wrap-content #main-page #layout12-main #review-content form textarea {
       height: 60px; }
+    .wrap-content #main-page #layout12-main #review-content form #review-date-col section {
+      float: left; }
+      .wrap-content #main-page #layout12-main #review-content form #review-date-col section:first-child {
+        margin-right: 10px; }
     .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart {
       position: relative; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel img {
@@ -300,31 +304,27 @@ nav {
         background: red; }
     .wrap-content #main-page #layout12-main #review-content form .review-separation {
       margin-top: 71px; }
-    .wrap-content #main-page #layout12-main #review-content form .right-col {
-      text-align: right; }
-      .wrap-content #main-page #layout12-main #review-content form .right-col section select {
-        float: right; }
-      .wrap-content #main-page #layout12-main #review-content form .right-col section .button_new {
-        display: inline-block;
-        vertical-align: top;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 1.4rem;
-        font-weight: normal;
-        white-space: nowrap;
-        padding: 0 32px;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        text-decoration: none;
-        -webkit-appearance: none;
-        outline: none;
-        border: none;
-        border-radius: 2px;
-        box-shadow: none;
-        cursor: pointer;
-        margin: 10px 0 0;
-        color: rgba(255, 255, 255, 0.9);
-        background: #049108; }
+    .wrap-content #main-page #layout12-main #review-content form .button_new {
+      display: inline-block;
+      vertical-align: top;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 1.4rem;
+      font-weight: normal;
+      white-space: nowrap;
+      padding: 0 32px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      text-decoration: none;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+      border-radius: 2px;
+      box-shadow: none;
+      cursor: pointer;
+      margin: 10px 0 0;
+      color: rgba(255, 255, 255, 0.9);
+      background: #049108; }
     .wrap-content #main-page #layout12-main #review-content form .send-button {
       text-align: center;
       width: 100%; }

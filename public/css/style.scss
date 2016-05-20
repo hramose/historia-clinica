@@ -374,6 +374,14 @@ nav {
           textarea {
             height: 60px;
           }
+          #review-date-col {
+            section {
+              float: left;
+              &:first-child {
+                margin-right: 10px;
+              }
+            }
+          }
           .container-img-click-lart {
             position: relative;
             .seleccion-nivel {
@@ -405,35 +413,27 @@ nav {
           .review-separation {
             margin-top: 71px;
           }
-          .right-col {
-            text-align: right;
-            section {
-              select {
-                float: right;
-              }
-              .button_new {
-                display: inline-block;
-                vertical-align: top;
-                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                font-size: 1.4rem;
-                font-weight: normal;
-                white-space: nowrap;
-                padding: 0 32px;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                text-decoration: none;
-                -webkit-appearance: none;
-                outline: none;
-                border: none;
-                border-radius: 2px;
-                box-shadow: none;
-                cursor: pointer;
-                margin: 10px 0 0;
-                color: rgba(255, 255, 255, 0.9);
-                background: rgb(4,145,8);
-              }
-            }
+          .button_new {
+            display: inline-block;
+            vertical-align: top;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.4rem;
+            font-weight: normal;
+            white-space: nowrap;
+            padding: 0 32px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-appearance: none;
+            outline: none;
+            border: none;
+            border-radius: 2px;
+            box-shadow: none;
+            cursor: pointer;
+            margin: 10px 0 0;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgb(4,145,8);
           }
           .send-button {
             text-align: center;
