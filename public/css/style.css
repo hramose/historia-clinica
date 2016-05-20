@@ -1,6 +1,6 @@
 /*@import url(https://fonts.googleapis.com/css?family=Montserrat);*/
 /*@import url(https://fonts.googleapis.com/css?family=Open+Sans);*/
-body, button, select, textarea, input, .btn {
+body, button, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
   /*font-family: 'Open Sans', sans-serif;*/
   font-family: 'Raleway', sans-serif;
@@ -66,7 +66,11 @@ body .angular-modal-alert {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-justify-content: center;
-    justify-content: center; }
+    justify-content: center;
+    animation-name: ease;
+    animation-duration: 2s; }
+    body .angular-modal-alert .buttons:active {
+      background: #000; }
     body .angular-modal-alert .buttons .button {
       width: 100%;
       padding: 0 5px;
@@ -278,13 +282,14 @@ nav {
       .wrap-content #main-page #layout12-main form section {
         text-align: inherit; }
     .wrap-content #main-page #layout12-main #review-content form textarea {
-      height: 60px; }
+      height: 100px; }
     .wrap-content #main-page #layout12-main #review-content form #review-date-col section {
       float: left; }
       .wrap-content #main-page #layout12-main #review-content form #review-date-col section:first-child {
         margin-right: 10px; }
     .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart {
-      position: relative; }
+      position: relative;
+      text-align: center; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel img {
         width: 16px;
         height: 16px;
@@ -298,6 +303,11 @@ nav {
         border-radius: 50%;
         vertical-align: middle;
         cursor: pointer; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart [id^="mapster_"] {
+        margin: 0 auto; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart span {
+        margin: 0 auto;
+        display: inline-block; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart img {
         width: 150px; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart map area {

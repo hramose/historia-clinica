@@ -95,49 +95,130 @@
                                 <area body_part="pd" shape="circle" alt="" title="" coords="119,603,16" href="#"/>
                                 <area body_part="pe" shape="circle" alt="" title="" coords="190,603,16" href="#"/>
                             </map>
+                            <span ng-cloak ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
                         </div>
-                        <span ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
                         <input type="hidden" name="review[limit_articular][dots]"
                                value="[[review.review.limit_articular.dots]]">
                         <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
                         <textarea type="text" name="review[limit_articular][observacions]"
                                   ng-model="review.review.limit_articular.observacions"></textarea>
-                        <section>
-                            <label>{{trans('models.Reviewssensibilitzacio') }}:</label>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewlimitarticular') }}:</label>
+
+                        <div class="container-img-click-lart">
+                            <div class="seleccion-nivel">
+                                Lleu <img ng-src="{{asset('img/dot-low.png')}}" ng-click="set_selected_dot('low')"
+                                          class="low-dot"/>
+                                Moderat <span ng-click="set_selected_dot('medium')" class="medium-dot"></span>
+                                Greu <img ng-src="{{asset('img/dot-high.png')}}" ng-click="set_selected_dot('high')"
+                                          class="high-dot"/>
+                            </div>
+                            <img id="human_body_img" usemap="#human_body" src="{{asset('img/human-body.png')}}" alt="">
+                            <map id="human_body_image_map" name="human_body">
+                                <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title=""
+                                      coords="85,113,16" href="#"/>
+                                <area body_part="ee" full="Espatlla esquerra" shape="circle" alt="" title=""
+                                      coords="223,113,16" href="#"/>
+                                <area body_part="p" full="Pit" shape="circle" alt="" title="" coords="156,165,15"
+                                      href="#"/>
+                                <area body_part="bd" shape="circle" alt="" title="" coords="67,216,16" href="#"/>
+                                <area body_part="be" shape="circle" alt="" title="" coords="240,217,16" href="#"/>
+                                <area body_part="pi" shape="circle" alt="" title="" coords="154,255,15" href="#"/>
+                                <area body_part="zp" shape="circle" alt="" title="" coords="156,338,16" href="#"/>
+                                <area body_part="md" shape="circle" alt="" title="" coords="46,338,16" href="#"/>
+                                <area body_part="me" shape="circle" alt="" title="" coords="262,340,16" href="#"/>
+                                <area body_part="mud" shape="circle" alt="" title="" coords="95,372,16" href="#"/>
+                                <area body_part="mue" shape="circle" alt="" title="" coords="213,375,16" href="#"/>
+                                <area body_part="rd" shape="circle" alt="" title="" coords="102,481,16" href="#"/>
+                                <area body_part="re" shape="circle" alt="" title="" coords="210,482,16" href="#"/>
+                                <area body_part="pd" shape="circle" alt="" title="" coords="119,603,16" href="#"/>
+                                <area body_part="pe" shape="circle" alt="" title="" coords="190,603,16" href="#"/>
+                            </map>
+                            <span ng-cloak ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
+                        </div>
+                        <input type="hidden" name="review[limit_articular][dots]"
+                               value="[[review.review.limit_articular.dots]]">
+                        <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
+                        <textarea type="text" name="review[limit_articular][observacions]"
+                                  ng-model="review.review.limit_articular.observacions"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewdolor') }}:</label>
+
+                        <div class="container-img-click-dolor">
+                            <div class="seleccion-nivel">
+                                Lleu <img ng-src="{{asset('img/dot-low.png')}}" ng-click="set_selected_dot('low')"
+                                          class="low-dot"/>
+                                Moderat <span ng-click="set_selected_dot('medium')" class="medium-dot"></span>
+                                Greu <img ng-src="{{asset('img/dot-high.png')}}" ng-click="set_selected_dot('high')"
+                                          class="high-dot"/>
+                            </div>
+                            <img id="human_body_img" usemap="#human_body" src="{{asset('img/human-body.png')}}" alt="">
+                            <map id="human_body_image_map" name="human_body">
+                                <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title=""
+                                      coords="85,113,16" href="#"/>
+                                <area body_part="ee" full="Espatlla esquerra" shape="circle" alt="" title=""
+                                      coords="223,113,16" href="#"/>
+                                <area body_part="p" full="Pit" shape="circle" alt="" title="" coords="156,165,15"
+                                      href="#"/>
+                                <area body_part="bd" shape="circle" alt="" title="" coords="67,216,16" href="#"/>
+                                <area body_part="be" shape="circle" alt="" title="" coords="240,217,16" href="#"/>
+                                <area body_part="pi" shape="circle" alt="" title="" coords="154,255,15" href="#"/>
+                                <area body_part="zp" shape="circle" alt="" title="" coords="156,338,16" href="#"/>
+                                <area body_part="md" shape="circle" alt="" title="" coords="46,338,16" href="#"/>
+                                <area body_part="me" shape="circle" alt="" title="" coords="262,340,16" href="#"/>
+                                <area body_part="mud" shape="circle" alt="" title="" coords="95,372,16" href="#"/>
+                                <area body_part="mue" shape="circle" alt="" title="" coords="213,375,16" href="#"/>
+                                <area body_part="rd" shape="circle" alt="" title="" coords="102,481,16" href="#"/>
+                                <area body_part="re" shape="circle" alt="" title="" coords="210,482,16" href="#"/>
+                                <area body_part="pd" shape="circle" alt="" title="" coords="119,603,16" href="#"/>
+                                <area body_part="pe" shape="circle" alt="" title="" coords="190,603,16" href="#"/>
+                            </map>
+                            <span ng-cloak ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
+                        </div>
+                        <input type="hidden" name="review[dolor][dots]"
+                               value="[[review.review.dolor.dots]]">
+                        <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
+                        <textarea type="text" name="review[dolor][observacions]"
+                                  ng-model="review.review.dolor.observacions"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssensibilitzacio') }}:</label>
                             <textarea name="review[sensibilitzacio]"
                                       ng-model="review.review.sensibilitzacio"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewssist_nervioso') }}:</label>
-                            <textarea name="review[sist_nervioso]" ng-model="review.review.sist_nervioso"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewssist_neural') }}:</label>
-                            <textarea name="review[sist_neural]" ng-model="review.review.sist_neural"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewssist_cardiovascular') }}:</label>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_nervioso') }}:</label>
+                        <textarea name="review[sist_nervioso]" ng-model="review.review.sist_nervioso"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_neural') }}:</label>
+                        <textarea name="review[sist_neural]" ng-model="review.review.sist_neural"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_cardiovascular') }}:</label>
                         <textarea name="review[sist_cardiovascular]"
                                   ng-model="review.review.sist_cardiovascular"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewssist_respiratori') }}:</label>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_respiratori') }}:</label>
                             <textarea name="review[sist_respiratori]"
                                       ng-model="review.review.sist_respiratori"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewssist_reproductiu') }}:</label>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_reproductiu') }}:</label>
                             <textarea name="review[sist_reproductiu]"
                                       ng-model="review.review.sist_reproductiu"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewssist_digestiu') }}:</label>
-                            <textarea name="review[sist_digestiu]" ng-model="review.review.sist_digestiu"></textarea>
-                        </section>
-                        <section>
-                            <label>{{trans('models.Reviewsaltres') }}:</label>
-                            <textarea name="review[altres]" ng-model="review.review.altres"></textarea>
-                        </section>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewssist_digestiu') }}:</label>
+                        <textarea name="review[sist_digestiu]" ng-model="review.review.sist_digestiu"></textarea>
+                    </section>
+                    <section>
+                        <label>{{trans('models.Reviewsaltres') }}:</label>
+                        <textarea name="review[altres]" ng-model="review.review.altres"></textarea>
+                    </section>
                     </section>
                 </column>
                 <section class="send-button">
