@@ -110,6 +110,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
     $scope.ddots = [];
     $scope.clickCounts = 0;
     $scope.prevDot = '';
+    $scope.mediumColor = '7F4913';
 
     var image = $('img#human_body_img');
     image.mapster({
@@ -128,7 +129,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
             } else if ($scope.selected_dot == 'medium') {
                 image.mapster('set', false, e.key);
                 image.mapster('set', true, e.key, {
-                    fillColor: '77cdaa'
+                    fillColor: $scope.mediumColor
                 });
                 $scope.show_msg = false;
                 $scope.$apply();
@@ -182,7 +183,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
             } else if ($scope.selected_dot == 'medium') {
                 image_fmuscular.mapster('set', false, e.key);
                 image_fmuscular.mapster('set', true, e.key, {
-                    fillColor: '77cdaa'
+                    fillColor: $scope.mediumColor
                 });
                 $scope.show_msg = false;
                 $scope.$apply();
@@ -236,7 +237,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
             } else if ($scope.selected_dot == 'medium') {
                 image_dolor.mapster('set', false, e.key);
                 image_dolor.mapster('set', true, e.key, {
-                    fillColor: '77cdaa'
+                    fillColor: $scope.mediumColor
                 });
                 $scope.show_msg = false;
                 $scope.$apply();
@@ -291,7 +292,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
                         }
                     } else if (ds[i].level == 'medium') {
                         opts = {
-                            fillColor: '77cdaa'
+                            fillColor: $scope.mediumColor
                         };
                     } else {
                         opts = {
@@ -315,7 +316,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
                         }
                     } else if (ds[i].level == 'medium') {
                         opts = {
-                            fillColor: '77cdaa'
+                            fillColor: $scope.mediumColor
                         };
                     } else {
                         opts = {
@@ -339,7 +340,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
                         }
                     } else if (ds[i].level == 'medium') {
                         opts = {
-                            fillColor: '77cdaa'
+                            fillColor: $scope.mediumColor
                         };
                     } else {
                         opts = {
@@ -375,6 +376,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
         var select = document.querySelector('select[name="selected_review"]');
         var opts = select.querySelectorAll('option');
         var today = $filter('date')(new Date(), 'dd/MM/y');
+
         var exists = false;
         for (var i = 0; i < opts.length; i++) {
             if (opts[i].innerHTML == today) {
