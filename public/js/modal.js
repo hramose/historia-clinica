@@ -47,7 +47,6 @@ app.service('ModalService', function ($window) {
          * Styles
          **/
         var newEl = document.getElementById(_el.id);
-        console.log(newEl.offsetHeight, newEl.offsetWidth);
         newEl.setAttribute("style",
             "margin-top:" + -(newEl.offsetHeight / 2) + "px; margin-left: " + -(newEl.offsetWidth / 2) + "px");
 
@@ -58,7 +57,7 @@ app.service('ModalService', function ($window) {
         var modal = this.getModal(id);
         if (typeof modal != 'undefined') {
             modal.style.visibility = 'visible';
-            
+
             $window.scrollTo(0, angular.element(modal).offsetTop);
 
             var overlay = document.createElement('div');

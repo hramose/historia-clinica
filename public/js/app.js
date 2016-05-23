@@ -80,6 +80,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
     $scope.data = new Date();
     $scope.actualDate = new Date();
     $scope.show_msg = false;
+    $scope.msg_today_already = false;
     $scope.review = {
         date: '',
         review: {
@@ -371,8 +372,22 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
     };
 
     $scope.today_date = function () {
-        if ($scope.review.id == '')
-            $scope.review.date = $filter('date')(new Date(), 'dd/MM/y');
+        var select = document.querySelector('select[name="selected_review"]');
+        var opts = select.querySelectorAll('option');
+        var today = $filter('date')(new Date(), 'dd/MM/y');
+        var exists = false;
+        for (var i = 0; i < opts.length; i++) {
+            if (opts[i].innerHTML == today) {
+                exists = true;
+                break;
+            }
+        }
+
+        if ($scope.review.id == '' && !exists)
+            $scope.review.date = today;
+        else if ($scope.review.id == '' && exists) {
+            $scope.msg_today_already = true;
+        }
     };
 
     $scope.edit_review = function (element) {
