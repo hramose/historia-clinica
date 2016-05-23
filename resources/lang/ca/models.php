@@ -47,6 +47,7 @@ return array(
     'Reviewsistdig' => 'Sist. Digestiu',
     'Reviewaltres' => 'Altres:',
     'Reviewlimitarticular' => 'Limitació articular',
+    'Reviewforçamuscular' => 'Força muscular',
     'Reviewlimitarticular_observacions' => 'Observacions',
     'Reviewssensibilitzacio' => 'Sensibilització',
     'Reviewssist_nervioso' => 'Sist. Nerviós',

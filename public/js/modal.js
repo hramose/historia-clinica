@@ -12,11 +12,6 @@ app.service('ModalService', function ($window) {
         _el = document.createElement('div');
         _el.id = 'modal-' + this.createRandomId(0, 10000);
         _el.className = 'angular-modal-alert';
-        /**
-         * Styles
-         **/
-        _el.style.marginTop = -(_el.style.height / 2);
-        _el.style.marginLeft = -(_el.style.width / 2);
 
         var modalInner = document.createElement('div');
         modalInner.className = 'inner';
@@ -48,6 +43,13 @@ app.service('ModalService', function ($window) {
         _modals[_el.id] = _el;
 
         document.body.appendChild(_el);
+        /**
+         * Styles
+         **/
+        var newEl = document.getElementById(_el.id);
+        console.log(newEl.offsetHeight, newEl.offsetWidth);
+        newEl.setAttribute("style",
+            "margin-top:" + -(newEl.offsetHeight / 2) + "px; margin-left: " + -(newEl.offsetWidth / 2) + "px");
 
         return _el.id;
     };
@@ -55,7 +57,7 @@ app.service('ModalService', function ($window) {
     this.showModal = function (id) {
         var modal = this.getModal(id);
         if (typeof modal != 'undefined') {
-            modal.style.display = 'block';
+            modal.style.visibility = 'visible';
             
             $window.scrollTo(0, angular.element(modal).offsetTop);
 

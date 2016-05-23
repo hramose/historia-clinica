@@ -30,7 +30,7 @@ body .angular-modal-alert {
   z-index: 13500;
   overflow: hidden;
   color: #000000;
-  display: none; }
+  visibility: hidden; }
   body .angular-modal-alert .inner {
     padding: 15px;
     border-radius: 13px 13px 0 0;
@@ -287,22 +287,22 @@ nav {
       float: left; }
       .wrap-content #main-page #layout12-main #review-content form #review-date-col section:first-child {
         margin-right: 10px; }
+    .wrap-content #main-page #layout12-main #review-content form .seleccion-nivel img {
+      width: 16px !important;
+      height: 16px !important;
+      display: inline-block;
+      cursor: pointer; }
+    .wrap-content #main-page #layout12-main #review-content form .seleccion-nivel .medium-dot {
+      width: 16px;
+      height: 16px;
+      background: #77cdaa;
+      display: inline-block;
+      border-radius: 50%;
+      vertical-align: middle;
+      cursor: pointer; }
     .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart {
       position: relative;
       text-align: center; }
-      .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel img {
-        width: 16px;
-        height: 16px;
-        display: inline-block;
-        cursor: pointer; }
-      .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart .seleccion-nivel .medium-dot {
-        width: 16px;
-        height: 16px;
-        background: #77cdaa;
-        display: inline-block;
-        border-radius: 50%;
-        vertical-align: middle;
-        cursor: pointer; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart [id^="mapster_"] {
         margin: 0 auto; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart span {
@@ -311,6 +311,30 @@ nav {
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart img {
         width: 150px; }
       .wrap-content #main-page #layout12-main #review-content form .container-img-click-lart map area {
+        background: red; }
+    .wrap-content #main-page #layout12-main #review-content form .container-img-click-fmuscular {
+      position: relative;
+      text-align: center; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-fmuscular [id^="mapster_"] {
+        margin: 0 auto; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-fmuscular span {
+        margin: 0 auto;
+        display: inline-block; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-fmuscular img {
+        width: 150px; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-fmuscular map area {
+        background: red; }
+    .wrap-content #main-page #layout12-main #review-content form .container-img-click-dolor {
+      position: relative;
+      text-align: center; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-dolor [id^="mapster_"] {
+        margin: 0 auto; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-dolor span {
+        margin: 0 auto;
+        display: inline-block; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-dolor img {
+        width: 150px; }
+      .wrap-content #main-page #layout12-main #review-content form .container-img-click-dolor map area {
         background: red; }
     .wrap-content #main-page #layout12-main #review-content form .review-separation {
       margin-top: 71px; }

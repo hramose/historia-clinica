@@ -40,7 +40,7 @@ body {
     z-index: 13500;
     overflow: hidden;
     color: #000000;
-    display: none;
+    visibility: hidden;
     .inner {
       padding: 15px;
       border-radius: 13px 13px 0 0;
@@ -387,26 +387,64 @@ nav {
               }
             }
           }
+          .seleccion-nivel {
+            img {
+              width: 16px !important;
+              height: 16px !important;
+              display: inline-block;
+              cursor: pointer;
+            }
+            .medium-dot {
+              width: 16px;
+              height: 16px;
+              background: #77cdaa;
+              display: inline-block;
+              border-radius: 50%;
+              vertical-align: middle;
+              cursor: pointer;
+            }
+          }
           .container-img-click-lart {
             position: relative;
             text-align: center;
-            .seleccion-nivel {
-              img {
-                width: 16px;
-                height: 16px;
-                display: inline-block;
-                cursor: pointer;
-              }
-              .medium-dot {
-                width: 16px;
-                height: 16px;
-                background: #77cdaa;
-                display: inline-block;
-                border-radius: 50%;
-                vertical-align: middle;
-                cursor: pointer;
+            [id^="mapster_"] {
+              margin: 0 auto;
+            }
+            span {
+              margin: 0 auto;
+              display: inline-block;
+            }
+            img {
+              width: 150px;
+            }
+            map {
+              area {
+                background: red;
               }
             }
+          }
+          .container-img-click-fmuscular {
+            position: relative;
+            text-align: center;
+            [id^="mapster_"] {
+              margin: 0 auto;
+            }
+            span {
+              margin: 0 auto;
+              display: inline-block;
+            }
+            img {
+              width: 150px;
+            }
+            map {
+              area {
+                background: red;
+              }
+            }
+          }
+          .container-img-click-dolor {
+            position: relative;
+            text-align: center;
             [id^="mapster_"] {
               margin: 0 auto;
             }

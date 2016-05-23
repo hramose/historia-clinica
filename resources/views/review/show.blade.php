@@ -104,9 +104,9 @@
                                   ng-model="review.review.limit_articular.observacions"></textarea>
                     </section>
                     <section>
-                        <label>{{trans('models.Reviewlimitarticular') }}:</label>
+                        <label>{{trans('models.Reviewforçamuscular') }}:</label>
 
-                        <div class="container-img-click-lart">
+                        <div class="container-img-click-fmuscular">
                             <div class="seleccion-nivel">
                                 Lleu <img ng-src="{{asset('img/dot-low.png')}}" ng-click="set_selected_dot('low')"
                                           class="low-dot"/>
@@ -114,8 +114,8 @@
                                 Greu <img ng-src="{{asset('img/dot-high.png')}}" ng-click="set_selected_dot('high')"
                                           class="high-dot"/>
                             </div>
-                            <img id="human_body_img" usemap="#human_body" src="{{asset('img/human-body.png')}}" alt="">
-                            <map id="human_body_image_map" name="human_body">
+                            <img id="human_body_img_fmuscular" usemap="#human_body_fmuscular" src="{{asset('img/human-body.png')}}" alt="">
+                            <map id="human_body_image_map_fmuscular" name="human_body_fmuscular">
                                 <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title=""
                                       coords="85,113,16" href="#"/>
                                 <area body_part="ee" full="Espatlla esquerra" shape="circle" alt="" title=""
@@ -137,11 +137,11 @@
                             </map>
                             <span ng-cloak ng-show="show_msg">{{trans('messages.dot_not_selected')}}</span>
                         </div>
-                        <input type="hidden" name="review[limit_articular][dots]"
-                               value="[[review.review.limit_articular.dots]]">
+                        <input type="hidden" name="review[forca_muscular][dots]"
+                               value="[[review.review.forca_muscular.dots]]">
                         <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
-                        <textarea type="text" name="review[limit_articular][observacions]"
-                                  ng-model="review.review.limit_articular.observacions"></textarea>
+                        <textarea type="text" name="review[forca_muscular][observacions]"
+                                  ng-model="review.review.forca_muscular.observacions"></textarea>
                     </section>
                     <section>
                         <label>{{trans('models.Reviewdolor') }}:</label>
@@ -154,8 +154,8 @@
                                 Greu <img ng-src="{{asset('img/dot-high.png')}}" ng-click="set_selected_dot('high')"
                                           class="high-dot"/>
                             </div>
-                            <img id="human_body_img" usemap="#human_body" src="{{asset('img/human-body.png')}}" alt="">
-                            <map id="human_body_image_map" name="human_body">
+                            <img id="human_body_img_dolor" usemap="#human_body_dolor" src="{{asset('img/human-body.png')}}" alt="">
+                            <map id="human_body_image_map_dolor" name="human_body_dolor">
                                 <area body_part="ed" full="Espatlla dreta" shape="circle" alt="" title=""
                                       coords="85,113,16" href="#"/>
                                 <area body_part="ee" full="Espatlla esquerra" shape="circle" alt="" title=""
