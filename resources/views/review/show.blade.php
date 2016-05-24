@@ -180,7 +180,7 @@
                         </div>
                         <input type="hidden" name="review[dolor][dots]"
                                value="[[review.review.dolor.dots]]">
-                        <label>{{trans('models.Reviewlimitarticular_observacions') }}:</label>
+                        <label>{{trans('models.Reviewdolor_descripcio') }}:</label>
                         <textarea type="text" name="review[dolor][observacions]"
                                   ng-model="review.review.dolor.observacions"></textarea>
                     </section>

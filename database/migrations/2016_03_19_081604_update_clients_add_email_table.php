@@ -13,9 +13,11 @@ class UpdateClientsAddEmailTable extends Migration
     public function up()
     {
         Schema::table('patients', function (Blueprint $table) {
-            $table->string('phone')->nullable()->after('city');
-            $table->string('email')->nullable()->after('phone');
-            $table->string('postal_code')->nullable()->after('email');
+            if (!Schema::hasColumn('patients', 'phone')) {
+                $table->string('phone')->nullable()->after('city');
+                $table->string('email')->nullable()->after('phone');
+                $table->string('postal_code')->nullable()->after('email');
+            }
         });
     }
 
