@@ -25,6 +25,11 @@ class Patient extends Model
         return $this->hasMany('App\Review');
     }
 
+    public function clinicalCourses()
+    {
+        return $this->hasMany('App\ClinicalCourse');
+    }
+
     public function setBirthDateAttribute($date)
     {
         $this->attributes['birth_date'] = $date ? Carbon::createFromFormat('d/m/Y', $date) : null;
