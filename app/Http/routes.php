@@ -250,6 +250,12 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'cursoGuarda',
                 'uses' => 'ClinicalCourseController@store'
             ]);
+
+        Route::post('pacients/{term}',
+            [
+                'as' => 'cursoGetPacients',
+                'uses' => 'ClinicalCourseController@getPacients'
+            ]);
     });
 
     Route::get('crear_menus', 'FrontController@getFormMenu');

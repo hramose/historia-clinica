@@ -271,6 +271,58 @@ nav {
       display: table; }
       .wrap-content #main-page .list-backups li a {
         text-decoration: none; }
+    .wrap-content #main-page #cclinic-search .title-search {
+      border-top-right-radius: 4px;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 4px;
+      border-top: 4px solid #373d47;
+      padding: 10px;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc; }
+      .wrap-content #main-page #cclinic-search .title-search h3 {
+        margin-bottom: 0; }
+    .wrap-content #main-page #cclinic-search form {
+      padding-top: 10px;
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border: 1px solid #ccc;
+      padding-bottom: 24px; }
+      .wrap-content #main-page #cclinic-search form section input {
+        width: 90%; }
+    .wrap-content #main-page #cclinic-patient-content {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px; }
+      .wrap-content #main-page #cclinic-patient-content span.progress {
+        position: absolute;
+        top: 0;
+        height: 4px;
+        display: inline-block;
+        width: 0;
+        background: #096c74;
+        -webkit-animation: bobble 2s infinite; }
+@keyframes bobble {
+  0% {
+    transform: translate3d(0%, 0px, 0px);
+    width: 5%;
+    animation-timing-function: ease-in; }
+  25% {
+    transform: translate3d(25%, 0px, 0px);
+    width: 25%;
+    animation-timing-function: ease-in; }
+  50% {
+    transform: translate3d(50%, 0px, 0px);
+    width: 50%;
+    animation-timing-function: ease-out; }
+  75% {
+    transform: translate3d(75%, 0px, 0px);
+    animation-timing-function: ease-out;
+    width: 75%; }
+  100% {
+    transform: translate3d(100%, 0px, 0px);
+    width: 100%; } }
     .wrap-content #main-page #layout12-main row {
       flex-wrap: wrap; }
     .wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6 {

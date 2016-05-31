@@ -483,9 +483,16 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
     }
 });
 
-app.controller('ClinicCourseController', function ($scope, $filter, $timeout, $window) {
+app.controller('ClinicCourseController', function ($scope, $filter, $interval, $window, $http, $sce) {
     $scope.patient = {};
     $scope.cclinic = {};
+
+    $scope.timeout;
+    $scope.term = '';
+    $scope.autocomplete = false;
+    $scope.pacients = [];
+    $scope.cclinics = [];
+    $scope.url = '';
 
     var $cclinic = $('#cclinic');
     if ($cclinic.length && $cclinic.html().trim() != '[]') {
@@ -512,6 +519,40 @@ app.controller('ClinicCourseController', function ($scope, $filter, $timeout, $w
         if ($(element).val() != -1)
             $window.location.href = base_url + '/curs-clinic/pacient/' + $scope.patient.id + '/show/' + $(element).val();
     };
+
+    $scope.search_patient_cc = function (e) {
+        if ($scope.term == '') {
+            $scope.autocomplete = false;
+            return;
+        }
+        $http({
+            method: 'POST',
+            url: $scope.url + '/' + $scope.term,
+        }).then(function mySucces(response) {
+            $scope.pacients = response.data;
+            console.log($scope.pacients);
+            if ($scope.pacients.length) {
+                $scope.autocomplete = true;
+            } else {
+                $scope.autocomplete = false;
+            }
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.term, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.show_cclinic = function (pacient) {
+        $scope.term = '';
+        $scope.pacients = [];
+
+        $scope.cclinics = pacient.clinical_courses;
+    }
 });
 
 app.controller('SearchController', function ($scope, $filter, $timeout, $http, $sce, $window) {

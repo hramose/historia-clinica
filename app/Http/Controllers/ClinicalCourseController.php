@@ -20,7 +20,10 @@ class ClinicalCourseController extends Controller
      */
     public function index()
     {
-
+        return view('courseclinic/index', [
+            'lang' => 'ca',
+            'title' => 'Curs clínic dels pacients'
+        ]);
     }
 
     /**
@@ -102,5 +105,10 @@ class ClinicalCourseController extends Controller
     public function destroy($id, $id_review)
     {
 
+    }
+
+    public function getPacients($term) {
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('surname', 'like', '%'.$term.'%')->orWhere('lastname', 'like', '%'.$term.'%')->with('clinicalCourses')->limit(15)->get();
+        echo $patients->toJson();
     }
 }

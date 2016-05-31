@@ -26,7 +26,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.4);
+    background: rgba(0, 0, 0, .4);
     z-index: 13000;
     opacity: 1;
   }
@@ -45,7 +45,7 @@ body {
       padding: 15px;
       border-radius: 13px 13px 0 0;
       position: relative;
-      background: rgba(255,255,255,.95);
+      background: rgba(255, 255, 255, .95);
       &:after {
         content: '';
         position: absolute;
@@ -55,7 +55,7 @@ body {
         top: auto;
         height: 1px;
         width: 100%;
-        background-color: rgba(0,0,0,.2);
+        background-color: rgba(0, 0, 0, .2);
         display: block;
         z-index: 15;
         -webkit-transform-origin: 50% 100%;
@@ -103,7 +103,7 @@ body {
         box-sizing: border-box;
         -webkit-box-flex: 1;
         -ms-flex: 1;
-        background: rgba(255,255,255,.95);
+        background: rgba(255, 255, 255, .95);
       }
     }
   }
@@ -358,6 +358,75 @@ nav {
       }
     }
 
+    #cclinic-search {
+      .title-search {
+        border-top-right-radius: 4px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 4px;
+        border-top: 4px solid #373d47;
+        padding: 10px;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        h3 {
+          margin-bottom: 0;
+        }
+      }
+      form {
+        padding-top: 10px;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border: 1px solid #ccc;
+        padding-bottom: 24px;
+        section {
+          input {
+            width: 90%;
+          }
+        }
+      }
+    }
+    #cclinic-patient-content {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      span.progress {
+        position: absolute;
+        top: 0;
+        height: 4px;
+        display: inline-block;
+        width: 0;
+        background: #096c74;
+        -webkit-animation: bobble 2s infinite;
+      }
+      @keyframes bobble {
+        0% {
+          transform: translate3d(0%, 0px, 0px);
+          width: 5%;
+          animation-timing-function: ease-in;
+        }
+        25% {
+          transform: translate3d(25%, 0px, 0px);
+          width: 25%;
+          animation-timing-function: ease-in;
+        }
+        50% {
+          transform: translate3d(50%, 0px, 0px);
+          width: 50%;
+          animation-timing-function: ease-out;
+        }
+        75% {
+          transform: translate3d(75%, 0px, 0px);
+          animation-timing-function: ease-out;
+          width: 75%;
+        }
+        100% {
+          transform: translate3d(100%, 0px, 0px);
+          width: 100%;
+        }
+      }
+    }
+
     #layout12-main {
       row {
         flex-wrap: wrap;
@@ -484,7 +553,7 @@ nav {
             cursor: pointer;
             margin: 10px 0 0;
             color: rgba(255, 255, 255, 0.9);
-            background: rgb(4,145,8);
+            background: rgb(4, 145, 8);
           }
           .send-button {
             text-align: center;
