@@ -223,7 +223,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
             ]);
     });
 
-    Route::group(['prefix' => 'curso-clinico'], function () {
+    Route::group(['prefix' => 'curs-clinic'], function () {
         Route::get('/', 'ClinicalCourseController@index');
         Route::get('/pacient/{id}',
             [

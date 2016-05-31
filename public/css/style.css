@@ -364,6 +364,14 @@ nav {
       width: 100%; }
       .wrap-content #main-page #layout12-main #review-content form .send-button .error-button {
         background: #d11149 !important; }
+    .wrap-content #main-page #layout12-main #cclinic-content form textarea {
+      width: 100%;
+      min-height: 200px; }
+    .wrap-content #main-page #layout12-main #cclinic-content .send-button {
+      text-align: center;
+      width: 100%; }
+      .wrap-content #main-page #layout12-main #cclinic-content .send-button .error-button {
+        background: #d11149 !important; }
     .wrap-content #main-page #layout12-main #buscador-content {
       border-left: 1px solid #ccc; }
       .wrap-content #main-page #layout12-main #buscador-content form {

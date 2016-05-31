@@ -51,6 +51,7 @@ class Review extends Model
          * Create the content
          */
         $reviewContent = $this->review;
+        mb_internal_encoding('UTF-8');
         $content = "";
         if ($reviewContent['antecedents'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewantecedents')) . "\\n";

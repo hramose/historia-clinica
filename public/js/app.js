@@ -103,7 +103,7 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
         patient_id: ''
     };
     $scope.dates = [];
-    $scope.patient = [];
+    $scope.patient = {};
     $scope.selected_dot = '';
     $scope.dots = [];
     $scope.fdots = [];
@@ -481,6 +481,37 @@ app.controller('ReviewController', function ($scope, $filter, $timeout, $window,
          e.stopPropagation();
          console.log($scope.review);*/
     }
+});
+
+app.controller('ClinicCourseController', function ($scope, $filter, $timeout, $window) {
+    $scope.patient = {};
+    $scope.cclinic = {};
+
+    var $cclinic = $('#cclinic');
+    if ($cclinic.length && $cclinic.html().trim() != '[]') {
+        $scope.cclinic = JSON.parse($cclinic.html());
+        var str = $scope.cclinic.date.split(' ');
+        var firstPart = str[0].split('/');
+        var date = firstPart[2] + '-' + firstPart[1] + '-' + firstPart[0];
+        str = date + ' ' + str[1];
+        $scope.cclinic.date = $filter('date')(new Date(str), 'dd/MM/y HH:m:s');
+        var newline = String.fromCharCode(13, 10);
+        $scope.cclinic.content = $scope.cclinic.content.replace(/\\n/g, newline);
+        $cclinic.html('');
+    }
+
+    var $patient = $('#patient');
+    if ($patient.length && $patient.html() != '') {
+        $scope.patient = JSON.parse($patient.html());
+        var str = $scope.patient.birth_date.replace(/-/g, '/');
+        $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
+        $patient.html('');
+    }
+
+    $scope.edit_cclinic = function (element) {
+        if ($(element).val() != -1)
+            $window.location.href = base_url + '/curs-clinic/pacient/' + $scope.patient.id + '/show/' + $(element).val();
+    };
 });
 
 app.controller('SearchController', function ($scope, $filter, $timeout, $http, $sce, $window) {
