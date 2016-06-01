@@ -487,7 +487,7 @@ app.controller('ClinicCourseController', function ($scope, $filter, $interval, $
     $scope.patient = {};
     $scope.cclinic = {};
 
-    $scope.timeout;
+    $scope.timeout = null;
     $scope.term = '';
     $scope.autocomplete = false;
     $scope.pacients = [];
@@ -530,7 +530,6 @@ app.controller('ClinicCourseController', function ($scope, $filter, $interval, $
             url: $scope.url + '/' + $scope.term,
         }).then(function mySucces(response) {
             $scope.pacients = response.data;
-            console.log($scope.pacients);
             if ($scope.pacients.length) {
                 $scope.autocomplete = true;
             } else {
@@ -550,9 +549,18 @@ app.controller('ClinicCourseController', function ($scope, $filter, $interval, $
     $scope.show_cclinic = function (pacient) {
         $scope.term = '';
         $scope.pacients = [];
+        $scope.patient = pacient;
 
-        $scope.cclinics = pacient.clinical_courses;
-    }
+        $scope.cclinics = $scope.patient.clinical_courses;
+        for (var i = 0; i < $scope.cclinics.length; i++) {
+            var content = $scope.cclinics[i].content;
+            $scope.cclinics[i].content = content.replace(/\\n/g, "<br>");
+        }
+    };
+
+    $scope.collapse_content = function (cc) {
+        $scope['show' + cc.id] = !$scope['show' + cc.id];
+    };
 });
 
 app.controller('SearchController', function ($scope, $filter, $timeout, $http, $sce, $window) {
@@ -820,3 +828,15 @@ app.controller('BillController', function ($scope, $filter, $timeout, $http, $sc
         }
     }
 });
+
+app.filter('isEmpty', [function () {
+    return function (object) {
+        return angular.equals({}, object);
+    }
+}]);
+
+app.filter('html', ['$sce', function ($sce) {
+    return function (text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);

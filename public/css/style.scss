@@ -399,6 +399,31 @@ nav {
         background: #096c74;
         -webkit-animation: bobble 2s infinite;
       }
+      #lista-cursos {
+        li {
+          padding: 7px;
+          border-top: 1px solid #ccc;
+          width: 98%;
+          margin: 0 auto;
+          border-bottom: 1px solid #ccc;
+          .content-cc {
+            &.in {
+             height: 0;
+              overflow: hidden;
+            }
+            &.out {
+              height: auto;
+            }
+            transition: 0.15s ease-out;
+          }
+        }
+      }
+      section {
+        padding: 15px;
+        &:last-child {
+          text-align: inherit;
+        }
+      }
       @keyframes bobble {
         0% {
           transform: translate3d(0%, 0px, 0px);

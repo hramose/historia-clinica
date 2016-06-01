@@ -303,6 +303,23 @@ nav {
         width: 0;
         background: #096c74;
         -webkit-animation: bobble 2s infinite; }
+      .wrap-content #main-page #cclinic-patient-content #lista-cursos li {
+        padding: 7px;
+        border-top: 1px solid #ccc;
+        width: 98%;
+        margin: 0 auto;
+        border-bottom: 1px solid #ccc; }
+        .wrap-content #main-page #cclinic-patient-content #lista-cursos li .content-cc {
+          transition: 0.15s ease-out; }
+          .wrap-content #main-page #cclinic-patient-content #lista-cursos li .content-cc.in {
+            height: 0;
+            overflow: hidden; }
+          .wrap-content #main-page #cclinic-patient-content #lista-cursos li .content-cc.out {
+            height: auto; }
+      .wrap-content #main-page #cclinic-patient-content section {
+        padding: 15px; }
+        .wrap-content #main-page #cclinic-patient-content section:last-child {
+          text-align: inherit; }
 @keyframes bobble {
   0% {
     transform: translate3d(0%, 0px, 0px);

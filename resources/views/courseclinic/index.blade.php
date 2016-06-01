@@ -27,8 +27,44 @@
         <div id="cclinic-patient-content">
             <span ng-cloak ng-show="term != ''" class="progress"></span>
 
-            <div ng-cloak>
+            <div ng-cloak ng-show="!(patient | isEmpty)" id="datos-paciente">
+                <row>
+                    <column cols="6">
+                        <section>
+                            <label>{{ trans('models.Pacientid') }}</label>
+
+                            <p>[[patient.id]]</p>
+                        </section>
+                        <section>
+                            <label>{{ trans('models.Pacientbirth_date') }}</label>
+
+                            <p>[[patient.birth_date]]</p>
+                        </section>
+                    </column>
+                    <column cols="6">
+                        <section>
+                            <label>{{ trans('models.Pacientname') }}</label>
+
+                            <p>[[patient.full_name]]</p>
+                        </section>
+                        <section>
+                            <label>{{ trans('models.Pacientage') }}</label>
+
+                            <p>[[patient.age]]</p>
+                        </section>
+                    </column>
+                </row>
+            </div>
+            <div ng-cloak id="lista-cursos">
                 <!-- lista cursos clinicos !-->
+                <ul class="list-flat">
+                    <li ng-repeat="cc in cclinics" ng-click="collapse_content(cc)">
+                        [[cc.date]]
+                        <div class="content-cc collapse" ng-class="{'in' : !show[[cc.id]], 'out' : show[[cc.id]]}">
+                            <span ng-bind-html="cc.content | html"></span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
