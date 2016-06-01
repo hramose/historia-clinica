@@ -14,6 +14,16 @@ class Review extends Model
     ];
     public $timestamps = false;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function (Review $review) { // before delete() method call this
+            $review->clinicalCourse->delete();
+            // do the rest of the cleanup...
+        });
+    }
+
     public function patient()
     {
         return $this->belongsTo('App\Patient');
@@ -75,6 +85,34 @@ class Review extends Model
         if ($reviewContent['sensibilitzacio'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewssensibilitzacio')) . "\\n";
             $content .= $reviewContent['sensibilitzacio'] . "\\n";
+        }
+        if ($reviewContent['sist_nervios'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_nervioso')) . "\\n";
+            $content .= $reviewContent['sist_nervios'] . "\\n";
+        }
+        if ($reviewContent['sist_neural'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_neural')) . "\\n";
+            $content .= $reviewContent['sist_neural'] . "\\n";
+        }
+        if ($reviewContent['sist_cardiovascular'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_cardiovascular')) . "\\n";
+            $content .= $reviewContent['sist_cardiovascular'] . "\\n";
+        }
+        if ($reviewContent['sist_respiratori'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_respiratori')) . "\\n";
+            $content .= $reviewContent['sist_respiratori'] . "\\n";
+        }
+        if ($reviewContent['sist_reproductiu'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_reproductiu')) . "\\n";
+            $content .= $reviewContent['sist_reproductiu'] . "\\n";
+        }
+        if ($reviewContent['sist_digestiu'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_digestiu')) . "\\n";
+            $content .= $reviewContent['sist_digestiu'] . "\\n";
+        }
+        if ($reviewContent['altres'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewsaltres')) . "\\n";
+            $content .= $reviewContent['altres'] . "\\n";
         }
         $clinicalCourse->content = $content;
         /**

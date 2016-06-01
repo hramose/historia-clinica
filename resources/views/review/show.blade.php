@@ -191,7 +191,7 @@
                     </section>
                     <section>
                         <label>{{trans('models.Reviewssist_nervioso') }}:</label>
-                        <textarea name="review[sist_nervioso]" ng-model="review.review.sist_nervioso"></textarea>
+                        <textarea name="review[sist_nervios]" ng-model="review.review.sist_nervios"></textarea>
                     </section>
                     <section>
                         <label>{{trans('models.Reviewssist_neural') }}:</label>
@@ -237,7 +237,7 @@
         <label>{{ trans('models.Pacientcerca') }}</label>
         {!! Form::hidden('url', URL::route('pacientsSearch', ['term' => '']), ['ng-model' => 'search.url', 'name' => 'url', 'id' => 'url']) !!}
         <div class="btn-append">
-            {!! Form::input('text', 'term', '', ['class'=> '', 'name' => 'term', 'ng-model' => 'search.term', 'ng-keyup' => 'search_pacient()', 'placeholder' => 'Escriu el nom o el ID del pacient...']) !!}
+            {!! Form::input('text', 'term', '', ['class'=> '', 'name' => 'term', 'ng-model' => 'search.term', 'ng-keyup' => 'search_pacient()', 'autocomplete' => 'off', 'placeholder' => 'Escriu el nom o el ID del pacient...']) !!}
         </div>
         <div ng-show="autocomplete" class="autocomplete-list" ng-style="{width: widthSearchInput}">
             <ul>
