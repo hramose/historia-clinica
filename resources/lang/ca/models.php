@@ -58,6 +58,7 @@ return array(
     'Reviewssist_reproductiu' => 'Sist. Reproductiu',
     'Reviewssist_digestiu' => 'Sist. Digestiu',
     'Reviewsaltres' => 'Altres',
+    'Cclinic_title' => 'Curs clínic',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billcreationdate' => 'Data',

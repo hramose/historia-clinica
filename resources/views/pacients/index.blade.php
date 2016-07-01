@@ -19,8 +19,8 @@
                 <td>
                     <a title="Dades del pacient" href="{{ URL::to('pacients/dades/'.$pacient->id) }}"><i
                                 class="fa fa-user"></i></a>
-                    <a title="Veure història" href="{{ URL::to('histories/pacient/'.$pacient->id) }}"><i
-                                class="fa fa-list"></i></a> <a title="Realitzar valoració"
+                    <a title="Veure curs clínic" href="{{ URL::to('curs-clinic/pacient/'.$pacient->id) }}"><i
+                                class="fa fa-list"></i></a> <a title="Realitzar i veure valoracions"
                                                                href="{{ URL::to('valoracions/pacient/'.$pacient->id) }}"><i
                                 class="fa fa-calendar-check-o"></i></a><a
                             ng-click="showDeleteModal($event)"

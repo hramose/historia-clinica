@@ -223,6 +223,41 @@ Route::group(['middleware' => ['web', 'access']], function () {
             ]);
     });
 
+    Route::group(['prefix' => 'curs-clinic'], function () {
+        Route::get('/', 'ClinicalCourseController@index');
+        Route::get('/pacient/{id}',
+            [
+                'as' => 'curso.pacient.show',
+                'uses' => 'ClinicalCourseController@show'
+            ]);
+        Route::post('/pacient/{id}',
+            [
+                'as' => 'curso.pacient.nou',
+                'uses' => 'ClinicalCourseController@store'
+            ]);
+        Route::get('/pacient/{id}/show/{id_review}',
+            [
+                'as' => 'cursoEditar',
+                'uses' => 'ClinicalCourseController@show'
+            ]);
+        Route::get('/pacient/{id}/delete/{id_review}',
+            [
+                'as' => 'cursoEliminar',
+                'uses' => 'ClinicalCourseController@destroy'
+            ]);
+        Route::post('/pacient/{id}/save/',
+            [
+                'as' => 'cursoGuarda',
+                'uses' => 'ClinicalCourseController@store'
+            ]);
+
+        Route::post('pacients/{term}',
+            [
+                'as' => 'cursoGetPacients',
+                'uses' => 'ClinicalCourseController@getPacients'
+            ]);
+    });
+
     Route::get('crear_menus', 'FrontController@getFormMenu');
 
     Route::post('crear_menu', [
