@@ -119,7 +119,9 @@ class Review extends Model
         /**
          * End content
          */
-        $clinicalCourse->date = $clinicalCourse->date == null ? Carbon::now() : $clinicalCourse->date;
+        if ($clinicalCourse->date == '') {
+            $clinicalCourse->date = Carbon::now();
+        }
         $clinicalCourse->save();
     }
 }
