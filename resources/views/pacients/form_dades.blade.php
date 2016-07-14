@@ -17,7 +17,7 @@
         </section>
         <section>
             <label>{{ trans('models.Pacientbirth_date') }}</label>
-            {!! Form::text('birth_date', null, ['class'=> '', 'ng-model' => 'pacient.birth_date','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
+            {!! Form::text('birth_date', null, ['class'=> 'datepicker', 'ng-model' => 'pacient.birth_date','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientage') }}</label>
@@ -54,6 +54,10 @@
         <section>
             <label>{{ trans('models.Pacientprofession') }}</label>
             {!! Form::text('profession', null, ['class'=> '', 'ng-model' => 'pacient.profession']) !!}
+        </section>
+        <section>
+            <label>{{ trans('models.Pacienthobbies') }}</label>
+            {!! Form::text('hobbies', null, ['class'=> '', 'ng-model' => 'pacient.hobbies']) !!}
         </section>
         <section>
             {!! Form::token() !!}
