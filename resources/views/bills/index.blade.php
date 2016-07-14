@@ -25,7 +25,7 @@
                 <td>
                     <a title="Editar factura" href="{{ URL::route('mostrarBill', $bill->id) }}"><i
                                 class="fa fa-file-text"></i></a>
-                    <a title="Veure PDF" href="{{ URL::route('billPdf', $bill->id) }}"><i
+                    <a title="Veure PDF" target="_blank" href="{{ URL::route('billPdf', $bill->id) }}"><i
                                 class="fa fa-file-pdf-o"></i></a>
                     <a title="Eliminar factura" ng-click="ask_question($event)" href="{{ URL::route('eliminarBill', $bill->id) }}"><i
                                 class="fa fa-remove"></i></a>
