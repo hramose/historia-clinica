@@ -24,7 +24,7 @@ return array(
     'Pacientbirth_date' => 'Data naixement',
     'Pacientage' => 'Edat',
     'Pacientprofession' => 'Professió',
-    'Pacienthobbies' => 'Hobbies',
+    'Pacienthobbies' => 'Aficions',
     'Pacientcerca' => 'Cercador de pacients',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
