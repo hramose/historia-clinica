@@ -55,6 +55,7 @@ class PatientController extends Controller
             $pacient->birth_date = Input::old('birth_date');
             $pacient->age = Input::old('age');
             $pacient->profession = Input::old('profession');
+            $pacient->hobbies = Input::old('hobbies');
             $pacient->address = Input::old('address');
             $pacient->city = Input::old('city');
             $pacient->postal_code = Input::old('postal_code');

@@ -8,4 +8,5 @@ class Review extends Model
 {
     protected $fillable = ['review'];
     public $timestamps = false;
+
 }
