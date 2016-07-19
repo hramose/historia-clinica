@@ -17,7 +17,7 @@
         </section>
         <section>
             <label>{{ trans('models.Pacientbirth_date') }}</label>
-            {!! Form::text('birth_date', null, ['class'=> 'datepicker', 'ng-model' => 'pacient.birth_date','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
+            {!! Form::text('birth_date', null, ['class'=> '', 'ng-model' => 'pacient.birth_date','ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientage') }}</label>
