@@ -33,7 +33,7 @@
             {!! Form::close() !!}
             <div id="search-filters">
                 <row>
-                    <column cols="6">t</column>
+                    <column cols="6"></column>
                     <column cols="6">
                         {!! Form::select('selected_cclinic', [-1 => trans('messages.empty_option_cclinic_dates')] + $clinicalCourses->lists('date', 'id')->toArray(), $clinicalCourse->id, ['onchange' => 'angular.element(this).scope().edit_cclinic(this)']) !!}
                     </column>

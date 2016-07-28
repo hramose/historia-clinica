@@ -15,8 +15,7 @@
                     <li><a href="{{ URL::to('pacients/nou') }}">Crear nous pacients</a></li>
                     <li><a href="{{ URL::to('pacients/llista') }}">Tots els pacients</a></li>
                 </ul>
-            </a></li>
-        <li><a href="{{ URL::to('curs-clinic') }}"><span class="retain-icon fa fa-folder"></span> <span class="text">Curs clínic</span></a>
+            </a>
         </li>
         <li><a href="#"><span class="fa fa-user"></span> <span class="text">Usuaris</span> <span
                         class="fa arrow"></span></a>

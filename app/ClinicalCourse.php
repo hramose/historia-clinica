@@ -11,6 +11,15 @@ class ClinicalCourse extends Model
     public $timestamps = false;
     public $table = 'clinical_course';
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($cc) {
+            $cc->date = Carbon::now();
+        });
+    }
+
     public function review()
     {
         return $this->belongsTo('App\Review');

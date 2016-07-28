@@ -224,7 +224,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
     });
 
     Route::group(['prefix' => 'curs-clinic'], function () {
-        Route::get('/', 'ClinicalCourseController@index');
+        /*Route::get('/', 'ClinicalCourseController@index');*/
         Route::get('/pacient/{id}',
             [
                 'as' => 'curso.pacient.show',
