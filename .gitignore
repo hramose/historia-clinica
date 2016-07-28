@@ -5,4 +5,4 @@ Homestead.json
 .env
 public/css/style.scss
 composer.lock
-.idea/workspace.xml
+.idea
