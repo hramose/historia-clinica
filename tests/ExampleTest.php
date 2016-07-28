@@ -7,8 +7,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class ExampleTest extends TestCase
 {
 
-    protected $baseUrl = 'http://awesome.dev/historia-clinica/public';
-
     /**
      * A basic functional test example.
      *
