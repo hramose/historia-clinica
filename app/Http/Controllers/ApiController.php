@@ -69,7 +69,7 @@ class ApiController extends Controller
 
         $pacients = Patient::whereRaw("DATE_ADD(birth_date,
                 INTERVAL YEAR(CURDATE())-YEAR(birth_date)
-                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                         + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(birth_date),1,0)
                 YEAR)
             BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL " . $test_days . " DAY)")->get();
         $date = new Carbon();

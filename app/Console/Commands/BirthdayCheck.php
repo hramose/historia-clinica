@@ -44,9 +44,9 @@ class BirthdayCheck extends Command
     {
         $pacients = Patient::whereRaw("DATE_ADD(birth_date,
                 INTERVAL YEAR(CURDATE())-YEAR(birth_date)
-                         + IF(DAYOFYEAR(CURDATE()) >= DAYOFYEAR(birth_date),1,0)
+                         + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(birth_date),1,0)
                 YEAR)
-            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 5 DAY)")
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 DAY)")
             ->whereNotIn('id', function ($query) {
                 $query->select('patient_id')
                     ->from(with(new BirthdaysNotification())->getTable())
@@ -79,10 +79,6 @@ class BirthdayCheck extends Command
                 $datePacient = new \Carbon\Carbon($pacient->birth_date);
                 $age = $pacient->age + 1;
                 $stringCumpleaños .= "- {$pacient->full_name} cumple años el {$datePacient->formatLocalized('%d de %B')} serán {$age} años.\n";
-                /*$bn = new BirthdaysNotification();
-                $bn->patient_id = $pacient->id;
-                $bn->year = date('Y');
-                $bn->save()*/;
             }
             $this->comment(PHP_EOL . $stringCumpleaños);
         }

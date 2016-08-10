@@ -26,8 +26,7 @@ $(document).ready(function () {
                 t.addClass('larger');
                 t.after('<p>Fes lliscar el dit sobre la taula per veure més dades</p>');
             }
-        })
-
+        });
     }
 
     $('.datepicker').pickadate({
