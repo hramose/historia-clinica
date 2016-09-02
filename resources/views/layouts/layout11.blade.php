@@ -49,6 +49,8 @@
     @if (Auth::check())
         <span class="right"><a href="{{ URL::to('auth/logout') }}">{{ trans('messages.logout') }}</a></span>
     @endif
+    <div class="clearfix"></div>
+    <span class="right" ng-controller="AppController">Hora: <span ng-cloak class="actual-date">[[actual_date]]</span></span>
 </footer>
 @include('layouts.scripts')
 </body>

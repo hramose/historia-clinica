@@ -10,7 +10,7 @@ angular.module('app').config(['$interpolateProvider', function ($interpolateProv
     $interpolateProvider.endSymbol(']]');
 }]);
 
-AppController.$inject = ['$scope'];
+AppController.$inject = ['$scope', '$interval'];
 FrontController.$inject = ['$scope', '$timeout', '$filter', '$sce', '$http'];
 UsersController.$inject = ['$scope', '$filter'];
 PacientsController.$inject = ['$scope', '$filter', '$http', '$sce'];
@@ -28,8 +28,12 @@ angular.module('app').controller('ReviewController', ReviewController);
 angular.module('app').controller('BillController', BillController);
 angular.module('app').controller('TestController', TestController);
 
-function AppController($scope) {
-
+function AppController($scope, $interval) {
+    moment.locale('ca')
+    $scope.actual_date = moment().format('LTS');
+    $interval(function () {
+        $scope.actual_date = moment().format('LTS');
+    }, 1000);
 }
 
 function FrontController($scope, $timeout, $filter, $sce, $http) {
@@ -84,7 +88,7 @@ function FrontController($scope, $timeout, $filter, $sce, $http) {
     /*     Center .grow messages     */
     /*-------------------------------*/
     var $grow = $('.grow');
-    $.each($grow, function(index, element) {
+    $.each($grow, function (index, element) {
         var $el = $(element);
         var $parentWidth = $el.outerWidth();
         var position = ($parentWidth / 2) - ($el.width() / 2);
