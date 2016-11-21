@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 
 class Authenticate
 {
@@ -38,7 +39,8 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                session()->put('url.intended', $request->fullUrl());
+                return redirect()->route('getLogin');
             }
         }
 

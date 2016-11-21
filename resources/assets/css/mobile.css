@@ -188,6 +188,7 @@ nav {
             margin: 10px 0;
             color: #575757;
             font-size: 2.5em;
+            -webkit-transition: all .2s;
             transition: all .2s; }
             .wrap-content #main-page #grid-shortcuts .box .content .counter-box .statistics h5:hover {
               font-size: 5.5em; }

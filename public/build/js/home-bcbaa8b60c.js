@@ -3,582 +3,6 @@
     return M.access(a,b,c)},removeData:function(a,b){M.remove(a,b)},_data:function(a,b,c){return L.access(a,b,c)},_removeData:function(a,b){L.remove(a,b)}}),n.fn.extend({data:function(a,b){var c,d,e,f=this[0],g=f&&f.attributes;if(void 0===a){if(this.length&&(e=M.get(f),1===f.nodeType&&!L.get(f,"hasDataAttrs"))){c=g.length;while(c--)g[c]&&(d=g[c].name,0===d.indexOf("data-")&&(d=n.camelCase(d.slice(5)),P(f,d,e[d])));L.set(f,"hasDataAttrs",!0)}return e}return"object"==typeof a?this.each(function(){M.set(this,a)}):J(this,function(b){var c,d=n.camelCase(a);if(f&&void 0===b){if(c=M.get(f,a),void 0!==c)return c;if(c=M.get(f,d),void 0!==c)return c;if(c=P(f,d,void 0),void 0!==c)return c}else this.each(function(){var c=M.get(this,d);M.set(this,d,b),-1!==a.indexOf("-")&&void 0!==c&&M.set(this,a,b)})},null,b,arguments.length>1,null,!0)},removeData:function(a){return this.each(function(){M.remove(this,a)})}}),n.extend({queue:function(a,b,c){var d;return a?(b=(b||"fx")+"queue",d=L.get(a,b),c&&(!d||n.isArray(c)?d=L.access(a,b,n.makeArray(c)):d.push(c)),d||[]):void 0},dequeue:function(a,b){b=b||"fx";var c=n.queue(a,b),d=c.length,e=c.shift(),f=n._queueHooks(a,b),g=function(){n.dequeue(a,b)};"inprogress"===e&&(e=c.shift(),d--),e&&("fx"===b&&c.unshift("inprogress"),delete f.stop,e.call(a,g,f)),!d&&f&&f.empty.fire()},_queueHooks:function(a,b){var c=b+"queueHooks";return L.get(a,c)||L.access(a,c,{empty:n.Callbacks("once memory").add(function(){L.remove(a,[b+"queue",c])})})}}),n.fn.extend({queue:function(a,b){var c=2;return"string"!=typeof a&&(b=a,a="fx",c--),arguments.length<c?n.queue(this[0],a):void 0===b?this:this.each(function(){var c=n.queue(this,a,b);n._queueHooks(this,a),"fx"===a&&"inprogress"!==c[0]&&n.dequeue(this,a)})},dequeue:function(a){return this.each(function(){n.dequeue(this,a)})},clearQueue:function(a){return this.queue(a||"fx",[])},promise:function(a,b){var c,d=1,e=n.Deferred(),f=this,g=this.length,h=function(){--d||e.resolveWith(f,[f])};"string"!=typeof a&&(b=a,a=void 0),a=a||"fx";while(g--)c=L.get(f[g],a+"queueHooks"),c&&c.empty&&(d++,c.empty.add(h));return h(),e.promise(b)}});var Q=/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,R=["Top","Right","Bottom","Left"],S=function(a,b){return a=b||a,"none"===n.css(a,"display")||!n.contains(a.ownerDocument,a)},T=/^(?:checkbox|radio)$/i;!function(){var a=l.createDocumentFragment(),b=a.appendChild(l.createElement("div")),c=l.createElement("input");c.setAttribute("type","radio"),c.setAttribute("checked","checked"),c.setAttribute("name","t"),b.appendChild(c),k.checkClone=b.cloneNode(!0).cloneNode(!0).lastChild.checked,b.innerHTML="<textarea>x</textarea>",k.noCloneChecked=!!b.cloneNode(!0).lastChild.defaultValue}();var U="undefined";k.focusinBubbles="onfocusin"in a;var V=/^key/,W=/^(?:mouse|pointer|contextmenu)|click/,X=/^(?:focusinfocus|focusoutblur)$/,Y=/^([^.]*)(?:\.(.+)|)$/;function Z(){return!0}function $(){return!1}function _(){try{return l.activeElement}catch(a){}}n.event={global:{},add:function(a,b,c,d,e){var f,g,h,i,j,k,l,m,o,p,q,r=L.get(a);if(r){c.handler&&(f=c,c=f.handler,e=f.selector),c.guid||(c.guid=n.guid++),(i=r.events)||(i=r.events={}),(g=r.handle)||(g=r.handle=function(b){return typeof n!==U&&n.event.triggered!==b.type?n.event.dispatch.apply(a,arguments):void 0}),b=(b||"").match(E)||[""],j=b.length;while(j--)h=Y.exec(b[j])||[],o=q=h[1],p=(h[2]||"").split(".").sort(),o&&(l=n.event.special[o]||{},o=(e?l.delegateType:l.bindType)||o,l=n.event.special[o]||{},k=n.extend({type:o,origType:q,data:d,handler:c,guid:c.guid,selector:e,needsContext:e&&n.expr.match.needsContext.test(e),namespace:p.join(".")},f),(m=i[o])||(m=i[o]=[],m.delegateCount=0,l.setup&&l.setup.call(a,d,p,g)!==!1||a.addEventListener&&a.addEventListener(o,g,!1)),l.add&&(l.add.call(a,k),k.handler.guid||(k.handler.guid=c.guid)),e?m.splice(m.delegateCount++,0,k):m.push(k),n.event.global[o]=!0)}},remove:function(a,b,c,d,e){var f,g,h,i,j,k,l,m,o,p,q,r=L.hasData(a)&&L.get(a);if(r&&(i=r.events)){b=(b||"").match(E)||[""],j=b.length;while(j--)if(h=Y.exec(b[j])||[],o=q=h[1],p=(h[2]||"").split(".").sort(),o){l=n.event.special[o]||{},o=(d?l.delegateType:l.bindType)||o,m=i[o]||[],h=h[2]&&new RegExp("(^|\\.)"+p.join("\\.(?:.*\\.|)")+"(\\.|$)"),g=f=m.length;while(f--)k=m[f],!e&&q!==k.origType||c&&c.guid!==k.guid||h&&!h.test(k.namespace)||d&&d!==k.selector&&("**"!==d||!k.selector)||(m.splice(f,1),k.selector&&m.delegateCount--,l.remove&&l.remove.call(a,k));g&&!m.length&&(l.teardown&&l.teardown.call(a,p,r.handle)!==!1||n.removeEvent(a,o,r.handle),delete i[o])}else for(o in i)n.event.remove(a,o+b[j],c,d,!0);n.isEmptyObject(i)&&(delete r.handle,L.remove(a,"events"))}},trigger:function(b,c,d,e){var f,g,h,i,k,m,o,p=[d||l],q=j.call(b,"type")?b.type:b,r=j.call(b,"namespace")?b.namespace.split("."):[];if(g=h=d=d||l,3!==d.nodeType&&8!==d.nodeType&&!X.test(q+n.event.triggered)&&(q.indexOf(".")>=0&&(r=q.split("."),q=r.shift(),r.sort()),k=q.indexOf(":")<0&&"on"+q,b=b[n.expando]?b:new n.Event(q,"object"==typeof b&&b),b.isTrigger=e?2:3,b.namespace=r.join("."),b.namespace_re=b.namespace?new RegExp("(^|\\.)"+r.join("\\.(?:.*\\.|)")+"(\\.|$)"):null,b.result=void 0,b.target||(b.target=d),c=null==c?[b]:n.makeArray(c,[b]),o=n.event.special[q]||{},e||!o.trigger||o.trigger.apply(d,c)!==!1)){if(!e&&!o.noBubble&&!n.isWindow(d)){for(i=o.delegateType||q,X.test(i+q)||(g=g.parentNode);g;g=g.parentNode)p.push(g),h=g;h===(d.ownerDocument||l)&&p.push(h.defaultView||h.parentWindow||a)}f=0;while((g=p[f++])&&!b.isPropagationStopped())b.type=f>1?i:o.bindType||q,m=(L.get(g,"events")||{})[b.type]&&L.get(g,"handle"),m&&m.apply(g,c),m=k&&g[k],m&&m.apply&&n.acceptData(g)&&(b.result=m.apply(g,c),b.result===!1&&b.preventDefault());return b.type=q,e||b.isDefaultPrevented()||o._default&&o._default.apply(p.pop(),c)!==!1||!n.acceptData(d)||k&&n.isFunction(d[q])&&!n.isWindow(d)&&(h=d[k],h&&(d[k]=null),n.event.triggered=q,d[q](),n.event.triggered=void 0,h&&(d[k]=h)),b.result}},dispatch:function(a){a=n.event.fix(a);var b,c,e,f,g,h=[],i=d.call(arguments),j=(L.get(this,"events")||{})[a.type]||[],k=n.event.special[a.type]||{};if(i[0]=a,a.delegateTarget=this,!k.preDispatch||k.preDispatch.call(this,a)!==!1){h=n.event.handlers.call(this,a,j),b=0;while((f=h[b++])&&!a.isPropagationStopped()){a.currentTarget=f.elem,c=0;while((g=f.handlers[c++])&&!a.isImmediatePropagationStopped())(!a.namespace_re||a.namespace_re.test(g.namespace))&&(a.handleObj=g,a.data=g.data,e=((n.event.special[g.origType]||{}).handle||g.handler).apply(f.elem,i),void 0!==e&&(a.result=e)===!1&&(a.preventDefault(),a.stopPropagation()))}return k.postDispatch&&k.postDispatch.call(this,a),a.result}},handlers:function(a,b){var c,d,e,f,g=[],h=b.delegateCount,i=a.target;if(h&&i.nodeType&&(!a.button||"click"!==a.type))for(;i!==this;i=i.parentNode||this)if(i.disabled!==!0||"click"!==a.type){for(d=[],c=0;h>c;c++)f=b[c],e=f.selector+" ",void 0===d[e]&&(d[e]=f.needsContext?n(e,this).index(i)>=0:n.find(e,this,null,[i]).length),d[e]&&d.push(f);d.length&&g.push({elem:i,handlers:d})}return h<b.length&&g.push({elem:this,handlers:b.slice(h)}),g},props:"altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),fixHooks:{},keyHooks:{props:"char charCode key keyCode".split(" "),filter:function(a,b){return null==a.which&&(a.which=null!=b.charCode?b.charCode:b.keyCode),a}},mouseHooks:{props:"button buttons clientX clientY offsetX offsetY pageX pageY screenX screenY toElement".split(" "),filter:function(a,b){var c,d,e,f=b.button;return null==a.pageX&&null!=b.clientX&&(c=a.target.ownerDocument||l,d=c.documentElement,e=c.body,a.pageX=b.clientX+(d&&d.scrollLeft||e&&e.scrollLeft||0)-(d&&d.clientLeft||e&&e.clientLeft||0),a.pageY=b.clientY+(d&&d.scrollTop||e&&e.scrollTop||0)-(d&&d.clientTop||e&&e.clientTop||0)),a.which||void 0===f||(a.which=1&f?1:2&f?3:4&f?2:0),a}},fix:function(a){if(a[n.expando])return a;var b,c,d,e=a.type,f=a,g=this.fixHooks[e];g||(this.fixHooks[e]=g=W.test(e)?this.mouseHooks:V.test(e)?this.keyHooks:{}),d=g.props?this.props.concat(g.props):this.props,a=new n.Event(f),b=d.length;while(b--)c=d[b],a[c]=f[c];return a.target||(a.target=l),3===a.target.nodeType&&(a.target=a.target.parentNode),g.filter?g.filter(a,f):a},special:{load:{noBubble:!0},focus:{trigger:function(){return this!==_()&&this.focus?(this.focus(),!1):void 0},delegateType:"focusin"},blur:{trigger:function(){return this===_()&&this.blur?(this.blur(),!1):void 0},delegateType:"focusout"},click:{trigger:function(){return"checkbox"===this.type&&this.click&&n.nodeName(this,"input")?(this.click(),!1):void 0},_default:function(a){return n.nodeName(a.target,"a")}},beforeunload:{postDispatch:function(a){void 0!==a.result&&a.originalEvent&&(a.originalEvent.returnValue=a.result)}}},simulate:function(a,b,c,d){var e=n.extend(new n.Event,c,{type:a,isSimulated:!0,originalEvent:{}});d?n.event.trigger(e,null,b):n.event.dispatch.call(b,e),e.isDefaultPrevented()&&c.preventDefault()}},n.removeEvent=function(a,b,c){a.removeEventListener&&a.removeEventListener(b,c,!1)},n.Event=function(a,b){return this instanceof n.Event?(a&&a.type?(this.originalEvent=a,this.type=a.type,this.isDefaultPrevented=a.defaultPrevented||void 0===a.defaultPrevented&&a.returnValue===!1?Z:$):this.type=a,b&&n.extend(this,b),this.timeStamp=a&&a.timeStamp||n.now(),void(this[n.expando]=!0)):new n.Event(a,b)},n.Event.prototype={isDefaultPrevented:$,isPropagationStopped:$,isImmediatePropagationStopped:$,preventDefault:function(){var a=this.originalEvent;this.isDefaultPrevented=Z,a&&a.preventDefault&&a.preventDefault()},stopPropagation:function(){var a=this.originalEvent;this.isPropagationStopped=Z,a&&a.stopPropagation&&a.stopPropagation()},stopImmediatePropagation:function(){var a=this.originalEvent;this.isImmediatePropagationStopped=Z,a&&a.stopImmediatePropagation&&a.stopImmediatePropagation(),this.stopPropagation()}},n.each({mouseenter:"mouseover",mouseleave:"mouseout",pointerenter:"pointerover",pointerleave:"pointerout"},function(a,b){n.event.special[a]={delegateType:b,bindType:b,handle:function(a){var c,d=this,e=a.relatedTarget,f=a.handleObj;return(!e||e!==d&&!n.contains(d,e))&&(a.type=f.origType,c=f.handler.apply(this,arguments),a.type=b),c}}}),k.focusinBubbles||n.each({focus:"focusin",blur:"focusout"},function(a,b){var c=function(a){n.event.simulate(b,a.target,n.event.fix(a),!0)};n.event.special[b]={setup:function(){var d=this.ownerDocument||this,e=L.access(d,b);e||d.addEventListener(a,c,!0),L.access(d,b,(e||0)+1)},teardown:function(){var d=this.ownerDocument||this,e=L.access(d,b)-1;e?L.access(d,b,e):(d.removeEventListener(a,c,!0),L.remove(d,b))}}}),n.fn.extend({on:function(a,b,c,d,e){var f,g;if("object"==typeof a){"string"!=typeof b&&(c=c||b,b=void 0);for(g in a)this.on(g,b,c,a[g],e);return this}if(null==c&&null==d?(d=b,c=b=void 0):null==d&&("string"==typeof b?(d=c,c=void 0):(d=c,c=b,b=void 0)),d===!1)d=$;else if(!d)return this;return 1===e&&(f=d,d=function(a){return n().off(a),f.apply(this,arguments)},d.guid=f.guid||(f.guid=n.guid++)),this.each(function(){n.event.add(this,a,d,c,b)})},one:function(a,b,c,d){return this.on(a,b,c,d,1)},off:function(a,b,c){var d,e;if(a&&a.preventDefault&&a.handleObj)return d=a.handleObj,n(a.delegateTarget).off(d.namespace?d.origType+"."+d.namespace:d.origType,d.selector,d.handler),this;if("object"==typeof a){for(e in a)this.off(e,b,a[e]);return this}return(b===!1||"function"==typeof b)&&(c=b,b=void 0),c===!1&&(c=$),this.each(function(){n.event.remove(this,a,c,b)})},trigger:function(a,b){return this.each(function(){n.event.trigger(a,b,this)})},triggerHandler:function(a,b){var c=this[0];return c?n.event.trigger(a,b,c,!0):void 0}});var aa=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,ba=/<([\w:]+)/,ca=/<|&#?\w+;/,da=/<(?:script|style|link)/i,ea=/checked\s*(?:[^=]|=\s*.checked.)/i,fa=/^$|\/(?:java|ecma)script/i,ga=/^true\/(.*)/,ha=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g,ia={option:[1,"<select multiple='multiple'>","</select>"],thead:[1,"<table>","</table>"],col:[2,"<table><colgroup>","</colgroup></table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],_default:[0,"",""]};ia.optgroup=ia.option,ia.tbody=ia.tfoot=ia.colgroup=ia.caption=ia.thead,ia.th=ia.td;function ja(a,b){return n.nodeName(a,"table")&&n.nodeName(11!==b.nodeType?b:b.firstChild,"tr")?a.getElementsByTagName("tbody")[0]||a.appendChild(a.ownerDocument.createElement("tbody")):a}function ka(a){return a.type=(null!==a.getAttribute("type"))+"/"+a.type,a}function la(a){var b=ga.exec(a.type);return b?a.type=b[1]:a.removeAttribute("type"),a}function ma(a,b){for(var c=0,d=a.length;d>c;c++)L.set(a[c],"globalEval",!b||L.get(b[c],"globalEval"))}function na(a,b){var c,d,e,f,g,h,i,j;if(1===b.nodeType){if(L.hasData(a)&&(f=L.access(a),g=L.set(b,f),j=f.events)){delete g.handle,g.events={};for(e in j)for(c=0,d=j[e].length;d>c;c++)n.event.add(b,e,j[e][c])}M.hasData(a)&&(h=M.access(a),i=n.extend({},h),M.set(b,i))}}function oa(a,b){var c=a.getElementsByTagName?a.getElementsByTagName(b||"*"):a.querySelectorAll?a.querySelectorAll(b||"*"):[];return void 0===b||b&&n.nodeName(a,b)?n.merge([a],c):c}function pa(a,b){var c=b.nodeName.toLowerCase();"input"===c&&T.test(a.type)?b.checked=a.checked:("input"===c||"textarea"===c)&&(b.defaultValue=a.defaultValue)}n.extend({clone:function(a,b,c){var d,e,f,g,h=a.cloneNode(!0),i=n.contains(a.ownerDocument,a);if(!(k.noCloneChecked||1!==a.nodeType&&11!==a.nodeType||n.isXMLDoc(a)))for(g=oa(h),f=oa(a),d=0,e=f.length;e>d;d++)pa(f[d],g[d]);if(b)if(c)for(f=f||oa(a),g=g||oa(h),d=0,e=f.length;e>d;d++)na(f[d],g[d]);else na(a,h);return g=oa(h,"script"),g.length>0&&ma(g,!i&&oa(a,"script")),h},buildFragment:function(a,b,c,d){for(var e,f,g,h,i,j,k=b.createDocumentFragment(),l=[],m=0,o=a.length;o>m;m++)if(e=a[m],e||0===e)if("object"===n.type(e))n.merge(l,e.nodeType?[e]:e);else if(ca.test(e)){f=f||k.appendChild(b.createElement("div")),g=(ba.exec(e)||["",""])[1].toLowerCase(),h=ia[g]||ia._default,f.innerHTML=h[1]+e.replace(aa,"<$1></$2>")+h[2],j=h[0];while(j--)f=f.lastChild;n.merge(l,f.childNodes),f=k.firstChild,f.textContent=""}else l.push(b.createTextNode(e));k.textContent="",m=0;while(e=l[m++])if((!d||-1===n.inArray(e,d))&&(i=n.contains(e.ownerDocument,e),f=oa(k.appendChild(e),"script"),i&&ma(f),c)){j=0;while(e=f[j++])fa.test(e.type||"")&&c.push(e)}return k},cleanData:function(a){for(var b,c,d,e,f=n.event.special,g=0;void 0!==(c=a[g]);g++){if(n.acceptData(c)&&(e=c[L.expando],e&&(b=L.cache[e]))){if(b.events)for(d in b.events)f[d]?n.event.remove(c,d):n.removeEvent(c,d,b.handle);L.cache[e]&&delete L.cache[e]}delete M.cache[c[M.expando]]}}}),n.fn.extend({text:function(a){return J(this,function(a){return void 0===a?n.text(this):this.empty().each(function(){(1===this.nodeType||11===this.nodeType||9===this.nodeType)&&(this.textContent=a)})},null,a,arguments.length)},append:function(){return this.domManip(arguments,function(a){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var b=ja(this,a);b.appendChild(a)}})},prepend:function(){return this.domManip(arguments,function(a){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var b=ja(this,a);b.insertBefore(a,b.firstChild)}})},before:function(){return this.domManip(arguments,function(a){this.parentNode&&this.parentNode.insertBefore(a,this)})},after:function(){return this.domManip(arguments,function(a){this.parentNode&&this.parentNode.insertBefore(a,this.nextSibling)})},remove:function(a,b){for(var c,d=a?n.filter(a,this):this,e=0;null!=(c=d[e]);e++)b||1!==c.nodeType||n.cleanData(oa(c)),c.parentNode&&(b&&n.contains(c.ownerDocument,c)&&ma(oa(c,"script")),c.parentNode.removeChild(c));return this},empty:function(){for(var a,b=0;null!=(a=this[b]);b++)1===a.nodeType&&(n.cleanData(oa(a,!1)),a.textContent="");return this},clone:function(a,b){return a=null==a?!1:a,b=null==b?a:b,this.map(function(){return n.clone(this,a,b)})},html:function(a){return J(this,function(a){var b=this[0]||{},c=0,d=this.length;if(void 0===a&&1===b.nodeType)return b.innerHTML;if("string"==typeof a&&!da.test(a)&&!ia[(ba.exec(a)||["",""])[1].toLowerCase()]){a=a.replace(aa,"<$1></$2>");try{for(;d>c;c++)b=this[c]||{},1===b.nodeType&&(n.cleanData(oa(b,!1)),b.innerHTML=a);b=0}catch(e){}}b&&this.empty().append(a)},null,a,arguments.length)},replaceWith:function(){var a=arguments[0];return this.domManip(arguments,function(b){a=this.parentNode,n.cleanData(oa(this)),a&&a.replaceChild(b,this)}),a&&(a.length||a.nodeType)?this:this.remove()},detach:function(a){return this.remove(a,!0)},domManip:function(a,b){a=e.apply([],a);var c,d,f,g,h,i,j=0,l=this.length,m=this,o=l-1,p=a[0],q=n.isFunction(p);if(q||l>1&&"string"==typeof p&&!k.checkClone&&ea.test(p))return this.each(function(c){var d=m.eq(c);q&&(a[0]=p.call(this,c,d.html())),d.domManip(a,b)});if(l&&(c=n.buildFragment(a,this[0].ownerDocument,!1,this),d=c.firstChild,1===c.childNodes.length&&(c=d),d)){for(f=n.map(oa(c,"script"),ka),g=f.length;l>j;j++)h=c,j!==o&&(h=n.clone(h,!0,!0),g&&n.merge(f,oa(h,"script"))),b.call(this[j],h,j);if(g)for(i=f[f.length-1].ownerDocument,n.map(f,la),j=0;g>j;j++)h=f[j],fa.test(h.type||"")&&!L.access(h,"globalEval")&&n.contains(i,h)&&(h.src?n._evalUrl&&n._evalUrl(h.src):n.globalEval(h.textContent.replace(ha,"")))}return this}}),n.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(a,b){n.fn[a]=function(a){for(var c,d=[],e=n(a),g=e.length-1,h=0;g>=h;h++)c=h===g?this:this.clone(!0),n(e[h])[b](c),f.apply(d,c.get());return this.pushStack(d)}});var qa,ra={};function sa(b,c){var d,e=n(c.createElement(b)).appendTo(c.body),f=a.getDefaultComputedStyle&&(d=a.getDefaultComputedStyle(e[0]))?d.display:n.css(e[0],"display");return e.detach(),f}function ta(a){var b=l,c=ra[a];return c||(c=sa(a,b),"none"!==c&&c||(qa=(qa||n("<iframe frameborder='0' width='0' height='0'/>")).appendTo(b.documentElement),b=qa[0].contentDocument,b.write(),b.close(),c=sa(a,b),qa.detach()),ra[a]=c),c}var ua=/^margin/,va=new RegExp("^("+Q+")(?!px)[a-z%]+$","i"),wa=function(b){return b.ownerDocument.defaultView.opener?b.ownerDocument.defaultView.getComputedStyle(b,null):a.getComputedStyle(b,null)};function xa(a,b,c){var d,e,f,g,h=a.style;return c=c||wa(a),c&&(g=c.getPropertyValue(b)||c[b]),c&&(""!==g||n.contains(a.ownerDocument,a)||(g=n.style(a,b)),va.test(g)&&ua.test(b)&&(d=h.width,e=h.minWidth,f=h.maxWidth,h.minWidth=h.maxWidth=h.width=g,g=c.width,h.width=d,h.minWidth=e,h.maxWidth=f)),void 0!==g?g+"":g}function ya(a,b){return{get:function(){return a()?void delete this.get:(this.get=b).apply(this,arguments)}}}!function(){var b,c,d=l.documentElement,e=l.createElement("div"),f=l.createElement("div");if(f.style){f.style.backgroundClip="content-box",f.cloneNode(!0).style.backgroundClip="",k.clearCloneStyle="content-box"===f.style.backgroundClip,e.style.cssText="border:0;width:0;height:0;top:0;left:-9999px;margin-top:1px;position:absolute",e.appendChild(f);function g(){f.style.cssText="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;margin-top:1%;top:1%;border:1px;padding:1px;width:4px;position:absolute",f.innerHTML="",d.appendChild(e);var g=a.getComputedStyle(f,null);b="1%"!==g.top,c="4px"===g.width,d.removeChild(e)}a.getComputedStyle&&n.extend(k,{pixelPosition:function(){return g(),b},boxSizingReliable:function(){return null==c&&g(),c},reliableMarginRight:function(){var b,c=f.appendChild(l.createElement("div"));return c.style.cssText=f.style.cssText="-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;display:block;margin:0;border:0;padding:0",c.style.marginRight=c.style.width="0",f.style.width="1px",d.appendChild(e),b=!parseFloat(a.getComputedStyle(c,null).marginRight),d.removeChild(e),f.removeChild(c),b}})}}(),n.swap=function(a,b,c,d){var e,f,g={};for(f in b)g[f]=a.style[f],a.style[f]=b[f];e=c.apply(a,d||[]);for(f in b)a.style[f]=g[f];return e};var za=/^(none|table(?!-c[ea]).+)/,Aa=new RegExp("^("+Q+")(.*)$","i"),Ba=new RegExp("^([+-])=("+Q+")","i"),Ca={position:"absolute",visibility:"hidden",display:"block"},Da={letterSpacing:"0",fontWeight:"400"},Ea=["Webkit","O","Moz","ms"];function Fa(a,b){if(b in a)return b;var c=b[0].toUpperCase()+b.slice(1),d=b,e=Ea.length;while(e--)if(b=Ea[e]+c,b in a)return b;return d}function Ga(a,b,c){var d=Aa.exec(b);return d?Math.max(0,d[1]-(c||0))+(d[2]||"px"):b}function Ha(a,b,c,d,e){for(var f=c===(d?"border":"content")?4:"width"===b?1:0,g=0;4>f;f+=2)"margin"===c&&(g+=n.css(a,c+R[f],!0,e)),d?("content"===c&&(g-=n.css(a,"padding"+R[f],!0,e)),"margin"!==c&&(g-=n.css(a,"border"+R[f]+"Width",!0,e))):(g+=n.css(a,"padding"+R[f],!0,e),"padding"!==c&&(g+=n.css(a,"border"+R[f]+"Width",!0,e)));return g}function Ia(a,b,c){var d=!0,e="width"===b?a.offsetWidth:a.offsetHeight,f=wa(a),g="border-box"===n.css(a,"boxSizing",!1,f);if(0>=e||null==e){if(e=xa(a,b,f),(0>e||null==e)&&(e=a.style[b]),va.test(e))return e;d=g&&(k.boxSizingReliable()||e===a.style[b]),e=parseFloat(e)||0}return e+Ha(a,b,c||(g?"border":"content"),d,f)+"px"}function Ja(a,b){for(var c,d,e,f=[],g=0,h=a.length;h>g;g++)d=a[g],d.style&&(f[g]=L.get(d,"olddisplay"),c=d.style.display,b?(f[g]||"none"!==c||(d.style.display=""),""===d.style.display&&S(d)&&(f[g]=L.access(d,"olddisplay",ta(d.nodeName)))):(e=S(d),"none"===c&&e||L.set(d,"olddisplay",e?c:n.css(d,"display"))));for(g=0;h>g;g++)d=a[g],d.style&&(b&&"none"!==d.style.display&&""!==d.style.display||(d.style.display=b?f[g]||"":"none"));return a}n.extend({cssHooks:{opacity:{get:function(a,b){if(b){var c=xa(a,"opacity");return""===c?"1":c}}}},cssNumber:{columnCount:!0,fillOpacity:!0,flexGrow:!0,flexShrink:!0,fontWeight:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},cssProps:{"float":"cssFloat"},style:function(a,b,c,d){if(a&&3!==a.nodeType&&8!==a.nodeType&&a.style){var e,f,g,h=n.camelCase(b),i=a.style;return b=n.cssProps[h]||(n.cssProps[h]=Fa(i,h)),g=n.cssHooks[b]||n.cssHooks[h],void 0===c?g&&"get"in g&&void 0!==(e=g.get(a,!1,d))?e:i[b]:(f=typeof c,"string"===f&&(e=Ba.exec(c))&&(c=(e[1]+1)*e[2]+parseFloat(n.css(a,b)),f="number"),null!=c&&c===c&&("number"!==f||n.cssNumber[h]||(c+="px"),k.clearCloneStyle||""!==c||0!==b.indexOf("background")||(i[b]="inherit"),g&&"set"in g&&void 0===(c=g.set(a,c,d))||(i[b]=c)),void 0)}},css:function(a,b,c,d){var e,f,g,h=n.camelCase(b);return b=n.cssProps[h]||(n.cssProps[h]=Fa(a.style,h)),g=n.cssHooks[b]||n.cssHooks[h],g&&"get"in g&&(e=g.get(a,!0,c)),void 0===e&&(e=xa(a,b,d)),"normal"===e&&b in Da&&(e=Da[b]),""===c||c?(f=parseFloat(e),c===!0||n.isNumeric(f)?f||0:e):e}}),n.each(["height","width"],function(a,b){n.cssHooks[b]={get:function(a,c,d){return c?za.test(n.css(a,"display"))&&0===a.offsetWidth?n.swap(a,Ca,function(){return Ia(a,b,d)}):Ia(a,b,d):void 0},set:function(a,c,d){var e=d&&wa(a);return Ga(a,c,d?Ha(a,b,d,"border-box"===n.css(a,"boxSizing",!1,e),e):0)}}}),n.cssHooks.marginRight=ya(k.reliableMarginRight,function(a,b){return b?n.swap(a,{display:"inline-block"},xa,[a,"marginRight"]):void 0}),n.each({margin:"",padding:"",border:"Width"},function(a,b){n.cssHooks[a+b]={expand:function(c){for(var d=0,e={},f="string"==typeof c?c.split(" "):[c];4>d;d++)e[a+R[d]+b]=f[d]||f[d-2]||f[0];return e}},ua.test(a)||(n.cssHooks[a+b].set=Ga)}),n.fn.extend({css:function(a,b){return J(this,function(a,b,c){var d,e,f={},g=0;if(n.isArray(b)){for(d=wa(a),e=b.length;e>g;g++)f[b[g]]=n.css(a,b[g],!1,d);return f}return void 0!==c?n.style(a,b,c):n.css(a,b)},a,b,arguments.length>1)},show:function(){return Ja(this,!0)},hide:function(){return Ja(this)},toggle:function(a){return"boolean"==typeof a?a?this.show():this.hide():this.each(function(){S(this)?n(this).show():n(this).hide()})}});function Ka(a,b,c,d,e){return new Ka.prototype.init(a,b,c,d,e)}n.Tween=Ka,Ka.prototype={constructor:Ka,init:function(a,b,c,d,e,f){this.elem=a,this.prop=c,this.easing=e||"swing",this.options=b,this.start=this.now=this.cur(),this.end=d,this.unit=f||(n.cssNumber[c]?"":"px")},cur:function(){var a=Ka.propHooks[this.prop];return a&&a.get?a.get(this):Ka.propHooks._default.get(this)},run:function(a){var b,c=Ka.propHooks[this.prop];return this.options.duration?this.pos=b=n.easing[this.easing](a,this.options.duration*a,0,1,this.options.duration):this.pos=b=a,this.now=(this.end-this.start)*b+this.start,this.options.step&&this.options.step.call(this.elem,this.now,this),c&&c.set?c.set(this):Ka.propHooks._default.set(this),this}},Ka.prototype.init.prototype=Ka.prototype,Ka.propHooks={_default:{get:function(a){var b;return null==a.elem[a.prop]||a.elem.style&&null!=a.elem.style[a.prop]?(b=n.css(a.elem,a.prop,""),b&&"auto"!==b?b:0):a.elem[a.prop]},set:function(a){n.fx.step[a.prop]?n.fx.step[a.prop](a):a.elem.style&&(null!=a.elem.style[n.cssProps[a.prop]]||n.cssHooks[a.prop])?n.style(a.elem,a.prop,a.now+a.unit):a.elem[a.prop]=a.now}}},Ka.propHooks.scrollTop=Ka.propHooks.scrollLeft={set:function(a){a.elem.nodeType&&a.elem.parentNode&&(a.elem[a.prop]=a.now)}},n.easing={linear:function(a){return a},swing:function(a){return.5-Math.cos(a*Math.PI)/2}},n.fx=Ka.prototype.init,n.fx.step={};var La,Ma,Na=/^(?:toggle|show|hide)$/,Oa=new RegExp("^(?:([+-])=|)("+Q+")([a-z%]*)$","i"),Pa=/queueHooks$/,Qa=[Va],Ra={"*":[function(a,b){var c=this.createTween(a,b),d=c.cur(),e=Oa.exec(b),f=e&&e[3]||(n.cssNumber[a]?"":"px"),g=(n.cssNumber[a]||"px"!==f&&+d)&&Oa.exec(n.css(c.elem,a)),h=1,i=20;if(g&&g[3]!==f){f=f||g[3],e=e||[],g=+d||1;do h=h||".5",g/=h,n.style(c.elem,a,g+f);while(h!==(h=c.cur()/d)&&1!==h&&--i)}return e&&(g=c.start=+g||+d||0,c.unit=f,c.end=e[1]?g+(e[1]+1)*e[2]:+e[2]),c}]};function Sa(){return setTimeout(function(){La=void 0}),La=n.now()}function Ta(a,b){var c,d=0,e={height:a};for(b=b?1:0;4>d;d+=2-b)c=R[d],e["margin"+c]=e["padding"+c]=a;return b&&(e.opacity=e.width=a),e}function Ua(a,b,c){for(var d,e=(Ra[b]||[]).concat(Ra["*"]),f=0,g=e.length;g>f;f++)if(d=e[f].call(c,b,a))return d}function Va(a,b,c){var d,e,f,g,h,i,j,k,l=this,m={},o=a.style,p=a.nodeType&&S(a),q=L.get(a,"fxshow");c.queue||(h=n._queueHooks(a,"fx"),null==h.unqueued&&(h.unqueued=0,i=h.empty.fire,h.empty.fire=function(){h.unqueued||i()}),h.unqueued++,l.always(function(){l.always(function(){h.unqueued--,n.queue(a,"fx").length||h.empty.fire()})})),1===a.nodeType&&("height"in b||"width"in b)&&(c.overflow=[o.overflow,o.overflowX,o.overflowY],j=n.css(a,"display"),k="none"===j?L.get(a,"olddisplay")||ta(a.nodeName):j,"inline"===k&&"none"===n.css(a,"float")&&(o.display="inline-block")),c.overflow&&(o.overflow="hidden",l.always(function(){o.overflow=c.overflow[0],o.overflowX=c.overflow[1],o.overflowY=c.overflow[2]}));for(d in b)if(e=b[d],Na.exec(e)){if(delete b[d],f=f||"toggle"===e,e===(p?"hide":"show")){if("show"!==e||!q||void 0===q[d])continue;p=!0}m[d]=q&&q[d]||n.style(a,d)}else j=void 0;if(n.isEmptyObject(m))"inline"===("none"===j?ta(a.nodeName):j)&&(o.display=j);else{q?"hidden"in q&&(p=q.hidden):q=L.access(a,"fxshow",{}),f&&(q.hidden=!p),p?n(a).show():l.done(function(){n(a).hide()}),l.done(function(){var b;L.remove(a,"fxshow");for(b in m)n.style(a,b,m[b])});for(d in m)g=Ua(p?q[d]:0,d,l),d in q||(q[d]=g.start,p&&(g.end=g.start,g.start="width"===d||"height"===d?1:0))}}function Wa(a,b){var c,d,e,f,g;for(c in a)if(d=n.camelCase(c),e=b[d],f=a[c],n.isArray(f)&&(e=f[1],f=a[c]=f[0]),c!==d&&(a[d]=f,delete a[c]),g=n.cssHooks[d],g&&"expand"in g){f=g.expand(f),delete a[d];for(c in f)c in a||(a[c]=f[c],b[c]=e)}else b[d]=e}function Xa(a,b,c){var d,e,f=0,g=Qa.length,h=n.Deferred().always(function(){delete i.elem}),i=function(){if(e)return!1;for(var b=La||Sa(),c=Math.max(0,j.startTime+j.duration-b),d=c/j.duration||0,f=1-d,g=0,i=j.tweens.length;i>g;g++)j.tweens[g].run(f);return h.notifyWith(a,[j,f,c]),1>f&&i?c:(h.resolveWith(a,[j]),!1)},j=h.promise({elem:a,props:n.extend({},b),opts:n.extend(!0,{specialEasing:{}},c),originalProperties:b,originalOptions:c,startTime:La||Sa(),duration:c.duration,tweens:[],createTween:function(b,c){var d=n.Tween(a,j.opts,b,c,j.opts.specialEasing[b]||j.opts.easing);return j.tweens.push(d),d},stop:function(b){var c=0,d=b?j.tweens.length:0;if(e)return this;for(e=!0;d>c;c++)j.tweens[c].run(1);return b?h.resolveWith(a,[j,b]):h.rejectWith(a,[j,b]),this}}),k=j.props;for(Wa(k,j.opts.specialEasing);g>f;f++)if(d=Qa[f].call(j,a,k,j.opts))return d;return n.map(k,Ua,j),n.isFunction(j.opts.start)&&j.opts.start.call(a,j),n.fx.timer(n.extend(i,{elem:a,anim:j,queue:j.opts.queue})),j.progress(j.opts.progress).done(j.opts.done,j.opts.complete).fail(j.opts.fail).always(j.opts.always)}n.Animation=n.extend(Xa,{tweener:function(a,b){n.isFunction(a)?(b=a,a=["*"]):a=a.split(" ");for(var c,d=0,e=a.length;e>d;d++)c=a[d],Ra[c]=Ra[c]||[],Ra[c].unshift(b)},prefilter:function(a,b){b?Qa.unshift(a):Qa.push(a)}}),n.speed=function(a,b,c){var d=a&&"object"==typeof a?n.extend({},a):{complete:c||!c&&b||n.isFunction(a)&&a,duration:a,easing:c&&b||b&&!n.isFunction(b)&&b};return d.duration=n.fx.off?0:"number"==typeof d.duration?d.duration:d.duration in n.fx.speeds?n.fx.speeds[d.duration]:n.fx.speeds._default,(null==d.queue||d.queue===!0)&&(d.queue="fx"),d.old=d.complete,d.complete=function(){n.isFunction(d.old)&&d.old.call(this),d.queue&&n.dequeue(this,d.queue)},d},n.fn.extend({fadeTo:function(a,b,c,d){return this.filter(S).css("opacity",0).show().end().animate({opacity:b},a,c,d)},animate:function(a,b,c,d){var e=n.isEmptyObject(a),f=n.speed(b,c,d),g=function(){var b=Xa(this,n.extend({},a),f);(e||L.get(this,"finish"))&&b.stop(!0)};return g.finish=g,e||f.queue===!1?this.each(g):this.queue(f.queue,g)},stop:function(a,b,c){var d=function(a){var b=a.stop;delete a.stop,b(c)};return"string"!=typeof a&&(c=b,b=a,a=void 0),b&&a!==!1&&this.queue(a||"fx",[]),this.each(function(){var b=!0,e=null!=a&&a+"queueHooks",f=n.timers,g=L.get(this);if(e)g[e]&&g[e].stop&&d(g[e]);else for(e in g)g[e]&&g[e].stop&&Pa.test(e)&&d(g[e]);for(e=f.length;e--;)f[e].elem!==this||null!=a&&f[e].queue!==a||(f[e].anim.stop(c),b=!1,f.splice(e,1));(b||!c)&&n.dequeue(this,a)})},finish:function(a){return a!==!1&&(a=a||"fx"),this.each(function(){var b,c=L.get(this),d=c[a+"queue"],e=c[a+"queueHooks"],f=n.timers,g=d?d.length:0;for(c.finish=!0,n.queue(this,a,[]),e&&e.stop&&e.stop.call(this,!0),b=f.length;b--;)f[b].elem===this&&f[b].queue===a&&(f[b].anim.stop(!0),f.splice(b,1));for(b=0;g>b;b++)d[b]&&d[b].finish&&d[b].finish.call(this);delete c.finish})}}),n.each(["toggle","show","hide"],function(a,b){var c=n.fn[b];n.fn[b]=function(a,d,e){return null==a||"boolean"==typeof a?c.apply(this,arguments):this.animate(Ta(b,!0),a,d,e)}}),n.each({slideDown:Ta("show"),slideUp:Ta("hide"),slideToggle:Ta("toggle"),fadeIn:{opacity:"show"},fadeOut:{opacity:"hide"},fadeToggle:{opacity:"toggle"}},function(a,b){n.fn[a]=function(a,c,d){return this.animate(b,a,c,d)}}),n.timers=[],n.fx.tick=function(){var a,b=0,c=n.timers;for(La=n.now();b<c.length;b++)a=c[b],a()||c[b]!==a||c.splice(b--,1);c.length||n.fx.stop(),La=void 0},n.fx.timer=function(a){n.timers.push(a),a()?n.fx.start():n.timers.pop()},n.fx.interval=13,n.fx.start=function(){Ma||(Ma=setInterval(n.fx.tick,n.fx.interval))},n.fx.stop=function(){clearInterval(Ma),Ma=null},n.fx.speeds={slow:600,fast:200,_default:400},n.fn.delay=function(a,b){return a=n.fx?n.fx.speeds[a]||a:a,b=b||"fx",this.queue(b,function(b,c){var d=setTimeout(b,a);c.stop=function(){clearTimeout(d)}})},function(){var a=l.createElement("input"),b=l.createElement("select"),c=b.appendChild(l.createElement("option"));a.type="checkbox",k.checkOn=""!==a.value,k.optSelected=c.selected,b.disabled=!0,k.optDisabled=!c.disabled,a=l.createElement("input"),a.value="t",a.type="radio",k.radioValue="t"===a.value}();var Ya,Za,$a=n.expr.attrHandle;n.fn.extend({attr:function(a,b){return J(this,n.attr,a,b,arguments.length>1)},removeAttr:function(a){return this.each(function(){n.removeAttr(this,a)})}}),n.extend({attr:function(a,b,c){var d,e,f=a.nodeType;if(a&&3!==f&&8!==f&&2!==f)return typeof a.getAttribute===U?n.prop(a,b,c):(1===f&&n.isXMLDoc(a)||(b=b.toLowerCase(),d=n.attrHooks[b]||(n.expr.match.bool.test(b)?Za:Ya)),
     void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?void 0:e):null!==c?d&&"set"in d&&void 0!==(e=d.set(a,c,b))?e:(a.setAttribute(b,c+""),c):void n.removeAttr(a,b))},removeAttr:function(a,b){var c,d,e=0,f=b&&b.match(E);if(f&&1===a.nodeType)while(c=f[e++])d=n.propFix[c]||c,n.expr.match.bool.test(c)&&(a[d]=!1),a.removeAttribute(c)},attrHooks:{type:{set:function(a,b){if(!k.radioValue&&"radio"===b&&n.nodeName(a,"input")){var c=a.value;return a.setAttribute("type",b),c&&(a.value=c),b}}}}}),Za={set:function(a,b,c){return b===!1?n.removeAttr(a,c):a.setAttribute(c,c),c}},n.each(n.expr.match.bool.source.match(/\w+/g),function(a,b){var c=$a[b]||n.find.attr;$a[b]=function(a,b,d){var e,f;return d||(f=$a[b],$a[b]=e,e=null!=c(a,b,d)?b.toLowerCase():null,$a[b]=f),e}});var _a=/^(?:input|select|textarea|button)$/i;n.fn.extend({prop:function(a,b){return J(this,n.prop,a,b,arguments.length>1)},removeProp:function(a){return this.each(function(){delete this[n.propFix[a]||a]})}}),n.extend({propFix:{"for":"htmlFor","class":"className"},prop:function(a,b,c){var d,e,f,g=a.nodeType;if(a&&3!==g&&8!==g&&2!==g)return f=1!==g||!n.isXMLDoc(a),f&&(b=n.propFix[b]||b,e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!==(d=e.get(a,b))?d:a[b]},propHooks:{tabIndex:{get:function(a){return a.hasAttribute("tabindex")||_a.test(a.nodeName)||a.href?a.tabIndex:-1}}}}),k.optSelected||(n.propHooks.selected={get:function(a){var b=a.parentNode;return b&&b.parentNode&&b.parentNode.selectedIndex,null}}),n.each(["tabIndex","readOnly","maxLength","cellSpacing","cellPadding","rowSpan","colSpan","useMap","frameBorder","contentEditable"],function(){n.propFix[this.toLowerCase()]=this});var ab=/[\t\r\n\f]/g;n.fn.extend({addClass:function(a){var b,c,d,e,f,g,h="string"==typeof a&&a,i=0,j=this.length;if(n.isFunction(a))return this.each(function(b){n(this).addClass(a.call(this,b,this.className))});if(h)for(b=(a||"").match(E)||[];j>i;i++)if(c=this[i],d=1===c.nodeType&&(c.className?(" "+c.className+" ").replace(ab," "):" ")){f=0;while(e=b[f++])d.indexOf(" "+e+" ")<0&&(d+=e+" ");g=n.trim(d),c.className!==g&&(c.className=g)}return this},removeClass:function(a){var b,c,d,e,f,g,h=0===arguments.length||"string"==typeof a&&a,i=0,j=this.length;if(n.isFunction(a))return this.each(function(b){n(this).removeClass(a.call(this,b,this.className))});if(h)for(b=(a||"").match(E)||[];j>i;i++)if(c=this[i],d=1===c.nodeType&&(c.className?(" "+c.className+" ").replace(ab," "):"")){f=0;while(e=b[f++])while(d.indexOf(" "+e+" ")>=0)d=d.replace(" "+e+" "," ");g=a?n.trim(d):"",c.className!==g&&(c.className=g)}return this},toggleClass:function(a,b){var c=typeof a;return"boolean"==typeof b&&"string"===c?b?this.addClass(a):this.removeClass(a):this.each(n.isFunction(a)?function(c){n(this).toggleClass(a.call(this,c,this.className,b),b)}:function(){if("string"===c){var b,d=0,e=n(this),f=a.match(E)||[];while(b=f[d++])e.hasClass(b)?e.removeClass(b):e.addClass(b)}else(c===U||"boolean"===c)&&(this.className&&L.set(this,"__className__",this.className),this.className=this.className||a===!1?"":L.get(this,"__className__")||"")})},hasClass:function(a){for(var b=" "+a+" ",c=0,d=this.length;d>c;c++)if(1===this[c].nodeType&&(" "+this[c].className+" ").replace(ab," ").indexOf(b)>=0)return!0;return!1}});var bb=/\r/g;n.fn.extend({val:function(a){var b,c,d,e=this[0];{if(arguments.length)return d=n.isFunction(a),this.each(function(c){var e;1===this.nodeType&&(e=d?a.call(this,c,n(this).val()):a,null==e?e="":"number"==typeof e?e+="":n.isArray(e)&&(e=n.map(e,function(a){return null==a?"":a+""})),b=n.valHooks[this.type]||n.valHooks[this.nodeName.toLowerCase()],b&&"set"in b&&void 0!==b.set(this,e,"value")||(this.value=e))});if(e)return b=n.valHooks[e.type]||n.valHooks[e.nodeName.toLowerCase()],b&&"get"in b&&void 0!==(c=b.get(e,"value"))?c:(c=e.value,"string"==typeof c?c.replace(bb,""):null==c?"":c)}}}),n.extend({valHooks:{option:{get:function(a){var b=n.find.attr(a,"value");return null!=b?b:n.trim(n.text(a))}},select:{get:function(a){for(var b,c,d=a.options,e=a.selectedIndex,f="select-one"===a.type||0>e,g=f?null:[],h=f?e+1:d.length,i=0>e?h:f?e:0;h>i;i++)if(c=d[i],!(!c.selected&&i!==e||(k.optDisabled?c.disabled:null!==c.getAttribute("disabled"))||c.parentNode.disabled&&n.nodeName(c.parentNode,"optgroup"))){if(b=n(c).val(),f)return b;g.push(b)}return g},set:function(a,b){var c,d,e=a.options,f=n.makeArray(b),g=e.length;while(g--)d=e[g],(d.selected=n.inArray(d.value,f)>=0)&&(c=!0);return c||(a.selectedIndex=-1),f}}}}),n.each(["radio","checkbox"],function(){n.valHooks[this]={set:function(a,b){return n.isArray(b)?a.checked=n.inArray(n(a).val(),b)>=0:void 0}},k.checkOn||(n.valHooks[this].get=function(a){return null===a.getAttribute("value")?"on":a.value})}),n.each("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error contextmenu".split(" "),function(a,b){n.fn[b]=function(a,c){return arguments.length>0?this.on(b,null,a,c):this.trigger(b)}}),n.fn.extend({hover:function(a,b){return this.mouseenter(a).mouseleave(b||a)},bind:function(a,b,c){return this.on(a,null,b,c)},unbind:function(a,b){return this.off(a,null,b)},delegate:function(a,b,c,d){return this.on(b,a,c,d)},undelegate:function(a,b,c){return 1===arguments.length?this.off(a,"**"):this.off(b,a||"**",c)}});var cb=n.now(),db=/\?/;n.parseJSON=function(a){return JSON.parse(a+"")},n.parseXML=function(a){var b,c;if(!a||"string"!=typeof a)return null;try{c=new DOMParser,b=c.parseFromString(a,"text/xml")}catch(d){b=void 0}return(!b||b.getElementsByTagName("parsererror").length)&&n.error("Invalid XML: "+a),b};var eb=/#.*$/,fb=/([?&])_=[^&]*/,gb=/^(.*?):[ \t]*([^\r\n]*)$/gm,hb=/^(?:about|app|app-storage|.+-extension|file|res|widget):$/,ib=/^(?:GET|HEAD)$/,jb=/^\/\//,kb=/^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,lb={},mb={},nb="*/".concat("*"),ob=a.location.href,pb=kb.exec(ob.toLowerCase())||[];function qb(a){return function(b,c){"string"!=typeof b&&(c=b,b="*");var d,e=0,f=b.toLowerCase().match(E)||[];if(n.isFunction(c))while(d=f[e++])"+"===d[0]?(d=d.slice(1)||"*",(a[d]=a[d]||[]).unshift(c)):(a[d]=a[d]||[]).push(c)}}function rb(a,b,c,d){var e={},f=a===mb;function g(h){var i;return e[h]=!0,n.each(a[h]||[],function(a,h){var j=h(b,c,d);return"string"!=typeof j||f||e[j]?f?!(i=j):void 0:(b.dataTypes.unshift(j),g(j),!1)}),i}return g(b.dataTypes[0])||!e["*"]&&g("*")}function sb(a,b){var c,d,e=n.ajaxSettings.flatOptions||{};for(c in b)void 0!==b[c]&&((e[c]?a:d||(d={}))[c]=b[c]);return d&&n.extend(!0,a,d),a}function tb(a,b,c){var d,e,f,g,h=a.contents,i=a.dataTypes;while("*"===i[0])i.shift(),void 0===d&&(d=a.mimeType||b.getResponseHeader("Content-Type"));if(d)for(e in h)if(h[e]&&h[e].test(d)){i.unshift(e);break}if(i[0]in c)f=i[0];else{for(e in c){if(!i[0]||a.converters[e+" "+i[0]]){f=e;break}g||(g=e)}f=f||g}return f?(f!==i[0]&&i.unshift(f),c[f]):void 0}function ub(a,b,c,d){var e,f,g,h,i,j={},k=a.dataTypes.slice();if(k[1])for(g in a.converters)j[g.toLowerCase()]=a.converters[g];f=k.shift();while(f)if(a.responseFields[f]&&(c[a.responseFields[f]]=b),!i&&d&&a.dataFilter&&(b=a.dataFilter(b,a.dataType)),i=f,f=k.shift())if("*"===f)f=i;else if("*"!==i&&i!==f){if(g=j[i+" "+f]||j["* "+f],!g)for(e in j)if(h=e.split(" "),h[1]===f&&(g=j[i+" "+h[0]]||j["* "+h[0]])){g===!0?g=j[e]:j[e]!==!0&&(f=h[0],k.unshift(h[1]));break}if(g!==!0)if(g&&a["throws"])b=g(b);else try{b=g(b)}catch(l){return{state:"parsererror",error:g?l:"No conversion from "+i+" to "+f}}}return{state:"success",data:b}}n.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:ob,type:"GET",isLocal:hb.test(pb[1]),global:!0,processData:!0,async:!0,contentType:"application/x-www-form-urlencoded; charset=UTF-8",accepts:{"*":nb,text:"text/plain",html:"text/html",xml:"application/xml, text/xml",json:"application/json, text/javascript"},contents:{xml:/xml/,html:/html/,json:/json/},responseFields:{xml:"responseXML",text:"responseText",json:"responseJSON"},converters:{"* text":String,"text html":!0,"text json":n.parseJSON,"text xml":n.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(a,b){return b?sb(sb(a,n.ajaxSettings),b):sb(n.ajaxSettings,a)},ajaxPrefilter:qb(lb),ajaxTransport:qb(mb),ajax:function(a,b){"object"==typeof a&&(b=a,a=void 0),b=b||{};var c,d,e,f,g,h,i,j,k=n.ajaxSetup({},b),l=k.context||k,m=k.context&&(l.nodeType||l.jquery)?n(l):n.event,o=n.Deferred(),p=n.Callbacks("once memory"),q=k.statusCode||{},r={},s={},t=0,u="canceled",v={readyState:0,getResponseHeader:function(a){var b;if(2===t){if(!f){f={};while(b=gb.exec(e))f[b[1].toLowerCase()]=b[2]}b=f[a.toLowerCase()]}return null==b?null:b},getAllResponseHeaders:function(){return 2===t?e:null},setRequestHeader:function(a,b){var c=a.toLowerCase();return t||(a=s[c]=s[c]||a,r[a]=b),this},overrideMimeType:function(a){return t||(k.mimeType=a),this},statusCode:function(a){var b;if(a)if(2>t)for(b in a)q[b]=[q[b],a[b]];else v.always(a[v.status]);return this},abort:function(a){var b=a||u;return c&&c.abort(b),x(0,b),this}};if(o.promise(v).complete=p.add,v.success=v.done,v.error=v.fail,k.url=((a||k.url||ob)+"").replace(eb,"").replace(jb,pb[1]+"//"),k.type=b.method||b.type||k.method||k.type,k.dataTypes=n.trim(k.dataType||"*").toLowerCase().match(E)||[""],null==k.crossDomain&&(h=kb.exec(k.url.toLowerCase()),k.crossDomain=!(!h||h[1]===pb[1]&&h[2]===pb[2]&&(h[3]||("http:"===h[1]?"80":"443"))===(pb[3]||("http:"===pb[1]?"80":"443")))),k.data&&k.processData&&"string"!=typeof k.data&&(k.data=n.param(k.data,k.traditional)),rb(lb,k,b,v),2===t)return v;i=n.event&&k.global,i&&0===n.active++&&n.event.trigger("ajaxStart"),k.type=k.type.toUpperCase(),k.hasContent=!ib.test(k.type),d=k.url,k.hasContent||(k.data&&(d=k.url+=(db.test(d)?"&":"?")+k.data,delete k.data),k.cache===!1&&(k.url=fb.test(d)?d.replace(fb,"$1_="+cb++):d+(db.test(d)?"&":"?")+"_="+cb++)),k.ifModified&&(n.lastModified[d]&&v.setRequestHeader("If-Modified-Since",n.lastModified[d]),n.etag[d]&&v.setRequestHeader("If-None-Match",n.etag[d])),(k.data&&k.hasContent&&k.contentType!==!1||b.contentType)&&v.setRequestHeader("Content-Type",k.contentType),v.setRequestHeader("Accept",k.dataTypes[0]&&k.accepts[k.dataTypes[0]]?k.accepts[k.dataTypes[0]]+("*"!==k.dataTypes[0]?", "+nb+"; q=0.01":""):k.accepts["*"]);for(j in k.headers)v.setRequestHeader(j,k.headers[j]);if(k.beforeSend&&(k.beforeSend.call(l,v,k)===!1||2===t))return v.abort();u="abort";for(j in{success:1,error:1,complete:1})v[j](k[j]);if(c=rb(mb,k,b,v)){v.readyState=1,i&&m.trigger("ajaxSend",[v,k]),k.async&&k.timeout>0&&(g=setTimeout(function(){v.abort("timeout")},k.timeout));try{t=1,c.send(r,x)}catch(w){if(!(2>t))throw w;x(-1,w)}}else x(-1,"No Transport");function x(a,b,f,h){var j,r,s,u,w,x=b;2!==t&&(t=2,g&&clearTimeout(g),c=void 0,e=h||"",v.readyState=a>0?4:0,j=a>=200&&300>a||304===a,f&&(u=tb(k,v,f)),u=ub(k,u,v,j),j?(k.ifModified&&(w=v.getResponseHeader("Last-Modified"),w&&(n.lastModified[d]=w),w=v.getResponseHeader("etag"),w&&(n.etag[d]=w)),204===a||"HEAD"===k.type?x="nocontent":304===a?x="notmodified":(x=u.state,r=u.data,s=u.error,j=!s)):(s=x,(a||!x)&&(x="error",0>a&&(a=0))),v.status=a,v.statusText=(b||x)+"",j?o.resolveWith(l,[r,x,v]):o.rejectWith(l,[v,x,s]),v.statusCode(q),q=void 0,i&&m.trigger(j?"ajaxSuccess":"ajaxError",[v,k,j?r:s]),p.fireWith(l,[v,x]),i&&(m.trigger("ajaxComplete",[v,k]),--n.active||n.event.trigger("ajaxStop")))}return v},getJSON:function(a,b,c){return n.get(a,b,c,"json")},getScript:function(a,b){return n.get(a,void 0,b,"script")}}),n.each(["get","post"],function(a,b){n[b]=function(a,c,d,e){return n.isFunction(c)&&(e=e||d,d=c,c=void 0),n.ajax({url:a,type:b,dataType:e,data:c,success:d})}}),n._evalUrl=function(a){return n.ajax({url:a,type:"GET",dataType:"script",async:!1,global:!1,"throws":!0})},n.fn.extend({wrapAll:function(a){var b;return n.isFunction(a)?this.each(function(b){n(this).wrapAll(a.call(this,b))}):(this[0]&&(b=n(a,this[0].ownerDocument).eq(0).clone(!0),this[0].parentNode&&b.insertBefore(this[0]),b.map(function(){var a=this;while(a.firstElementChild)a=a.firstElementChild;return a}).append(this)),this)},wrapInner:function(a){return this.each(n.isFunction(a)?function(b){n(this).wrapInner(a.call(this,b))}:function(){var b=n(this),c=b.contents();c.length?c.wrapAll(a):b.append(a)})},wrap:function(a){var b=n.isFunction(a);return this.each(function(c){n(this).wrapAll(b?a.call(this,c):a)})},unwrap:function(){return this.parent().each(function(){n.nodeName(this,"body")||n(this).replaceWith(this.childNodes)}).end()}}),n.expr.filters.hidden=function(a){return a.offsetWidth<=0&&a.offsetHeight<=0},n.expr.filters.visible=function(a){return!n.expr.filters.hidden(a)};var vb=/%20/g,wb=/\[\]$/,xb=/\r?\n/g,yb=/^(?:submit|button|image|reset|file)$/i,zb=/^(?:input|select|textarea|keygen)/i;function Ab(a,b,c,d){var e;if(n.isArray(b))n.each(b,function(b,e){c||wb.test(a)?d(a,e):Ab(a+"["+("object"==typeof e?b:"")+"]",e,c,d)});else if(c||"object"!==n.type(b))d(a,b);else for(e in b)Ab(a+"["+e+"]",b[e],c,d)}n.param=function(a,b){var c,d=[],e=function(a,b){b=n.isFunction(b)?b():null==b?"":b,d[d.length]=encodeURIComponent(a)+"="+encodeURIComponent(b)};if(void 0===b&&(b=n.ajaxSettings&&n.ajaxSettings.traditional),n.isArray(a)||a.jquery&&!n.isPlainObject(a))n.each(a,function(){e(this.name,this.value)});else for(c in a)Ab(c,a[c],b,e);return d.join("&").replace(vb,"+")},n.fn.extend({serialize:function(){return n.param(this.serializeArray())},serializeArray:function(){return this.map(function(){var a=n.prop(this,"elements");return a?n.makeArray(a):this}).filter(function(){var a=this.type;return this.name&&!n(this).is(":disabled")&&zb.test(this.nodeName)&&!yb.test(a)&&(this.checked||!T.test(a))}).map(function(a,b){var c=n(this).val();return null==c?null:n.isArray(c)?n.map(c,function(a){return{name:b.name,value:a.replace(xb,"\r\n")}}):{name:b.name,value:c.replace(xb,"\r\n")}}).get()}}),n.ajaxSettings.xhr=function(){try{return new XMLHttpRequest}catch(a){}};var Bb=0,Cb={},Db={0:200,1223:204},Eb=n.ajaxSettings.xhr();a.attachEvent&&a.attachEvent("onunload",function(){for(var a in Cb)Cb[a]()}),k.cors=!!Eb&&"withCredentials"in Eb,k.ajax=Eb=!!Eb,n.ajaxTransport(function(a){var b;return k.cors||Eb&&!a.crossDomain?{send:function(c,d){var e,f=a.xhr(),g=++Bb;if(f.open(a.type,a.url,a.async,a.username,a.password),a.xhrFields)for(e in a.xhrFields)f[e]=a.xhrFields[e];a.mimeType&&f.overrideMimeType&&f.overrideMimeType(a.mimeType),a.crossDomain||c["X-Requested-With"]||(c["X-Requested-With"]="XMLHttpRequest");for(e in c)f.setRequestHeader(e,c[e]);b=function(a){return function(){b&&(delete Cb[g],b=f.onload=f.onerror=null,"abort"===a?f.abort():"error"===a?d(f.status,f.statusText):d(Db[f.status]||f.status,f.statusText,"string"==typeof f.responseText?{text:f.responseText}:void 0,f.getAllResponseHeaders()))}},f.onload=b(),f.onerror=b("error"),b=Cb[g]=b("abort");try{f.send(a.hasContent&&a.data||null)}catch(h){if(b)throw h}},abort:function(){b&&b()}}:void 0}),n.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/(?:java|ecma)script/},converters:{"text script":function(a){return n.globalEval(a),a}}}),n.ajaxPrefilter("script",function(a){void 0===a.cache&&(a.cache=!1),a.crossDomain&&(a.type="GET")}),n.ajaxTransport("script",function(a){if(a.crossDomain){var b,c;return{send:function(d,e){b=n("<script>").prop({async:!0,charset:a.scriptCharset,src:a.url}).on("load error",c=function(a){b.remove(),c=null,a&&e("error"===a.type?404:200,a.type)}),l.head.appendChild(b[0])},abort:function(){c&&c()}}}});var Fb=[],Gb=/(=)\?(?=&|$)|\?\?/;n.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var a=Fb.pop()||n.expando+"_"+cb++;return this[a]=!0,a}}),n.ajaxPrefilter("json jsonp",function(b,c,d){var e,f,g,h=b.jsonp!==!1&&(Gb.test(b.url)?"url":"string"==typeof b.data&&!(b.contentType||"").indexOf("application/x-www-form-urlencoded")&&Gb.test(b.data)&&"data");return h||"jsonp"===b.dataTypes[0]?(e=b.jsonpCallback=n.isFunction(b.jsonpCallback)?b.jsonpCallback():b.jsonpCallback,h?b[h]=b[h].replace(Gb,"$1"+e):b.jsonp!==!1&&(b.url+=(db.test(b.url)?"&":"?")+b.jsonp+"="+e),b.converters["script json"]=function(){return g||n.error(e+" was not called"),g[0]},b.dataTypes[0]="json",f=a[e],a[e]=function(){g=arguments},d.always(function(){a[e]=f,b[e]&&(b.jsonpCallback=c.jsonpCallback,Fb.push(e)),g&&n.isFunction(f)&&f(g[0]),g=f=void 0}),"script"):void 0}),n.parseHTML=function(a,b,c){if(!a||"string"!=typeof a)return null;"boolean"==typeof b&&(c=b,b=!1),b=b||l;var d=v.exec(a),e=!c&&[];return d?[b.createElement(d[1])]:(d=n.buildFragment([a],b,e),e&&e.length&&n(e).remove(),n.merge([],d.childNodes))};var Hb=n.fn.load;n.fn.load=function(a,b,c){if("string"!=typeof a&&Hb)return Hb.apply(this,arguments);var d,e,f,g=this,h=a.indexOf(" ");return h>=0&&(d=n.trim(a.slice(h)),a=a.slice(0,h)),n.isFunction(b)?(c=b,b=void 0):b&&"object"==typeof b&&(e="POST"),g.length>0&&n.ajax({url:a,type:e,dataType:"html",data:b}).done(function(a){f=arguments,g.html(d?n("<div>").append(n.parseHTML(a)).find(d):a)}).complete(c&&function(a,b){g.each(c,f||[a.responseText,b,a])}),this},n.each(["ajaxStart","ajaxStop","ajaxComplete","ajaxError","ajaxSuccess","ajaxSend"],function(a,b){n.fn[b]=function(a){return this.on(b,a)}}),n.expr.filters.animated=function(a){return n.grep(n.timers,function(b){return a===b.elem}).length};var Ib=a.document.documentElement;function Jb(a){return n.isWindow(a)?a:9===a.nodeType&&a.defaultView}n.offset={setOffset:function(a,b,c){var d,e,f,g,h,i,j,k=n.css(a,"position"),l=n(a),m={};"static"===k&&(a.style.position="relative"),h=l.offset(),f=n.css(a,"top"),i=n.css(a,"left"),j=("absolute"===k||"fixed"===k)&&(f+i).indexOf("auto")>-1,j?(d=l.position(),g=d.top,e=d.left):(g=parseFloat(f)||0,e=parseFloat(i)||0),n.isFunction(b)&&(b=b.call(a,c,h)),null!=b.top&&(m.top=b.top-h.top+g),null!=b.left&&(m.left=b.left-h.left+e),"using"in b?b.using.call(a,m):l.css(m)}},n.fn.extend({offset:function(a){if(arguments.length)return void 0===a?this:this.each(function(b){n.offset.setOffset(this,a,b)});var b,c,d=this[0],e={top:0,left:0},f=d&&d.ownerDocument;if(f)return b=f.documentElement,n.contains(b,d)?(typeof d.getBoundingClientRect!==U&&(e=d.getBoundingClientRect()),c=Jb(f),{top:e.top+c.pageYOffset-b.clientTop,left:e.left+c.pageXOffset-b.clientLeft}):e},position:function(){if(this[0]){var a,b,c=this[0],d={top:0,left:0};return"fixed"===n.css(c,"position")?b=c.getBoundingClientRect():(a=this.offsetParent(),b=this.offset(),n.nodeName(a[0],"html")||(d=a.offset()),d.top+=n.css(a[0],"borderTopWidth",!0),d.left+=n.css(a[0],"borderLeftWidth",!0)),{top:b.top-d.top-n.css(c,"marginTop",!0),left:b.left-d.left-n.css(c,"marginLeft",!0)}}},offsetParent:function(){return this.map(function(){var a=this.offsetParent||Ib;while(a&&!n.nodeName(a,"html")&&"static"===n.css(a,"position"))a=a.offsetParent;return a||Ib})}}),n.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(b,c){var d="pageYOffset"===c;n.fn[b]=function(e){return J(this,function(b,e,f){var g=Jb(b);return void 0===f?g?g[c]:b[e]:void(g?g.scrollTo(d?a.pageXOffset:f,d?f:a.pageYOffset):b[e]=f)},b,e,arguments.length,null)}}),n.each(["top","left"],function(a,b){n.cssHooks[b]=ya(k.pixelPosition,function(a,c){return c?(c=xa(a,b),va.test(c)?n(a).position()[b]+"px":c):void 0})}),n.each({Height:"height",Width:"width"},function(a,b){n.each({padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){var f=arguments.length&&(c||"boolean"!=typeof d),g=c||(d===!0||e===!0?"margin":"border");return J(this,function(b,c,d){var e;return n.isWindow(b)?b.document.documentElement["client"+a]:9===b.nodeType?(e=b.documentElement,Math.max(b.body["scroll"+a],e["scroll"+a],b.body["offset"+a],e["offset"+a],e["client"+a])):void 0===d?n.css(b,c,g):n.style(b,c,d,g)},b,f?d:void 0,f,null)}})}),n.fn.size=function(){return this.length},n.fn.andSelf=n.fn.addBack,"function"==typeof define&&define.amd&&define("jquery",[],function(){return n});var Kb=a.jQuery,Lb=a.$;return n.noConflict=function(b){return a.$===n&&(a.$=Lb),b&&a.jQuery===n&&(a.jQuery=Kb),n},typeof b===U&&(a.jQuery=a.$=n),n});
 //# sourceMappingURL=jquery.min.map
-angular.module('app', ['ngAnimate', 'AngularPrint']);
-
-angular.module('app').config(['$interpolateProvider', function ($interpolateProvider) {
-    $interpolateProvider.startSymbol('[[');
-    $interpolateProvider.endSymbol(']]');
-}]);
-
-AppController.$inject = ['$scope', '$interval'];
-FrontController.$inject = ['$scope', '$timeout', '$filter', '$sce', '$http'];
-UsersController.$inject = ['$scope', '$filter'];
-PacientsController.$inject = ['$scope', '$filter', '$http', '$sce'];
-FlashController.$inject = ['$scope', '$timeout'];
-ReviewController.$inject = ['$scope', '$filter', '$timeout', '$window'];
-BillController.$inject = ['$scope', '$filter', '$timeout', '$http', '$sce', '$window'];
-TestController.$inject = ['$scope', '$http', '$filter', '$interval', '$timeout', '$window', '$sce'];
-
-angular.module('app').controller('AppController', AppController);
-angular.module('app').controller('FrontController', FrontController);
-angular.module('app').controller('UsersController', UsersController);
-angular.module('app').controller('PacientsController', PacientsController);
-angular.module('app').controller('FlashController', FlashController);
-angular.module('app').controller('ReviewController', ReviewController);
-angular.module('app').controller('BillController', BillController);
-angular.module('app').controller('TestController', TestController);
-
-function AppController($scope, $interval) {
-    moment.locale('ca')
-    $scope.actual_date = moment().format('LTS');
-    $interval(function () {
-        $scope.actual_date = moment().format('LTS');
-    }, 1000);
-}
-
-function FrontController($scope, $timeout, $filter, $sce, $http) {
-    $scope.patients = [];
-
-    $scope.underline_word = function (word) {
-        var regex = new RegExp($scope.patient, 'gi');
-        var t = word.replace(regex, '<strong>$&</strong>');
-        return $sce.trustAsHtml(t);
-    };
-
-    $scope.search_pacients = function () {
-        if ($scope.patient == '') {
-            $scope.patients = [];
-            return;
-        }
-        $http({
-            method: 'POST',
-            url: base_url + '/pacients/s/' + $scope.patient
-        }).then(function mySucces(response) {
-            $scope.patients = response.data;
-        }, function myError(response) {
-            console.log(response);
-        });
-    };
-
-    $scope.show_birthdays = function (e) {
-        var el = $(e.target);
-        var pacients = el.attr('data-json') ? JSON.parse(el.attr('data-json')) : JSON.parse(el.parent().attr('data-json'));
-        if (Object.keys(pacients).length !== 0 && JSON.stringify(pacients) !== JSON.stringify({})) {
-            var $div = $('<div>',
-                {
-                    'class': 'tooltip tooltip-' + new Date().getTime()
-                });
-            $div.css({
-                'position': 'absolute',
-                top: (el.offset().top + 20) + "px",
-                left: (el.offset().left) + "px"
-            });
-            for (var i in pacients) {
-                $div.append("<p>El pacient " + pacients[i].full_name + " compleix anys el dia " + pacients[i].date + "</p>");
-            }
-            $('body').append($div);
-        }
-    };
-
-    $scope.delete_tooltip = function () {
-        $('.tooltip').remove();
-    };
-
-    /*-------------------------------*/
-    /*     Center .grow messages     */
-    /*-------------------------------*/
-    var $grow = $('.grow');
-    $.each($grow, function (index, element) {
-        var $el = $(element);
-        var $parentWidth = $el.outerWidth();
-        var position = ($parentWidth / 2) - ($el.width() / 2);
-        $el.css({
-            'left': '50%',
-            'marginLeft': -($el.width() / 2)
-        });
-    });
-}
-
-function UsersController($scope, $filter) {
-    $scope.user = {};
-
-    $scope.randomStr = function (m) {
-        var m = m || 9, s = '', r = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (var i = 0; i < m; i++) {
-            s += r.charAt(Math.floor(Math.random() * r.length));
-        }
-        return s;
-    };
-
-    $scope.showDeleteModal = function (e) {
-        e.preventDefault();
-        var href = $(e.target).parent().attr('href');
-        var confirmDelete = confirm('Estàs segur d\'eliminar aquest usuari?');
-        if (confirmDelete) {
-            window.location.href = href;
-        }
-    };
-
-    if (document.querySelector('.user_json')) {
-        $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
-        $scope.user.blocked = $scope.user.blocked == 1;
-        $scope.user.password = $scope.randomStr(16);
-        console.log($scope.user);
-    }
-}
-
-function PacientsController($scope, $filter, $http, $sce) {
-    $scope.pacient = {};
-    $scope.search = '';
-    $scope.patients = [];
-    $scope.location = '';
-
-    if (document.querySelector('.pacient_json')) {
-        $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
-        var date = moment($scope.pacient.birth_date).toDate();
-        $scope.pacient.birth_date = typeof $scope.pacient.birth_date != 'undefined' ? $filter('date')(new Date(date), 'dd/MM/y') : '';
-        $scope.pacient.age = typeof $scope.pacient.age != 'undefined' ? parseInt($scope.pacient.age) : '';
-    }
-
-    $scope.putAgeFromDate = function (date) {
-        var regexp = /^\d{2}([./-])\d{2}\1\d{4}$/;
-
-        if (date.match(regexp)) {
-            var arrDate = date.split('/');
-            var dateUser = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
-            var ageDifMs = Date.now() - dateUser.getTime();
-            var ageDate = new Date(ageDifMs);
-            $scope.pacient.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        } else {
-            console.log('nop!');
-        }
-    }
-
-    $scope.showDeleteModal = function (e) {
-        e.preventDefault();
-        var href = $(e.target).parent().attr('href');
-        var confirmDelete = confirm('Estàs segur d\'eliminar aquest pacient?');
-        if (confirmDelete) {
-            window.location.href = href;
-        }
-    };
-
-    $scope.search_pacient = function (form) {
-        if ($scope.search.term == '') {
-            $scope.patients = [];
-            return;
-        }
-        $scope.locationUrl = $scope.location + $scope.search.term;
-        $http({
-            method: 'POST',
-            url: $scope.locationUrl
-        }).then(function mySucces(response) {
-            $scope.patients = response.data;
-        }, function myError(response) {
-            console.log(response);
-        });
-    };
-
-    $scope.underline_word = function (word) {
-        var regex = new RegExp($scope.search.term, 'gi');
-        var t = word.replace(regex, '<strong>$&</strong>');
-        return $sce.trustAsHtml(t);
-    };
-}
-
-function FlashController($scope, $timeout) {
-    $scope.timeOut = false;
-
-    $timeout(function () {
-        $scope.timeOut = true;
-    }, 3000);
-}
-
-function ReviewController($scope, $filter, $timeout, $window) {
-    $scope.data = new Date();
-    $scope.actualDate = new Date();
-    $scope.form = {};
-    $scope.review = [];
-    $scope.dates = [];
-
-    if ($('#review').val() != '') {
-        $scope.review = JSON.parse($('#review').val());
-    }
-
-    $scope.addDateToReview = function (e) {
-        e.preventDefault();
-        var obj = null;
-        for (var i = 0; i < $scope.review.length; i++) {
-            if ($scope.isToday($scope.review[i].id)) {
-                obj = $scope.review[i];
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.dates.length; i++) {
-            if ($scope.isToday($scope.dates[i].id)) {
-                obj = $scope.dates[i];
-                break;
-            }
-        }
-
-        if (obj === null) {
-            var date = new Date();
-            $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
-        } else {
-            $scope.animate = true;
-            $scope.editDateReview(obj, true);
-        }
-    };
-
-    $scope.submitForm = function (e) {
-        var finalReview = $scope.review;
-        finalReview = finalReview.concat($scope.dates);
-
-        var review = JSON.stringify(finalReview);
-        $('#review').val(review);
-    };
-
-    $scope.showActualHour = function () {
-        $scope.actualDate = $filter('date')(new Date(), 'dd MMM yyyy HH:m');
-    }
-
-    $scope.isToday = function (date) {
-        return moment(new Date(date)).isSame(moment(), 'day');
-        /*return true;*/
-    }
-
-    $scope.editDateReview = function (dateObject, fromOtherFn) {
-        fromOtherFn = fromOtherFn || false;
-        if (!fromOtherFn)
-            $scope.animate = false;
-        $scope.edit = dateObject.id;
-
-        $timeout(function () {
-            $scope.animate = false;
-        }, 500);
-    }
-
-    $scope.checkKey = function (e) {
-        /*if (e.keyCode == 13 && !e.shiftKey) {
-         $scope.edit = '';
-         }*/
-    }
-
-    $scope.showReview = function (dateObj) {
-
-    };
-
-    $scope.print = function () {
-        $window.print();
-    };
-}
-
-function BillController($scope, $filter, $timeout, $http, $sce, $window) {
-    $scope.bill = {
-        qty: 0,
-        price_per_unit: 0.0,
-        discount: 0.0,
-        iva: 0.0,
-        irpf: 0.0,
-        total_bill: 0.0,
-        total_partial: 0.0,
-        amount_irpf: 0.0,
-        total: 0.0,
-        amount_discount: 0.0
-    };
-    $scope.billInfo = {};
-    $scope.urlBillInfo = '';
-    $scope.clients = {};
-    $scope.pacients = [];
-    $scope.client = {};
-    $scope.patient = {};
-    $scope.autocomplete = false;
-    $scope.widthSearchInput = '100px';
-    $scope.searchUrl = '';
-
-    $scope.Base64 = {
-        _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", encode: function (e) {
-            var t = "";
-            var n, r, i, s, o, u, a;
-            var f = 0;
-            e = $scope.Base64._utf8_encode(e);
-            while (f < e.length) {
-                n = e.charCodeAt(f++);
-                r = e.charCodeAt(f++);
-                i = e.charCodeAt(f++);
-                s = n >> 2;
-                o = (n & 3) << 4 | r >> 4;
-                u = (r & 15) << 2 | i >> 6;
-                a = i & 63;
-                if (isNaN(r)) {
-                    u = a = 64
-                } else if (isNaN(i)) {
-                    a = 64
-                }
-                t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
-            }
-            return t
-        }, decode: function (e) {
-            var t = "";
-            var n, r, i;
-            var s, o, u, a;
-            var f = 0;
-            e = e.replace(/[^A-Za-z0-9+/=]/g, "");
-            while (f < e.length) {
-                s = this._keyStr.indexOf(e.charAt(f++));
-                o = this._keyStr.indexOf(e.charAt(f++));
-                u = this._keyStr.indexOf(e.charAt(f++));
-                a = this._keyStr.indexOf(e.charAt(f++));
-                n = s << 2 | o >> 4;
-                r = (o & 15) << 4 | u >> 2;
-                i = (u & 3) << 6 | a;
-                t = t + String.fromCharCode(n);
-                if (u != 64) {
-                    t = t + String.fromCharCode(r)
-                }
-                if (a != 64) {
-                    t = t + String.fromCharCode(i)
-                }
-            }
-            t = $scope.Base64._utf8_decode(t);
-            return t
-        }, _utf8_encode: function (e) {
-            e = e.replace(/rn/g, "n");
-            var t = "";
-            for (var n = 0; n < e.length; n++) {
-                var r = e.charCodeAt(n);
-                if (r < 128) {
-                    t += String.fromCharCode(r)
-                } else if (r > 127 && r < 2048) {
-                    t += String.fromCharCode(r >> 6 | 192);
-                    t += String.fromCharCode(r & 63 | 128)
-                } else {
-                    t += String.fromCharCode(r >> 12 | 224);
-                    t += String.fromCharCode(r >> 6 & 63 | 128);
-                    t += String.fromCharCode(r & 63 | 128)
-                }
-            }
-            return t
-        }, _utf8_decode: function (e) {
-            var t = "";
-            var n = 0;
-            var r = c1 = c2 = 0;
-            while (n < e.length) {
-                r = e.charCodeAt(n);
-                if (r < 128) {
-                    t += String.fromCharCode(r);
-                    n++
-                } else if (r > 191 && r < 224) {
-                    c2 = e.charCodeAt(n + 1);
-                    t += String.fromCharCode((r & 31) << 6 | c2 & 63);
-                    n += 2
-                } else {
-                    c2 = e.charCodeAt(n + 1);
-                    c3 = e.charCodeAt(n + 2);
-                    t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
-                    n += 3
-                }
-            }
-            return t
-        }
-    };
-
-    angular.element($window).bind('resize', function () {
-        var $term = $('input[name="client_name"]').parent();
-        $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
-    });
-
-    $timeout(function () {
-        var $term = $('input[name="client_name"]').parent();
-        $scope.widthSearchInput = ($term.outerWidth() + 20) + 'px';
-    }, 500);
-
-    $scope.ask_question = function (e) {
-        e.preventDefault();
-        var el = $(e.target).parent();
-        var url = el.attr('href');
-        var msg = confirm('Estàs segur que vols eliminar aquesta factura?');
-        if (msg) {
-            $window.location.href = url;
-        }
-    };
-
-    $scope.today_date = function () {
-        /*if ($scope.review.id == '')*/
-        $scope.bill.date = $filter('date')(new Date(), 'dd/MM/y');
-    };
-
-    $scope.underline_word = function (word) {
-        var regex = new RegExp($scope.client.name, 'gi');
-        var t = word.replace(regex, '<strong>$&</strong>');
-        return $sce.trustAsHtml(t);
-    };
-
-    $scope.search_clients_and_patients = function () {
-        if ($scope.client.name == '') {
-            $scope.autocomplete = false;
-            return;
-        }
-        $timeout(function () {
-            $http({
-                method: 'POST',
-                url: $scope.searchUrl + '/' + $scope.client.name
-            }).then(function mySucces(response) {
-                $scope.pacients = response.data.patients;
-                $scope.clients = response.data.clients;
-                if ($scope.clients.length || $scope.pacients.length) {
-                    $scope.autocomplete = true;
-                } else {
-                    $scope.autocomplete = false;
-                }
-            }, function myError(response) {
-                console.log(response);
-            });
-        });
-    };
-
-    $scope.put_on_bill = function (obj, model) {
-        if (model == 'client') {
-            $scope.client = obj;
-            $scope.bill.client_id = $scope.client.id;
-            $scope.bill.patient_id = '';
-        } else {
-            $scope.patient = obj;
-            $scope.bill.patient_id = $scope.patient.id;
-            $scope.client.name = $scope.patient.full_name;
-            $scope.client.address = $scope.patient.address;
-            $scope.client.postal_code = $scope.patient.postal_code;
-            $scope.client.city = $scope.patient.city;
-            $scope.client.cif = $scope.patient.nif;
-            $scope.bill.client_id = '';
-        }
-
-        $scope.autocomplete = false;
-    }
-
-    $scope.count = function (n) {
-        return new Array(n);
-    }
-
-    $scope.show_total = function (n1, n2) {
-        $scope.bill.total_bill = (isNaN(n1) ? 0 : n1) - (isNaN(n2) ? 0 : n2);
-        console.log($scope.bill.total_bill);
-        return $filter('currency')($scope.bill.total_bill.toFixed(2));
-    };
-
-    $scope.show_amount_discount = function (n1, n2) {
-        $scope.bill.amount_discount = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
-        $scope.bill.total_partial = $scope.bill.total - $scope.bill.amount_discount;
-        return $filter('currency')($scope.bill.amount_discount.toFixed(2));
-    };
-
-    $scope.show_amount_irpf = function (n1, n2) {
-        if (n2.toString().indexOf(',') != -1)
-            n2 = n2.toString().replace(',', '.');
-        $scope.bill.amount_irpf = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
-        return $filter('currency')($scope.bill.amount_irpf.toFixed(2));
-    };
-
-    $scope.autocomplete_id = function () {
-        if ($scope.bill.id == "" || typeof $scope.bill.id == 'undefined') {
-            $scope.bill.id = $scope.lastId + 1;
-        }
-    };
-
-    $scope.format_date = function (date) {
-        var str = date.replace(/-/g, '/');
-        return $filter('date')(new Date(str), 'dd/MM/y');
-    };
-
-    var $bill = $('#bill');
-    if ($bill.length && $bill.html().trim() != '[]') {
-        $scope.bill = JSON.parse($bill.html());
-        var str = $scope.bill.creation_date.replace(/-/g, '/');
-        $scope.bill.creation_date = $filter('date')(new Date(str), 'dd/MM/y');
-        var str = $scope.bill.expiration_date.replace(/-/g, '/');
-        $scope.bill.expiration_date = $filter('date')(new Date(str), 'dd/MM/y');
-        if ($scope.bill.patient_id != "" && $scope.bill.patient_id != null) {
-            $scope.put_on_bill($scope.bill.patient, 'patient');
-        }
-        if ($scope.bill.client_id != "" && $scope.bill.client_id != null) {
-            $scope.put_on_bill($scope.bill.client, 'client');
-        }
-    }
-}
-
-function TestController($scope, $http, $filter, $interval, $timeout, $window, $sce) {
-    $scope.output = '';
-    $scope.days = 5;
-    $scope.daysMail = 5;
-    $scope.title = '';
-    $scope.time = 0;
-    $scope.timeLoader = '';
-    $scope.first_time = true;
-    $scope.status = 0;
-
-    $scope.show_output = function (e, url, title, params) {
-        e.preventDefault();
-        $scope.timeLoader = '';
-        $scope.time = 0;
-        var stop = $interval(function () {
-            if ($scope.timeLoader.length == 3)
-                $scope.timeLoader = '';
-            $scope.timeLoader += '.';
-        }, 100);
-        params = params || null;
-        if (params != null) {
-            url = url + '/' + $scope[params];
-        }
-
-        $scope.title = title;
-
-        $http({
-            method: 'GET',
-            url: url,
-        }).then(function mySucces(response) {
-            $interval.cancel(stop);
-            $scope.output = $sce.trustAsHtml(response.data.output);
-            $scope.time = response.data.time;
-            $scope.status = response.status;
-            $scope.first_time = false;
-        }, function myError(response) {
-            console.log(response);
-        });
-    };
-}
-
-
-$(document).ready(function () {
-    $('#side-menu').metisMenu();
-
-    $('.navigation').click(function (e) {
-        if ($('#is_mobile').val() == 1) {
-            $('nav').toggleClass(function () {
-                if ($(this).hasClass('opened')) {
-                    $(this).removeClass('opened');
-                    return "closed";
-                } else {
-                    $(this).removeClass('closed');
-                    return "opened";
-                }
-            });
-        } else {
-            $('nav').toggleClass('closed');
-            $('.wrap-content, #footer').toggleClass('compress');
-        }
-    });
-
-    /**** Para añadir un indicador si existe una table que tiene el ancho más grande la pantalla ****/
-    if ($('#is_mobile') && $('table').length) {
-        $('table').each(function (index, element) {
-            var t = $(element);
-            if ($(window).outerWidth() < t.find('thead').outerWidth()) {
-                t.addClass('larger');
-                t.after('<p>Fes lliscar el dit sobre la taula per veure més dades</p>');
-            }
-        });
-    }
-});
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
         typeof define === 'function' && define.amd ? define(factory) :
@@ -10556,4975 +9980,1129 @@ $(document).ready(function () {
     return moment_with_locales;
 
 }));
-(function ($) {
-    'use strict';
-
-    function transitionEnd() {
-        var el = document.createElement('mm');
-
-        var transEndEventNames = {
-            WebkitTransition: 'webkitTransitionEnd',
-            MozTransition: 'transitionend',
-            OTransition: 'oTransitionEnd otransitionend',
-            transition: 'transitionend'
-        };
-
-        for (var name in transEndEventNames) {
-            if (el.style[name] !== undefined) {
-                return {
-                    end: transEndEventNames[name]
-                };
-            }
-        }
-        return false;
-    }
-
-    $.fn.emulateTransitionEnd = function (duration) {
-        var called = false;
-        var $el = this;
-        $(this).one('mmTransitionEnd', function () {
-            called = true;
-        });
-        var callback = function () {
-            if (!called) {
-                $($el).trigger($transition.end);
-            }
-        };
-        setTimeout(callback, duration);
-        return this;
-    };
-
-    var $transition = transitionEnd();
-    if (!!$transition) {
-        $.event.special.mmTransitionEnd = {
-            bindType: $transition.end,
-            delegateType: $transition.end,
-            handle: function (e) {
-                if ($(e.target).is(this)) {
-                    return e.
-                        handleObj.
-                        handler.
-                        apply(this, arguments);
-                }
-            }
-        };
-    }
-
-    var MetisMenu = function (element, options) {
-        this.$element = $(element);
-        this.options = $.extend({}, MetisMenu.DEFAULTS, options);
-        this.transitioning = null;
-
-        this.init();
-    };
-
-    MetisMenu.TRANSITION_DURATION = 350;
-
-    MetisMenu.DEFAULTS = {
-        toggle: true,
-        doubleTapToGo: false,
-        preventDefault: true,
-        activeClass: 'active',
-        collapseClass: 'collapse',
-        collapseInClass: 'in',
-        collapsingClass: 'collapsing',
-        onTransitionStart: false,
-        onTransitionEnd: false
-    };
-
-    MetisMenu.prototype.init = function () {
-        var $this = this;
-        var activeClass = this.options.activeClass;
-        var collapseClass = this.options.collapseClass;
-        var collapseInClass = this.options.collapseInClass;
-
-        this
-            .$element
-            .find('li.' + activeClass)
-            .has('ul')
-            .children('ul')
-            .attr('aria-expanded', true)
-            .addClass(collapseClass + ' ' + collapseInClass);
-
-        this
-            .$element
-            .find('li')
-            .not('.' + activeClass)
-            .has('ul')
-            .children('ul')
-            .attr('aria-expanded', false)
-            .addClass(collapseClass);
-
-        //add the 'doubleTapToGo' class to active items if needed
-        if (this.options.doubleTapToGo) {
-            this
-                .$element
-                .find('li.' + activeClass)
-                .has('ul')
-                .children('a')
-                .addClass('doubleTapToGo');
-        }
-
-        this
-            .$element
-            .find('li')
-            .has('ul')
-            .children('a')
-            .on('click.metisMenu', function (e) {
-                var self = $(this);
-                var $parent = self.parent('li');
-                var $list = $parent.children('ul');
-                if ($this.options.preventDefault) {
-                    e.preventDefault();
-                }
-                if ($parent.hasClass(activeClass) && !$this.options.doubleTapToGo) {
-                    $this.hide($list);
-                    self.attr('aria-expanded', false);
-                } else {
-                    $this.show($list);
-                    self.attr('aria-expanded', true);
-                }
-
-                if ($this.options.onTransitionStart) {
-                    $this.options.onTransitionStart();
-                }
-
-                //Do we need to enable the double tap
-                if ($this.options.doubleTapToGo) {
-                    //if we hit a second time on the link and the href is valid, navigate to that url
-                    if ($this.doubleTapToGo(self) && self.attr('href') !== '#' && self.attr('href') !== '') {
-                        e.stopPropagation();
-                        document.location = self.attr('href');
-                        return;
-                    }
-                }
-            });
-    };
-
-    MetisMenu.prototype.doubleTapToGo = function (elem) {
-        var $this = this.$element;
-        //if the class 'doubleTapToGo' exists, remove it and return
-        if (elem.hasClass('doubleTapToGo')) {
-            elem.removeClass('doubleTapToGo');
-            return true;
-        }
-        //does not exists, add a new class and return false
-        if (elem.parent().children('ul').length) {
-            //first remove all other class
-            $this
-                .find('.doubleTapToGo')
-                .removeClass('doubleTapToGo');
-            //add the class on the current element
-            elem.addClass('doubleTapToGo');
-            return false;
-        }
-    };
-
-    MetisMenu.prototype.show = function (el) {
-        var activeClass = this.options.activeClass;
-        var collapseClass = this.options.collapseClass;
-        var collapseInClass = this.options.collapseInClass;
-        var collapsingClass = this.options.collapsingClass;
-        var $this = $(el);
-        var $parent = $this.parent('li');
-        if (this.transitioning || $this.hasClass(collapseInClass)) {
-            return;
-        }
-
-        $parent.addClass(activeClass);
-
-        if (this.options.toggle) {
-            this.hide($parent.siblings().children('ul.' + collapseInClass).attr('aria-expanded', false));
-        }
-
-        $this
-            .removeClass(collapseClass)
-            .addClass(collapsingClass)
-            .height(0);
-
-        this.transitioning = 1;
-        var complete = function () {
-            if (this.transitioning && this.options.onTransitionEnd) {
-                this.options.onTransitionEnd();
-            }
-            $this
-                .removeClass(collapsingClass)
-                .addClass(collapseClass + ' ' + collapseInClass)
-                .height('')
-                .attr('aria-expanded', true);
-            this.transitioning = 0;
-        };
-        if (!$transition) {
-            return complete.call(this);
-        }
-        $this
-            .one('mmTransitionEnd', $.proxy(complete, this))
-            .emulateTransitionEnd(MetisMenu.TRANSITION_DURATION)
-            .height($this[0].scrollHeight);
-    };
-
-    MetisMenu.prototype.hide = function (el) {
-        var activeClass = this.options.activeClass;
-        var collapseClass = this.options.collapseClass;
-        var collapseInClass = this.options.collapseInClass;
-        var collapsingClass = this.options.collapsingClass;
-        var $this = $(el);
-
-        if (this.transitioning || !$this.hasClass(collapseInClass)) {
-            return;
-        }
-
-        $this.parent('li').removeClass(activeClass);
-        $this.height($this.height())[0].offsetHeight;
-
-        $this
-            .addClass(collapsingClass)
-            .removeClass(collapseClass)
-            .removeClass(collapseInClass);
-
-        this.transitioning = 1;
-
-        var complete = function () {
-            if (this.transitioning && this.options.onTransitionEnd) {
-                this.options.onTransitionEnd();
-            }
-            this.transitioning = 0;
-            $this
-                .removeClass(collapsingClass)
-                .addClass(collapseClass)
-                .attr('aria-expanded', false);
-        };
-
-        if (!$transition) {
-            return complete.call(this);
-        }
-        $this
-            .height(0)
-            .one('mmTransitionEnd', $.proxy(complete, this))
-            .emulateTransitionEnd(MetisMenu.TRANSITION_DURATION);
-    };
-
-    function Plugin(option) {
-        return this.each(function () {
-            var $this = $(this);
-            var data = $this.data('mm');
-            var options = $.extend({},
-                MetisMenu.DEFAULTS,
-                $this.data(),
-                typeof option === 'object' && option
-            );
-
-            if (!data) {
-                $this.data('mm', (data = new MetisMenu(this, options)));
-            }
-            if (typeof option === 'string') {
-                data[option]();
-            }
-        });
-    }
-
-    var old = $.fn.metisMenu;
-
-    $.fn.metisMenu = Plugin;
-    $.fn.metisMenu.Constructor = MetisMenu;
-
-    $.fn.metisMenu.noConflict = function () {
-        $.fn.metisMenu = old;
-        return this;
-    };
-
-})(jQuery);
-/* ImageMapster
-   Version: 1.2.14-beta1 (6/18/2013)
-
-Copyright 2011-2012 James Treworgy
-
-http://www.outsharked.com/imagemapster
-https://github.com/jamietre/ImageMapster
-
-A jQuery plugin to enhance image maps.
-
-*/
-
-;
-
-/// LICENSE (MIT License)
-///
-/// Permission is hereby granted, free of charge, to any person obtaining
-/// a copy of this software and associated documentation files (the
-/// "Software"), to deal in the Software without restriction, including
-/// without limitation the rights to use, copy, modify, merge, publish,
-/// distribute, sublicense, and/or sell copies of the Software, and to
-/// permit persons to whom the Software is furnished to do so, subject to
-/// the following conditions:
-///
-/// The above copyright notice and this permission notice shall be
-/// included in all copies or substantial portions of the Software.
-///
-/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-/// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-/// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-/// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-/// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-/// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-/// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-///
-/// January 19, 2011
-
-/** @license MIT License (c) copyright B Cavalier & J Hann */
-
+/*!
+ * angular-translate - v2.11.0 - 2016-03-20
+ * 
+ * Copyright (c) 2016 The angular-translate team, Pascal Precht; Licensed MIT
+ */
+!function(a,b){"function"==typeof define&&define.amd?
+// AMD. Register as an anonymous module unless amdModuleId is set
+define([],function(){return b()}):"object"==typeof exports?
+// Node. Does not work with strict CommonJS, but
+// only CommonJS-like environments that support module.exports,
+// like Node.
+module.exports=b():b()}(this,function(){function a(a){"use strict";var b=a.storageKey(),c=a.storage(),d=function(){var d=a.preferredLanguage();angular.isString(d)?a.use(d):c.put(b,a.use())};d.displayName="fallbackFromIncorrectStorageValue",c?c.get(b)?a.use(c.get(b))["catch"](d):d():angular.isString(a.preferredLanguage())&&a.use(a.preferredLanguage())}function b(){"use strict";var a,b,c=null,// TODO change to either 'sanitize', 'escape' or ['sanitize', 'escapeParameters'] in 3.0.
+d=!1,e=!1;b={sanitize:function(a,b){return"text"===b&&(a=g(a)),a},escape:function(a,b){return"text"===b&&(a=f(a)),a},sanitizeParameters:function(a,b){return"params"===b&&(a=h(a,g)),a},escapeParameters:function(a,b){return"params"===b&&(a=h(a,f)),a}},b.escaped=b.escapeParameters,this.addStrategy=function(a,c){return b[a]=c,this},this.removeStrategy=function(a){return delete b[a],this},this.useStrategy=function(a){return d=!0,c=a,this},this.$get=["$injector","$log",function(f,g){var h={},i=function(a,c,d){return angular.forEach(d,function(d){if(angular.isFunction(d))a=d(a,c);else if(angular.isFunction(b[d]))a=b[d](a,c);else{if(!angular.isString(b[d]))throw new Error("pascalprecht.translate.$translateSanitization: Unknown sanitization strategy: '"+d+"'");if(!h[b[d]])try{h[b[d]]=f.get(b[d])}catch(e){throw h[b[d]]=function(){},new Error("pascalprecht.translate.$translateSanitization: Unknown sanitization strategy: '"+d+"'")}a=h[b[d]](a,c)}}),a},j=function(){d||e||(g.warn("pascalprecht.translate.$translateSanitization: No sanitization strategy has been configured. This can have serious security implications. See http://angular-translate.github.io/docs/#/guide/19_security for details."),e=!0)};return f.has("$sanitize")&&(a=f.get("$sanitize")),{useStrategy:function(a){return function(b){a.useStrategy(b)}}(this),sanitize:function(a,b,d){if(c||j(),arguments.length<3&&(d=c),!d)return a;var e=angular.isArray(d)?d:[d];return i(a,b,e)}}}];var f=function(a){var b=angular.element("<div></div>");// not chainable, see #1044
+return b.text(a),b.html()},g=function(b){if(!a)throw new Error("pascalprecht.translate.$translateSanitization: Error cannot find $sanitize service. Either include the ngSanitize module (https://docs.angularjs.org/api/ngSanitize) or use a sanitization strategy which does not depend on $sanitize, such as 'escape'.");return a(b)},h=function(a,b,c){if(angular.isObject(a)){var d=angular.isArray(a)?[]:{};if(c){if(c.indexOf(a)>-1)throw new Error("pascalprecht.translate.$translateSanitization: Error cannot interpolate parameter due recursive object")}else c=[];// remove last
+return c.push(a),angular.forEach(a,function(a,e){d[e]=h(a,b,c)}),c.splice(-1,1),d}return angular.isNumber(a)?a:b(a)}}function c(a,b,c,d){"use strict";var e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u={},v=[],w=a,x=[],y="translate-cloak",z=!1,A=!1,B=".",C=!1,D=0,E=!0,F="default",G={"default":function(a){return(a||"").split("-").join("_")},java:function(a){var b=(a||"").split("-").join("_"),c=b.split("_");return c.length>1?c[0].toLowerCase()+"_"+c[1].toUpperCase():b},bcp47:function(a){var b=(a||"").split("_").join("-"),c=b.split("-");return c.length>1?c[0].toLowerCase()+"-"+c[1].toUpperCase():b},"iso639-1":function(a){var b=(a||"").split("_").join("-"),c=b.split("-");return c[0].toLowerCase()}},H="2.11.0",I=function(){
+// internal purpose only
+if(angular.isFunction(d.getLocale))return d.getLocale();var a,c,e=b.$get().navigator,f=["language","browserLanguage","systemLanguage","userLanguage"];
+// support for HTML 5.1 "navigator.languages"
+if(angular.isArray(e.languages))for(a=0;a<e.languages.length;a++)if(c=e.languages[a],c&&c.length)return c;
+// support for other well known properties in browsers
+for(a=0;a<f.length;a++)if(c=e[f[a]],c&&c.length)return c;return null};I.displayName="angular-translate/service: getFirstBrowserLanguage";
+// tries to determine the browsers locale
+var J=function(){var a=I()||"";return G[F]&&(a=G[F](a)),a};J.displayName="angular-translate/service: getLocale";/**
+   * @name indexOf
+   * @private
+   *
+   * @description
+   * indexOf polyfill. Kinda sorta.
+   *
+   * @param {array} array Array to search in.
+   * @param {string} searchElement Element to search for.
+   *
+   * @returns {int} Index of search element.
+   */
+var K=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},L=function(){return this.toString().replace(/^\s+|\s+$/g,"")},M=function(a){if(a){for(var b=[],c=angular.lowercase(a),d=0,e=v.length;e>d;d++)b.push(angular.lowercase(v[d]));
+// Check for an exact match in our list of available keys
+if(K(b,c)>-1)return a;if(f){var g;for(var h in f)if(f.hasOwnProperty(h)){var i=!1,j=Object.prototype.hasOwnProperty.call(f,h)&&angular.lowercase(h)===angular.lowercase(a);if("*"===h.slice(-1)&&(i=h.slice(0,-1)===a.slice(0,h.length-1)),(j||i)&&(g=f[h],K(b,angular.lowercase(g))>-1))return g}}
+// Check for a language code without region
+var k=a.split("_");return k.length>1&&K(b,angular.lowercase(k[0]))>-1?k[0]:void 0}},N=function(a,b){if(!a&&!b)return u;if(a&&!b){if(angular.isString(a))return u[a]}else angular.isObject(u[a])||(u[a]={}),angular.extend(u[a],O(b));return this};this.translations=N,/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#cloakClassName
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   *
+   * Let's you change the class name for `translate-cloak` directive.
+   * Default class name is `translate-cloak`.
+   *
+   * @param {string} name translate-cloak class name
+   */
+this.cloakClassName=function(a){return a?(y=a,this):y},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#nestedObjectDelimeter
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   *
+   * Let's you change the delimiter for namespaced translations.
+   * Default delimiter is `.`.
+   *
+   * @param {string} delimiter namespace separator
+   */
+this.nestedObjectDelimeter=function(a){return a?(B=a,this):B};/**
+   * @name flatObject
+   * @private
+   *
+   * @description
+   * Flats an object. This function is used to flatten given translation data with
+   * namespaces, so they are later accessible via dot notation.
+   */
+var O=function(a,b,c,d){var e,f,g,h;b||(b=[]),c||(c={});for(e in a)Object.prototype.hasOwnProperty.call(a,e)&&(h=a[e],angular.isObject(h)?O(h,b.concat(e),c,e):(f=b.length?""+b.join(B)+B+e:e,b.length&&e===d&&(g=""+b.join(B),c[g]="@:"+f),c[f]=h));return c};O.displayName="flatObject",/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#addInterpolation
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Adds interpolation services to angular-translate, so it can manage them.
+   *
+   * @param {object} factory Interpolation service factory
+   */
+this.addInterpolation=function(a){return x.push(a),this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useMessageFormatInterpolation
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use interpolation functionality of messageformat.js.
+   * This is useful when having high level pluralization and gender selection.
+   */
+this.useMessageFormatInterpolation=function(){return this.useInterpolation("$translateMessageFormatInterpolation")},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useInterpolation
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate which interpolation style to use as default, application-wide.
+   * Simply pass a factory/service name. The interpolation service has to implement
+   * the correct interface.
+   *
+   * @param {string} factory Interpolation service name.
+   */
+this.useInterpolation=function(a){return n=a,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useSanitizeStrategy
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Simply sets a sanitation strategy type.
+   *
+   * @param {string} value Strategy type.
+   */
+this.useSanitizeValueStrategy=function(a){return c.useStrategy(a),this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#preferredLanguage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells the module which of the registered translation tables to use for translation
+   * at initial startup by passing a language key. Similar to `$translateProvider#use`
+   * only that it says which language to **prefer**.
+   *
+   * @param {string} langKey A language key.
+   */
+this.preferredLanguage=function(a){return a?(P(a),this):e};var P=function(a){return a&&(e=a),e};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicator
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets an indicator which is used when a translation isn't found. E.g. when
+   * setting the indicator as 'X' and one tries to translate a translation id
+   * called `NOT_FOUND`, this will result in `X NOT_FOUND X`.
+   *
+   * Internally this methods sets a left indicator and a right indicator using
+   * `$translateProvider.translationNotFoundIndicatorLeft()` and
+   * `$translateProvider.translationNotFoundIndicatorRight()`.
+   *
+   * **Note**: These methods automatically add a whitespace between the indicators
+   * and the translation id.
+   *
+   * @param {string} indicator An indicator, could be any string.
+   */
+this.translationNotFoundIndicator=function(a){return this.translationNotFoundIndicatorLeft(a),this.translationNotFoundIndicatorRight(a),this},/**
+   * ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicatorLeft
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets an indicator which is used when a translation isn't found left to the
+   * translation id.
+   *
+   * @param {string} indicator An indicator.
+   */
+this.translationNotFoundIndicatorLeft=function(a){return a?(q=a,this):q},/**
+   * ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicatorLeft
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets an indicator which is used when a translation isn't found right to the
+   * translation id.
+   *
+   * @param {string} indicator An indicator.
+   */
+this.translationNotFoundIndicatorRight=function(a){return a?(r=a,this):r},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#fallbackLanguage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells the module which of the registered translation tables to use when missing translations
+   * at initial startup by passing a language key. Similar to `$translateProvider#use`
+   * only that it says which language to **fallback**.
+   *
+   * @param {string||array} langKey A language key.
+   *
+   */
+this.fallbackLanguage=function(a){return Q(a),this};var Q=function(a){return a?(angular.isString(a)?(h=!0,g=[a]):angular.isArray(a)&&(h=!1,g=a),angular.isString(e)&&K(g,e)<0&&g.push(e),this):h?g[0]:g};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#use
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Set which translation table to use for translation by given language key. When
+   * trying to 'use' a language which isn't provided, it'll throw an error.
+   *
+   * You actually don't have to use this method since `$translateProvider#preferredLanguage`
+   * does the job too.
+   *
+   * @param {string} langKey A language key.
+   */
+this.use=function(a){if(a){if(!u[a]&&!o)
+// only throw an error, when not loading translation data asynchronously
+throw new Error("$translateProvider couldn't find translationTable for langKey: '"+a+"'");return i=a,this}return i},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#resolveClientLocale
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * This returns the current browser/client's language key. The result is processed with the configured uniform tag resolver.
+   *
+   * @returns {string} the current client/browser language key
+   */
+this.resolveClientLocale=function(){return J()};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#storageKey
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells the module which key must represent the choosed language by a user in the storage.
+   *
+   * @param {string} key A key for the storage.
+   */
+var R=function(a){return a?(w=a,this):l?l+w:w};this.storageKey=R,/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useUrlLoader
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateUrlLoader` extension service as loader.
+   *
+   * @param {string} url Url
+   * @param {Object=} options Optional configuration object
+   */
+this.useUrlLoader=function(a,b){return this.useLoader("$translateUrlLoader",angular.extend({url:a},b))},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useStaticFilesLoader
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateStaticFilesLoader` extension service as loader.
+   *
+   * @param {Object=} options Optional configuration object
+   */
+this.useStaticFilesLoader=function(a){return this.useLoader("$translateStaticFilesLoader",a)},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useLoader
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use any other service as loader.
+   *
+   * @param {string} loaderFactory Factory name to use
+   * @param {Object=} options Optional configuration object
+   */
+this.useLoader=function(a,b){return o=a,p=b||{},this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useLocalStorage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateLocalStorage` service as storage layer.
+   *
+   */
+this.useLocalStorage=function(){return this.useStorage("$translateLocalStorage")},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useCookieStorage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateCookieStorage` service as storage layer.
+   */
+this.useCookieStorage=function(){return this.useStorage("$translateCookieStorage")},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useStorage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use custom service as storage layer.
+   */
+this.useStorage=function(a){return k=a,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#storagePrefix
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets prefix for storage key.
+   *
+   * @param {string} prefix Storage key prefix
+   */
+this.storagePrefix=function(a){return a?(l=a,this):a},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useMissingTranslationHandlerLog
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use built-in log handler when trying to translate
+   * a translation Id which doesn't exist.
+   *
+   * This is actually a shortcut method for `useMissingTranslationHandler()`.
+   *
+   */
+this.useMissingTranslationHandlerLog=function(){return this.useMissingTranslationHandler("$translateMissingTranslationHandlerLog")},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useMissingTranslationHandler
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Expects a factory name which later gets instantiated with `$injector`.
+   * This method can be used to tell angular-translate to use a custom
+   * missingTranslationHandler. Just build a factory which returns a function
+   * and expects a translation id as argument.
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.useMissingTranslationHandler('customHandler');
+   *  });
+   *
+   *  app.factory('customHandler', function (dep1, dep2) {
+   *    return function (translationId) {
+   *      // something with translationId and dep1 and dep2
+   *    };
+   *  });
+   * </pre>
+   *
+   * @param {string} factory Factory name
+   */
+this.useMissingTranslationHandler=function(a){return m=a,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#usePostCompiling
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * If post compiling is enabled, all translated values will be processed
+   * again with AngularJS' $compile.
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.usePostCompiling(true);
+   *  });
+   * </pre>
+   *
+   * @param {string} factory Factory name
+   */
+this.usePostCompiling=function(a){return z=!!a,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#forceAsyncReload
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * If force async reload is enabled, async loader will always be called
+   * even if $translationTable already contains the language key, adding
+   * possible new entries to the $translationTable.
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.forceAsyncReload(true);
+   *  });
+   * </pre>
+   *
+   * @param {boolean} value - valid values are true or false
+   */
+this.forceAsyncReload=function(a){return A=!!a,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#uniformLanguageTag
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate which language tag should be used as a result when determining
+   * the current browser language.
+   *
+   * This setting must be set before invoking {@link pascalprecht.translate.$translateProvider#methods_determinePreferredLanguage determinePreferredLanguage()}.
+   *
+   * <pre>
+   * $translateProvider
+   *   .uniformLanguageTag('bcp47')
+   *   .determinePreferredLanguage()
+   * </pre>
+   *
+   * The resolver currently supports:
+   * * default
+   *     (traditionally: hyphens will be converted into underscores, i.e. en-US => en_US)
+   *     en-US => en_US
+   *     en_US => en_US
+   *     en-us => en_us
+   * * java
+   *     like default, but the second part will be always in uppercase
+   *     en-US => en_US
+   *     en_US => en_US
+   *     en-us => en_US
+   * * BCP 47 (RFC 4646 & 4647)
+   *     en-US => en-US
+   *     en_US => en-US
+   *     en-us => en-US
+   *
+   * See also:
+   * * http://en.wikipedia.org/wiki/IETF_language_tag
+   * * http://www.w3.org/International/core/langtags/
+   * * http://tools.ietf.org/html/bcp47
+   *
+   * @param {string|object} options - options (or standard)
+   * @param {string} options.standard - valid values are 'default', 'bcp47', 'java'
+   */
+this.uniformLanguageTag=function(a){return a?angular.isString(a)&&(a={standard:a}):a={},F=a.standard,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#determinePreferredLanguage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to try to determine on its own which language key
+   * to set as preferred language. When `fn` is given, angular-translate uses it
+   * to determine a language key, otherwise it uses the built-in `getLocale()`
+   * method.
+   *
+   * The `getLocale()` returns a language key in the format `[lang]_[country]` or
+   * `[lang]` depending on what the browser provides.
+   *
+   * Use this method at your own risk, since not all browsers return a valid
+   * locale (see {@link pascalprecht.translate.$translateProvider#methods_uniformLanguageTag uniformLanguageTag()}).
+   *
+   * @param {Function=} fn Function to determine a browser's locale
+   */
+this.determinePreferredLanguage=function(a){var b=a&&angular.isFunction(a)?a():J();return e=v.length?M(b)||b:b,this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#registerAvailableLanguageKeys
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Registers a set of language keys the app will work with. Use this method in
+   * combination with
+   * {@link pascalprecht.translate.$translateProvider#determinePreferredLanguage determinePreferredLanguage}.
+   * When available languages keys are registered, angular-translate
+   * tries to find the best fitting language key depending on the browsers locale,
+   * considering your language key convention.
+   *
+   * @param {object} languageKeys Array of language keys the your app will use
+   * @param {object=} aliases Alias map.
+   */
+this.registerAvailableLanguageKeys=function(a,b){return a?(v=a,b&&(f=b),this):v},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useLoaderCache
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Registers a cache for internal $http based loaders.
+   * {@link pascalprecht.translate.$translationCache $translationCache}.
+   * When false the cache will be disabled (default). When true or undefined
+   * the cache will be a default (see $cacheFactory). When an object it will
+   * be treat as a cache object itself: the usage is $http({cache: cache})
+   *
+   * @param {object} cache boolean, string or cache-object
+   */
+this.useLoaderCache=function(a){
+// disable cache
+// enable cache using AJS defaults
+// enable cache using default
+// enable cache using given one (see $cacheFactory)
+return a===!1?s=void 0:a===!0?s=!0:"undefined"==typeof a?s="$translationCache":a&&(s=a),this},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#directivePriority
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets the default priority of the translate directive. The standard value is `0`.
+   * Calling this function without an argument will return the current value.
+   *
+   * @param {number} priority for the translate-directive
+   */
+this.directivePriority=function(a){
+// setter with chaining
+return void 0===a?D:(D=a,this)},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#statefulFilter
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Since AngularJS 1.3, filters which are not stateless (depending at the scope)
+   * have to explicit define this behavior.
+   * Sets whether the translate filter should be stateful or stateless. The standard value is `true`
+   * meaning being stateful.
+   * Calling this function without an argument will return the current value.
+   *
+   * @param {boolean} state - defines the state of the filter
+   */
+this.statefulFilter=function(a){
+// setter with chaining
+return void 0===a?E:(E=a,this)},/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#postProcess
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * The post processor will be intercept right after the translation result. It can modify the result.
+   *
+   * @param {object} fn Function or service name (string) to be called after the translation value has been set / resolved. The function itself will enrich every value being processed and then continue the normal resolver process
+   */
+this.postProcess=function(a){return t=a?a:void 0,this},/**
+   * @ngdoc object
+   * @name pascalprecht.translate.$translate
+   * @requires $interpolate
+   * @requires $log
+   * @requires $rootScope
+   * @requires $q
+   *
+   * @description
+   * The `$translate` service is the actual core of angular-translate. It expects a translation id
+   * and optional interpolate parameters to translate contents.
+   *
+   * <pre>
+   *  $translate('HEADLINE_TEXT').then(function (translation) {
+   *    $scope.translatedText = translation;
+   *  });
+   * </pre>
+   *
+   * @param {string|array} translationId A token which represents a translation id
+   *                                     This can be optionally an array of translation ids which
+   *                                     results that the function returns an object where each key
+   *                                     is the translation id and the value the translation.
+   * @param {object=} interpolateParams An object hash for dynamic values
+   * @param {string} interpolationId The id of the interpolation to use
+   * @param {string} forceLanguage A language to be used instead of the current language
+   * @returns {object} promise
+   */
+this.$get=["$log","$injector","$rootScope","$q",function(a,b,c,d){var f,l,F,G=b.get(n||"$translateDefaultInterpolation"),I=!1,S={},T={},U=function(a,b,c,h,j){!i&&e&&(i=e);var m=j&&j!==i?// we don't want to re-negotiate $uses
+M(j)||j:i;
+// Duck detection: If the first argument is an array, a bunch of translations was requested.
+// The result is an object.
+if(
+// Check forceLanguage is present
+j&&ja(j),angular.isArray(a)){
+// Inspired by Q.allSettled by Kris Kowal
+// https://github.com/kriskowal/q/blob/b0fa72980717dc202ffc3cbf03b936e10ebbb9d7/q.js#L1553-1563
+// This transforms all promises regardless resolved or rejected
+var n=function(a){for(var e={},f=[],g=function(a){var f=d.defer(),g=function(b){e[a]=b,f.resolve([a,b])};
+// we don't care whether the promise was resolved or rejected; just store the values
+return U(a,b,c,h,j).then(g,g),f.promise},i=0,k=a.length;k>i;i++)f.push(g(a[i]));
+// wait for all (including storing to results)
+return d.all(f).then(function(){
+// return the results
+return e})};return n(a)}var o=d.defer();
+// trim off any whitespace
+a&&(a=L.apply(a));var p=function(){var a=e?T[e]:T[m];if(l=0,k&&!a){
+// looks like there's no pending promise for $preferredLanguage or
+// $uses. Maybe there's one pending for a language that comes from
+// storage.
+var b=f.get(w);if(a=T[b],g&&g.length){var c=K(g,b);
+// maybe the language from storage is also defined as fallback language
+// we increase the fallback language index to not search in that language
+// as fallback, since it's probably the first used language
+// in that case the index starts after the first element
+l=0===c?1:0,
+// but we can make sure to ALWAYS fallback to preferred language at least
+K(g,e)<0&&g.push(e)}}return a}();if(p){var q=function(){
+// $uses may have changed while waiting
+j||(m=i),fa(a,b,c,h,m).then(o.resolve,o.reject)};q.displayName="promiseResolved",p["finally"](q)}else
+// no promise to wait for? okay. Then there's no loader registered
+// nor is a one pending for language that comes from storage.
+// We can just translate.
+fa(a,b,c,h,m).then(o.resolve,o.reject);return o.promise},V=function(a){
+// applying notFoundIndicators
+return q&&(a=[q,a].join(" ")),r&&(a=[a,r].join(" ")),a},W=function(a){i=a,k&&f.put(U.storageKey(),i),c.$emit("$translateChangeSuccess",{language:a}),G.setLocale(i);var b=function(a,b){S[b].setLocale(i)};b.displayName="eachInterpolatorLocaleSetter",
+// inform all others too!
+angular.forEach(S,b),c.$emit("$translateChangeEnd",{language:a})},X=function(a){if(!a)throw"No language key specified for loading.";var e=d.defer();c.$emit("$translateLoadingStart",{language:a}),I=!0;var f=s;"string"==typeof f&&(
+// getting on-demand instance of loader
+f=b.get(f));var g=angular.extend({},p,{key:a,$http:angular.extend({},{cache:f},p.$http)}),h=function(b){var d={};c.$emit("$translateLoadingSuccess",{language:a}),angular.isArray(b)?angular.forEach(b,function(a){angular.extend(d,O(a))}):angular.extend(d,O(b)),I=!1,e.resolve({key:a,table:d}),c.$emit("$translateLoadingEnd",{language:a})};h.displayName="onLoaderSuccess";var i=function(a){c.$emit("$translateLoadingError",{language:a}),e.reject(a),c.$emit("$translateLoadingEnd",{language:a})};return i.displayName="onLoaderError",b.get(o)(g).then(h,i),e.promise};if(k&&(f=b.get(k),!f.get||!f.put))throw new Error("Couldn't use storage '"+k+"', missing get() or put() method!");
+// if we have additional interpolations that were added via
+// $translateProvider.addInterpolation(), we have to map'em
+if(x.length){var Y=function(a){var c=b.get(a);
+// setting initial locale for each interpolation service
+c.setLocale(e||i),
+// make'em recognizable through id
+S[c.getInterpolationIdentifier()]=c};Y.displayName="interpolationFactoryAdder",angular.forEach(x,Y)}/**
+       * @name getTranslationTable
+       * @private
+       *
+       * @description
+       * Returns a promise that resolves to the translation table
+       * or is rejected if an error occurred.
+       *
+       * @param langKey
+       * @returns {Q.promise}
+       */
+var Z=function(a){var b=d.defer();if(Object.prototype.hasOwnProperty.call(u,a))b.resolve(u[a]);else if(T[a]){var c=function(a){N(a.key,a.table),b.resolve(a.table)};c.displayName="translationTableResolver",T[a].then(c,b.reject)}else b.reject();return b.promise},$=function(a,b,c,e){var f=d.defer(),g=function(d){if(Object.prototype.hasOwnProperty.call(d,b)){e.setLocale(a);var g=d[b];if("@:"===g.substr(0,2))$(a,g.substr(2),c,e).then(f.resolve,f.reject);else{var h=e.interpolate(d[b],c);h=ia(b,d[b],h,c,a),f.resolve(h)}e.setLocale(i)}else f.reject()};return g.displayName="fallbackTranslationResolver",Z(a).then(g,f.reject),f.promise},_=function(a,b,c,d){var e,f=u[a];if(f&&Object.prototype.hasOwnProperty.call(f,b)){if(d.setLocale(a),e=d.interpolate(f[b],c),"@:"===e.substr(0,2))return _(a,e.substr(2),c,d);d.setLocale(i)}return e},aa=function(a,c,d){
+// If we have a handler factory - we might also call it here to determine if it provides
+// a default text for a translationid that can't be found anywhere in our tables
+if(m){var e=b.get(m)(a,i,c,d);return void 0!==e?e:a}return a},ba=function(a,b,c,e,f){var h=d.defer();if(a<g.length){var i=g[a];$(i,b,c,e).then(function(a){h.resolve(a)},function(){
+// Look in the next fallback language for a translation.
+// It delays the resolving by passing another promise to resolve.
+return ba(a+1,b,c,e,f).then(h.resolve,h.reject)})}else
+// No translation found in any fallback language
+// if a default translation text is set in the directive, then return this as a result
+f?h.resolve(f):
+// if no default translation is set and an error handler is defined, send it to the handler
+// and then return the result
+m?h.resolve(aa(b,c)):h.reject(aa(b,c));return h.promise},ca=function(a,b,c,d){var e;if(a<g.length){var f=g[a];e=_(f,b,c,d),e||(e=ca(a+1,b,c,d))}return e},da=function(a,b,c,d){
+// Start with the fallbackLanguage with index 0
+return ba(F>0?F:l,a,b,c,d)},ea=function(a,b,c){
+// Start with the fallbackLanguage with index 0
+return ca(F>0?F:l,a,b,c)},fa=function(a,b,c,e,f){var h=d.defer(),i=f?u[f]:u,j=c?S[c]:G;
+// if the translation id exists, we can just interpolate it
+if(i&&Object.prototype.hasOwnProperty.call(i,a)){var k=i[a];
+// If using link, rerun $translate with linked translationId and return it
+if("@:"===k.substr(0,2))U(k.substr(2),b,c,e,f).then(h.resolve,h.reject);else{
+//
+var l=j.interpolate(k,b);l=ia(a,k,l,b,f),h.resolve(l)}}else{var n;
+// for logging purposes only (as in $translateMissingTranslationHandlerLog), value is not returned to promise
+m&&!I&&(n=aa(a,b,e)),
+// since we couldn't translate the inital requested translation id,
+// we try it now with one or more fallback languages, if fallback language(s) is
+// configured.
+f&&g&&g.length?da(a,b,j,e).then(function(a){h.resolve(a)},function(a){h.reject(V(a))}):m&&!I&&n?
+// looks like the requested translation id doesn't exists.
+// Now, if there is a registered handler for missing translations and no
+// asyncLoader is pending, we execute the handler
+e?h.resolve(e):h.resolve(n):e?h.resolve(e):h.reject(V(a))}return h.promise},ga=function(a,b,c,d){var e,f=d?u[d]:u,h=G;
+// if the translation id exists, we can just interpolate it
+if(
+// if the interpolation id exists use custom interpolator
+S&&Object.prototype.hasOwnProperty.call(S,c)&&(h=S[c]),f&&Object.prototype.hasOwnProperty.call(f,a)){var i=f[a];
+// If using link, rerun $translate with linked translationId and return it
+e="@:"===i.substr(0,2)?ga(i.substr(2),b,c,d):h.interpolate(i,b)}else{var j;
+// for logging purposes only (as in $translateMissingTranslationHandlerLog), value is not returned to promise
+m&&!I&&(j=aa(a,b)),
+// since we couldn't translate the inital requested translation id,
+// we try it now with one or more fallback languages, if fallback language(s) is
+// configured.
+d&&g&&g.length?(l=0,e=ea(a,b,h)):e=m&&!I&&j?j:V(a)}return e},ha=function(a){j===a&&(j=void 0),T[a]=void 0},ia=function(a,c,d,e,f){var g=t;
+// getting on-demand instance
+return g&&("string"==typeof g&&(g=b.get(g)),g)?g(a,c,d,e,f):d},ja=function(a){u[a]||!o||T[a]||(T[a]=X(a).then(function(a){N(a.key,a.table)}))};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#preferredLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the language key for the preferred language.
+       *
+       * @param {string} langKey language String or Array to be used as preferredLanguage (changing at runtime)
+       *
+       * @return {string} preferred language key
+       */
+U.preferredLanguage=function(a){return a&&P(a),e},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#cloakClassName
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the configured class name for `translate-cloak` directive.
+       *
+       * @return {string} cloakClassName
+       */
+U.cloakClassName=function(){return y},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#nestedObjectDelimeter
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the configured delimiter for nested namespaces.
+       *
+       * @return {string} nestedObjectDelimeter
+       */
+U.nestedObjectDelimeter=function(){return B},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#fallbackLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the language key for the fallback languages or sets a new fallback stack.
+       *
+       * @param {string=} langKey language String or Array of fallback languages to be used (to change stack at runtime)
+       *
+       * @return {string||array} fallback language key
+       */
+U.fallbackLanguage=function(a){if(void 0!==a&&null!==a){
+// as we might have an async loader initiated and a new translation language might have been defined
+// we need to add the promise to the stack also. So - iterate.
+if(Q(a),o&&g&&g.length)for(var b=0,c=g.length;c>b;b++)T[g[b]]||(T[g[b]]=X(g[b]));U.use(U.use())}return h?g[0]:g},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#useFallbackLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Sets the first key of the fallback language stack to be used for translation.
+       * Therefore all languages in the fallback array BEFORE this key will be skipped!
+       *
+       * @param {string=} langKey Contains the langKey the iteration shall start with. Set to false if you want to
+       * get back to the whole stack
+       */
+U.useFallbackLanguage=function(a){if(void 0!==a&&null!==a)if(a){var b=K(g,a);b>-1&&(F=b)}else F=0},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#proposedLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the language key of language that is currently loaded asynchronously.
+       *
+       * @return {string} language key
+       */
+U.proposedLanguage=function(){return j},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#storage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns registered storage.
+       *
+       * @return {object} Storage
+       */
+U.storage=function(){return f},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#negotiateLocale
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns a language key based on available languages and language aliases. If a
+       * language key cannot be resolved, returns undefined.
+       *
+       * If no or a falsy key is given, returns undefined.
+       *
+       * @param {string} [key] Language key
+       * @return {string|undefined} Language key or undefined if no language key is found.
+       */
+U.negotiateLocale=M,/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#use
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Tells angular-translate which language to use by given language key. This method is
+       * used to change language at runtime. It also takes care of storing the language
+       * key in a configured store to let your app remember the choosed language.
+       *
+       * When trying to 'use' a language which isn't available it tries to load it
+       * asynchronously with registered loaders.
+       *
+       * Returns promise object with loaded language file data or string of the currently used language.
+       *
+       * If no or a falsy key is given it returns the currently used language key.
+       * The returned string will be ```undefined``` if setting up $translate hasn't finished.
+       * @example
+       * $translate.use("en_US").then(function(data){
+       *   $scope.text = $translate("HELLO");
+       * });
+       *
+       * @param {string} [key] Language key
+       * @return {object|string} Promise with loaded language data or the language key if a falsy param was given.
+       */
+U.use=function(a){if(!a)return i;var b=d.defer();c.$emit("$translateChangeStart",{language:a});
+// Try to get the aliased language key
+var e=M(a);
+// Ensure only registered language keys will be loaded
+// Ensure only registered language keys will be loaded
+// if there isn't a translation table for the language we've requested,
+// we load it asynchronously
+// we are already loading this asynchronously
+// resolve our new deferred when the old langPromise is resolved
+return v.length>0&&!e?d.reject(a):(e&&(a=e),j=a,!A&&u[a]||!o||T[a]?T[a]?T[a].then(function(a){return j===a.key&&W(a.key),b.resolve(a.key),a},function(a){return!i&&g&&g.length>0?U.use(g[0]).then(b.resolve,b.reject):b.reject(a)}):(b.resolve(a),W(a)):(T[a]=X(a).then(function(c){return N(c.key,c.table),b.resolve(c.key),j===a&&W(c.key),c},function(a){return c.$emit("$translateChangeError",{language:a}),b.reject(a),c.$emit("$translateChangeEnd",{language:a}),d.reject(a)}),T[a]["finally"](function(){ha(a)})),b.promise)},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#resolveClientLocale
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * This returns the current browser/client's language key. The result is processed with the configured uniform tag resolver.
+       *
+       * @returns {string} the current client/browser language key
+       */
+U.resolveClientLocale=function(){return J()},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#storageKey
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the key for the storage.
+       *
+       * @return {string} storage key
+       */
+U.storageKey=function(){return R()},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isPostCompilingEnabled
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether post compiling is enabled or not
+       *
+       * @return {bool} storage key
+       */
+U.isPostCompilingEnabled=function(){return z},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isForceAsyncReloadEnabled
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether force async reload is enabled or not
+       *
+       * @return {boolean} forceAsyncReload value
+       */
+U.isForceAsyncReloadEnabled=function(){return A},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#refresh
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Refreshes a translation table pointed by the given langKey. If langKey is not specified,
+       * the module will drop all existent translation tables and load new version of those which
+       * are currently in use.
+       *
+       * Refresh means that the module will drop target translation table and try to load it again.
+       *
+       * In case there are no loaders registered the refresh() method will throw an Error.
+       *
+       * If the module is able to refresh translation tables refresh() method will broadcast
+       * $translateRefreshStart and $translateRefreshEnd events.
+       *
+       * @example
+       * // this will drop all currently existent translation tables and reload those which are
+       * // currently in use
+       * $translate.refresh();
+       * // this will refresh a translation table for the en_US language
+       * $translate.refresh('en_US');
+       *
+       * @param {string} langKey A language key of the table, which has to be refreshed
+       *
+       * @return {promise} Promise, which will be resolved in case a translation tables refreshing
+       * process is finished successfully, and reject if not.
+       */
+U.refresh=function(a){function b(){f.resolve(),c.$emit("$translateRefreshEnd",{language:a})}function e(){f.reject(),c.$emit("$translateRefreshEnd",{language:a})}if(!o)throw new Error("Couldn't refresh translation table, no loader registered!");var f=d.defer();if(c.$emit("$translateRefreshStart",{language:a}),a)if(u[a]){var h=function(c){N(c.key,c.table),a===i&&W(i),b()};h.displayName="refreshPostProcessor",X(a).then(h,e)}else e();else{
+// if there's no language key specified we refresh ALL THE THINGS!
+var j=[],k={};
+// reload registered fallback languages
+if(g&&g.length)for(var l=0,m=g.length;m>l;l++)j.push(X(g[l])),k[g[l]]=!0;
+// reload currently used language
+i&&!k[i]&&j.push(X(i));var n=function(a){u={},angular.forEach(a,function(a){N(a.key,a.table)}),i&&W(i),b()};n.displayName="refreshPostProcessor",d.all(j).then(n,e)}return f.promise},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#instant
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns a translation instantly from the internal state of loaded translation. All rules
+       * regarding the current language, the preferred language of even fallback languages will be
+       * used except any promise handling. If a language was not found, an asynchronous loading
+       * will be invoked in the background.
+       *
+       * @param {string|array} translationId A token which represents a translation id
+       *                                     This can be optionally an array of translation ids which
+       *                                     results that the function's promise returns an object where
+       *                                     each key is the translation id and the value the translation.
+       * @param {object} interpolateParams Params
+       * @param {string} interpolationId The id of the interpolation to use
+       * @param {string} forceLanguage A language to be used instead of the current language
+       *
+       * @return {string|object} translation
+       */
+U.instant=function(a,b,c,d){
+// we don't want to re-negotiate $uses
+var f=d&&d!==i?// we don't want to re-negotiate $uses
+M(d)||d:i;
+// Detect undefined and null values to shorten the execution and prevent exceptions
+if(null===a||angular.isUndefined(a))return a;
+// Duck detection: If the first argument is an array, a bunch of translations was requested.
+// The result is an object.
+if(
+// Check forceLanguage is present
+d&&ja(d),angular.isArray(a)){for(var h={},j=0,k=a.length;k>j;j++)h[a[j]]=U.instant(a[j],b,c,d);return h}
+// We discarded unacceptable values. So we just need to verify if translationId is empty String
+if(angular.isString(a)&&a.length<1)return a;
+// trim off any whitespace
+a&&(a=L.apply(a));var l,n=[];e&&n.push(e),f&&n.push(f),g&&g.length&&(n=n.concat(g));for(var o=0,p=n.length;p>o;o++){var s=n[o];if(u[s]&&"undefined"!=typeof u[s][a]&&(l=ga(a,b,c,f)),"undefined"!=typeof l)break}
+// Return translation of default interpolator if not found anything.
+return l||""===l||(q||r?l=V(a):(l=G.interpolate(a,b),m&&!I&&(l=aa(a,b)))),l},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#versionInfo
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the current version information for the angular-translate library
+       *
+       * @return {string} angular-translate version
+       */
+U.versionInfo=function(){return H},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#loaderCache
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the defined loaderCache.
+       *
+       * @return {boolean|string|object} current value of loaderCache
+       */
+U.loaderCache=function(){return s},
+// internal purpose only
+U.directivePriority=function(){return D},
+// internal purpose only
+U.statefulFilter=function(){return E},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isReady
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether the service is "ready" to translate (i.e. loading 1st language).
+       *
+       * See also {@link pascalprecht.translate.$translate#methods_onReady onReady()}.
+       *
+       * @return {boolean} current value of ready
+       */
+U.isReady=function(){return C};var ka=d.defer();ka.promise.then(function(){C=!0}),/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#onReady
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether the service is "ready" to translate (i.e. loading 1st language).
+       *
+       * See also {@link pascalprecht.translate.$translate#methods_isReady isReady()}.
+       *
+       * @param {Function=} fn Function to invoke when service is ready
+       * @return {object} Promise resolved when service is ready
+       */
+U.onReady=function(a){var b=d.defer();return angular.isFunction(a)&&b.promise.then(a),C?b.resolve():ka.promise.then(b.resolve),b.promise},/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#getAvailableLanguageKeys
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * This function simply returns the registered language keys being defined before in the config phase
+       * With this, an application can use the array to provide a language selection dropdown or similar
+       * without any additional effort
+       *
+       * @returns {object} returns the list of possibly registered language keys and mapping or null if not defined
+       */
+U.getAvailableLanguageKeys=function(){return v.length>0?v:null};
+// Whenever $translateReady is being fired, this will ensure the state of $isReady
+var la=c.$on("$translateReady",function(){ka.resolve(),la(),// one time only
+la=null}),ma=c.$on("$translateChangeEnd",function(){ka.resolve(),ma(),// one time only
+ma=null});if(o){
+// Also, if there are any fallback language registered, we start
+// loading them asynchronously as soon as we can.
+if(
+// If at least one async loader is defined and there are no
+// (default) translations available we should try to load them.
+angular.equals(u,{})&&U.use()&&U.use(U.use()),g&&g.length)for(var na=function(a){return N(a.key,a.table),c.$emit("$translateChangeEnd",{language:a.key}),a},oa=0,pa=g.length;pa>oa;oa++){var qa=g[oa];!A&&u[qa]||(T[qa]=X(qa).then(na))}}else c.$emit("$translateReady",{language:U.use()});return U}]}function d(a,b){"use strict";var c,d={},e="default";/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateDefaultInterpolation#setLocale
+   * @methodOf pascalprecht.translate.$translateDefaultInterpolation
+   *
+   * @description
+   * Sets current locale (this is currently not use in this interpolation).
+   *
+   * @param {string} locale Language key or locale.
+   */
 /**
-* when
-* A lightweight CommonJS Promises/A and when() implementation
-*
-* when is part of the cujo.js family of libraries (http://cujojs.com/)
-*
-* Licensed under the MIT License at:
-* http://www.opensource.org/licenses/mit-license.php
-*
-* @version 1.2.0
-*/
-
-/*lint-ignore-start*/
-
-(function (define) {
-    define(function () {
-        var freeze, reduceArray, slice, undef;
-
-        //
-        // Public API
-        //
-
-        when.defer = defer;
-        when.reject = reject;
-        when.isPromise = isPromise;
-
-        when.all = all;
-        when.some = some;
-        when.any = any;
-
-        when.map = map;
-        when.reduce = reduce;
-
-        when.chain = chain;
-
-        /** Object.freeze */
-        freeze = Object.freeze || function (o) { return o; };
-
-        /**
-        * Trusted Promise constructor.  A Promise created from this constructor is
-        * a trusted when.js promise.  Any other duck-typed promise is considered
-        * untrusted.
-        *
-        * @constructor
-        */
-        function Promise() { }
-
-        Promise.prototype = freeze({
-            always: function (alwaysback, progback) {
-                return this.then(alwaysback, alwaysback, progback);
-            },
-
-            otherwise: function (errback) {
-                return this.then(undef, errback);
-            }
-        });
-
-        /**
-        * Create an already-resolved promise for the supplied value
-        * @private
-        *
-        * @param value anything
-        * @return {Promise}
-        */
-        function resolved(value) {
-
-            var p = new Promise();
-
-            p.then = function (callback) {
-                var nextValue;
-                try {
-                    if (callback) nextValue = callback(value);
-                    return promise(nextValue === undef ? value : nextValue);
-                } catch (e) {
-                    return rejected(e);
-                }
-            };
-
-            return freeze(p);
-        }
-
-        /**
-        * Create an already-rejected {@link Promise} with the supplied
-        * rejection reason.
-        * @private
-        *
-        * @param reason rejection reason
-        * @return {Promise}
-        */
-        function rejected(reason) {
-
-            var p = new Promise();
-
-            p.then = function (callback, errback) {
-                var nextValue;
-                try {
-                    if (errback) {
-                        nextValue = errback(reason);
-                        return promise(nextValue === undef ? reason : nextValue)
-                    }
-
-                    return rejected(reason);
-
-                } catch (e) {
-                    return rejected(e);
-                }
-            };
-
-            return freeze(p);
-        }
-
-        /**
-        * Returns a rejected promise for the supplied promiseOrValue. If
-        * promiseOrValue is a value, it will be the rejection value of the
-        * returned promise.  If promiseOrValue is a promise, its
-        * completion value will be the rejected value of the returned promise
-        *
-        * @param promiseOrValue {*} the rejected value of the returned {@link Promise}
-        *
-        * @return {Promise} rejected {@link Promise}
-        */
-        function reject(promiseOrValue) {
-            return when(promiseOrValue, function (value) {
-                return rejected(value);
-            });
-        }
-
-        /**
-        * Creates a new, CommonJS compliant, Deferred with fully isolated
-        * resolver and promise parts, either or both of which may be given out
-        * safely to consumers.
-        * The Deferred itself has the full API: resolve, reject, progress, and
-        * then. The resolver has resolve, reject, and progress.  The promise
-        * only has then.
-        *
-        * @memberOf when
-        * @function
-        *
-        * @returns {Deferred}
-        */
-        function defer() {
-            var deferred, promise, listeners, progressHandlers, _then, _progress, complete;
-
-            listeners = [];
-            progressHandlers = [];
-
-            /**
-            * Pre-resolution then() that adds the supplied callback, errback, and progback
-            * functions to the registered listeners
-            *
-            * @private
-            *
-            * @param [callback] {Function} resolution handler
-            * @param [errback] {Function} rejection handler
-            * @param [progback] {Function} progress handler
-            *
-            * @throws {Error} if any argument is not null, undefined, or a Function
-            */
-            _then = function unresolvedThen(callback, errback, progback) {
-                var deferred = defer();
-
-                listeners.push(function (promise) {
-                    promise.then(callback, errback)
-					.then(deferred.resolve, deferred.reject, deferred.progress);
-                });
-
-                progback && progressHandlers.push(progback);
-
-                return deferred.promise;
-            };
-
-            /**
-            * Registers a handler for this {@link Deferred}'s {@link Promise}.  Even though all arguments
-            * are optional, each argument that *is* supplied must be null, undefined, or a Function.
-            * Any other value will cause an Error to be thrown.
-            *
-            * @memberOf Promise
-            *
-            * @param [callback] {Function} resolution handler
-            * @param [errback] {Function} rejection handler
-            * @param [progback] {Function} progress handler
-            *
-            * @throws {Error} if any argument is not null, undefined, or a Function
-            */
-            function then(callback, errback, progback) {
-                return _then(callback, errback, progback);
-            }
-
-            /**
-            * Resolves this {@link Deferred}'s {@link Promise} with val as the
-            * resolution value.
-            *
-            * @memberOf Resolver
-            *
-            * @param val anything
-            */
-            function resolve(val) {
-                complete(resolved(val));
-            }
-
-            /**
-            * Rejects this {@link Deferred}'s {@link Promise} with err as the
-            * reason.
-            *
-            * @memberOf Resolver
-            *
-            * @param err anything
-            */
-            function reject(err) {
-                complete(rejected(err));
-            }
-
-            /**
-            * @private
-            * @param update
-            */
-            _progress = function (update) {
-                var progress, i = 0;
-                while (progress = progressHandlers[i++]) progress(update);
-            };
-
-            /**
-            * Emits a progress update to all progress observers registered with
-            * this {@link Deferred}'s {@link Promise}
-            *
-            * @memberOf Resolver
-            *
-            * @param update anything
-            */
-            function progress(update) {
-                _progress(update);
-            }
-
-            /**
-            * Transition from pre-resolution state to post-resolution state, notifying
-            * all listeners of the resolution or rejection
-            *
-            * @private
-            *
-            * @param completed {Promise} the completed value of this deferred
-            */
-            complete = function (completed) {
-                var listener, i = 0;
-
-                // Replace _then with one that directly notifies with the result.
-                _then = completed.then;
-
-                // Replace complete so that this Deferred can only be completed
-                // once. Also Replace _progress, so that subsequent attempts to issue
-                // progress throw.
-                complete = _progress = function alreadyCompleted() {
-                    // TODO: Consider silently returning here so that parties who
-                    // have a reference to the resolver cannot tell that the promise
-                    // has been resolved using try/catch
-                    throw new Error("already completed");
-                };
-
-                // Free progressHandlers array since we'll never issue progress events
-                // for this promise again now that it's completed
-                progressHandlers = undef;
-
-                // Notify listeners
-                // Traverse all listeners registered directly with this Deferred
-
-                while (listener = listeners[i++]) {
-                    listener(completed);
-                }
-
-                listeners = [];
-            };
-
-            /**
-            * The full Deferred object, with both {@link Promise} and {@link Resolver}
-            * parts
-            * @class Deferred
-            * @name Deferred
-            */
-            deferred = {};
-
-            // Promise and Resolver parts
-            // Freeze Promise and Resolver APIs
-
-            promise = new Promise();
-            promise.then = deferred.then = then;
-
-            /**
-            * The {@link Promise} for this {@link Deferred}
-            * @memberOf Deferred
-            * @name promise
-            * @type {Promise}
-            */
-            deferred.promise = freeze(promise);
-
-            /**
-            * The {@link Resolver} for this {@link Deferred}
-            * @memberOf Deferred
-            * @name resolver
-            * @class Resolver
-            */
-            deferred.resolver = freeze({
-                resolve: (deferred.resolve = resolve),
-                reject: (deferred.reject = reject),
-                progress: (deferred.progress = progress)
-            });
-
-            return deferred;
-        }
-
-        /**
-        * Determines if promiseOrValue is a promise or not.  Uses the feature
-        * test from http://wiki.commonjs.org/wiki/Promises/A to determine if
-        * promiseOrValue is a promise.
-        *
-        * @param promiseOrValue anything
-        *
-        * @returns {Boolean} true if promiseOrValue is a {@link Promise}
-        */
-        function isPromise(promiseOrValue) {
-            return promiseOrValue && typeof promiseOrValue.then === 'function';
-        }
-
-        /**
-        * Register an observer for a promise or immediate value.
-        *
-        * @function
-        * @name when
-        * @namespace
-        *
-        * @param promiseOrValue anything
-        * @param {Function} [callback] callback to be called when promiseOrValue is
-        *   successfully resolved.  If promiseOrValue is an immediate value, callback
-        *   will be invoked immediately.
-        * @param {Function} [errback] callback to be called when promiseOrValue is
-        *   rejected.
-        * @param {Function} [progressHandler] callback to be called when progress updates
-        *   are issued for promiseOrValue.
-        *
-        * @returns {Promise} a new {@link Promise} that will complete with the return
-        *   value of callback or errback or the completion value of promiseOrValue if
-        *   callback and/or errback is not supplied.
-        */
-        function when(promiseOrValue, callback, errback, progressHandler) {
-            // Get a promise for the input promiseOrValue
-            // See promise()
-            var trustedPromise = promise(promiseOrValue);
-
-            // Register promise handlers
-            return trustedPromise.then(callback, errback, progressHandler);
-        }
-
-        /**
-        * Returns promiseOrValue if promiseOrValue is a {@link Promise}, a new Promise if
-        * promiseOrValue is a foreign promise, or a new, already-resolved {@link Promise}
-        * whose resolution value is promiseOrValue if promiseOrValue is an immediate value.
-        *
-        * Note that this function is not safe to export since it will return its
-        * input when promiseOrValue is a {@link Promise}
-        *
-        * @private
-        *
-        * @param promiseOrValue anything
-        *
-        * @returns Guaranteed to return a trusted Promise.  If promiseOrValue is a when.js {@link Promise}
-        *   returns promiseOrValue, otherwise, returns a new, already-resolved, when.js {@link Promise}
-        *   whose resolution value is:
-        *   * the resolution value of promiseOrValue if it's a foreign promise, or
-        *   * promiseOrValue if it's a value
-        */
-        function promise(promiseOrValue) {
-            var promise, deferred;
-
-            if (promiseOrValue instanceof Promise) {
-                // It's a when.js promise, so we trust it
-                promise = promiseOrValue;
-
-            } else {
-                // It's not a when.js promise.  Check to see if it's a foreign promise
-                // or a value.
-
-                deferred = defer();
-                if (isPromise(promiseOrValue)) {
-                    // It's a compliant promise, but we don't know where it came from,
-                    // so we don't trust its implementation entirely.  Introduce a trusted
-                    // middleman when.js promise
-
-                    // IMPORTANT: This is the only place when.js should ever call .then() on
-                    // an untrusted promise.
-                    promiseOrValue.then(deferred.resolve, deferred.reject, deferred.progress);
-                    promise = deferred.promise;
-
-                } else {
-                    // It's a value, not a promise.  Create an already-resolved promise
-                    // for it.
-                    deferred.resolve(promiseOrValue);
-                    promise = deferred.promise;
-                }
-            }
-
-            return promise;
-        }
-
-        /**
-        * Return a promise that will resolve when howMany of the supplied promisesOrValues
-        * have resolved. The resolution value of the returned promise will be an array of
-        * length howMany containing the resolutions values of the triggering promisesOrValues.
-        *
-        * @memberOf when
-        *
-        * @param promisesOrValues {Array} array of anything, may contain a mix
-        *      of {@link Promise}s and values
-        * @param howMany
-        * @param [callback]
-        * @param [errback]
-        * @param [progressHandler]
-        *
-        * @returns {Promise}
-        */
-        function some(promisesOrValues, howMany, callback, errback, progressHandler) {
-
-            checkCallbacks(2, arguments);
-
-            return when(promisesOrValues, function (promisesOrValues) {
-
-                var toResolve, results, ret, deferred, resolver, rejecter, handleProgress, len, i;
-
-                len = promisesOrValues.length >>> 0;
-
-                toResolve = Math.max(0, Math.min(howMany, len));
-                results = [];
-                deferred = defer();
-                ret = when(deferred, callback, errback, progressHandler);
-
-                // Wrapper so that resolver can be replaced
-                function resolve(val) {
-                    resolver(val);
-                }
-
-                // Wrapper so that rejecter can be replaced
-                function reject(err) {
-                    rejecter(err);
-                }
-
-                // Wrapper so that progress can be replaced
-                function progress(update) {
-                    handleProgress(update);
-                }
-
-                function complete() {
-                    resolver = rejecter = handleProgress = noop;
-                }
-
-                // No items in the input, resolve immediately
-                if (!toResolve) {
-                    deferred.resolve(results);
-
-                } else {
-                    // Resolver for promises.  Captures the value and resolves
-                    // the returned promise when toResolve reaches zero.
-                    // Overwrites resolver var with a noop once promise has
-                    // be resolved to cover case where n < promises.length
-                    resolver = function (val) {
-                        // This orders the values based on promise resolution order
-                        // Another strategy would be to use the original position of
-                        // the corresponding promise.
-                        results.push(val);
-
-                        if (! --toResolve) {
-                            complete();
-                            deferred.resolve(results);
-                        }
-                    };
-
-                    // Rejecter for promises.  Rejects returned promise
-                    // immediately, and overwrites rejecter var with a noop
-                    // once promise to cover case where n < promises.length.
-                    // TODO: Consider rejecting only when N (or promises.length - N?)
-                    // promises have been rejected instead of only one?
-                    rejecter = function (err) {
-                        complete();
-                        deferred.reject(err);
-                    };
-
-                    handleProgress = deferred.progress;
-
-                    // TODO: Replace while with forEach
-                    for (i = 0; i < len; ++i) {
-                        if (i in promisesOrValues) {
-                            when(promisesOrValues[i], resolve, reject, progress);
-                        }
-                    }
-                }
-
-                return ret;
-            });
-        }
-
-        /**
-        * Return a promise that will resolve only once all the supplied promisesOrValues
-        * have resolved. The resolution value of the returned promise will be an array
-        * containing the resolution values of each of the promisesOrValues.
-        *
-        * @memberOf when
-        *
-        * @param promisesOrValues {Array|Promise} array of anything, may contain a mix
-        *      of {@link Promise}s and values
-        * @param [callback] {Function}
-        * @param [errback] {Function}
-        * @param [progressHandler] {Function}
-        *
-        * @returns {Promise}
-        */
-        function all(promisesOrValues, callback, errback, progressHandler) {
-
-            checkCallbacks(1, arguments);
-
-            return when(promisesOrValues, function (promisesOrValues) {
-                return _reduce(promisesOrValues, reduceIntoArray, []);
-            }).then(callback, errback, progressHandler);
-        }
-
-        function reduceIntoArray(current, val, i) {
-            current[i] = val;
-            return current;
-        }
-
-        /**
-        * Return a promise that will resolve when any one of the supplied promisesOrValues
-        * has resolved. The resolution value of the returned promise will be the resolution
-        * value of the triggering promiseOrValue.
-        *
-        * @memberOf when
-        *
-        * @param promisesOrValues {Array|Promise} array of anything, may contain a mix
-        *      of {@link Promise}s and values
-        * @param [callback] {Function}
-        * @param [errback] {Function}
-        * @param [progressHandler] {Function}
-        *
-        * @returns {Promise}
-        */
-        function any(promisesOrValues, callback, errback, progressHandler) {
-
-            function unwrapSingleResult(val) {
-                return callback ? callback(val[0]) : val[0];
-            }
-
-            return some(promisesOrValues, 1, unwrapSingleResult, errback, progressHandler);
-        }
-
-        /**
-        * Traditional map function, similar to `Array.prototype.map()`, but allows
-        * input to contain {@link Promise}s and/or values, and mapFunc may return
-        * either a value or a {@link Promise}
-        *
-        * @memberOf when
-        *
-        * @param promise {Array|Promise} array of anything, may contain a mix
-        *      of {@link Promise}s and values
-        * @param mapFunc {Function} mapping function mapFunc(value) which may return
-        *      either a {@link Promise} or value
-        *
-        * @returns {Promise} a {@link Promise} that will resolve to an array containing
-        *      the mapped output values.
-        */
-        function map(promise, mapFunc) {
-            return when(promise, function (array) {
-                return _map(array, mapFunc);
-            });
-        }
-
-        /**
-        * Private map helper to map an array of promises
-        * @private
-        *
-        * @param promisesOrValues {Array}
-        * @param mapFunc {Function}
-        * @return {Promise}
-        */
-        function _map(promisesOrValues, mapFunc) {
-
-            var results, len, i;
-
-            // Since we know the resulting length, we can preallocate the results
-            // array to avoid array expansions.
-            len = promisesOrValues.length >>> 0;
-            results = new Array(len);
-
-            // Since mapFunc may be async, get all invocations of it into flight
-            // asap, and then use reduce() to collect all the results
-            for (i = 0; i < len; i++) {
-                if (i in promisesOrValues)
-                    results[i] = when(promisesOrValues[i], mapFunc);
-            }
-
-            // Could use all() here, but that would result in another array
-            // being allocated, i.e. map() would end up allocating 2 arrays
-            // of size len instead of just 1.  Since all() uses reduce()
-            // anyway, avoid the additional allocation by calling reduce
-            // directly.
-            return _reduce(results, reduceIntoArray, results);
-        }
-
-        /**
-        * Traditional reduce function, similar to `Array.prototype.reduce()`, but
-        * input may contain {@link Promise}s and/or values, and reduceFunc
-        * may return either a value or a {@link Promise}, *and* initialValue may
-        * be a {@link Promise} for the starting value.
-        *
-        * @memberOf when
-        *
-        * @param promise {Array|Promise} array of anything, may contain a mix
-        *      of {@link Promise}s and values.  May also be a {@link Promise} for
-        *      an array.
-        * @param reduceFunc {Function} reduce function reduce(currentValue, nextValue, index, total),
-        *      where total is the total number of items being reduced, and will be the same
-        *      in each call to reduceFunc.
-        * @param initialValue starting value, or a {@link Promise} for the starting value
-        *
-        * @returns {Promise} that will resolve to the final reduced value
-        */
-        function reduce(promise, reduceFunc, initialValue) {
-            var args = slice.call(arguments, 1);
-            return when(promise, function (array) {
-                return _reduce.apply(undef, [array].concat(args));
-            });
-        }
-
-        /**
-        * Private reduce to reduce an array of promises
-        * @private
-        *
-        * @param promisesOrValues {Array}
-        * @param reduceFunc {Function}
-        * @param initialValue {*}
-        * @return {Promise}
-        */
-        function _reduce(promisesOrValues, reduceFunc, initialValue) {
-
-            var total, args;
-
-            total = promisesOrValues.length;
-
-            // Skip promisesOrValues, since it will be used as 'this' in the call
-            // to the actual reduce engine below.
-
-            // Wrap the supplied reduceFunc with one that handles promises and then
-            // delegates to the supplied.
-
-            args = [
-			function (current, val, i) {
-			    return when(current, function (c) {
-			        return when(val, function (value) {
-			            return reduceFunc(c, value, i, total);
-			        });
-			    });
-			}
-		];
-
-            if (arguments.length > 2) args.push(initialValue);
-
-            return reduceArray.apply(promisesOrValues, args);
-        }
-
-        /**
-        * Ensure that resolution of promiseOrValue will complete resolver with the completion
-        * value of promiseOrValue, or instead with resolveValue if it is provided.
-        *
-        * @memberOf when
-        *
-        * @param promiseOrValue
-        * @param resolver {Resolver}
-        * @param [resolveValue] anything
-        *
-        * @returns {Promise}
-        */
-        function chain(promiseOrValue, resolver, resolveValue) {
-            var useResolveValue = arguments.length > 2;
-
-            return when(promiseOrValue,
-			function (val) {
-			    if (useResolveValue) val = resolveValue;
-			    resolver.resolve(val);
-			    return val;
-			},
-			function (e) {
-			    resolver.reject(e);
-			    return rejected(e);
-			},
-			resolver.progress
-		);
-        }
-
-        //
-        // Utility functions
-        //
-
-        /**
-        * Helper that checks arrayOfCallbacks to ensure that each element is either
-        * a function, or null or undefined.
-        *
-        * @private
-        *
-        * @param arrayOfCallbacks {Array} array to check
-        * @throws {Error} if any element of arrayOfCallbacks is something other than
-        * a Functions, null, or undefined.
-        */
-        function checkCallbacks(start, arrayOfCallbacks) {
-            var arg, i = arrayOfCallbacks.length;
-            while (i > start) {
-                arg = arrayOfCallbacks[--i];
-                if (arg != null && typeof arg != 'function') throw new Error('callback is not a function');
-            }
-        }
-
-        /**
-        * No-Op function used in method replacement
-        * @private
-        */
-        function noop() { }
-
-        slice = [].slice;
-
-        // ES5 reduce implementation if native not available
-        // See: http://es5.github.com/#x15.4.4.21 as there are many
-        // specifics and edge cases.
-        reduceArray = [].reduce ||
-		function (reduceFunc /*, initialValue */) {
-		    // ES5 dictates that reduce.length === 1
-
-		    // This implementation deviates from ES5 spec in the following ways:
-		    // 1. It does not check if reduceFunc is a Callable
-
-		    var arr, args, reduced, len, i;
-
-		    i = 0;
-		    arr = Object(this);
-		    len = arr.length >>> 0;
-		    args = arguments;
-
-		    // If no initialValue, use first item of array (we know length !== 0 here)
-		    // and adjust i to start at second item
-		    if (args.length <= 1) {
-		        // Skip to the first real element in the array
-		        for (; ; ) {
-		            if (i in arr) {
-		                reduced = arr[i++];
-		                break;
-		            }
-
-		            // If we reached the end of the array without finding any real
-		            // elements, it's a TypeError
-		            if (++i >= len) {
-		                throw new TypeError();
-		            }
-		        }
-		    } else {
-		        // If initialValue provided, use it
-		        reduced = args[1];
-		    }
-
-		    // Do the actual reduce
-		    for (; i < len; ++i) {
-		        // Skip holes
-		        if (i in arr)
-		            reduced = reduceFunc(reduced, arr[i], i, arr);
-		    }
-
-		    return reduced;
-		};
-
-        return when;
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateDefaultInterpolation#getInterpolationIdentifier
+   * @methodOf pascalprecht.translate.$translateDefaultInterpolation
+   *
+   * @description
+   * Returns an identifier for this interpolation service.
+   *
+   * @returns {string} $identifier
+   */
+/**
+   * @deprecated will be removed in 3.0
+   * @see {@link pascalprecht.translate.$translateSanitization}
+   */
+/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateDefaultInterpolation#interpolate
+   * @methodOf pascalprecht.translate.$translateDefaultInterpolation
+   *
+   * @description
+   * Interpolates given string agains given interpolate params using angulars
+   * `$interpolate` service.
+   *
+   * @returns {string} interpolated string.
+   */
+return d.setLocale=function(a){c=a},d.getInterpolationIdentifier=function(){return e},d.useSanitizeValueStrategy=function(a){return b.useStrategy(a),this},d.interpolate=function(c,d){d=d||{},d=b.sanitize(d,"params");var e=a(c)(d);return e=b.sanitize(e,"text")},d}function e(a,b,c,d,e,g){"use strict";/**
+   * @name trim
+   * @private
+   *
+   * @description
+   * trim polyfill
+   *
+   * @returns {string} The string stripped of whitespace from both ends
+   */
+var h=function(){return this.toString().replace(/^\s+|\s+$/g,"")};return{restrict:"AE",scope:!0,priority:a.directivePriority(),compile:function(b,i){var j=i.translateValues?i.translateValues:void 0,k=i.translateInterpolation?i.translateInterpolation:void 0,l=b[0].outerHTML.match(/translate-value-+/i),m="^(.*)("+c.startSymbol()+".*"+c.endSymbol()+")(.*)",n="^(.*)"+c.startSymbol()+"(.*)"+c.endSymbol()+"(.*)";return function(b,o,p){b.interpolateParams={},b.preText="",b.postText="",b.translateNamespace=f(b);var q={},r=function(a,c,d){
+// initially fetch all attributes if existing and fill the params
+if(
+// initial setup
+c.translateValues&&angular.extend(a,e(c.translateValues)(b.$parent)),l)for(var f in d)if(Object.prototype.hasOwnProperty.call(c,f)&&"translateValue"===f.substr(0,14)&&"translateValues"!==f){var g=angular.lowercase(f.substr(14,1))+f.substr(15);a[g]=d[f]}},s=function(a){if(
+// Remove any old watcher
+angular.isFunction(s._unwatchOld)&&(s._unwatchOld(),s._unwatchOld=void 0),angular.equals(a,"")||!angular.isDefined(a)){var d=h.apply(o.text()),e=d.match(m);
+// Interpolate translation id if required
+if(angular.isArray(e)){b.preText=e[1],b.postText=e[3],q.translate=c(e[2])(b.$parent);var f=d.match(n);angular.isArray(f)&&f[2]&&f[2].length&&(s._unwatchOld=b.$watch(f[2],function(a){q.translate=a,y()}))}else
+// do not assigne the translation id if it is empty.
+q.translate=d?d:void 0}else q.translate=a;y()},t=function(a){p.$observe(a,function(b){q[a]=b,y()})};
+// initial setup with values
+r(b.interpolateParams,p,i);var u=!0;p.$observe("translate",function(a){"undefined"==typeof a?
+// case of element "<translate>xyz</translate>"
+s(""):
+// case of regular attribute
+""===a&&u||(q.translate=a,y()),u=!1});for(var v in p)p.hasOwnProperty(v)&&"translateAttr"===v.substr(0,13)&&t(v);if(p.$observe("translateDefault",function(a){b.defaultText=a,y()}),j&&p.$observe("translateValues",function(a){a&&b.$parent.$watch(function(){angular.extend(b.interpolateParams,e(a)(b.$parent))})}),l){var w=function(a){p.$observe(a,function(c){var d=angular.lowercase(a.substr(14,1))+a.substr(15);b.interpolateParams[d]=c})};for(var x in p)Object.prototype.hasOwnProperty.call(p,x)&&"translateValue"===x.substr(0,14)&&"translateValues"!==x&&w(x)}
+// Master update function
+var y=function(){for(var a in q)q.hasOwnProperty(a)&&void 0!==q[a]&&z(a,q[a],b,b.interpolateParams,b.defaultText,b.translateNamespace)},z=function(b,c,d,e,f,g){c?(
+// if translation id starts with '.' and translateNamespace given, prepend namespace
+g&&"."===c.charAt(0)&&(c=g+c),a(c,e,k,f,d.translateLanguage).then(function(a){A(a,d,!0,b)},function(a){A(a,d,!1,b)})):
+// as an empty string cannot be translated, we can solve this using successful=false
+A(c,d,!1,b)},A=function(b,c,e,f){if(e||"undefined"!=typeof c.defaultText&&(b=c.defaultText),"translate"===f){
+// default translate into innerHTML
+(e||!e&&"undefined"==typeof p.translateKeepContent)&&o.empty().append(c.preText+b+c.postText);var g=a.isPostCompilingEnabled(),h="undefined"!=typeof i.translateCompile,j=h&&"false"!==i.translateCompile;(g&&!h||j)&&d(o.contents())(c)}else{
+// translate attribute
+var k=p.$attr[f];"data-"===k.substr(0,5)&&(
+// ensure html5 data prefix is stripped
+k=k.substr(5)),k=k.substr(15),o.attr(k,b)}};(j||l||p.translateDefault)&&b.$watch("interpolateParams",y,!0);
+// Replaced watcher on translateLanguage with event listener
+var B=b.$on("translateLanguageChanged",y),C=g.$on("$translateChangeSuccess",y);
+// ensure translation will be looked up at least one
+o.text().length?s(p.translate?p.translate:""):p.translate&&
+// ensure attribute will be not skipped
+s(p.translate),y(),b.$on("$destroy",function(){B(),C()})}}}}/**
+ * Returns the scope's namespace.
+ * @private
+ * @param scope
+ * @returns {string}
+ */
+function f(a){"use strict";return a.translateNamespace?a.translateNamespace:a.$parent?f(a.$parent):void 0}function g(a,b){"use strict";return{compile:function(c){var d=function(){c.addClass(a.cloakClassName())},e=function(){c.removeClass(a.cloakClassName())};return a.onReady(function(){e()}),d(),function(c,f,g){g.translateCloak&&g.translateCloak.length&&(
+// Register a watcher for the defined translation allowing a fine tuned cloak
+g.$observe("translateCloak",function(b){a(b).then(e,d)}),
+// Register for change events as this is being another indicicator revalidating the cloak)
+b.$on("$translateChangeSuccess",function(){a(g.translateCloak).then(e,d)}))}}}}function h(){"use strict";return{restrict:"A",scope:!0,compile:function(){return{pre:function(a,b,c){a.translateNamespace=f(a),a.translateNamespace&&"."===c.translateNamespace.charAt(0)?a.translateNamespace+=c.translateNamespace:a.translateNamespace=c.translateNamespace}}}}}/**
+ * Returns the scope's namespace.
+ * @private
+ * @param scope
+ * @returns {string}
+ */
+function f(a){"use strict";return a.translateNamespace?a.translateNamespace:a.$parent?f(a.$parent):void 0}function i(){"use strict";return{restrict:"A",scope:!0,compile:function(){return function(a,b,c){c.$observe("translateLanguage",function(b){a.translateLanguage=b}),a.$watch("translateLanguage",function(){a.$broadcast("translateLanguageChanged")})}}}}function j(a,b){"use strict";var c=function(c,d,e,f){return angular.isObject(d)||(d=a(d)(this)),b.instant(c,d,e,f)};return b.statefulFilter()&&(c.$stateful=!0),c}function k(a){"use strict";return a("translations")}/**
+ * @ngdoc overview
+ * @name pascalprecht.translate
+ *
+ * @description
+ * The main module which holds everything together.
+ */
+/**
+ * @ngdoc object
+ * @name pascalprecht.translate.$translateSanitizationProvider
+ *
+ * @description
+ *
+ * Configurations for $translateSanitization
+ */
+/**
+ * @ngdoc object
+ * @name pascalprecht.translate.$translateProvider
+ * @description
+ *
+ * $translateProvider allows developers to register translation-tables, asynchronous loaders
+ * and similar to configure translation behavior directly inside of a module.
+ *
+ */
+/**
+ * @ngdoc object
+ * @name pascalprecht.translate.$translateDefaultInterpolation
+ * @requires $interpolate
+ *
+ * @description
+ * Uses angular's `$interpolate` services to interpolate strings against some values.
+ *
+ * Be aware to configure a proper sanitization strategy.
+ *
+ * See also:
+ * * {@link pascalprecht.translate.$translateSanitization}
+ *
+ * @return {object} $translateDefaultInterpolation Interpolator service
+ */
+return a.$inject=["$translate"],c.$inject=["$STORAGE_KEY","$windowProvider","$translateSanitizationProvider","pascalprechtTranslateOverrider"],d.$inject=["$interpolate","$translateSanitization"],e.$inject=["$translate","$q","$interpolate","$compile","$parse","$rootScope"],g.$inject=["$translate","$rootScope"],j.$inject=["$parse","$translate"],k.$inject=["$cacheFactory"],angular.module("pascalprecht.translate",["ng"]).run(a),a.displayName="runTranslate",angular.module("pascalprecht.translate").provider("$translateSanitization",b),angular.module("pascalprecht.translate").constant("pascalprechtTranslateOverrider",{}).provider("$translate",c),c.displayName="displayName",angular.module("pascalprecht.translate").factory("$translateDefaultInterpolation",d),d.displayName="$translateDefaultInterpolation",angular.module("pascalprecht.translate").constant("$STORAGE_KEY","NG_TRANSLATE_LANG_KEY"),angular.module("pascalprecht.translate").directive("translate",e),e.displayName="translateDirective",angular.module("pascalprecht.translate").directive("translateCloak",g),g.displayName="translateCloakDirective",angular.module("pascalprecht.translate").directive("translateNamespace",h),h.displayName="translateNamespaceDirective",angular.module("pascalprecht.translate").directive("translateLanguage",i),i.displayName="translateLanguageDirective",angular.module("pascalprecht.translate").filter("translate",j),j.displayName="translateFilterFactory",angular.module("pascalprecht.translate").factory("$translationCache",k),k.displayName="$translationCache","pascalprecht.translate"});
+!function(a,b){"use strict";var c;c="object"==typeof exports&&"undefined"!=typeof module?module.exports=b(require("angular"),require("moment")):"function"==typeof define&&define.amd?define(["angular","moment"],b):b(a.angular,a.moment)}(this,function(a,b){var c=a.module("datePicker",[]);c.constant("datePickerConfig",{template:"templates/datepicker.html",view:"month",views:["year","month","date","hours","minutes"],momentNames:{year:"year",month:"month",date:"day",hours:"hours",minutes:"minutes"},viewConfig:{year:["years","isSameYear"],month:["months","isSameMonth"],hours:["hours","isSameHour"],minutes:["minutes","isSameMinutes"]},step:5}),c.filter("mFormat",function(){return function(a,c,d){return b.isMoment(a)?d?b.tz(a,d).format(c):a.format(c):b(a).format(c)}}),c.directive("datePicker",["datePickerConfig","datePickerUtils",function(c,d){return{require:"?ngModel",template:'<div ng-include="template"></div>',scope:{model:"=datePicker",after:"=?",before:"=?"},link:function(e,f,g,h){function i(){e.views=c.views.concat(),e.view=g.view||c.view,e.views=e.views.slice(e.views.indexOf(g.maxView||"year"),e.views.indexOf(g.minView||"minutes")+1),(1===e.views.length||-1===e.views.indexOf(e.view))&&(e.view=e.views[0])}function j(a){return d.getDate(e,g,a)}function k(){var a=e.view;d.setParams(t,E),e.model&&!s&&(e.date=u(e.model),s=!1);var b=e.date;switch(a){case"year":e.years=d.getVisibleYears(b);break;case"month":e.months=d.getVisibleMonths(b);break;case"date":e.weekdays=e.weekdays||d.getDaysOfWeek(),e.weeks=d.getVisibleWeeks(b);break;case"hours":e.hours=d.getVisibleHours(b);break;case"minutes":e.minutes=d.getVisibleMinutes(b,w)}n()}function l(){return"date"!==e.view?e.view:e.date?e.date.month():null}var m,n,o,p,q,r,s=!1,t=e.tz=g.timezone,u=d.createMoment,v=d.eventIsForPicker,w=parseInt(g.step||c.step,10),x=!!g.partial,y=j("minDate"),z=j("maxDate"),A=f[0].id,B=e.now=u(),C=e.date=u(e.model||B),D="true"===g.autoClose,E=g.firstDay&&g.firstDay>=0&&g.firstDay<=6?parseInt(g.firstDay,10):b().weekday(0).day();d.setParams(t,E),e.model||C.minute(Math.ceil(C.minute()/w)*w).second(0),e.template=g.template||c.template,e.watchDirectChanges=void 0!==g.watchDirectChanges,e.callbackOnSetDate=g.dateChange?d.findFunction(e,g.dateChange):void 0,i(),e.setView=function(a){-1!==e.views.indexOf(a)&&(e.view=a)},e.selectDate=function(a){if(g.disabled)return!1;if(o(e.date,a)&&(a=e.date),a=p(a),!a)return!1;e.date=a;var b=e.views[e.views.indexOf(e.view)+1];(!b||x||e.model)&&m(a),b?e.setView(b):D?(f.addClass("hidden"),e.$emit("hidePicker")):n()},m=function(a){a&&(e.model=a,h&&h.$setViewValue(a)),e.$emit("setDate",e.model,e.view),e.callbackOnSetDate&&e.callbackOnSetDate(g.datePicker,e.date)},e.$watch(l,k),e.watchDirectChanges&&e.$watch("model",function(){s=!1,k()}),n=function(){var a,b,f=e.view,g=e.date,h=[],i="";if(d.setParams(t,E),"date"===f){var j,k=e.weeks;for(a=0;a<k.length;a++)for(j=k[a],h.push([]),b=0;b<j.length;b++)i="",d.isSameDay(g,j[b])&&(i+="active"),q(j[b],f)&&(i+=" now"),j[b].month()===g.month()&&r(j[b])||(i+=" disabled"),h[a].push(i)}else{var l=c.viewConfig[f],m=e[l[0]],n=l[1];for(a=0;a<m.length;a++)i="",d[n](g,m[a])&&(i+="active"),q(m[a],f)&&(i+=" now"),r(m[a])||(i+=" disabled"),h.push(i)}e.classes=h},e.next=function(a){var c=b(e.date);switch(a=a||1,e.view){case"year":case"month":c.year(c.year()+a);break;case"date":c.month(c.month()+a);break;case"hours":case"minutes":c.hours(c.hours()+a)}c=p(c),c&&(e.date=c,m(c),s=!0,k())},r=function(a){var b=!0;return y&&y.isAfter(a)&&(b=o(y,a)),z&&z.isBefore(a)&&(b&=o(z,a)),b},o=function(a,b){return a.isSame(b,c.momentNames[e.view])?!0:!1},p=function(a){return y&&y.isAfter(a)?y:z&&z.isBefore(a)?z:a},q=function(a,b){var c=!0;switch(b){case"minutes":c&=~~(B.minutes()/w)===~~(a.minutes()/w);case"hours":c&=B.hours()===a.hours();case"date":c&=B.date()===a.date();case"month":c&=B.month()===a.month();case"year":c&=B.year()===a.year()}return c},e.prev=function(a){return e.next(-a||-1)},A&&e.$on("pickerUpdate",function(b,c,d){if(v(c,A)){var e=!1,f=!1;a.isDefined(d.minDate)&&(y=d.minDate?d.minDate:!1,f=!0),a.isDefined(d.maxDate)&&(z=d.maxDate?d.maxDate:!1,f=!0),a.isDefined(d.minView)&&(g.minView=d.minView,e=!0),a.isDefined(d.maxView)&&(g.maxView=d.maxView,e=!0),g.view=d.view||g.view,e&&i(),f&&k()}})}}}]),a.module("datePicker").factory("datePickerUtils",function(){var c,d,e=function(a,d,e,f,g){var h=Date.UTC(0|a,0|d,0|e,0|f,0|g);return c?b.tz(h,c):b(h)};return{getVisibleMinutes:function(a,b){var c,d,f=a.year(),g=a.month(),h=a.date(),i=a.hours(),j=a.utcOffset()/60,k=[];for(d=0;60>d;d+=b)c=e(f,g,h,i-j,d),k.push(c);return k},getVisibleWeeks:function(a){a=b(a);var c=a.year(),e=a.month();a.date(1);var f=a.day();a.date(d-(f+(d>=f?6:-1)));for(var g=[];g.length<6&&!(a.year()===c&&a.month()>e);)g.push(this.getDaysOfWeek(a)),a.add(7,"d");return g},getVisibleYears:function(a){var c=b(a),d=c.year();c.year(d-d%10),d=c.year();for(var f,g,h=c.utcOffset()/60,i=[],j=0;12>j;j++)f=e(d,0,1,0-h),g=f.utcOffset()/60,g!==h&&(f=e(d,0,1,0-g),h=g),i.push(f),d++;return i},getDaysOfWeek:function(a){a=a?a:c?b.tz(c).day(d):b().day(d);for(var f,g,h=a.year(),i=a.month(),j=a.date(),k=[],l=a.utcOffset()/60,m=0;7>m;m++)f=e(h,i,j,0-l,0,!1),g=f.utcOffset()/60,g!==l&&(f=e(h,i,j,0-g,0,!1)),k.push(f),j++;return k},getVisibleMonths:function(a){for(var b,c,d=a.year(),f=a.utcOffset()/60,g=[],h=0;12>h;h++)b=e(d,h,1,0-f,0,!1),c=b.utcOffset()/60,c!==f&&(b=e(d,h,1,0-c,0,!1)),g.push(b);return g},getVisibleHours:function(a){var b,c,d,f=a.year(),g=a.month(),h=a.date(),i=[],j=a.utcOffset()/60;for(b=0;24>b;b++)c=e(f,g,h,b-j,0,!1),d=c.utcOffset()/60,d!==j&&(c=e(f,g,h,b-d,0,!1)),i.push(c);return i},isAfter:function(a,b){return a&&a.unix()>=b.unix()},isBefore:function(a,b){return a.unix()<=b.unix()},isSameYear:function(a,b){return a&&a.year()===b.year()},isSameMonth:function(a,b){return this.isSameYear(a,b)&&a.month()===b.month()},isSameDay:function(a,b){return this.isSameMonth(a,b)&&a.date()===b.date()},isSameHour:function(a,b){return this.isSameDay(a,b)&&a.hours()===b.hours()},isSameMinutes:function(a,b){return this.isSameHour(a,b)&&a.minutes()===b.minutes()},setParams:function(a,b){c=a,d=b},scopeSearch:function(a,b,c){var d,e,f=a,g=b.split("."),h=g.length;do{for(d=f=f.$parent,e=0;h>e;e++){d=d[g[e]]}if(d&&c(d))return d}while(f.$parent);return!1},findFunction:function(b,c){return this.scopeSearch(b,c,function(b){return a.isFunction(b)})},findParam:function(a,b){return this.scopeSearch(a,b,function(){return!0})},createMoment:function(a){return c?b.tz(a,c):b.isMoment(a)?b.unix(a.unix()):b(a)},getDate:function(a,b,c){var d=!1;return b[c]&&(d=this.createMoment(b[c]),d.isValid()||(d=this.findParam(a,b[c]),d&&(d=this.createMoment(d)))),d},eventIsForPicker:function(b,c){return a.isArray(b)&&b.indexOf(c)>-1||b===c}}});var c=a.module("datePicker");c.directive("dateRange",["$compile","datePickerUtils","dateTimeConfig",function(c,d,e){function f(c,d,f,g,h){return e.template(a.extend(c,{ngModel:f,minDate:g&&b.isMoment(g)?g.format():!1,maxDate:h&&b.isMoment(h)?h.format():!1}),d)}function g(){return"picker"+Math.random().toString().substr(2)}return{scope:{start:"=",end:"="},link:function(b,e,h){function i(a){b.$broadcast("pickerUpdate",m[0],{maxDate:a})}function j(a){b.$broadcast("pickerUpdate",m[1],{minDate:a})}var k=null,l=e[0].id,m=[g(),g()],n=d.createMoment,o=d.eventIsForPicker;b.dateChange=function(a,b){k&&k(a,b)},l&&b.$on("pickerUpdate",function(a,c,d){o(c,l)&&b.$broadcast("pickerUpdate",m,d)}),d.setParams(h.timezone),b.start=n(b.start),b.end=n(b.end),b.$watchGroup(["start","end"],function(a){j(a[0]),i(a[1])}),a.isDefined(h.dateChange)&&(k=d.findFunction(b,h.dateChange)),h.onSetDate="dateChange";var p='<div><table class="date-range"><tr><td valign="top">'+f(h,m[0],"start",!1,b.end)+'</td><td valign="top">'+f(h,m[1],"end",b.start,!1)+"</td></tr></table></div>",q=c(p)(b);e.append(q)}}}]);var d="ng-pristine",e="ng-dirty",c=a.module("datePicker");c.constant("dateTimeConfig",{template:function(a,b){return"<div "+(b?'id="'+b+'" ':"")+'date-picker="'+a.ngModel+'" '+(a.view?'view="'+a.view+'" ':"")+(a.maxView?'max-view="'+a.maxView+'" ':"")+(a.maxDate?'max-date="'+a.maxDate+'" ':"")+(a.autoClose?'auto-close="'+a.autoClose+'" ':"")+(a.template?'template="'+a.template+'" ':"")+(a.minView?'min-view="'+a.minView+'" ':"")+(a.minDate?'min-date="'+a.minDate+'" ':"")+(a.partial?'partial="'+a.partial+'" ':"")+(a.step?'step="'+a.step+'" ':"")+(a.onSetDate?'date-change="'+a.onSetDate+'" ':"")+(a.ngModel?'ng-model="'+a.ngModel+'" ':"")+(a.firstDay?'first-day="'+a.firstDay+'" ':"")+(a.timezone?'timezone="'+a.timezone+'" ':"")+'class="date-picker-date-time"></div>'},format:"YYYY-MM-DD HH:mm",views:["date","year","month","hours","minutes"],autoClose:!1,position:"relative"}),c.directive("dateTimeAppend",function(){return{link:function(a,b){b.bind("click",function(){b.find("input")[0].focus()})}}}),c.directive("dateTime",["$compile","$document","$filter","dateTimeConfig","$parse","datePickerUtils",function(c,f,g,h,i,j){var k=f.find("body"),l=g("mFormat");return{require:"ngModel",scope:!0,link:function(f,g,m,n){function o(a){return l(a,x,L)}function p(a){return a.length===x.length?a:void 0}function q(a){H=a,m.minDate=a?a.format():a,I=b.isMoment(a)}function r(a){J=a,m.maxDate=a?a.format():a,K=b.isMoment(a)}function s(){w=h.template(m)}function t(a){a.stopPropagation(),n.$pristine&&(n.$dirty=!0,n.$pristine=!1,g.removeClass(d).addClass(e),y&&y.$setDirty(),n.$render())}function u(){D&&(D.remove(),D=null),G&&(G.remove(),G=null)}function v(){if(!D){if(D=c(w)(f),f.$digest(),O||(f.$on("setDate",function(a,b,c){t(a),N&&N(m.ngModel,b),C&&z[z.length-1]===c&&u()}),f.$on("hidePicker",function(){g.triggerHandler("blur")}),f.$on("$destroy",u),O=!0),"absolute"===F){var b=g[0].getBoundingClientRect(),d=b.height||g[0].offsetHeight;D.css({top:b.top+d+"px",left:b.left+"px",display:"block",position:F}),k.append(D)}else G=a.element("<div date-picker-wrapper></div>"),g[0].parentElement.insertBefore(G[0],g[0]),G.append(D),D.css({top:g[0].offsetHeight+"px",display:"block"});D.bind("mousedown",function(a){a.preventDefault()})}}var w,x=m.format||h.format,y=g.inheritedData("$formController"),z=i(m.views)(f)||h.views.concat(),A=m.view||z[0],B=z.indexOf(A),C=m.autoClose?i(m.autoClose)(f):h.autoClose,D=null,E=g[0].id,F=m.position||h.position,G=null,H=null,I=null,J=null,K=null,L=m.timezone||!1,M=j.eventIsForPicker,N=null,O=!1;-1===B&&z.splice(B,1),z.unshift(A),n.$formatters.push(o),n.$parsers.unshift(p),a.isDefined(m.minDate)&&(q(j.findParam(f,m.minDate)),n.$validators.min=function(a){return I?b.isMoment(a)&&(H.isSame(a)||H.isBefore(a)):!0}),a.isDefined(m.maxDate)&&(r(j.findParam(f,m.maxDate)),n.$validators.max=function(a){return K?b.isMoment(a)&&(J.isSame(a)||J.isAfter(a)):!0}),a.isDefined(m.dateChange)&&(N=j.findFunction(f,m.dateChange)),E&&f.$on("pickerUpdate",function(b,c,d){if(M(c,E))if(D);else{var e=!1;a.isDefined(d.minDate)&&(q(d.minDate),e=!0),a.isDefined(d.maxDate)&&(r(d.maxDate),e=!0),a.isDefined(d.minView)&&(m.minView=d.minView),a.isDefined(d.maxView)&&(m.maxView=d.maxView),m.view=d.view||m.view,e&&n.$validate(),a.isDefined(d.format)&&(x=m.format=d.format||h.format,n.$modelValue=-1),s()}}),g.bind("focus",v),g.bind("blur",u),s()}}}]),a.module("datePicker").run(["$templateCache",function(a){a.put("templates/datepicker.html",'<div ng-switch="view">\r\n  <div ng-switch-when="date">\r\n    <table>\r\n      <thead>\r\n      <tr>\r\n        <th ng-click="prev()">&lsaquo;</th>\r\n        <th colspan="5" class="switch" ng-click="setView(\'month\')" ng-bind="date|mFormat:\'YYYY MMMM\':tz"></th>\r\n        <th ng-click="next()">&rsaquo;</i></th>\r\n      </tr>\r\n      <tr>\r\n        <th ng-repeat="day in weekdays" style="overflow: hidden" ng-bind="day|mFormat:\'ddd\':tz"></th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr ng-repeat="week in weeks" ng-init="$index2 = $index">\r\n        <td ng-repeat="day in week">\r\n          <span\r\n            ng-class="classes[$index2][$index]"\r\n            ng-click="selectDate(day)" ng-bind="day|mFormat:\'DD\':tz"></span>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  <div ng-switch-when="year">\r\n    <table>\r\n      <thead>\r\n      <tr>\r\n        <th ng-click="prev(10)">&lsaquo;</th>\r\n        <th colspan="5" class="switch"ng-bind="years[0].year()+\' - \'+years[years.length-1].year()"></th>\r\n        <th ng-click="next(10)">&rsaquo;</i></th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr>\r\n        <td colspan="7">\r\n          <span ng-class="classes[$index]"\r\n                ng-repeat="year in years"\r\n                ng-click="selectDate(year)" ng-bind="year.year()"></span>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  <div ng-switch-when="month">\r\n    <table>\r\n      <thead>\r\n      <tr>\r\n        <th ng-click="prev()">&lsaquo;</th>\r\n        <th colspan="5" class="switch" ng-click="setView(\'year\')" ng-bind="date|mFormat:\'YYYY\':tz"></th>\r\n        <th ng-click="next()">&rsaquo;</i></th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr>\r\n        <td colspan="7">\r\n          <span ng-repeat="month in months"\r\n                ng-class="classes[$index]"\r\n                ng-click="selectDate(month)"\r\n                ng-bind="month|mFormat:\'MMM\':tz"></span>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  <div ng-switch-when="hours">\r\n    <table>\r\n      <thead>\r\n      <tr>\r\n        <th ng-click="prev(24)">&lsaquo;</th>\r\n        <th colspan="5" class="switch" ng-click="setView(\'date\')" ng-bind="date|mFormat:\'DD MMMM YYYY\':tz"></th>\r\n        <th ng-click="next(24)">&rsaquo;</i></th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr>\r\n        <td colspan="7">\r\n          <span ng-repeat="hour in hours"\r\n                ng-class="classes[$index]"\r\n                ng-click="selectDate(hour)" ng-bind="hour|mFormat:\'HH:mm\':tz"></span>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  <div ng-switch-when="minutes">\r\n    <table>\r\n      <thead>\r\n      <tr>\r\n        <th ng-click="prev()">&lsaquo;</th>\r\n        <th colspan="5" class="switch" ng-click="setView(\'hours\')" ng-bind="date|mFormat:\'DD MMMM YYYY\':tz"></th>\r\n        <th ng-click="next()">&rsaquo;</i></th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr>\r\n        <td colspan="7">\r\n          <span ng-repeat="minute in minutes"\r\n                ng-class="classes[$index]"\r\n                ng-click="selectDate(minute)"\r\n                ng-bind="minute|mFormat:\'HH:mm\':tz"></span>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n</div>')}])});
+angular.module('app', ['pascalprecht.translate', 'datePicker']);
+
+angular.module('app').config(['$interpolateProvider', '$translateProvider', function ($interpolateProvider, $translateProvider) {
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]');
+
+    $translateProvider.translations('es', {
+        REQUEST: 'Para pedir una sesión necesitamos tus datos',
+        REQUESTDAY: 'Día',
+        REQUESTHOUR: 'Hora',
+        DATA: 'Deja tus datos y nos pondremos en contacto contigo lo más pronto posible',
+        SEARCH: 'Busca si estás en la base de datos introduciendo tu DNI',
+        PACIENTNAME: 'Nombre',
+        PACIENTSURNAMES: 'Apellidos',
+        PACIENTPHONE: 'Teléfono',
+        OBSV: 'Observaciones',
+        CALENDAR: 'Rellena el formulario para concertar una visita'
     });
-})(typeof define == 'function'
-	? define
-	: function (factory) {
-	    typeof module != 'undefined'
-		? (module.exports = factory())
-		: (jQuery.mapster_when = factory());
-	}
-// Boilerplate for AMD, Node, and browser global
-);
-/*lint-ignore-end*/
-/* ImageMapster core */
-
-/*jslint laxbreak: true, evil: true, unparam: true */
-
-/*global jQuery: true, Zepto: true */
-
-
-(function ($) {
-    // all public functions in $.mapster.impl are methods
-    $.fn.mapster = function (method) {
-        var m = $.mapster.impl;
-        if ($.isFunction(m[method])) {
-            return m[method].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return m.bind.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on jQuery.mapster');
-        }
-    };
-
-    $.mapster = {
-        version: "1.2.14-beta1",
-        render_defaults: {
-            isSelectable: true,
-            isDeselectable: true,
-            fade: false,
-            fadeDuration: 150,
-            fill: true,
-            fillColor: '000000',
-            fillColorMask: 'FFFFFF',
-            fillOpacity: 0.7,
-            highlight: true,
-            stroke: false,
-            strokeColor: 'ff0000',
-            strokeOpacity: 1,
-            strokeWidth: 1,
-            includeKeys: '',
-            altImage: null,
-            altImageId: null, // used internally            
-            altImages: {} 
-        },
-        defaults: {
-            clickNavigate: false,
-            wrapClass: null,
-            wrapCss: null,
-            onGetList: null,
-            sortList: false,
-            listenToList: false,
-            mapKey: '',
-            mapValue: '',
-            singleSelect: false,
-            listKey: 'value',
-            listSelectedAttribute: 'selected',
-            listSelectedClass: null,
-            onClick: null,
-            onMouseover: null,
-            onMouseout: null,
-            mouseoutDelay: 0,
-            onStateChange: null,
-            boundList: null,
-            onConfigured: null,
-            configTimeout: 30000,
-            noHrefIsMask: true,
-            scaleMap: true,
-            safeLoad: false,
-            areas: []
-        },
-        shared_defaults: {
-            render_highlight: { fade: true },
-            render_select: { fade: false },
-            staticState: null,
-            selected: null
-        },
-        area_defaults:
-        {
-            includeKeys: '',
-            isMask: false
-        },
-        canvas_style: {
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            padding: 0,
-            border: 0
-        },
-        hasCanvas: null,
-        isTouch: null,
-        map_cache: [],
-        hooks: {},
-        addHook: function(name,callback) {
-            this.hooks[name]=(this.hooks[name]||[]).push(callback);
-        },
-        callHooks: function(name,context) {
-            $.each(this.hooks[name]||[],function(i,e) {
-                e.apply(context);
-            });
-        },
-        utils: {
-            when: $.mapster_when,
-            defer: $.mapster_when.defer,
-
-            // extends the constructor, returns a new object prototype. Does not refer to the
-            // original constructor so is protected if the original object is altered. This way you
-            // can "extend" an object by replacing it with its subclass.
-            subclass: function(BaseClass, constr) {
-                var Subclass=function() {
-                    var me=this, 
-                        args=Array.prototype.slice.call(arguments,0);
-                    me.base = BaseClass.prototype;
-                    me.base.init = function() {
-                        BaseClass.prototype.constructor.apply(me,args);
-                    };
-                    constr.apply(me,args);
-                };
-                Subclass.prototype = new BaseClass();
-                Subclass.prototype.constructor=Subclass;
-                return Subclass;
-            },
-            asArray: function (obj) {
-                return obj.constructor === Array ?
-                    obj : this.split(obj);
-            },
-            // clean split: no padding or empty elements
-            split: function (text,cb) {
-                var i,el, arr = text.split(',');
-                for (i = 0; i < arr.length; i++) {
-                    el = $.trim(arr[i]);
-                    if (el==='') {
-                        arr.splice(i,1);
-                    } else {
-                        arr[i] = cb ? cb(el):el;
-                    }
-                }
-                return arr;
-            },
-            // similar to $.extend but does not add properties (only updates), unless the
-            // first argument is an empty object, then all properties will be copied
-            updateProps: function (_target, _template) {
-                var onlyProps,
-                    target = _target || {},
-                    template = $.isEmptyObject(target) ? _template : _target;
-
-                //if (template) {
-                onlyProps = [];
-                $.each(template, function (prop) {
-                    onlyProps.push(prop);
-                });
-                //}
-
-                $.each(Array.prototype.slice.call(arguments, 1), function (i, src) {
-                    $.each(src || {}, function (prop) {
-                        if (!onlyProps || $.inArray(prop, onlyProps) >= 0) {
-                            var p = src[prop];
-
-                            if ($.isPlainObject(p)) {
-                                // not recursive - only copies 1 level of subobjects, and always merges
-                                target[prop] = $.extend(target[prop] || {}, p);
-                            } else if (p && p.constructor === Array) {
-                                target[prop] = p.slice(0);
-                            } else if (typeof p !== 'undefined') {
-                                target[prop] = src[prop];
-                            }
-
-                        }
-                    });
-                });
-                return target;
-            },
-            isElement: function (o) {
-                return (typeof HTMLElement === "object" ? o instanceof HTMLElement :
-                        o && typeof o === "object" && o.nodeType === 1 && typeof o.nodeName === "string");
-            },
-            /**
-             * Basic indexOf implementation for IE7-8. Though we use $.inArray, some jQuery versions will try to 
-             * use a prototpye on the calling object, defeating the purpose of using $.inArray in the first place.
-             *
-             * This will be replaced with the array prototype if it's available.
-             * 
-             * @param  {Array} arr The array to search
-             * @param {Object} target The item to search for
-             * @return {Number} The index of the item, or -1 if not found
-             */
-            indexOf: function(arr,target){
-                for(var i=0; i<arr.length; i++){
-                    if(arr[i]===target){
-                        return i;
-                    }
-                }
-                return -1;
-            },
-                
-            // finds element of array or object with a property "prop" having value "val"
-            // if prop is not defined, then just looks for property with value "val"
-            indexOfProp: function (obj, prop, val) {
-                var result = obj.constructor === Array ? -1 : null;
-                $.each(obj, function (i, e) {
-                    if (e && (prop ? e[prop] : e) === val) {
-                        result = i;
-                        return false;
-                    }
-                });
-                return result;
-            },
-            // returns "obj" if true or false, or "def" if not true/false
-            boolOrDefault: function (obj, def) {
-                return this.isBool(obj) ?
-                        obj : def || false;
-            },
-            isBool: function (obj) {
-                return typeof obj === "boolean";
-            },
-            isUndef: function(obj) {
-                return typeof obj === "undefined";
-            },
-            // evaluates "obj", if function, calls it with args
-            // (todo - update this to handle variable lenght/more than one arg)
-            ifFunction: function (obj, that, args) {
-                if ($.isFunction(obj)) {
-                    obj.call(that, args);
-                }
-            },
-            size: function(image, raw) {
-                var u=$.mapster.utils;
-                return { 
-                    width: raw ? (image.width || image.naturalWidth) : u.imgWidth(image,true) ,
-                    height: raw ? (image.height || image.naturalHeight) : u.imgHeight(image,true),
-                    complete: function() { return !!this.height && !!this.width;}
-                };
-            },
-
-                
-            /**
-             * Set the opacity of the element. This is an IE<8 specific function for handling VML.
-             * When using VML we must override the "setOpacity" utility function (monkey patch ourselves).
-             * jQuery does not deal with opacity correctly for VML elements. This deals with that.
-             * 
-             * @param {Element} el The DOM element
-             * @param {double} opacity A value between 0 and 1 inclusive.
-             */
-
-            setOpacity: function (el, opacity) {
-                if ($.mapster.hasCanvas()) {
-                    el.style.opacity = opacity;
-                } else {
-                    $(el).each(function(i,e) {
-                        if (typeof e.opacity !=='undefined') {
-                           e.opacity=opacity;
-                        } else {
-                            $(e).css("opacity",opacity);
-                        }
-                    });
-                }
-            },
-
-
-            // fade "el" from opacity "op" to "endOp" over a period of time "duration"
-            
-            fader: (function () {
-                var elements = {},
-                        lastKey = 0,
-                        fade_func = function (el, op, endOp, duration) {
-                            var index, 
-                                cbIntervals = duration/15,
-                                obj, u = $.mapster.utils;
-
-                            if (typeof el === 'number') {
-                                obj = elements[el];
-                                if (!obj) {
-                                    return;
-                                }
-                            } else {
-                                index = u.indexOfProp(elements, null, el);
-                                if (index) {
-                                    delete elements[index];
-                                }
-                                elements[++lastKey] = obj = el;
-                                el = lastKey;
-                            }
-
-                            endOp = endOp || 1;
-
-                            op = (op + (endOp / cbIntervals) > endOp - 0.01) ? endOp : op + (endOp / cbIntervals);
-
-                            u.setOpacity(obj, op);
-                            if (op < endOp) {
-                                setTimeout(function () {
-                                    fade_func(el, op, endOp, duration);
-                                }, 15);
-                            }
-                        };
-                return fade_func;
-            } ())
-        },
-        getBoundList: function (opts, key_list) {
-            if (!opts.boundList) {
-                return null;
-            }
-            var index, key, result = $(), list = $.mapster.utils.split(key_list);
-            opts.boundList.each(function (i,e) {
-                for (index = 0; index < list.length; index++) {
-                    key = list[index];
-                    if ($(e).is('[' + opts.listKey + '="' + key + '"]')) {
-                        result = result.add(e);
-                    }
-                }
-            });
-            return result;
-        },
-        // Causes changes to the bound list based on the user action (select or deselect)
-        // area: the jQuery area object
-        // returns the matching elements from the bound list for the first area passed (normally only one should be passed, but
-        // a list can be passed
-        setBoundListProperties: function (opts, target, selected) {
-            target.each(function (i,e) {
-                if (opts.listSelectedClass) {
-                    if (selected) {
-                        $(e).addClass(opts.listSelectedClass);
-                    } else {
-                        $(e).removeClass(opts.listSelectedClass);
-                    }
-                }
-                if (opts.listSelectedAttribute) {
-                    $(e).attr(opts.listSelectedAttribute, selected);
-                }
-            });
-        },
-        getMapDataIndex: function (obj) {
-            var img, id;
-            switch (obj.tagName && obj.tagName.toLowerCase()) {
-                case 'area':
-                    id = $(obj).parent().attr('name');
-                    img = $("img[usemap='#" + id + "']")[0];
-                    break;
-                case 'img':
-                    img = obj;
-                    break;
-            }
-            return img ?
-                this.utils.indexOfProp(this.map_cache, 'image', img) : -1;
-        },
-        getMapData: function (obj) {
-            var index = this.getMapDataIndex(obj.length ? obj[0]:obj);
-            if (index >= 0) {
-                return index >= 0 ? this.map_cache[index] : null;
-            }
-        },
-        /**
-         * Queue a command to be run after the active async operation has finished
-         * @param  {MapData}  map_data    The target MapData object
-         * @param  {jQuery}   that        jQuery object on which the command was invoked
-         * @param  {string}   command     the ImageMapster method name
-         * @param  {object[]} args        arguments passed to the method
-         * @return {bool}                 true if the command was queued, false if not (e.g. there was no need to)
-         */
-        queueCommand: function (map_data, that, command, args) {
-            if (!map_data) {
-                return false;
-            }
-            if (!map_data.complete || map_data.currentAction) {
-                map_data.commands.push(
-                {
-                    that: that,
-                    command: command,
-                    args: args
-                });
-                return true;
-            }
-            return false;
-        },
-        unload: function () {
-            this.impl.unload();
-            this.utils = null;
-            this.impl = null;
-            $.fn.mapster = null;
-            $.mapster = null;
-            $('*').unbind();
-        }
-    };
-
-    // Config for object prototypes
-    // first: use only first object (for things that should not apply to lists)
-    /// calls back one of two fuinctions, depending on whether an area was obtained.
-    // opts: {
-    //    name: 'method name',
-    //    key: 'key,
-    //    args: 'args'
-    //
-    //}
-    // name: name of method (required)
-    // args: arguments to re-call with
-    // Iterates through all the objects passed, and determines whether it's an area or an image, and calls the appropriate
-    // callback for each. If anything is returned from that callback, the process is stopped and that data return. Otherwise,
-    // the object itself is returned.
-    
-    var m = $.mapster, 
-        u = m.utils,
-        ap = Array.prototype;
-
-
-    // jQuery's width() and height() are broken on IE9 in some situations. This tries everything. 
-    $.each(["width","height"],function(i,e) {
-        var capProp = e.substr(0,1).toUpperCase() + e.substr(1);
-        // when jqwidth parm is passed, it also checks the jQuery width()/height() property
-        // the issue is that jQUery width() can report a valid size before the image is loaded in some browsers
-        // without it, we can read zero even when image is loaded in other browsers if its not visible
-        // we must still check because stuff like adblock can temporarily block it
-        // what a goddamn headache
-        u["img"+capProp]=function(img,jqwidth) {
-                return (jqwidth ? $(img)[e]() : 0) || 
-                    img[e] || img["natural"+capProp] || img["client"+capProp] || img["offset"+capProp];
-        };
-     
-    });    
-
-    /**
-     * The Method object encapsulates the process of testing an ImageMapster method to see if it's being
-     * invoked on an image, or an area; then queues the command if the MapData is in an active state.
-     * 
-     * @param {[jQuery]}    that        The target of the invocation
-     * @param {[function]}  func_map    The callback if the target is an imagemap
-     * @param {[function]}  func_area   The callback if the target is an area
-     * @param {[object]}    opt         Options: { key: a map key if passed explicitly
-     *                                             name: the command name, if it can be queued,
-     *                                             args: arguments to the method
-     *                                            }
-     */
-    
-    m.Method = function (that, func_map, func_area, opts) {
-        var me = this;
-        me.name = opts.name;
-        me.output = that;
-        me.input = that;
-        me.first = opts.first || false;
-        me.args = opts.args ? ap.slice.call(opts.args, 0) : [];
-        me.key = opts.key;
-        me.func_map = func_map;
-        me.func_area = func_area;
-        //$.extend(me, opts);
-        me.name = opts.name;
-        me.allowAsync = opts.allowAsync || false;
-    };
-    m.Method.prototype = {
-        constructor: m.Method,
-        go: function () {
-            var i,  data, ar, len, result, src = this.input,
-                    area_list = [],
-                    me = this;
-
-            len = src.length;
-            for (i = 0; i < len; i++) {
-                data = $.mapster.getMapData(src[i]);
-                if (data) {
-                    if (!me.allowAsync && m.queueCommand(data, me.input, me.name, me.args)) {
-                        if (this.first) {
-                            result = '';
-                        }
-                        continue;
-                    }
-                    
-                    ar = data.getData(src[i].nodeName === 'AREA' ? src[i] : this.key);
-                    if (ar) {
-                        if ($.inArray(ar, area_list) < 0) {
-                            area_list.push(ar);
-                        }
-                    } else {
-                        result = this.func_map.apply(data, me.args);
-                    }
-                    if (this.first || typeof result !== 'undefined') {
-                        break;
-                    }
-                }
-            }
-            // if there were areas, call the area function for each unique group
-            $(area_list).each(function (i,e) {
-                result = me.func_area.apply(e, me.args);
-            });
-
-            if (typeof result !== 'undefined') {
-                return result;
-            } else {
-                return this.output;
-            }
-        }
-    };
-
-    $.mapster.impl = (function () {
-        var me = {},
-        addMap= function (map_data) {
-            return m.map_cache.push(map_data) - 1;
-        },
-        removeMap = function (map_data) {
-            m.map_cache.splice(map_data.index, 1);
-            for (var i = m.map_cache.length - 1; i >= this.index; i--) {
-                m.map_cache[i].index--;
-            }
-        };
-
-        
-        /**
-         * Test whether the browser supports VML. Credit: google.
-         * http://stackoverflow.com/questions/654112/how-do-you-detect-support-for-vml-or-svg-in-a-browser
-         * 
-         * @return {bool} true if vml is supported, false if not
-         */
-        
-        function hasVml() {
-            var a = $('<div />').appendTo('body');
-            a.html('<v:shape id="vml_flag1" adj="1" />');
-            
-            var b = a[0].firstChild;
-            b.style.behavior = "url(#default#VML)";
-            var has = b ? typeof b.adj === "object" : true;
-            a.remove();
-            return has;
-        }
-
-        /**
-         * Return a reference to the IE namespaces object, if available, or an empty object otherwise
-         * @return {obkect} The document.namespaces object.
-         */
-        function namespaces() {
-            return typeof(document.namespaces)==='object' ?
-                document.namespaces :
-                null;
-        }
-
-        /**
-         * Test for the presence of HTML5 Canvas support. This also checks to see if excanvas.js has been 
-         * loaded and is faking it; if so, we assume that canvas is not supported.
-         *
-         * @return {bool} true if HTML5 canvas support, false if not
-         */
-        
-        function hasCanvas() {
-            var d = namespaces();
-            // when g_vml_ is present, then we can be sure excanvas is active, meaning there's not a real canvas.
-            
-             return d && d.g_vml_ ? 
-                false :
-                $('<canvas />')[0].getContext ? 
-                    true : 
-                    false;
-        }
-
-        /**
-         * Merge new area data into existing area options on a MapData object. Used for rebinding.
-         * 
-         * @param  {[MapData]} map_data     The MapData object
-         * @param  {[object[]]} areas       areas array to merge
-         */
-        
-        function merge_areas(map_data, areas) {
-            var ar, index,
-                map_areas = map_data.options.areas;
-
-            if (areas) {
-                $.each(areas, function (i, e) {
-                    
-                    // Issue #68 - ignore invalid data in areas array
-                    
-                    if (!e || !e.key) { 
-                        return;
-                    }
-
-                    index = u.indexOfProp(map_areas, "key", e.key);
-
-                    if (index >= 0) {
-                        $.extend(map_areas[index], e);
-                    }
-                    else {
-                        map_areas.push(e);
-                    }
-                    ar = map_data.getDataForKey(e.key);
-                    if (ar) {
-                        $.extend(ar.options, e);
-                    }
-                });
-            }
-        }
-        function merge_options(map_data, options) {
-            var temp_opts = u.updateProps({}, options);
-            delete temp_opts.areas;
-
-            u.updateProps(map_data.options, temp_opts);
-
-            merge_areas(map_data, options.areas);
-            // refresh the area_option template
-            u.updateProps(map_data.area_options, map_data.options);
-        }
-
-        // Most methods use the "Method" object which handles figuring out whether it's an image or area called and
-        // parsing key parameters. The constructor wants:
-        // this, the jQuery object
-        // a function that is called when an image was passed (with a this context of the MapData)
-        // a function that is called when an area was passed (with a this context of the AreaData)
-        // options: first = true means only the first member of a jQuery object is handled
-        //          key = the key parameters passed
-        //          defaultReturn: a value to return other than the jQuery object (if its not chainable)
-        //          args: the arguments
-        // Returns a comma-separated list of user-selected areas. "staticState" areas are not considered selected for the purposes of this method.
-        
-        me.get = function (key) {
-            var md = m.getMapData(this);
-            if (!(md && md.complete)) {
-                throw("Can't access data until binding complete.");
-            }
-
-            return (new m.Method(this,
-                function () {
-                    // map_data return
-                    return this.getSelected();
-                },
-                function () {
-                    return this.isSelected();
-                },
-                { name: 'get',
-                    args: arguments,
-                    key: key,
-                    first: true,
-                    allowAsync: true,
-                    defaultReturn: ''
-                }
-            )).go();
-        };
-        me.data = function (key) {
-            return (new m.Method(this,
-                null,
-                function () {
-                    return this;
-                },
-                { name: 'data',
-                    args: arguments,
-                    key: key
-                }
-            )).go();
-        };
-
-
-        // Set or return highlight state.
-        //  $(img).mapster('highlight') -- return highlighted area key, or null if none
-        //  $(area).mapster('highlight') -- highlight an area
-        //  $(img).mapster('highlight','area_key') -- highlight an area
-        //  $(img).mapster('highlight',false) -- remove highlight
-        me.highlight = function (key) {
-            return (new m.Method(this,
-                function () {
-                    if (key === false) {
-                        this.ensureNoHighlight();
-                    } else {
-                        var id = this.highlightId;
-                        return id >= 0 ? this.data[id].key : null;
-                    }
-                },
-                function () {
-                    this.highlight();
-                },
-                { name: 'highlight',
-                    args: arguments,
-                    key: key,
-                    first: true
-                }
-            )).go();
-        };
-        // Return the primary keys for an area or group key.
-        // $(area).mapster('key')
-        // includes all keys (not just primary keys)
-        // $(area).mapster('key',true)
-        // $(img).mapster('key','group-key')
-
-        // $(img).mapster('key','group-key', true)
-        me.keys = function(key,all) {
-            var keyList=[], 
-                md = m.getMapData(this);
-
-            if (!(md && md.complete)) {
-                throw("Can't access data until binding complete.");
-            }
-
-
-            function addUniqueKeys(ad) {
-                var areas,keys=[];
-                if (!all) {
-                    keys.push(ad.key);
-                } else {
-                    areas=ad.areas();
-                    $.each(areas,function(i,e) {
-                        keys=keys.concat(e.keys);
-                    });
-                }
-                $.each(keys,function(i,e) {
-                    if ($.inArray(e,keyList)<0) {
-                        keyList.push(e);                         
-                    }
-                });
-            }
-
-            if (!(md  && md.complete)) {
-                return '';
-            }
-            if (typeof key === 'string') {
-                if (all) {
-                    addUniqueKeys(md.getDataForKey(key));
-                } else {
-                    keyList=[md.getKeysForGroup(key)];
-                }
-            } else {
-                all = key;
-                this.each(function(i,e) {
-                    if (e.nodeName==='AREA') {
-                        addUniqueKeys(md.getDataForArea(e));
-                    }
-                });
-            }
-            return keyList.join(',');
-        
-
-        };
-        me.select = function () {
-            me.set.call(this, true);
-        };
-        me.deselect = function () {
-            me.set.call(this, false);
-        };
-        
-        /**
-         * Select or unselect areas. Areas can be identified by a single string key, a comma-separated list of keys, 
-         * or an array of strings.
-         * 
-         * 
-         * @param {boolean} selected Determines whether areas are selected or deselected
-         * @param {string|string[]} key A string, comma-separated string, or array of strings indicating 
-         *                              the areas to select or deselect
-         * @param {object} options Rendering options to apply when selecting an area
-         */ 
-
-        me.set = function (selected, key, options) {
-            var lastMap, map_data, opts=options,
-                key_list, area_list; // array of unique areas passed
-
-            function setSelection(ar) {
-                var newState = selected;
-                if (ar) {
-                    switch (selected) {
-                        case true:
-                            ar.select(opts); break;
-                        case false:
-                            ar.deselect(true); break;
-                        default:
-                            newState = ar.toggle(opts); break;
-                    }
-                    return newState;
-                }
-            }
-            function addArea(ar) {
-               if (ar && $.inArray(ar, area_list) < 0) {
-                    area_list.push(ar);
-                    key_list+=(key_list===''?'':',')+ar.key;
-                }
-            }
-            // Clean up after a group that applied to the same map
-            function finishSetForMap(map_data) {
-                $.each(area_list, function (i, el) {
-                    var newState = setSelection(el);
-                    if (map_data.options.boundList) {
-                        m.setBoundListProperties(map_data.options, m.getBoundList(map_data.options, key_list), newState);
-                    }   
-                });
-                if (!selected) {
-                    map_data.removeSelectionFinish();
-                }
-
-            }
-
-            this.filter('img,area').each(function (i,e) {
-                var keys;
-                map_data = m.getMapData(e);
-
-                if (map_data !== lastMap) {
-                    if (lastMap) {
-                       finishSetForMap(lastMap);
-                    }
-
-                    area_list = [];
-                    key_list='';
-                }
-                
-               if (map_data) {
-                    
-                    keys = '';
-                    if (e.nodeName.toUpperCase()==='IMG') {
-                        if (!m.queueCommand(map_data, $(e), 'set', [selected, key, opts])) {
-                            if (key instanceof Array) {
-                                if (key.length) {
-                                    keys = key.join(",");
-                                }
-                            }
-                            else {
-                                keys = key;
-                            }
-
-                            if (keys) {
-                                $.each(u.split(keys), function (i,key) {
-                                    addArea(map_data.getDataForKey(key.toString()));
-                                    lastMap = map_data;
-                                });
-                            }
-                        }
-                    } else {
-                        opts=key;
-                        if (!m.queueCommand(map_data, $(e), 'set', [selected, opts])) {
-                            addArea(map_data.getDataForArea(e));
-                            lastMap = map_data;
-                        }
-                    
-                    }
-                }
-            });
-            
-            if (map_data) {
-               finishSetForMap(map_data);
-            }
-
-           
-            return this;
-        };
-        me.unbind = function (preserveState) {
-            return (new m.Method(this,
-                function () {
-                    this.clearEvents();
-                    this.clearMapData(preserveState);
-                    removeMap(this);
-                },
-                null,
-                { name: 'unbind',
-                    args: arguments
-                }
-            )).go();
-        };
-
-
-        // refresh options and update selection information.
-        me.rebind = function (options) {
-            return (new m.Method(this,
-                function () {
-                    var me=this;
-
-                    me.complete=false;
-                    me.configureOptions(options);
-                    me.bindImages().then(function() {
-                        me.buildDataset(true);
-                        me.complete=true;
-                    });
-                    //this.redrawSelections();
-                },
-                null,
-                {
-                    name: 'rebind',
-                    args: arguments
-                }
-            )).go();
-        };
-        // get options. nothing or false to get, or "true" to get effective options (versus passed options)
-        me.get_options = function (key, effective) {
-            var eff = u.isBool(key) ? key : effective; // allow 2nd parm as "effective" when no key
-            return (new m.Method(this,
-                function () {
-                    var opts = $.extend({}, this.options);
-                    if (eff) {
-                        opts.render_select = u.updateProps(
-                            {},
-                            m.render_defaults,
-                            opts,
-                            opts.render_select);
-
-                        opts.render_highlight = u.updateProps(
-                            {},
-                            m.render_defaults,
-                            opts,
-                            opts.render_highlight);
-                    }
-                    return opts;
-                },
-                function () {
-                    return eff ? this.effectiveOptions() : this.options;
-                },
-                {
-                    name: 'get_options',
-                    args: arguments,
-                    first: true,
-                    allowAsync: true,
-                    key: key
-                }
-            )).go();
-        };
-
-        // set options - pass an object with options to set,
-        me.set_options = function (options) {
-            return (new m.Method(this,
-                function () {
-                    merge_options(this, options);
-                },
-                null,
-                {
-                    name: 'set_options',
-                    args: arguments
-                }
-            )).go();
-        };
-        me.unload = function () {
-            var i;
-            for (i = m.map_cache.length - 1; i >= 0; i--) {
-                if (m.map_cache[i]) {
-                    me.unbind.call($(m.map_cache[i].image));
-                }
-            }
-            me.graphics = null;
-        };
-
-        me.snapshot = function () {
-            return (new m.Method(this,
-                function () {
-                    $.each(this.data, function (i, e) {
-                        e.selected = false;
-                    });
-
-                    this.base_canvas = this.graphics.createVisibleCanvas(this);
-                    $(this.image).before(this.base_canvas);
-                },
-                null,
-                { name: 'snapshot' }
-            )).go();
-        };
-        
-        // do not queue this function
-        
-        me.state = function () {
-            var md, result = null;
-            $(this).each(function (i,e) {
-                if (e.nodeName === 'IMG') {
-                    md = m.getMapData(e);
-                    if (md) {
-                        result = md.state();
-                    }
-                    return false;
-                }
-            });
-            return result;
-        };
-
-        me.bind = function (options) {
-
-            return this.each(function (i,e) {
-                var img, map, usemap, md;
-
-                // save ref to this image even if we can't access it yet. commands will be queued
-                img = $(e);
-
-                md = m.getMapData(e);
-
-                // if already bound completely, do a total rebind
-                
-                if (md) {
-                    me.unbind.apply(img);
-                    if (!md.complete) {
-                        // will be queued
-                        img.bind();
-                        return true;
-                    }
-                    md = null;
-                }
-
-                // ensure it's a valid image
-                // jQuery bug with Opera, results in full-url#usemap being returned from jQuery's attr.
-                // So use raw getAttribute instead.
-                
-                usemap = this.getAttribute('usemap');
-                map = usemap && $('map[name="' + usemap.substr(1) + '"]');
-                if (!(img.is('img') && usemap && map.size() > 0)) {
-                    return true;
-                }
-
-                // sorry - your image must have border:0, things are too unpredictable otherwise.
-                img.css('border', 0);
-
-                if (!md) {
-                    md = new m.MapData(this, options);
-
-                    md.index = addMap(md);
-                    md.map = map;
-                    md.bindImages().then(function() {
-                        md.initialize();
-                    });
-                }
-            });
-        };
-
-        me.init = function (useCanvas) {
-            var style, shapes;
-
-            // for testing/debugging, use of canvas can be forced by initializing 
-            // manually with "true" or "false". But generally we test for it.
-            
-            m.hasCanvas = function() {
-                if (!u.isBool(m.hasCanvas.value)) {
-                    m.hasCanvas.value = u.isBool(useCanvas) ?
-                        useCanvas : 
-                        hasCanvas();
-                }
-                return m.hasCanvas.value;
-            };
-
-            m.hasVml = function() {
-                if (!u.isBool(m.hasVml.value)) {
-                    // initialize VML the first time we detect its presence.
-                    var d = namespaces();
-
-                    if (d && !d.v) {
-                        d.add("v", "urn:schemas-microsoft-com:vml");
-                        style = document.createStyleSheet();
-                        shapes = ['shape', 'rect', 'oval', 'circ', 'fill', 'stroke', 'imagedata', 'group', 'textbox'];
-                        $.each(shapes,
-                        function (i, el) {
-                            style.addRule('v\\:' + el, "behavior: url(#default#VML); antialias:true");
-                        });
-                    }
-                    m.hasVml.value = hasVml();
-                }
-
-                return m.hasVml.value;
-            };
-
-            m.isTouch = !!document.documentElement.ontouchstart;
-
-            u.indexOf = Array.prototype.indexOf || u.indexOf;
-
-            $.extend(m.defaults, m.render_defaults,m.shared_defaults);
-            $.extend(m.area_defaults, m.render_defaults,m.shared_defaults);
-            
-        };
-        me.test = function (obj) {
-            return eval(obj);
-        };
-        return me;
-    } ());
-    
-    $.mapster.impl.init();
-    
-    
-} (jQuery));
-/* graphics.js
-   Graphics object handles all rendering.
-*/
-(function ($) {
-    var p, m=$.mapster,
-        u=m.utils,
-        canvasMethods,
-        vmlMethods;
-    
-    /**
-     * Implemenation to add each area in an AreaData object to the canvas
-     * @param {Graphics} graphics The target graphics object
-     * @param {AreaData} areaData The AreaData object (a collection of area elements and metadata)
-     * @param {object} options Rendering options to apply when rendering this group of areas
-     */
-    function addShapeGroupImpl(graphics, areaData, options) {
-        var me = graphics,
-            md = me.map_data,
-            isMask = options.isMask;
-
-        // first get area options. Then override fade for selecting, and finally merge in the 
-        // "select" effect options.
-
-        $.each(areaData.areas(), function (i,e) {
-            options.isMask = isMask || (e.nohref && md.options.noHrefIsMask);
-            me.addShape(e, options);
-        });
-
-        // it's faster just to manipulate the passed options isMask property and restore it, than to 
-        // copy the object each time
-        
-        options.isMask=isMask;
-
-    }
-
-     /**
-     * Convert a hex value to decimal
-     * @param  {string} hex A hexadecimal toString
-     * @return {int} Integer represenation of the hex string
-     */
-
-    function hex_to_decimal(hex) {
-        return Math.max(0, Math.min(parseInt(hex, 16), 255));
-    }
-    function css3color(color, opacity) {
-        return 'rgba(' + hex_to_decimal(color.substr(0, 2)) + ','
-                + hex_to_decimal(color.substr(2, 2)) + ','
-                + hex_to_decimal(color.substr(4, 2)) + ',' + opacity + ')';
-    }
-    /**
-     * An object associated with a particular map_data instance to manage renderin.
-     * @param {MapData} map_data The MapData object bound to this instance
-     */
-    
-    m.Graphics = function (map_data) {
-        //$(window).unload($.mapster.unload);
-        // create graphics functions for canvas and vml browsers. usage:
-        // 1) init with map_data, 2) call begin with canvas to be used (these are separate b/c may not require canvas to be specified
-        // 3) call add_shape_to for each shape or mask, 4) call render() to finish
-
-        var me = this;
-        me.active = false;
-        me.canvas = null;
-        me.width = 0;
-        me.height = 0;
-        me.shapes = [];
-        me.masks = [];
-        me.map_data = map_data;
-    };
-    
-    p = m.Graphics.prototype= {
-        constructor: m.Graphics,
-
-        /**
-         * Initiate a graphics request for a canvas
-         * @param  {Element} canvas The canvas element that is the target of this operation
-         * @param  {string} [elementName] The name to assign to the element (VML only)
-         */
-        
-        begin: function(canvas, elementName) {
-            var c = $(canvas);
-
-            this.elementName = elementName;
-            this.canvas = canvas;
-
-            this.width = c.width();
-            this.height = c.height();
-            this.shapes = [];
-            this.masks = [];
-            this.active = true;
-
-        },
-        
-        /**
-         * Add an area to be rendered to this canvas. 
-         * @param {MapArea} mapArea The MapArea object to render
-         * @param {object} options An object containing any rendering options that should override the
-         *                         defaults for the area
-         */
-        
-        addShape: function(mapArea, options) {
-            var addto = options.isMask ? this.masks : this.shapes;
-            addto.push({ mapArea: mapArea, options: options });
-        },
-
-        /**
-         * Create a canvas that is sized and styled for the MapData object
-         * @param  {MapData} mapData The MapData object that will receive this new canvas
-         * @return {Element} A canvas element
-         */
-        
-        createVisibleCanvas: function (mapData) {
-            return $(this.createCanvasFor(mapData))
-                .addClass('mapster_el')
-                .css(m.canvas_style)[0];
-        },
-
-        /**
-         * Add a group of shapes from an AreaData object to the canvas
-         * 
-         * @param {AreaData} areaData An AreaData object (a set of area elements)
-         * @param {string} mode     The rendering mode, "select" or "highlight". This determines the target 
-         *                          canvas and which default options to use.
-         * @param {striong} options  Rendering options
-         */
-        
-        addShapeGroup: function (areaData, mode,options) {
-            // render includeKeys first - because they could be masks
-            var me = this,
-                list, name, canvas,
-                map_data = this.map_data,
-                opts = areaData.effectiveRenderOptions(mode);
-
-            if (options) {
-                 $.extend(opts,options);
-            }
-
-            if (mode === 'select') {
-                name = "static_" + areaData.areaId.toString();
-                canvas = map_data.base_canvas;
-            } else {
-                canvas = map_data.overlay_canvas;
-            }
-
-            me.begin(canvas, name);
-
-            if (opts.includeKeys) {
-                list = u.split(opts.includeKeys);
-                $.each(list, function (i,e) {
-                    var areaData = map_data.getDataForKey(e.toString());
-                    addShapeGroupImpl(me,areaData, areaData.effectiveRenderOptions(mode));
-                });
-            }
-
-            addShapeGroupImpl(me,areaData, opts);
-            me.render();
-            if (opts.fade) {
-                
-                // fading requires special handling for IE. We must access the fill elements directly. The fader also has to deal with 
-                // the "opacity" attribute (not css)
-
-                u.fader(m.hasCanvas() ? 
-                    canvas : 
-                    $(canvas).find('._fill').not('.mapster_mask'),
-                0,
-                m.hasCanvas() ? 
-                    1 : 
-                    opts.fillOpacity,
-                opts.fadeDuration); 
-               
-            }
-
-        }
-
-        // These prototype methods are implementation dependent
-    };
-
-    function noop() {}
-
-  
-    // configure remaining prototype methods for ie or canvas-supporting browser
-
-    canvasMethods = {
-        renderShape: function (context, mapArea, offset) {
-            var i,
-                c = mapArea.coords(null,offset);
-
-            switch (mapArea.shape) {
-                case 'rect':
-                    context.rect(c[0], c[1], c[2] - c[0], c[3] - c[1]);
-                    break;
-                case 'poly':
-                    context.moveTo(c[0], c[1]);
-
-                    for (i = 2; i < mapArea.length; i += 2) {
-                        context.lineTo(c[i], c[i + 1]);
-                    }
-                    context.lineTo(c[0], c[1]);
-                    break;
-                case 'circ':
-                case 'circle':
-                    context.arc(c[0], c[1], c[2], 0, Math.PI * 2, false);
-                    break;
-            }
-        },
-        addAltImage: function (context, image, mapArea, options) {
-            context.beginPath();
-
-            this.renderShape(context, mapArea);
-            context.closePath();
-            context.clip();
-
-            context.globalAlpha = options.altImageOpacity || options.fillOpacity;
-
-            context.drawImage(image, 0, 0, mapArea.owner.scaleInfo.width, mapArea.owner.scaleInfo.height);
-        },
-        render: function () {
-            // firefox 6.0 context.save() seems to be broken. to work around,  we have to draw the contents on one temp canvas,
-            // the mask on another, and merge everything. ugh. fixed in 1.2.2. unfortunately this is a lot more code for masks,
-            // but no other way around it that i can see.
-
-            var maskCanvas, maskContext,
-                        me = this,
-                        md = me.map_data,
-                        hasMasks = me.masks.length,
-                        shapeCanvas = me.createCanvasFor(md),
-                        shapeContext = shapeCanvas.getContext('2d'),
-                        context = me.canvas.getContext('2d');
-
-            if (hasMasks) {
-                maskCanvas = me.createCanvasFor(md);
-                maskContext = maskCanvas.getContext('2d');
-                maskContext.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
-
-                $.each(me.masks, function (i,e) {
-                    maskContext.save();
-                    maskContext.beginPath();
-                    me.renderShape(maskContext, e.mapArea);
-                    maskContext.closePath();
-                    maskContext.clip();
-                    maskContext.lineWidth = 0;
-                    maskContext.fillStyle = '#000';
-                    maskContext.fill();
-                    maskContext.restore();
-                });
-
-            }
-
-            $.each(me.shapes, function (i,s) {
-                shapeContext.save();
-                if (s.options.fill) {
-                    if (s.options.altImageId) {
-                        me.addAltImage(shapeContext, md.images[s.options.altImageId], s.mapArea, s.options);
-                    } else {
-                        shapeContext.beginPath();
-                        me.renderShape(shapeContext, s.mapArea);
-                        shapeContext.closePath();
-                        //shapeContext.clip();
-                        shapeContext.fillStyle = css3color(s.options.fillColor, s.options.fillOpacity);
-                        shapeContext.fill();
-                    }
-                }
-                shapeContext.restore();
-            });
-
-
-            // render strokes at end since masks get stroked too
-
-            $.each(me.shapes.concat(me.masks), function (i,s) {
-                var offset = s.options.strokeWidth === 1 ? 0.5 : 0;
-                // offset applies only when stroke width is 1 and stroke would render between pixels.
-
-                if (s.options.stroke) {
-                    shapeContext.save();
-                    shapeContext.strokeStyle = css3color(s.options.strokeColor, s.options.strokeOpacity);
-                    shapeContext.lineWidth = s.options.strokeWidth;
-
-                    shapeContext.beginPath();
-
-                    me.renderShape(shapeContext, s.mapArea, offset);
-                    shapeContext.closePath();
-                    shapeContext.stroke();
-                    shapeContext.restore();
-                }
-            });
-
-            if (hasMasks) {
-                // render the new shapes against the mask
-
-                maskContext.globalCompositeOperation = "source-out";
-                maskContext.drawImage(shapeCanvas, 0, 0);
-
-                // flatten into the main canvas
-                context.drawImage(maskCanvas, 0, 0);
-            } else {
-                context.drawImage(shapeCanvas, 0, 0);
-            }
-
-            me.active = false;
-            return me.canvas;
-        },
-
-        // create a canvas mimicing dimensions of an existing element
-        createCanvasFor: function (md) {
-            return $('<canvas width="' + md.scaleInfo.width + '" height="' +md.scaleInfo.height + '"></canvas>')[0];
-        },
-        clearHighlight: function () {
-            var c = this.map_data.overlay_canvas;
-            c.getContext('2d').clearRect(0, 0, c.width, c.height);
-        },
-        // Draw all items from selected_list to a new canvas, then swap with the old one. This is used to delete items when using canvases.
-        refreshSelections: function () {
-            var canvas_temp, map_data = this.map_data;
-            // draw new base canvas, then swap with the old one to avoid flickering
-            canvas_temp = map_data.base_canvas;
-
-            map_data.base_canvas = this.createVisibleCanvas(map_data);
-            $(map_data.base_canvas).hide();
-            $(canvas_temp).before(map_data.base_canvas);
-
-            map_data.redrawSelections();
-
-            $(map_data.base_canvas).show();
-            $(canvas_temp).remove();
-        }
-    };
-
-    vmlMethods = {
-
-        renderShape: function (mapArea, options, cssclass) {
-            var me = this, fill,stroke, e, t_fill, el_name, el_class, template, c = mapArea.coords();
-            el_name = me.elementName ? 'name="' + me.elementName + '" ' : '';
-            el_class = cssclass ? 'class="' + cssclass + '" ' : '';
-
-            t_fill = '<v:fill color="#' + options.fillColor + '" class="_fill" opacity="' + 
-                (options.fill ? 
-                    options.fillOpacity :
-                    0) + 
-                '" /><v:stroke class="_fill" opacity="' + 
-                options.strokeOpacity + '"/>';
-
-
-            stroke = options.stroke ?
-                ' strokeweight=' + options.strokeWidth + ' stroked="t" strokecolor="#' + 
-                    options.strokeColor + '"' :
-                ' stroked="f"';
-            
-            fill = options.fill ? 
-                ' filled="t"' :
-                ' filled="f"';
-
-            switch (mapArea.shape) {
-                case 'rect':
-                    template = '<v:rect ' + el_class + el_name + fill + stroke + 
-                        ' style="zoom:1;margin:0;padding:0;display:block;position:absolute;left:' + 
-                          c[0] + 'px;top:' + c[1]  + 'px;width:' + (c[2] - c[0]) + 
-                          'px;height:' + (c[3] - c[1]) + 'px;">' + t_fill + '</v:rect>';
-                    break;
-                case 'poly':
-                    template = '<v:shape ' + el_class + el_name + fill + stroke + ' coordorigin="0,0" coordsize="' + me.width + ',' + me.height
-                                + '" path="m ' + c[0] + ',' + c[1] + ' l ' + c.slice(2).join(',')
-                                + ' x e" style="zoom:1;margin:0;padding:0;display:block;position:absolute;top:0px;left:0px;width:' + me.width + 'px;height:' + me.height + 'px;">' + t_fill + '</v:shape>';
-                    break;
-                case 'circ':
-                case 'circle':
-                    template = '<v:oval ' + el_class + el_name + fill + stroke
-                                + ' style="zoom:1;margin:0;padding:0;display:block;position:absolute;left:' + (c[0] - c[2]) + 'px;top:' + (c[1] - c[2])
-                                + 'px;width:' + (c[2] * 2) + 'px;height:' + (c[2] * 2) + 'px;">' + t_fill + '</v:oval>';
-                    break;
-            }
-            e = $(template);
-            $(me.canvas).append(e);
-
-            return e;
-        },
-        render: function () {
-            var opts, me = this;
-
-            $.each(this.shapes, function (i,e) {
-                me.renderShape(e.mapArea, e.options);
-            });
-
-            if (this.masks.length) {
-                $.each(this.masks, function (i,e) {
-                    opts = u.updateProps({},
-                        e.options, {
-                            fillOpacity: 1,
-                            fillColor: e.options.fillColorMask
-                        });
-                    me.renderShape(e.mapArea, opts, 'mapster_mask');
-                });
-            }
-
-            this.active = false;
-            return this.canvas;
-        },
-
-        createCanvasFor: function (md) {
-            var w = md.scaleInfo.width,
-                h = md.scaleInfo.height;
-            return $('<var width="' + w + '" height="' + h 
-                + '" style="zoom:1;overflow:hidden;display:block;width:' 
-                + w + 'px;height:' + h + 'px;"></var>')[0];
-        },
-
-        clearHighlight: function () {
-            $(this.map_data.overlay_canvas).children().remove();
-        },
-        // remove single or all selections
-        removeSelections: function (area_id) {
-            if (area_id >= 0) {
-                $(this.map_data.base_canvas).find('[name="static_' + area_id.toString() + '"]').remove();
-            }
-            else {
-                $(this.map_data.base_canvas).children().remove();
-            }
-        }
-
-    };
-
-    // for all methods with two implemenatations, add a function that will automatically replace itself with the correct
-    // method on first invocation
-    
-    $.each(['renderShape',
-           'addAltImage',
-           'render',
-           'createCanvasFor',
-           'clearHighlight',
-           'removeSelections',
-           'refreshSelections'],
-        function(i,e) {
-            p[e]=(function(method) {
-                return function() {
-                    p[method] = (m.hasCanvas() ?
-                        canvasMethods[method] : 
-                        vmlMethods[method]) || noop;
-                  
-                    return p[method].apply(this,arguments);
-                };
-            }(e));
+    $translateProvider.translations('ca', {
+        REQUEST: 'Per demanar una sessió necessitem tenir les teves dades',
+        REQUESTDAY: 'Día',
+        REQUESTHOUR: 'Hora',
+        DATA: 'Deixa les teves dades i ens posarem en contacte amb tu el més aviat possible',
+        SEARCH: 'Cerca si ets a la base de dades introduïnt el teu DNI',
+        PACIENTNAME: 'Nom',
+        PACIENTSURNAMES: 'Cognoms',
+        PACIENTPHONE: 'Telèfon',
+        OBSV: 'Observacions',
+        CALENDAR: 'Omple el formulari per concertar una visita'
     });
 
+    $translateProvider.preferredLanguage('ca');
+    $translateProvider.useSanitizeValueStrategy('escape');
+}]);
 
-} (jQuery));
-/* mapimage.js
-   the MapImage object, repesents an instance of a single bound imagemap
-*/
+RequestsController.$inject = ['$scope', '$translate'];
 
-(function ($) {
-
-    var m = $.mapster, 
-        u = m.utils,
-        ap=[];
-    /**
-     * An object encapsulating all the images used by a MapData.
-     */
-    
-    m.MapImages = function(owner) {
-        this.owner = owner;
-        this.clear();
-    };
-
-    
-    m.MapImages.prototype = {
-        constructor: m.MapImages,
-
-        /* interface to make this array-like */
-
-        slice: function() {
-            return ap.slice.apply(this,arguments);
-        },
-        splice: function() {
-            ap.slice.apply(this.status,arguments);
-            var result= ap.slice.apply(this,arguments);
-            return result;
-        },
-     
-        /** 
-         * a boolean value indicates whether all images are done loading 
-         * @return {bool} true when all are done
-         */
-        complete: function() {
-            return $.inArray(false, this.status) < 0;
-        },
-        
-        /**
-         * Save an image in the images array and return its index 
-         * @param  {Image} image An Image object
-         * @return {int} the index of the image
-         */
-        
-        _add: function(image) {
-            var index = ap.push.call(this,image)-1;
-            this.status[index] = false;
-            return index;
-        },
-
-        /**
-         * Return the index of an Image within the images array
-         * @param  {Image} img An Image
-         * @return {int} the index within the array, or -1 if it was not found
-         */
-        
-        indexOf: function(image) {
-            return u.indexOf(this,image);
-        },
-        
-        /**
-         * Clear this object and reset it to its initial state after binding.
-         */
-        
-        clear: function() {
-            var me=this;
-
-            if (me.ids && me.ids.length>0) {
-                $.each(me.ids,function(i,e) {
-                    delete me[e];
-                });
-            }
-            
-            /**
-             * A list of the cross-reference IDs bound to this object
-             * @type {string[]}
-             */
-            
-            me.ids=[];
-
-            /**
-             * Length property for array-like behavior, set to zero when initializing. Array prototype
-             * methods will update it after that.
-             * 
-             * @type {int}
-             */
-            
-            me.length=0;
-
-            /**
-             * the loaded status of the corresponding image
-             * @type {boolean[]}
-             */
-            
-            me.status=[];
-            
-            
-            // actually erase the images
-            
-            me.splice(0);
-            
-        },
-
-        /**
-         * Bind an image to the map and add it to the queue to be loaded; return an ID that
-         * can be used to reference the
-         * 
-         * @param {Image|string} image An Image object or a URL to an image
-         * @param {string} [id] An id to refer to this image
-         * @returns {int} an ID referencing the index of the image object in 
-         *                map_data.images
-         */
-     
-        add: function(image,id) {
-            var index,src,me = this;
-
-            if (!image) { return; }
-
-            if (typeof image === 'string') {
-                src = image;
-                image = me[src];
-                if (typeof image==='object') {
-                    return me.indexOf(image);
-                }
-
-                image = $('<img />')
-                    .addClass('mapster_el')
-                    .hide();
-
-                index=me._add(image[0]);
-                
-                image
-                    .bind('load',function(e) {
-                        me.imageLoaded.call(me,e);
-                    })
-                    .bind('error',function(e) {
-                        me.imageLoadError.call(me,e);
-                    });
-                
-                image.attr('src', src);
-            } else {
-
-                // use attr because we want the actual source, not the resolved path the browser will return directly calling image.src
-                
-                index=me._add($(image)[0]);
-            }
-            if (id) {
-                if (this[id]) {
-                    throw(id+" is already used or is not available as an altImage alias.");
-                }
-                me.ids.push(id);
-                me[id]=me[index];
-            }
-            return index;
-        },
-
-        /**
-         * Bind the images in this object, 
-         * @param  {boolean} retry when true, indicates that the function is calling itself after failure 
-         * @return {Promise} a promise that resolves when the images have finished loading
-         */
-        
-        bind: function(retry) {
-            var me = this,
-                promise,
-                triesLeft = me.owner.options.configTimeout / 200,
-
-            /* A recursive function to continue checking that the images have been 
-               loaded until a timeout has elapsed */
-
-            check=function() {
-                var i;
-
-                // refresh status of images
-                
-                i=me.length;
-
-                while (i-->0) {
-                    if (!me.isLoaded(i)) {
-                        break;
-                    }
-                }
-
-                // check to see if every image has already been loaded
-                
-                if (me.complete()) {
-                    me.resolve();
-                } else {
-                    // to account for failure of onLoad to fire in rare situations
-                    if (triesLeft-- > 0) {
-                        me.imgTimeout=window.setTimeout(function() {
-                            check.call(me,true);
-                        }, 50);
-                    } else {
-                        me.imageLoadError.call(me);
-                    }
-                }
-            
-            };
-
-            promise = me.deferred=u.defer();
-            
-            check();
-            return promise;
-        },
-   
-        resolve: function() {
-            var me=this,
-                resolver=me.deferred;
-                
-            if (resolver) {
-                // Make a copy of the resolver before calling & removing it to ensure
-                // it is not called twice
-                me.deferred=null;
-                resolver.resolve();
-            }
-        },
-
-        /**
-         * Event handler for image onload
-         * @param  {object} e jQuery event data
-         */
-        
-        imageLoaded: function(e) {
-            var me=this,
-                index = me.indexOf(e.target);
-
-            if (index>=0) {
-
-                me.status[index] = true;
-                if ($.inArray(false, me.status) < 0) {
-                    me.resolve();
-                }
-            }
-        },
-        
-        /**
-         * Event handler for onload error
-         * @param  {object} e jQuery event data
-         */
-        
-        imageLoadError: function(e) {
-            clearTimeout(this.imgTimeout);
-            this.triesLeft=0;
-            var err = e ? 'The image ' + e.target.src + ' failed to load.' : 
-                'The images never seemed to finish loading. You may just need to increase the configTimeout if images could take a long time to load.';
-            throw err;
-        },
-        /**
-         * Test if the image at specificed index has finished loading
-         * @param  {int}  index The image index
-         * @return {boolean} true if loaded, false if not
-         */
-        
-        isLoaded: function(index) {
-            var img,
-                me=this,
-                status=me.status;
-
-            if (status[index]) { return true; }
-            img = me[index];
-            
-            if (typeof img.complete !== 'undefined') {
-                status[index]=img.complete;
-            } else {
-                status[index]=!!u.imgWidth(img);
-            }
-            // if complete passes, the image is loaded, but may STILL not be available because of stuff like adblock.
-            // make sure it is.
-
-            return status[index];
-        }
-    };
-    } (jQuery));
-/* mapdata.js
-   the MapData object, repesents an instance of a single bound imagemap
-*/
+angular.module('app').controller('RequestsController', RequestsController);
 
 
-(function ($) {
+function RequestsController($scope, $translate) {
+    $scope.dni = '';
 
-    var m = $.mapster, 
-        u = m.utils;
-   
-    /**
-     * Set default values for MapData object properties
-     * @param  {MapData} me The MapData object
-     */
-    
-    function initializeDefaults(me) {
-        $.extend(me,{
-            complete: false,         // (bool)    when configuration is complete       
-            map: null,                // ($)      the image map
-            base_canvas: null,       // (canvas|var)  where selections are rendered
-            overlay_canvas: null,    // (canvas|var)  where highlights are rendered
-            commands: [],            // {}        commands that were run before configuration was completed (b/c images weren't loaded)
-            data: [],                // MapData[] area groups
-            mapAreas: [],            // MapArea[] list. AreaData entities contain refs to this array, so options are stored with each.
-            _xref: {},               // (int)      xref of mapKeys to data[]
-            highlightId: -1,        // (int)      the currently highlighted element.
-            currentAreaId: -1,
-            _tooltip_events: [],     // {}         info on events we bound to a tooltip container, so we can properly unbind them
-            scaleInfo: null,         // {}         info about the image size, scaling, defaults
-            index: -1,                 // index of this in map_cache - so we have an ID to use for wraper div
-            activeAreaEvent: null
-        });
+    if (sessionStorage.getItem('lang')) {
+        $translate.use(sessionStorage.getItem('lang'));
+        $('body').find('a.active').removeClass('active');
+        $('a#'+sessionStorage.getItem('lang')).addClass('active');
     }
 
-    /**
-     * Return an array of all image-containing options from an options object; 
-     * that is, containers that may have an "altImage" property
-     * 
-     * @param  {object} obj     An options object
-     * @return {object[]}       An array of objects
-     */
-    function getOptionImages(obj) {
-        return [obj, obj.render_highlight, obj.render_select];
-    }
-
-    /**
-     * Parse all the altImage references, adding them to the library so they can be preloaded
-     * and aliased.
-     * 
-     * @param  {MapData} me The MapData object on which to operate
-     */
-    function configureAltImages(me)
-    {
-        var opts = me.options,
-            mi = me.images;
-
-        // add alt images
-        
-        if (m.hasCanvas()) {
-            // map altImage library first
-            
-            $.each(opts.altImages || {}, function(i,e) {
-                mi.add(e,i);
-            });
-            
-            // now find everything else
-
-            $.each([opts].concat(opts.areas),function(i,e) {
-                $.each(getOptionImages(e),function(i2,e2) {
-                    if (e2 && e2.altImage) {
-                        e2.altImageId=mi.add(e2.altImage);
-                    }
-                });
-            });
-        }
-
-        // set area_options
-        me.area_options = u.updateProps({}, // default options for any MapArea
-            m.area_defaults,
-            opts);
-    }
-
-    /**
-     * Queue a mouse move action based on current delay settings 
-     * (helper for mouseover/mouseout handlers)
-     * 
-     * @param  {MapData}    me       The MapData context
-     * @param  {number}     delay    The number of milliseconds to delay the action
-     * @param  {AreaData}   area     AreaData affected
-     * @param  {Deferred}   deferred A deferred object to return (instead of a new one)
-     * @return {Promise}    A promise that resolves when the action is completed
-     */
-    function queueMouseEvent(me,delay,area, deferred) {
-        
-        deferred = deferred || u.when.defer();
-
-        function cbFinal(areaId) {
-            if (me.currentAreaId!==areaId && me.highlightId>=0) {
-                deferred.resolve();
-            }
-        }
-        if (me.activeAreaEvent) {
-            window.clearTimeout(me.activeAreaEvent);
-            me.activeAreaEvent=0;
-        }
-        if (delay<0) {
-            deferred.reject();
-        } else {
-            if (area.owner.currentAction || delay) {
-                me.activeAreaEvent = window.setTimeout((function() {
-                        return function() {
-                            queueMouseEvent(me,0,area,deferred);
-                        };
-                    }(area)),
-                    delay || 100);
-            } else {
-                 cbFinal(area.areaId);
-            }
-        }
-        return deferred;
-    }
-
-     /**
-     * Mousedown event. This is captured only to prevent browser from drawing an outline around an
-     * area when it's clicked.
-     *
-     * @param  {EventData} e jQuery event data
-     */
-    
-    function mousedown(e) {
-        if (!m.hasCanvas()) {
-            this.blur();
-        }
+    $scope.change_language = function (e, lang) {
         e.preventDefault();
+        $('body').find('a.active').removeClass('active');
+        $(e.target).parent().addClass('active');
+        $translate.use(lang);
+        sessionStorage.setItem('lang', lang);
     }
-
-    /**
-     * Mouseover event. Handle highlight rendering and client callback on mouseover
-     * 
-     * @param  {MapData} me The MapData context
-     * @param  {EventData} e jQuery event data
-     * @return {[type]}   [description]
-     */
-    
-    function mouseover(me,e) {
-        var arData = me.getAllDataForArea(this),
-            ar=arData.length ? arData[0] : null;
-
-        // mouseover events are ignored entirely while resizing, though we do care about mouseout events
-        // and must queue the action to keep things clean.
-
-        if (!ar || ar.isNotRendered() || ar.owner.currentAction) {
-            return;
-        }
-
-        if (me.currentAreaId === ar.areaId) {
-            return;
-        }
-        if (me.highlightId !== ar.areaId) {
-            me.clearEffects();
-
-            ar.highlight();
-
-            if (me.options.showToolTip) {
-                $.each(arData,function(i,e) {
-                    if (e.effectiveOptions().toolTip) {
-                        e.showToolTip();
-                    }
-                });
-            }
-        }
-
-        me.currentAreaId = ar.areaId;
-
-        if ($.isFunction(me.options.onMouseover)) {
-            me.options.onMouseover.call(this,
-            {
-                e: e,
-                options:ar.effectiveOptions(),
-                key: ar.key,
-                selected: ar.isSelected()
-            });
-        }
-    }
-
-    /**
-     * Mouseout event.
-     *
-     * @param  {MapData} me The MapData context
-     * @param  {EventData} e jQuery event data
-     * @return {[type]}   [description]
-     */
-    
-    function mouseout(me,e) {
-        var newArea,
-            ar = me.getDataForArea(this),
-            opts = me.options;
-
-
-        if (me.currentAreaId<0 || !ar) {
-            return;
-        }
-
-        newArea=me.getDataForArea(e.relatedTarget);
-        
-        if (newArea === ar) {
-            return;
-        }
-
-        me.currentAreaId = -1;
-        ar.area=null;
-
-        queueMouseEvent(me,opts.mouseoutDelay,ar)
-            .then(me.clearEffects);
-
-        if ($.isFunction(opts.onMouseout)) {
-            opts.onMouseout.call(this,
-            {
-                e: e,
-                options: opts,
-                key: ar.key,
-                selected: ar.isSelected()
-            });
-        }
-
-    }
-    
-    /**
-     * Clear any active tooltip or highlight
-     *
-     * @param  {MapData} me The MapData context
-     * @param  {EventData} e jQuery event data
-     * @return {[type]}   [description]
-     */
-    
-    function clearEffects(me) {
-        var opts = me.options;
-
-        me.ensureNoHighlight();
-
-        if (opts.toolTipClose 
-            && $.inArray('area-mouseout', opts.toolTipClose) >= 0 
-            && me.activeToolTip) 
-        {
-            me.clearToolTip();
-        }
-    }
-
-    /**
-     * Mouse click event handler
-     *
-     * @param  {MapData} me The MapData context
-     * @param  {EventData} e jQuery event data
-     * @return {[type]}   [description]
-     */
-    
-    function click(me,e) {
-        var selected, list, list_target, newSelectionState, canChangeState, cbResult,
-            that = this,
-            ar = me.getDataForArea(this),
-            opts = me.options;
-
-        function clickArea(ar) {
-            var areaOpts,target;
-            canChangeState = (ar.isSelectable() &&
-                (ar.isDeselectable() || !ar.isSelected()));
-            
-            if (canChangeState) {
-                newSelectionState = !ar.isSelected();
-            } else {
-                newSelectionState = ar.isSelected();
-            }
-
-            list_target = m.getBoundList(opts, ar.key);
-
-            if ($.isFunction(opts.onClick)) 
-            {
-                cbResult= opts.onClick.call(that,
-                {
-                    e: e,
-                    listTarget: list_target,
-                    key: ar.key,
-                    selected: newSelectionState
-                });
-
-                if (u.isBool(cbResult)) {
-                    if (!cbResult) {
-                        return false;
-                    }
-                    target = $(ar.area).attr('href');
-                    if (target!=='#') {
-                        window.location.href=target;
-                        return false;
-                    }
-                }
-            }
-
-            if (canChangeState) {
-                selected = ar.toggle();
-            }
-
-            if (opts.boundList && opts.boundList.length > 0) {
-                m.setBoundListProperties(opts, list_target, ar.isSelected());
-            }
-
-            areaOpts = ar.effectiveOptions();
-            if (areaOpts.includeKeys) {
-                list = u.split(areaOpts.includeKeys);
-                $.each(list, function (i, e) {
-                    var ar = me.getDataForKey(e.toString());
-                    if (!ar.options.isMask) {
-                        clickArea(ar);
-                    }
-                });
-            }
-        }
-
-        mousedown.call(this,e);
-
-        if (opts.clickNavigate && ar.href) {
-            window.location.href=ar.href;
-            return;
-        }
-
-        if (ar && !ar.owner.currentAction) {
-            opts = me.options;
-            clickArea(ar);
-        }
-    }
-
-    /**
-     * Prototype for a MapData object, representing an ImageMapster bound object
-     * @param {Element} image   an IMG element
-     * @param {object} options  ImageMapster binding options
-     */
-    m.MapData = function (image, options) 
-    {
-        var me = this;
-        
-        // (Image)  main map image
-        
-        me.image = image;              
-
-        me.images = new m.MapImages(me); 
-        me.graphics = new m.Graphics(me);
-
-        // save the initial style of the image for unbinding. This is problematic, chrome 
-        // duplicates styles when assigning, and cssText is apparently not universally supported.
-        // Need to do something more robust to make unbinding work universally.
-        
-        me.imgCssText = image.style.cssText || null;
-
-        initializeDefaults(me);
-
-        me.configureOptions(options);
-        
-        // create context-bound event handlers from our private functions
-        
-        me.mouseover = function(e) { mouseover.call(this,me,e); };
-        me.mouseout = function(e) { mouseout.call(this,me,e); };
-        me.click = function(e) { click.call(this,me,e); };
-        me.clearEffects = function(e) { clearEffects.call(this,me,e); };
-    };
-
-    m.MapData.prototype = {
-        constructor: m.MapData,
-
-         /**
-         * Set target.options from defaults + options
-         * @param  {[type]} target      The target
-         * @param  {[type]} options     The options to merge
-         */
-        
-        configureOptions: function(options) {
-            this.options= u.updateProps({}, m.defaults, options);
-        },
-
-        /**
-         * Ensure all images are loaded
-         * @return {Promise} A promise that resolves when the images have finished loading (or fail)
-         */
-    
-        bindImages: function() {
-            var me=this,
-                mi = me.images;
-
-            // reset the images if this is a rebind
-            
-            if (mi.length>2) {
-                mi.splice(2);
-            } else if (mi.length===0) {
-
-                // add the actual main image
-                mi.add(me.image);
-                // will create a duplicate of the main image, we need this to get raw size info
-                mi.add(me.image.src);
-            }
-            
-            configureAltImages(me);
-
-            return me.images.bind();
-        },
-
-        /**
-         * Test whether an async action is currently in progress
-         * @return {Boolean} true or false indicating state
-         */
-        
-        isActive: function() {
-            return !this.complete || this.currentAction;
-        },
-
-        /**
-         * Return an object indicating the various states. This isn't really used by 
-         * production code.
-         * 
-         * @return {object} An object with properties for various states
-         */
-        
-        state: function () {
-            return {
-                complete: this.complete,
-                resizing: this.currentAction==='resizing',
-                zoomed: this.zoomed,
-                zoomedArea: this.zoomedArea,
-                scaleInfo: this.scaleInfo
-            };
-        },   
-
-        /**
-         * Get a unique ID for the wrapper of this imagemapster
-         * @return {string} A string that is unique to this image
-         */
-        
-        wrapId: function () {
-            return 'mapster_wrap_' + this.index;
-        },
-        _idFromKey: function (key) {
-            return typeof key === "string" && this._xref.hasOwnProperty(key) ?
-                        this._xref[key] : -1;
-        },
-
-        /**
-         * Return a comma-separated string of all selected keys
-         * @return {string} CSV of all keys that are currently selected
-         */
-        
-        getSelected: function () {
-            var result = '';
-            $.each(this.data, function (i,e) {
-                if (e.isSelected()) {
-                    result += (result ? ',' : '') + this.key;
-                }
-            });
-            return result;
-        },
-
-        /**
-         * Get an array of MapAreas associated with a specific AREA based on the keys for that area
-         * @param  {Element} area   An HTML AREA
-         * @param  {number} atMost  A number limiting the number of areas to be returned (typically 1 or 0 for no limit)
-         * @return {MapArea[]}      Array of MapArea objects
-         */
-        
-        getAllDataForArea:function (area,atMost) {
-            var i,ar, result,
-                me=this,
-                key = $(area).filter('area').attr(me.options.mapKey);
-
-            if (key) {
-                result=[];
-                key = u.split(key);
-
-                for (i=0;i<(atMost || key.length);i++) {
-                    ar = me.data[me._idFromKey(key[i])];
-                    ar.area=area.length ? area[0]:area;
-                    // set the actual area moused over/selected
-                    // TODO: this is a brittle model for capturing which specific area - if this method was not used,
-                    // ar.area could have old data. fix this.
-                    result.push(ar);
-                }
-            }
-
-            return result;
-        },
-        getDataForArea: function(area) {
-            var ar=this.getAllDataForArea(area,1);
-            return ar ? ar[0] || null : null;
-        },
-        getDataForKey: function (key) {
-            return this.data[this._idFromKey(key)];
-        },
-        
-        /**
-         * Get the primary keys associated with an area group.
-         * If this is a primary key, it will be returned.
-         * 
-         * @param  {string key An area key
-         * @return {string} A CSV of area keys
-         */
-        
-        getKeysForGroup: function(key) {
-            var ar=this.getDataForKey(key);
-            
-            return !ar ? '':
-                ar.isPrimary ? 
-                    ar.key :
-                    this.getPrimaryKeysForMapAreas(ar.areas()).join(',');
-        },
-        
-        /**
-         * given an array of MapArea object, return an array of its unique primary keys
-         * @param  {MapArea[]} areas The areas to analyze
-         * @return {string[]} An array of unique primary keys
-         */
-        
-        getPrimaryKeysForMapAreas: function(areas)
-        {
-            var keys=[];
-            $.each(areas,function(i,e) {
-                if ($.inArray(e.keys[0],keys)<0) {
-                    keys.push(e.keys[0]);
-                }
-            });
-            return keys;
-        },
-        getData: function (obj) {
-            if (typeof obj === 'string') {
-                return this.getDataForKey(obj);
-            } else if (obj && obj.mapster || u.isElement(obj)) {
-                return this.getDataForArea(obj);
-            } else {
-                return null;
-            }
-        },
-        // remove highlight if present, raise event
-        ensureNoHighlight: function () {
-            var ar;
-            if (this.highlightId >= 0) {
-                this.graphics.clearHighlight();
-                ar = this.data[this.highlightId];
-                ar.changeState('highlight', false);
-                this.setHighlightId(-1);
-            }
-        },
-        setHighlightId: function(id) {
-            this.highlightId = id;
-        },
-        
-        /**
-         * Clear all active selections on this map
-         */
-        
-        clearSelections: function () {
-            $.each(this.data, function (i,e) {
-                if (e.selected) {
-                    e.deselect(true);
-                 }
-            });
-            this.removeSelectionFinish();
-            
-        },
-
-        /**
-         * Set area options from an array of option data.
-         * 
-         * @param {object[]} areas An array of objects containing area-specific options
-         */
-        
-        setAreaOptions: function (areas) {
-            var i, area_options, ar;
-            areas = areas || [];
-
-            // refer by: map_data.options[map_data.data[x].area_option_id]
-            
-            for (i = areas.length - 1; i >= 0; i--) {
-                area_options = areas[i];
-                if (area_options) {
-                    ar = this.getDataForKey(area_options.key);
-                    if (ar) {
-                        u.updateProps(ar.options, area_options);
-                        
-                        // TODO: will not deselect areas that were previously selected, so this only works
-                        // for an initial bind.
-                        
-                        if (u.isBool(area_options.selected)) {
-                            ar.selected = area_options.selected;
-                        }
-                    }
-                }
-            }
-        },
-        // keys: a comma-separated list
-        drawSelections: function (keys) {
-            var i, key_arr = u.asArray(keys);
-
-            for (i = key_arr.length - 1; i >= 0; i--) {
-                this.data[key_arr[i]].drawSelection();
-            }
-        },
-        redrawSelections: function () {
-            $.each(this.data, function (i, e) {
-                if (e.isSelectedOrStatic()) {
-                    e.drawSelection();
-                }
-            });
-
-        },
-        ///called when images are done loading
-        initialize: function () {
-            var imgCopy, base_canvas, overlay_canvas, wrap, parentId, css, i,size,
-                img,sort_func, sorted_list,  scale,  
-                        me = this,
-                        opts = me.options;
-
-            if (me.complete) {
-                return;
-            }
-
-            img = $(me.image);
-            
-            parentId = img.parent().attr('id');
-
-            // create a div wrapper only if there's not already a wrapper, otherwise, own it
-            
-            if (parentId && parentId.length >= 12 && parentId.substring(0, 12) === "mapster_wrap") {
-                wrap = img.parent();
-                wrap.attr('id', me.wrapId());
-            } else {
-                wrap = $('<div id="' + me.wrapId() + '"></div>');
-
-                if (opts.wrapClass) {
-                    if (opts.wrapClass === true) {
-                        wrap.addClass(img[0].className);
-                    }
-                    else {
-                        wrap.addClass(opts.wrapClass);
-                    }
-                }
-            }
-            me.wrapper = wrap;
-            
-            // me.images[1] is the copy of the original image. It should be loaded & at its native size now so we can obtain the true
-            // width & height. This is needed to scale the imagemap if not being shown at its native size. It is also needed purely
-            // to finish binding in case the original image was not visible. It can be impossible in some browsers to obtain the
-            // native size of a hidden image.
-
-            me.scaleInfo = scale = u.scaleMap(me.images[0],me.images[1], opts.scaleMap);
-            
-            me.base_canvas = base_canvas = me.graphics.createVisibleCanvas(me);
-            me.overlay_canvas = overlay_canvas = me.graphics.createVisibleCanvas(me);
-
-            // Now we got what we needed from the copy -clone from the original image again to make sure any other attributes are copied
-            imgCopy = $(me.images[1])
-                .addClass('mapster_el '+ me.images[0].className)
-                .attr({id:null, usemap: null});
-                
-            size=u.size(me.images[0]);
-            
-            if (size.complete) {
-                imgCopy.css({
-                    width: size.width,
-                    height: size.height
-                });
-            }
-     
-            me.buildDataset();
-
-            // now that we have processed all the areas, set css for wrapper, scale map if needed
-
-            css = {
-                display: 'block',
-                position: 'relative',
-                padding: 0,
-                width: scale.width,
-                height: scale.height
-            };
-
-            if (opts.wrapCss) {
-                $.extend(css, opts.wrapCss);
-            }
-            // if we were rebinding with an existing wrapper, the image will aready be in it
-            if (img.parent()[0] !== me.wrapper[0]) {
-
-                img.before(me.wrapper);
-            }
-
-            wrap.css(css);
-
-            // move all generated images into the wrapper for easy removal later
-
-            $(me.images.slice(2)).hide();
-            for (i = 1; i < me.images.length; i++) {
-                wrap.append(me.images[i]);
-            }
-
-            //me.images[1].style.cssText = me.image.style.cssText;
-
-            wrap.append(base_canvas)
-                        .append(overlay_canvas)
-                        .append(img.css(m.canvas_style));
-
-            // images[0] is the original image with map, images[1] is the copy/background that is visible
-
-            u.setOpacity(me.images[0], 0);
-            $(me.images[1]).show();
-
-            u.setOpacity(me.images[1],1);
-
-            if (opts.isSelectable && opts.onGetList) {
-                sorted_list = me.data.slice(0);
-                if (opts.sortList) {
-                    if (opts.sortList === "desc") {
-                        sort_func = function (a, b) {
-                            return a === b ? 0 : (a > b ? -1 : 1);
-                        };
-                    }
-                    else {
-                        sort_func = function (a, b) {
-                            return a === b ? 0 : (a < b ? -1 : 1);
-                        };
-                    }
-
-                    sorted_list.sort(function (a, b) {
-                        a = a.value;
-                        b = b.value;
-                        return sort_func(a, b);
-                    });
-                }
-
-                me.options.boundList = opts.onGetList.call(me.image, sorted_list);
-            }
-            
-            me.complete=true;
-            me.processCommandQueue();
-            
-            if (opts.onConfigured && typeof opts.onConfigured === 'function') {
-                opts.onConfigured.call(img, true);
-            }
-        },
-
-        // when rebind is true, the MapArea data will not be rebuilt.
-        buildDataset: function(rebind) {
-            var sel,areas,j,area_id,$area,area,curKey,mapArea,key,keys,mapAreaId,group_value,dataItem,href,
-                me=this,
-                opts=me.options,
-                default_group;
-
-            function addAreaData(key, value) {
-                var dataItem = new m.AreaData(me, key, value);
-                dataItem.areaId = me._xref[key] = me.data.push(dataItem) - 1;
-                return dataItem.areaId;
-            }
-
-            me._xref = {};
-            me.data = [];
-            if (!rebind) {
-                me.mapAreas=[];
-            }
-
-            default_group = !opts.mapKey;
-            if (default_group) {
-                opts.mapKey = 'data-mapster-key';
-            }
-
-            // the [attribute] selector is broken on old IE with jQuery. hasVml() is a quick and dirty
-            // way to test for that
-            
-            sel = m.hasVml() ? 'area' :
-                        (default_group ? 
-                            'area[coords]' : 
-                            'area[' + opts.mapKey + ']');
-
-            areas = $(me.map).find(sel).unbind('.mapster');
-                        
-            for (mapAreaId = 0;mapAreaId<areas.length; mapAreaId++) {
-                area_id = 0;
-                area = areas[mapAreaId];
-                $area = $(area);
-
-                // skip areas with no coords - selector broken for older ie
-                if (!area.coords) {
-                    continue;
-                }
-                // Create a key if none was assigned by the user
-
-                if (default_group) {
-                     curKey=String(mapAreaId);
-                    $area.attr('data-mapster-key', curKey);
-                   
-                } else {
-                    curKey = area.getAttribute(opts.mapKey);
-                }
-
-                // conditions for which the area will be bound to mouse events
-                // only bind to areas that don't have nohref. ie 6&7 cannot detect the presence of nohref, so we have to also not bind if href is missing.
-
-                if (rebind) {
-                    mapArea = me.mapAreas[$area.data('mapster')-1];
-                    mapArea.configure(curKey);
-                } else {
-                    mapArea = new m.MapArea(me, area,curKey);
-                    me.mapAreas.push(mapArea);
-                }
-
-                keys = mapArea.keys; // converted to an array by mapArea
-
-
-                // Iterate through each mapKey assigned to this area
-                for (j = keys.length - 1; j >= 0; j--) {
-                    key = keys[j];
-
-                    if (opts.mapValue) {
-                        group_value = $area.attr(opts.mapValue);
-                    }
-                    if (default_group) {
-                        // set an attribute so we can refer to the area by index from the DOM object if no key
-                        area_id = addAreaData(me.data.length, group_value);
-                        dataItem = me.data[area_id];
-                        dataItem.key = key = area_id.toString();
-                    }
-                    else {
-                        area_id = me._xref[key];
-                        if (area_id >= 0) {
-                            dataItem = me.data[area_id];
-                            if (group_value && !me.data[area_id].value) {
-                                dataItem.value = group_value;
-                            }
-                        }
-                        else {
-                            area_id = addAreaData(key, group_value);
-                            dataItem = me.data[area_id];
-                            dataItem.isPrimary=j===0;
-                        }
-                    }
-                    mapArea.areaDataXref.push(area_id);
-                    dataItem.areasXref.push(mapAreaId);
-                }
-
-                href=$area.attr('href');
-                if (href && href!=='#' && !dataItem.href)
-                {
-                    dataItem.href=href;
-                }
-
-                if (!mapArea.nohref) {
-                    $area.bind('click.mapster', me.click)
-                        .bind('mouseover.mapster, touchstart.mapster', me.mouseover)
-                        .bind('mouseout.mapster, touchend.mapster', me.mouseout)
-                        .bind('mousedown.mapster', me.mousedown);
-                        
-                    
-                        
-                }
-
-                // store an ID with each area. 
-                $area.data("mapster", mapAreaId+1);
-            }
-           
-            // TODO listenToList
-            //            if (opts.listenToList && opts.nitG) {
-            //                opts.nitG.bind('click.mapster', event_hooks[map_data.hooks_index].listclick_hook);
-            //            }
-
-            // populate areas from config options
-            me.setAreaOptions(opts.areas);
-            me.redrawSelections();
-
-        },
-        processCommandQueue: function() {
-            
-            var cur,me=this;
-            while (!me.currentAction && me.commands.length) {
-                cur = me.commands[0];
-                me.commands.splice(0,1);
-                m.impl[cur.command].apply(cur.that, cur.args);
-            }
-        },
-        clearEvents: function () {
-            $(this.map).find('area')
-                        .unbind('.mapster');
-            $(this.images)
-                        .unbind('.mapster');
-        },
-        _clearCanvases: function (preserveState) {
-            // remove the canvas elements created
-            if (!preserveState) {
-                $(this.base_canvas).remove();
-            }
-            $(this.overlay_canvas).remove();
-        },
-        clearMapData: function (preserveState) {
-            var me = this;
-            this._clearCanvases(preserveState);
-
-            // release refs to DOM elements
-            $.each(this.data, function (i, e) {
-                e.reset();
-            });
-            this.data = null;
-            if (!preserveState) {
-                // get rid of everything except the original image
-                this.image.style.cssText = this.imgCssText;
-                $(this.wrapper).before(this.image).remove();
-            }
-
-            me.images.clear();
-
-            this.image = null;
-            u.ifFunction(this.clearTooltip, this);
-        },
-
-        // Compelete cleanup process for deslecting items. Called after a batch operation, or by AreaData for single
-        // operations not flagged as "partial"
-        
-        removeSelectionFinish: function () {
-            var g = this.graphics;
-
-            g.refreshSelections();
-            // do not call ensure_no_highlight- we don't really want to unhilight it, just remove the effect
-            g.clearHighlight();
-        }
-    };
-} (jQuery));
-/* areadata.js
-   AreaData and MapArea protoypes
-*/
-
-(function ($) {
-    var m = $.mapster, u = m.utils;
-    
-    /**
-     * Select this area
-     * 
-     * @param {AreaData} me  AreaData context
-     * @param {object} options Options for rendering the selection
-     */
-    function select(options) {
-        // need to add the new one first so that the double-opacity effect leaves the current one highlighted for singleSelect
-        
-        var me=this, o = me.owner;
-        if (o.options.singleSelect) {
-            o.clearSelections();
-        }
-
-        // because areas can overlap - we can't depend on the selection state to tell us anything about the inner areas.
-        // don't check if it's already selected
-        if (!me.isSelected()) {
-            if (options) {
-                
-                // cache the current options, and map the altImageId if an altimage 
-                // was passed
-
-                me.optsCache = $.extend(me.effectiveRenderOptions('select'),
-                    options,
-                    { 
-                        altImageId: o.images.add(options.altImage)
-                    });
-            }
-
-            me.drawSelection();
-
-            me.selected = true;
-            me.changeState('select', true);
-        }
-
-        if (o.options.singleSelect) {
-            o.graphics.refreshSelections();
-        }
-    }
-
-    /**
-     * Deselect this area, optionally deferring finalization so additional areas can be deselected
-     * in a single operation
-     * 
-     * @param  {boolean} partial when true, the caller must invoke "finishRemoveSelection" to render 
-     */
-    
-    function deselect(partial) {
-        var me=this;
-        me.selected = false;
-        me.changeState('select', false);
-
-        // release information about last area options when deselecting.
-        
-        me.optsCache=null;
-        me.owner.graphics.removeSelections(me.areaId);
-
-        // Complete selection removal process. This is separated because it's very inefficient to perform the whole
-        // process for multiple removals, as the canvas must be totally redrawn at the end of the process.ar.remove
-        
-        if (!partial) {
-            me.owner.removeSelectionFinish();
-        }
-    }
-
-    /**
-     * Toggle the selection state of this area
-     * @param  {object} options Rendering options, if toggling on
-     * @return {bool} The new selection state
-     */
-    function toggle(options) {
-        var me=this;
-        if (!me.isSelected()) {
-            me.select(options);
-        }
-        else {
-            me.deselect();
-        }
-        return me.isSelected();
-    }
-
-    /**
-     * An AreaData object; represents a conceptual area that can be composed of 
-     * one or more MapArea objects
-     * 
-     * @param {MapData} owner The MapData object to which this belongs
-     * @param {string} key   The key for this area
-     * @param {string} value The mapValue string for this area
-     */
-    
-    m.AreaData = function (owner, key, value) {
-        $.extend(this,{
-            owner: owner, 
-            key: key || '',
-            // means this represents the first key in a list of keys (it's the area group that gets highlighted on mouseover)
-            isPrimary: true,
-            areaId: -1,
-            href: '',
-            value: value || '',
-            options:{},
-            // "null" means unchanged. Use "isSelected" method to just test true/false 
-            selected: null,       
-            // xref to MapArea objects
-            areasXref: [],
-            // (temporary storage) - the actual area moused over
-            area: null,
-            // the last options used to render this. Cache so when re-drawing after a remove, changes in options won't
-            // break already selected things. 
-            optsCache: null
-         });
-    };
-
-    /**
-     * The public API for AreaData object
-     */
-
-    m.AreaData.prototype = {
-        constuctor: m.AreaData,
-        select: select,
-        deselect: deselect,
-        toggle: toggle,
-        areas: function() {
-            var i,result=[];
-            for (i=0;i<this.areasXref.length;i++) {
-                result.push(this.owner.mapAreas[this.areasXref[i]]);
-            }
-            return result;
-        },
-        // return all coordinates for all areas
-        coords: function(offset) {
-            var coords = [];
-            $.each(this.areas(), function (i, el) {
-                coords = coords.concat(el.coords(offset));
-            });
-            return coords;
-        },
-        reset: function () {
-            $.each(this.areas(), function (i, e) {
-                e.reset();
-            });
-            this.areasXref = [];
-            this.options = null;
-        },
-        // Return the effective selected state of an area, incorporating staticState
-        isSelectedOrStatic: function () {
-
-            var o = this.effectiveOptions();
-            return u.isBool(o.staticState) ? o.staticState :
-                        this.isSelected();
-        },
-        isSelected: function () {
-            return u.isBool(this.selected) ? this.selected :
-                u.isBool(this.owner.area_options.selected) ? this.owner.area_options.selected : false;
-        },
-        isSelectable: function () {
-            return u.isBool(this.effectiveOptions().staticState) ? false :
-                        (u.isBool(this.owner.options.staticState) ? false : u.boolOrDefault(this.effectiveOptions().isSelectable,true));
-        },
-        isDeselectable: function () {
-            return u.isBool(this.effectiveOptions().staticState) ? false :
-                        (u.isBool(this.owner.options.staticState) ? false : u.boolOrDefault(this.effectiveOptions().isDeselectable,true));
-        },
-        isNotRendered: function() {
-            var area = $(this.area);
-            return area.attr('nohref') ||
-                !area.attr('href') ||
-                this.effectiveOptions().isMask;
-
-        },
-
-        
-         /**
-         * Return the overall options effective for this area. 
-         * This should get the default options, and merge in area-specific options, finally
-         * overlaying options passed by parameter
-         * 
-         * @param  {[type]} options  options which will supercede all other options for this area
-         * @return {[type]}          the combined options
-         */
-        
-        effectiveOptions: function (options) {
-            
-            var opts = u.updateProps({},
-                    this.owner.area_options,
-                    this.options,
-                    options || {},
-                    {
-                        id: this.areaId 
-                    }
-                );
-
-            opts.selected = this.isSelected();
-            
-            return opts;
-        },
-
-        /**
-         * Return the options effective for this area for a "render" or "highlight" mode. 
-         * This should get the default options, merge in the areas-specific options, 
-         * and then the mode-specific options.
-         * @param  {string} mode    'render' or 'highlight'
-         * @param  {[type]} options  options which will supercede all other options for this area
-         * @return {[type]}          the combined options
-         */
-        
-        effectiveRenderOptions: function (mode, options) {
-            var allOpts,opts=this.optsCache;
-            
-            if (!opts || mode==='highlight') {
-                allOpts = this.effectiveOptions(options);
-                opts = u.updateProps({},
-                    allOpts,
-                    allOpts["render_" + mode]
-                );
-                    
-                if (mode!=='highlight') {
-                    this.optsCache=opts;
-                }
-            }
-            return $.extend({},opts);
-        },
-
-        // Fire callback on area state change
-        changeState: function (state_type, state) {
-            if ($.isFunction(this.owner.options.onStateChange)) {
-                this.owner.options.onStateChange.call(this.owner.image,
-                    {
-                        key: this.key,
-                        state: state_type,
-                        selected: state
-                    }
-                );
-            }
-        },
-
-        // highlight this area
-         
-        highlight: function (options) {
-            var o = this.owner;
-            if (this.effectiveOptions().highlight) {
-                o.graphics.addShapeGroup(this, "highlight",options);
-            }
-            o.setHighlightId(this.areaId);
-            this.changeState('highlight', true);
-        },
-
-        // select this area. if "callEvent" is true then the state change event will be called. (This method can be used
-        // during config operations, in which case no event is indicated)
-        
-        drawSelection: function () {
-        
-
-            this.owner.graphics.addShapeGroup(this, "select");
-        
-        }
-
-
-    };
-    // represents an HTML area
-    m.MapArea = function (owner,areaEl,keys) {
-        if (!owner) {
-            return;
-        }
-        var me = this;
-        me.owner = owner;   // a MapData object
-        me.area = areaEl;
-        me.areaDataXref=[]; // a list of map_data.data[] id's for each areaData object containing this
-        me.originalCoords = [];
-        $.each(u.split(areaEl.coords), function (i, el) {
-            me.originalCoords.push(parseFloat(el));
-        });
-        me.length = me.originalCoords.length;
-        me.shape = areaEl.shape.toLowerCase();
-        me.nohref = areaEl.nohref || !areaEl.href;
-        me.configure(keys);
-    };
-    m.MapArea.prototype= {
-        constructor: m.MapArea,
-        configure: function(keys) {
-            this.keys = u.split(keys);
-        },
-        reset: function() {
-            this.area=null;
-        },
-        coords: function (offset) {
-            return $.map(this.originalCoords,function(e) {
-                return offset ? e : e+offset;
-            });
-        }
-    };
-} (jQuery));
-/* areacorners.js
-   determine the best place to put a box of dimensions (width,height) given a circle, rect or poly
-*/
-
-(function ($) {
-    var u=$.mapster.utils;
-
-
-    /**
-     * Compute positions that will place a target with dimensions [width,height] outside 
-     * but near the boundaries of the elements "elements". When an imagemap is passed, the 
-     *
-     * @param  {Element|Element[]} elements An element or an array of elements (such as a jQuery object)
-     * @param  {Element} image The image to which area elements are bound, if this is an image map.
-     * @param  {Element} container The contianer in which the target must be constrained (or document, if missing)
-     * @param  {int} width The width of the target object
-     * @return {object} a structure with the x and y positions
-     */
-    u.areaCorners = function (elements, image, container, width, height) {
-        var pos,found, minX, minY, maxX, maxY, bestMinX, bestMaxX, bestMinY, bestMaxY, curX, curY, nest, j,
-           offsetx=0, 
-           offsety=0,
-           rootx,
-           rooty,
-           iCoords,radius,angle,el,
-           coords=[];
-
-        // if a single element was passed, map it to an array
-        
-        elements = elements.length ? 
-            elements:
-            [elements];
-
-        container = container ? 
-            $(container):
-            $(document.body);
-
-        // get the relative root of calculation
-
-        pos = container.offset();
-        rootx = pos.left;
-        rooty = pos.top;
-
-        // with areas, all we know about is relative to the top-left corner of the image. We need to add an offset compared to
-        // the actual container. After this calculation, offsetx/offsety can be added to either the area coords, or the target's
-        // absolute position to get the correct top/left boundaries of the container.
-
-        if (image) {
-            pos = $(image).offset();
-            offsetx = pos.left;
-            offsety = pos.top;
-        }
-
-        // map the coordinates of any type of shape to a poly and use the logic. simpler than using three different
-        // calculation methods. Circles use a 20 degree increment for this estimation.
-
-        for (j=0;j<elements.length;j++) 
-        {
-            el=elements[j];
-            if (el.nodeName==='AREA') {
-                iCoords = u.split(el.coords,parseInt);
-
-                switch(el.shape) {
-                    case 'circle':
-                        curX=iCoords[0];
-                        curY=iCoords[1];
-                        radius=iCoords[2];
-                        coords=[];
-                        for (j=0;j<360;j+=20) {
-                             angle=j*Math.PI/180;
-                             coords.push(curX+radius*Math.cos(angle),curY+radius*Math.sin(angle));
-                        }
-                        break;
-                      case 'rect':
-                          coords.push(iCoords[0],iCoords[1],iCoords[2],iCoords[1],iCoords[2],iCoords[3],iCoords[0],iCoords[3]);
-                          break;
-                      default:
-                          coords=coords.concat(iCoords);
-                         break;
-                }
-
-                // map area positions to it's real position in the container
-
-                for (j=0;j<coords.length;j+=2)
-                {
-                    coords[j]=parseInt(coords[j],10)+offsetx;
-                    coords[j+1]=parseInt(coords[j+1],10)+offsety;
-                }
-            } else {
-                el=$(el);
-                pos = el.position();
-                coords.push(pos.left,pos.top,
-                            pos.left+el.width(),pos.top,
-                            pos.left+el.width(),pos.top+el.height(),
-                            pos.left,pos.top+el.height());
-
-            }
-        }
-        
-        minX = minY = bestMinX = bestMinY = 999999;
-        maxX = maxY = bestMaxX = bestMaxY = -1;
-
-        for (j = coords.length - 2; j >= 0; j -= 2) {
-            curX = coords[j];
-            curY = coords[j + 1];
-            
-            if (curX < minX) {
-                minX = curX;
-                bestMaxY = curY;
-            }
-            if (curX > maxX) {
-                maxX = curX;
-                bestMinY = curY;
-            }
-            if (curY < minY) {
-                minY = curY;
-                bestMaxX = curX;
-            }
-            if (curY > maxY) {
-                maxY = curY;
-                bestMinX = curX;
-            }
-
-        }
-
-        // try to figure out the best place for the tooltip
-        
-        if (width && height) {
-            found=false;
-            $.each([[bestMaxX - width, minY - height], [bestMinX, minY - height],
-                             [minX - width, bestMaxY - height], [minX - width, bestMinY],
-                             [maxX,bestMaxY - height], [ maxX,bestMinY],
-                             [bestMaxX - width, maxY], [bestMinX, maxY]
-                      ],function (i, e) {
-                          if (!found && (e[0] > rootx && e[1] > rooty)) {
-                              nest = e;
-                              found=true;
-                              return false;
-                  }
-             });
-             
-             // default to lower-right corner if nothing fit inside the boundaries of the image
-             
-             if (!found) {
-                 nest=[maxX,maxY];
-             }
-        }
-        return nest;
-    };
-} (jQuery));
-/* scale.js: resize and zoom functionality
-   requires areacorners.js, when.js
-*/
-
-
-(function ($) {
-    var m = $.mapster, u = m.utils, p = m.MapArea.prototype;
-
-    m.utils.getScaleInfo = function (eff, actual) {
-        var pct;
-        if (!actual) {
-            pct = 1;
-            actual=eff;
-        } else {
-            pct = eff.width / actual.width || eff.height / actual.height;
-            // make sure a float error doesn't muck us up
-            if (pct > 0.98 && pct < 1.02) { pct = 1; }
-        }
-        return {
-            scale: (pct !== 1),
-            scalePct: pct,
-            realWidth: actual.width,
-            realHeight: actual.height,
-            width: eff.width,
-            height: eff.height,
-            ratio: eff.width / eff.height
-        };
-    };
-    // Scale a set of AREAs, return old data as an array of objects
-    m.utils.scaleMap = function (image, imageRaw, scale) {
-        
-        // stunningly, jQuery width can return zero even as width does not, seems to happen only
-        // with adBlock or maybe other plugins. These must interfere with onload events somehow.
-
-
-        var vis=u.size(image),
-            raw=u.size(imageRaw,true);
-
-        if (!raw.complete()) {
-            throw("Another script, such as an extension, appears to be interfering with image loading. Please let us know about this.");
-        }
-        if (!vis.complete()) {
-            vis=raw;
-        }
-        return this.getScaleInfo(vis, scale ? raw : null);
-    };
-    
-    /**
-     * Resize the image map. Only one of newWidth and newHeight should be passed to preserve scale
-     * 
-     * @param  {int}   width       The new width OR an object containing named parameters matching this function sig
-     * @param  {int}   height      The new height
-     * @param  {int}   effectDuration Time in ms for the resize animation, or zero for no animation
-     * @param  {function} callback    A function to invoke when the operation finishes
-     * @return {promise}              NOT YET IMPLEMENTED
-     */
-    
-    m.MapData.prototype.resize = function (width, height, duration, callback) {
-        var p,promises,newsize,els, highlightId, ratio, 
-            me = this;
-        
-        // allow omitting duration
-        callback = callback || duration;
-
-        function sizeCanvas(canvas, w, h) {
-            if (m.hasCanvas()) {
-                canvas.width = w;
-                canvas.height = h;
-            } else {
-                $(canvas).width(w);
-                $(canvas).height(h);
-            }
-        }
-
-        // Finalize resize action, do callback, pass control to command queue
-
-        function cleanupAndNotify() {
-
-            me.currentAction = '';
-            
-            if ($.isFunction(callback)) {
-                callback();
-            }
-            
-            me.processCommandQueue();
-        }
-
-        // handle cleanup after the inner elements are resized
-        
-        function finishResize() {
-            sizeCanvas(me.overlay_canvas, width, height);
-
-            // restore highlight state if it was highlighted before
-            if (highlightId >= 0) {
-                var areaData = me.data[highlightId];
-                areaData.tempOptions = { fade: false };
-                me.getDataForKey(areaData.key).highlight();
-                areaData.tempOptions = null;
-            }
-            sizeCanvas(me.base_canvas, width, height);
-            me.redrawSelections();
-            cleanupAndNotify();
-        }
-
-        function resizeMapData() {
-            $(me.image).css(newsize);
-            // start calculation at the same time as effect
-            me.scaleInfo = u.getScaleInfo({
-                    width: width,
-                    height: height
-                },
-                { 
-                    width: me.scaleInfo.realWidth,
-                    height: me.scaleInfo.realHeight
-                });
-            $.each(me.data, function (i, e) {
-                $.each(e.areas(), function (i, e) {
-                    e.resize();
-                });
-            });
-        }
-
-        if (me.scaleInfo.width === width && me.scaleInfo.height === height) {
-            return;
-        }
-
-        highlightId = me.highlightId;
-
-        
-        if (!width) {
-            ratio = height / me.scaleInfo.realHeight;
-            width = Math.round(me.scaleInfo.realWidth * ratio);
-        }
-        if (!height) {
-            ratio = width / me.scaleInfo.realWidth;
-            height = Math.round(me.scaleInfo.realHeight * ratio);
-        }
-
-        newsize = { 'width': String(width) + 'px', 'height': String(height) + 'px' };
-        if (!m.hasCanvas()) {
-            $(me.base_canvas).children().remove();
-        }
-
-        // resize all the elements that are part of the map except the image itself (which is not visible)
-        // but including the div wrapper
-        els = $(me.wrapper).find('.mapster_el').add(me.wrapper);
-
-        if (duration) {
-            promises = [];
-            me.currentAction = 'resizing';
-            els.each(function (i, e) {
-                p = u.defer();
-                promises.push(p);
-
-                $(e).animate(newsize, {
-                    duration: duration,
-                    complete: p.resolve,
-                    easing: "linear"
-                });
-            });
-
-            p = u.defer();
-            promises.push(p);
-
-            // though resizeMapData is not async, it needs to be finished just the same as the animations,
-            // so add it to the "to do" list.
-            
-            u.when.all(promises).then(finishResize);
-            resizeMapData();
-            p.resolve();
-        } else {
-            els.css(newsize);
-            resizeMapData();
-            finishResize();
-            
-        }
-    };
-
-
-    m.MapArea = u.subclass(m.MapArea, function () {
-        //change the area tag data if needed
-        this.base.init();
-        if (this.owner.scaleInfo.scale) {
-            this.resize();
-        }
-    });
-
-    p.coords = function (percent, coordOffset) {
-        var j, newCoords = [],
-                    pct = percent || this.owner.scaleInfo.scalePct,
-                    offset = coordOffset || 0;
-
-        if (pct === 1 && coordOffset === 0) {
-            return this.originalCoords;
-        }
-
-        for (j = 0; j < this.length; j++) {
-            //amount = j % 2 === 0 ? xPct : yPct;
-            newCoords.push(Math.round(this.originalCoords[j] * pct) + offset);
-        }
-        return newCoords;
-    };
-    p.resize = function () {
-        this.area.coords = this.coords().join(',');
-    };
-
-    p.reset = function () {
-        this.area.coords = this.coords(1).join(',');
-    };
-    
-    m.impl.resize = function (width, height, duration, callback) {
-        if (!width && !height) {
-            return false;
-        }
-        var x= (new m.Method(this,
-                function () {
-                    this.resize(width, height, duration, callback);
-                },
-                null,
-                {
-                    name: 'resize',
-                    args: arguments
-                }
-            )).go();
-        return x;
-    };
-
-/*
-    m.impl.zoom = function (key, opts) {
-        var options = opts || {};
-
-        function zoom(areaData) {
-            // this will be MapData object returned by Method
-
-            var scroll, corners, height, width, ratio,
-                    diffX, diffY, ratioX, ratioY, offsetX, offsetY, newWidth, newHeight, scrollLeft, scrollTop,
-                    padding = options.padding || 0,
-                    scrollBarSize = areaData ? 20 : 0,
-                    me = this,
-                    zoomOut = false;
-
-            if (areaData) {
-                // save original state on first zoom operation
-                if (!me.zoomed) {
-                    me.zoomed = true;
-                    me.preZoomWidth = me.scaleInfo.width;
-                    me.preZoomHeight = me.scaleInfo.height;
-                    me.zoomedArea = areaData;
-                    if (options.scroll) {
-                        me.wrapper.css({ overflow: 'auto' });
-                    }
-                }
-                corners = $.mapster.utils.areaCorners(areaData.coords(1, 0));
-                width = me.wrapper.innerWidth() - scrollBarSize - padding * 2;
-                height = me.wrapper.innerHeight() - scrollBarSize - padding * 2;
-                diffX = corners.maxX - corners.minX;
-                diffY = corners.maxY - corners.minY;
-                ratioX = width / diffX;
-                ratioY = height / diffY;
-                ratio = Math.min(ratioX, ratioY);
-                offsetX = (width - diffX * ratio) / 2;
-                offsetY = (height - diffY * ratio) / 2;
-
-                newWidth = me.scaleInfo.realWidth * ratio;
-                newHeight = me.scaleInfo.realHeight * ratio;
-                scrollLeft = (corners.minX) * ratio - padding - offsetX;
-                scrollTop = (corners.minY) * ratio - padding - offsetY;
-            } else {
-                if (!me.zoomed) {
-                    return;
-                }
-                zoomOut = true;
-                newWidth = me.preZoomWidth;
-                newHeight = me.preZoomHeight;
-                scrollLeft = null;
-                scrollTop = null;
-            }
-
-            this.resize({
-                width: newWidth,
-                height: newHeight,
-                duration: options.duration,
-                scroll: scroll,
-                scrollLeft: scrollLeft,
-                scrollTop: scrollTop,
-                // closure so we can be sure values are correct
-                callback: (function () {
-                    var isZoomOut = zoomOut,
-                            scroll = options.scroll,
-                            areaD = areaData;
-                    return function () {
-                        if (isZoomOut) {
-                            me.preZoomWidth = null;
-                            me.preZoomHeight = null;
-                            me.zoomed = false;
-                            me.zoomedArea = false;
-                            if (scroll) {
-                                me.wrapper.css({ overflow: 'inherit' });
-                            }
-                        } else {
-                            // just to be sure it wasn't canceled & restarted
-                            me.zoomedArea = areaD;
-                        }
-                    };
-                } ())
-            });
-        }
-        return (new m.Method(this,
-                function (opts) {
-                    zoom.call(this);
-                },
-                function () {
-                    zoom.call(this.owner, this);
-                },
-                {
-                    name: 'zoom',
-                    args: arguments,
-                    first: true,
-                    key: key
-                }
-                )).go();
-
-
-    };
-    */
-} (jQuery));
-/* tooltip.js - tooltip functionality
-   requires areacorners.js
-*/
-
-(function ($) {
-
-    var m = $.mapster, u = m.utils;
-    
-    $.extend(m.defaults, {
-        toolTipContainer: '<div style="border: 2px solid black; background: #EEEEEE; width:160px; padding:4px; margin: 4px; -moz-box-shadow: 3px 3px 5px #535353; ' +
-        '-webkit-box-shadow: 3px 3px 5px #535353; box-shadow: 3px 3px 5px #535353; -moz-border-radius: 6px 6px 6px 6px; -webkit-border-radius: 6px; ' +
-        'border-radius: 6px 6px 6px 6px; opacity: 0.9;"></div>',
-        showToolTip: false,
-        toolTipFade: true,
-        toolTipClose: ['area-mouseout','image-mouseout'],
-        onShowToolTip: null,
-        onHideToolTip: null
-    });
-    
-    $.extend(m.area_defaults, {
-        toolTip: null,
-        toolTipClose: null
-    });
-    
-
-    /**
-     * Show a tooltip positioned near this area.
-     * 
-     * @param {string|jquery} html A string of html or a jQuery object containing the tooltip content.
-     * @param {string|jquery} [template] The html template in which to wrap the content
-     * @param {string|object} [css] CSS to apply to the outermost element of the tooltip 
-     * @return {jquery} The tooltip that was created
-     */
-    
-    function createToolTip(html, template, css) {
-        var tooltip;
-
-        // wrap the template in a jQuery object, or clone the template if it's already one.
-        // This assumes that anything other than a string is a jQuery object; if it's not jQuery will
-        // probably throw an error.
-        
-        if (template) {
-            tooltip = typeof template === 'string' ?
-                $(template) : 
-                $(template).clone();
-
-            tooltip.append(html);
-        } else {
-            tooltip=$(html);
-        }
-
-        // always set display to block, or the positioning css won't work if the end user happened to
-        // use a non-block type element.
-
-        tooltip.css($.extend((css || {}),{
-                display:"block",
-                position:"absolute"
-            })).hide();
-        
-        $('body').append(tooltip);
-
-        // we must actually add the tooltip to the DOM and "show" it in order to figure out how much space it
-        // consumes, and then reposition it with that knowledge.
-        // We also cache the actual opacity setting to restore finally.
-        
-        tooltip.attr("data-opacity",tooltip.css("opacity"))
-            .css("opacity",0);
-        
-        // doesn't really show it because opacity=0
-        
-        return tooltip.show();
-    }
-
-
-    /**
-     * Show a tooltip positioned near this area.
-     * 
-     * @param {jquery} tooltip The tooltip
-     * @param {object} [options] options for displaying the tooltip.
-     *  @config {int} [left] The 0-based absolute x position for the tooltip
-     *  @config {int} [top] The 0-based absolute y position for the tooltip
-     *  @config {string|object} [css] CSS to apply to the outermost element of the tooltip 
-     *  @config {bool} [fadeDuration] When non-zero, the duration in milliseconds of a fade-in effect for the tooltip.
-     */
-    
-    function showToolTipImpl(tooltip,options)
-    {
-        var tooltipCss = { 
-                "left":  options.left + "px",
-                "top": options.top + "px"
-            }, 
-            actalOpacity=tooltip.attr("data-opacity") || 0,
-            zindex = tooltip.css("z-index");
-        
-        if (parseInt(zindex,10)===0 
-            || zindex === "auto") {
-            tooltipCss["z-index"] = 9999;
-        }
-
-        tooltip.css(tooltipCss)
-            .addClass('mapster_tooltip');
-
-        
-        if (options.fadeDuration && options.fadeDuration>0) {
-            u.fader(tooltip[0], 0, actalOpacity, options.fadeDuration);
-        } else {
-            u.setOpacity(tooltip[0], actalOpacity);
-        }
-    }
-      
-    /**
-     * Hide and remove active tooltips
-     * 
-     * @param  {MapData} this The mapdata object to which the tooltips belong
-     */
-    
-    m.MapData.prototype.clearToolTip = function() {
-        if (this.activeToolTip) {
-            this.activeToolTip.stop().remove();
-            this.activeToolTip = null;
-            this.activeToolTipID = null;
-            u.ifFunction(this.options.onHideToolTip, this);
-        }
-    };
-
-    /**
-     * Configure the binding between a named tooltip closing option, and a mouse event.
-     *
-     * If a callback is passed, it will be called when the activating event occurs, and the tooltip will
-     * only closed if it returns true.
-     *
-     * @param  {MapData}  [this]     The MapData object to which this tooltip belongs.
-     * @param  {String}   option     The name of the tooltip closing option
-     * @param  {String}   event      UI event to bind to this option
-     * @param  {Element}  target     The DOM element that is the target of the event
-     * @param  {Function} [beforeClose] Callback when the tooltip is closed
-     * @param  {Function} [onClose]  Callback when the tooltip is closed
-     */
-    function bindToolTipClose(options, bindOption, event, target, beforeClose, onClose) {
-        var event_name = event + '.mapster-tooltip';
-        
-        if ($.inArray(bindOption, options) >= 0) {
-            target.unbind(event_name)
-                .bind(event_name, function (e) {
-                    if (!beforeClose || beforeClose.call(this,e)) {
-                        target.unbind('.mapster-tooltip');
-                        if (onClose) {
-                            onClose.call(this);
-                        }
-                    }
-                });
-            
-            return {
-                object: target, 
-                event: event_name
-            };
-        }
-    }
-    
-    /**
-     * Show a tooltip.
-     *
-     * @param {string|jquery}   [tooltip]       A string of html or a jQuery object containing the tooltip content.
-     * 
-     * @param {string|jquery}   [target]        The target of the tooltip, to be used to determine positioning. If null,
-     *                                          absolute position values must be passed with left and top.
-     *
-     * @param {string|jquery}   [image]         If target is an [area] the image that owns it
-     * 
-     * @param {string|jquery}   [container]     An element within which the tooltip must be bounded
-     *
-     *
-     * 
-     * @param {object|string|jQuery} [options]  options to apply when creating this tooltip - OR -
-     *                                          The markup, or a jquery object, containing the data for the tooltip 
-     *                                         
-     *  @config {string}        [closeEvents]   A string with one or more comma-separated values that determine when the tooltip
-     *                                          closes: 'area-click','tooltip-click','image-mouseout' are valid values
-     *                                          then no template will be used.
-     *  @config {int}           [offsetx]       the horizontal amount to offset the tooltip 
-     *  @config {int}           [offsety]       the vertical amount to offset the tooltip 
-     *  @config {string|object} [css]           CSS to apply to the outermost element of the tooltip 
-     */
-    
-    function showToolTip(tooltip,target,image,container,options) {
-        var corners,
-            ttopts = {};
-    
-        options = options || {};
-
-
-        if (target) {
-
-            corners = u.areaCorners(target,image,container,
-                                    tooltip.outerWidth(true),
-                                    tooltip.outerHeight(true));
-
-            // Try to upper-left align it first, if that doesn't work, change the parameters
-
-            ttopts.left = corners[0];
-            ttopts.top = corners[1];
-
-        } else {
-            
-            ttopts.left = options.left;
-            ttopts.top = options.top;
-        }
-
-        ttopts.left += (options.offsetx || 0);
-        ttopts.top +=(options.offsety || 0);
-
-        ttopts.css= options.css;
-        ttopts.fadeDuration = options.fadeDuration;
-
-        showToolTipImpl(tooltip,ttopts);
-
-        return tooltip;
-    }
-    
-    /**
-     * Show a tooltip positioned near this area.
-      *
-     * @param {string|jquery}   [content]       A string of html or a jQuery object containing the tooltip content.
-     
-     * @param {object|string|jQuery} [options]  options to apply when creating this tooltip - OR -
-     *                                          The markup, or a jquery object, containing the data for the tooltip 
-     *  @config {string|jquery}   [container]     An element within which the tooltip must be bounded
-     *  @config {bool}          [template]      a template to use instead of the default. If this property exists and is null,
-     *                                          then no template will be used.
-     *  @config {string}        [closeEvents]   A string with one or more comma-separated values that determine when the tooltip
-     *                                          closes: 'area-click','tooltip-click','image-mouseout' are valid values
-     *                                          then no template will be used.
-     *  @config {int}           [offsetx]       the horizontal amount to offset the tooltip 
-     *  @config {int}           [offsety]       the vertical amount to offset the tooltip 
-     *  @config {string|object} [css]           CSS to apply to the outermost element of the tooltip 
-     */
-    m.AreaData.prototype.showToolTip= function(content,options) {
-        var tooltip, closeOpts, target, tipClosed, template,
-            ttopts = {},
-            ad=this,
-            md=ad.owner,
-            areaOpts = ad.effectiveOptions();
-    
-        // copy the options object so we can update it
-        options = options ? $.extend({},options) : {};
-
-        content = content || areaOpts.toolTip;
-        closeOpts = options.closeEvents || areaOpts.toolTipClose || md.options.toolTipClose || 'tooltip-click';
-        
-        template = typeof options.template !== 'undefined' ? 
-                options.template :
-                md.options.toolTipContainer;
-
-        options.closeEvents = typeof closeOpts === 'string' ?
-            closeOpts = u.split(closeOpts) :
-            closeOpts;
-
-        options.fadeDuration = options.fadeDuration ||
-                 (md.options.toolTipFade ? 
-                    (md.options.fadeDuration || areaOpts.fadeDuration) : 0);
-
-        target = ad.area ? 
-            ad.area :
-            $.map(ad.areas(),
-                function(e) {
-                    return e.area;
-                });
-
-        if (md.activeToolTipID===ad.areaId) {
-            return;
-        }
-
-        md.clearToolTip();
-
-        md.activeToolTip = tooltip = createToolTip(content,
-            template,
-            options.css);
-
-        md.activeToolTipID = ad.areaId;
-
-        tipClosed = function() {
-            md.clearToolTip();
-        };
-
-        bindToolTipClose(closeOpts,'area-click', 'click', $(md.map), null, tipClosed);
-        bindToolTipClose(closeOpts,'tooltip-click', 'click', tooltip,null, tipClosed);
-        bindToolTipClose(closeOpts,'image-mouseout', 'mouseout', $(md.image), function(e) {
-            return (e.relatedTarget && e.relatedTarget.nodeName!=='AREA' && e.relatedTarget!==ad.area);
-        }, tipClosed);
-
-
-        showToolTip(tooltip,
-                    target,
-                    md.image,
-                    options.container,
-                    template,
-                    options);
-
-        u.ifFunction(md.options.onShowToolTip, ad.area,
-        {
-            toolTip: tooltip,
-            options: ttopts,
-            areaOptions: areaOpts,
-            key: ad.key,
-            selected: ad.isSelected()
-        });
-
-        return tooltip;
-    };
-    
-
-    /**
-     * Parse an object that could be a string, a jquery object, or an object with a "contents" property
-     * containing html or a jQuery object.
-     * 
-     * @param  {object|string|jQuery} options The parameter to parse
-     * @return {string|jquery} A string or jquery object
-     */
-    function getHtmlFromOptions(options) {
-
-            // see if any html was passed as either the options object itself, or the content property
-
-            return (options ?
-                ((typeof options === 'string' || options.jquery) ?
-                    options :
-                    options.content) :
-                null);
-    }
-
-    /**
-     * Activate or remove a tooltip for an area. When this method is called on an area, the
-     * key parameter doesn't apply and "options" is the first parameter.
-     *
-     * When called with no parameters, or "key" is a falsy value, any active tooltip is cleared.
-     * 
-     * When only a key is provided, the default tooltip for the area is used. 
-     * 
-     * When html is provided, this is used instead of the default tooltip.
-     * 
-     * When "noTemplate" is true, the default tooltip template will not be used either, meaning only
-     * the actual html passed will be used.
-     *  
-     * @param  {string|AreaElement} key The area for which to activate a tooltip, or a DOM element.
-     * 
-     * @param {object|string|jquery} [options] options to apply when creating this tooltip - OR -
-     *                                         The markup, or a jquery object, containing the data for the tooltip 
-     *  @config {string|jQuery} [content]   the inner content of the tooltip; the tooltip text or HTML
-     *  @config {Element|jQuery} [container]   the inner content of the tooltip; the tooltip text or HTML
-     *  @config {bool}          [template]  a template to use instead of the default. If this property exists and is null,
-     *                                      then no template will be used.
-     *  @config {int}           [offsetx]   the horizontal amount to offset the tooltip.
-     *  @config {int}           [offsety]   the vertical amount to offset the tooltip.
-     *  @config {string|object} [css]       CSS to apply to the outermost element of the tooltip 
-     *  @config {string|object} [css] CSS to apply to the outermost element of the tooltip 
-     *  @config {bool}          [fadeDuration] When non-zero, the duration in milliseconds of a fade-in effect for the tooltip.
-     * @return {jQuery} The jQuery object
-     */
-    
-    m.impl.tooltip = function (key,options) {
-        return (new m.Method(this,
-        function mapData() {
-            var tooltip, target, md=this;
-            if (!key) {
-                md.clearToolTip();
-            } else {
-                target=$(key);
-                if (md.activeToolTipID ===target[0]) {
-                    return;
-                }
-                md.clearToolTip();
-
-                md.activeToolTip = tooltip = createToolTip(getHtmlFromOptions(options),
-                            options.template || md.options.toolTipContainer,
-                            options.css);
-                md.activeToolTipID = target[0];
-
-                bindToolTipClose(['tooltip-click'],'tooltip-click', 'click', tooltip, null, function() {
-                    md.clearToolTip();
-                });
-
-                md.activeToolTip = tooltip = showToolTip(tooltip,
-                    target,
-                    md.image,
-                    options.container,
-                    options);
-            }
-        },
-        function areaData() {
-            if ($.isPlainObject(key) && !options) {
-                options = key;
-            }
-
-            this.showToolTip(getHtmlFromOptions(options),options);
-        },
-        { 
-            name: 'tooltip',
-            args: arguments,
-            key: key
-        }
-    )).go();
-    };
-} (jQuery));
+}
 
 'use strict';
 

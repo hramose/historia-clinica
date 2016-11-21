@@ -1,0 +1,62 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+$break-small: 375px;
+$break-large: 1200px;
+
+.row {
+  margin-top: 15px;
+  .col-sm-6 {
+    text-align: center;
+    img {
+      width: 80%;
+    }
+    p {
+      font-family: Tahoma, sans-serif;
+      &.info-tractaments, &.telf {
+        font-size: 38px;
+        color: #016B95;
+        @media screen and (max-width: $break-small) {
+          font-size: 28px;
+        }
+        a {
+          color: #016B95 !important;
+          &:hover {
+            text-decoration: inherit;
+          }
+        }
+      }
+      &.telf {
+        border-radius: 2px;
+        img {
+          width: 36px;
+          margin-right: 10px;
+          vertical-align: initial;
+          @media screen and (max-width: $break-small) {
+            vertical-align: sub;
+          }
+        }
+      }
+      min-height: 50px;
+      img {
+        width: 30%;
+        image-rendering: -webkit-optimize-contrast;
+      }
+    }
+  }
+}
+footer {
+  min-height: 50px;
+  text-align: right;
+  font-family: Tahoma, sans-serif;
+  #num-colegiado {
+    display: block;
+    color: #016B95 !important;
+  }
+  img {
+    width: 120px;
+    image-rendering: -webkit-optimize-contrast;
+    @media screen and (max-width: $break-small) {
+      width: 70px;
+    }
+  }
+}

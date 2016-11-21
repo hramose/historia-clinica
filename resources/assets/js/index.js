@@ -28,10 +28,4 @@ $(document).ready(function () {
             }
         });
     }
-
-    $('.datepicker').pickadate({
-        format: 'dd/mm/yyyy',
-        formatSubmit: 'dd/mm/yyyy',
-        hiddenSuffix: ''
-    });
 });

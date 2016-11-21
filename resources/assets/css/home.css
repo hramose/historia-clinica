@@ -158,7 +158,6 @@ article {
         text-align: center;
         white-space: nowrap;
         vertical-align: middle;
-        -ms-touch-action: manipulation;
         touch-action: manipulation;
         cursor: pointer;
         border: 1px solid #2e6da4;
