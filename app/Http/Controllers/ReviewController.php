@@ -55,7 +55,7 @@ class ReviewController extends Controller
         if (Input::get('id') == '') {
             $review = new Review();
         } else {
-            $review = Review::whereId(Input::get('id'))->first();
+            $review = Review::find(Input::get('id'));
         }
         $review->fill($inputs);
         if ($review->patient_id == '') $review->patient_id = $id;
@@ -73,12 +73,13 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Patient $patient
+     * @param null $id_review
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id, $id_review = null)
+    public function show(Patient $patient, $id_review = null)
     {
-        $patient = Patient::where('id', $id)->first();
         $review = new Review();
         if (!is_null($id_review)) {
             $review = Review::where('id', $id_review)->first();

@@ -196,7 +196,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
 
     Route::group(['prefix' => 'valoracions'], function () {
         Route::get('/', 'ReviewController@index');
-        Route::get('/pacient/{id}',
+        Route::get('/pacient/{patient}',
             [
                 'as' => 'valoracions.pacient.show',
                 'uses' => 'ReviewController@show'

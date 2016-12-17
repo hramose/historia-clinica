@@ -1010,3 +1010,24 @@ nav, li.active, .wrap-content, #footer {
     stroke-dashoffset: 0;
   }
 }
+
+//Reviews
+#front-back-body-container {
+  width: 100%;
+  position: relative;
+  min-height: 558px;
+  column {
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  img {
+    position: absolute;
+    top: 40px;
+  }
+  canvas {
+    position: absolute;
+    top: 40px;
+  }
+}

@@ -71,29 +71,17 @@ class Review extends Model
             $content .= mb_strtoupper(trans('models.Reviewmotiu_consulta')) . "\\n";
             $content .= $reviewContent['motiu_consulta'] . "\\n";
         }
-        if ($reviewContent['limit_articular']['observacions'] != "") {
-            $content .= mb_strtoupper(trans('models.Reviewlimitarticular_observacions')) . "\\n";
-            $content .= $reviewContent['limit_articular']['observacions'] . "\\n";
+        if ($reviewContent['sist_musculesqueletic']['observacions'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewsist_musculesqueletic_observacions')) . "\\n";
+            $content .= $reviewContent['sist_musculesqueletic']['observacions'] . "\\n";
         }
         if ($reviewContent['dolor']['observacions'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewdolor_descripcio')) . "\\n";
             $content .= $reviewContent['dolor']['observacions'] . "\\n";
         }
-        if ($reviewContent['forca_muscular']['observacions'] != "") {
-            $content .= mb_strtoupper(trans('models.Reviewlimitarticular_observacions')) . "\\n";
-            $content .= $reviewContent['forca_muscular']['observacions'] . "\\n";
-        }
-        if ($reviewContent['sensibilitzacio'] != "") {
-            $content .= mb_strtoupper(trans('models.Reviewssensibilitzacio')) . "\\n";
-            $content .= $reviewContent['sensibilitzacio'] . "\\n";
-        }
         if ($reviewContent['sist_nervios'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewssist_nervioso')) . "\\n";
             $content .= $reviewContent['sist_nervios'] . "\\n";
-        }
-        if ($reviewContent['sist_neural'] != "") {
-            $content .= mb_strtoupper(trans('models.Reviewssist_neural')) . "\\n";
-            $content .= $reviewContent['sist_neural'] . "\\n";
         }
         if ($reviewContent['sist_cardiovascular'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewssist_cardiovascular')) . "\\n";
@@ -103,9 +91,9 @@ class Review extends Model
             $content .= mb_strtoupper(trans('models.Reviewssist_respiratori')) . "\\n";
             $content .= $reviewContent['sist_respiratori'] . "\\n";
         }
-        if ($reviewContent['sist_reproductiu'] != "") {
-            $content .= mb_strtoupper(trans('models.Reviewssist_reproductiu')) . "\\n";
-            $content .= $reviewContent['sist_reproductiu'] . "\\n";
+        if ($reviewContent['sist_urogenital'] != "") {
+            $content .= mb_strtoupper(trans('models.Reviewssist_urogenital')) . "\\n";
+            $content .= $reviewContent['sist_urogenital'] . "\\n";
         }
         if ($reviewContent['sist_digestiu'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewssist_digestiu')) . "\\n";
