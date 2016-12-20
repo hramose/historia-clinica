@@ -82,6 +82,12 @@ class Patient extends Model
         return $birthdays_wo_check;
     }
 
+    public function isTodayHisBirthday()
+    {
+        $birth_date = $this->birth_date;
+        $now = Carbon::now();
+    }
+
     /*public function getBirthDateAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
