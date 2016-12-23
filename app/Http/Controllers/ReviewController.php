@@ -74,17 +74,11 @@ class ReviewController extends Controller
      * Display the specified resource.
      *
      * @param Patient $patient
-     * @param null $id_review
+     * @param Review $review
      * @return \Illuminate\Http\Response
-     * @internal param int $id
      */
-    public function show(Patient $patient, $id_review = null)
+    public function show(Patient $patient, Review $review)
     {
-        $review = new Review();
-        if (!is_null($id_review)) {
-            $review = Review::where('id', $id_review)->first();
-        }
-
         $allReviews = $patient->reviews;
 
         return view('review/show', [

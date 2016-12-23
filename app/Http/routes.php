@@ -206,7 +206,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'valoracions.pacient.nou',
                 'uses' => 'ReviewController@store'
             ]);
-        Route::get('/pacient/{id}/show/{id_review}',
+        Route::get('/pacient/{patient}/show/{review}',
             [
                 'as' => 'valoracionsEditar',
                 'uses' => 'ReviewController@show'

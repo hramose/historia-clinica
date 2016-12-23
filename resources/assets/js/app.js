@@ -263,6 +263,17 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 
     };
 
+    $scope.drawOnePoint = function (id, dot) {
+        var canvas = $('canvas#' + id)[0];
+        var context = canvas.getContext('2d');
+
+        context.fillStyle = "#000000";
+        context.beginPath();
+        context.fillStyle = '#ebae99';
+        context.arc(dot.posx, dot.posy, 10, 0, 2 * Math.PI);
+        context.fill();
+    };
+
     $scope.getMousePos = function (canvas, evt) {
         var rect = canvas.getBoundingClientRect();
         return {
@@ -312,8 +323,28 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
         $scope.review.review = typeof json.review != 'undefined' ? json.review : $scope.review.review;
         $scope.review.patient_id = json.patient_id;
         $scope.review.date = json.date;
-        //pongo puntos en su sitio
 
+        /**
+         * Cargas los puntos en las dos imágenes
+         */
+        if (typeof $scope.review.review.dots_front != 'undefined') {
+            $scope.review.review.dots_front = JSON.parse($scope.review.review.dots_front);
+            $timeout(function(){
+                $scope.review.review.dots_front.forEach(function (dot) {
+                    $scope.drawOnePoint('front', dot);
+                });
+            }, 500);
+        }
+
+        if (typeof $scope.review.review.dots_back != 'undefined') {
+            $scope.review.review.dots_back = JSON.parse($scope.review.review.dots_back);
+            $timeout(function(){
+                $scope.review.review.dots_back.forEach(function (dot) {
+                    $scope.drawOnePoint('back', dot);
+                });
+            }, 500);
+        }
+        console.log($scope.review.review);
     };
 
     var $review = $('#review');
