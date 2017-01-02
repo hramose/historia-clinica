@@ -118,7 +118,6 @@ function UsersController($scope, $filter) {
         $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
         $scope.user.blocked = $scope.user.blocked == 1;
         $scope.user.password = $scope.randomStr(16);
-        console.log($scope.user);
     }
 }
 
@@ -329,7 +328,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
          */
         if (typeof $scope.review.review.dots_front != 'undefined') {
             $scope.review.review.dots_front = JSON.parse($scope.review.review.dots_front);
-            $timeout(function(){
+            $timeout(function () {
                 $scope.review.review.dots_front.forEach(function (dot) {
                     $scope.drawOnePoint('front', dot);
                 });
@@ -338,7 +337,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 
         if (typeof $scope.review.review.dots_back != 'undefined') {
             $scope.review.review.dots_back = JSON.parse($scope.review.review.dots_back);
-            $timeout(function(){
+            $timeout(function () {
                 $scope.review.review.dots_back.forEach(function (dot) {
                     $scope.drawOnePoint('back', dot);
                 });
@@ -365,23 +364,26 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
         $scope.selected_dot = dot;
     };
 
-    $scope.today_date = function () {
-        var select = document.querySelector('select[name="selected_review"]');
-        var opts = select.querySelectorAll('option');
-        var today = $filter('date')(new Date(), 'dd/MM/y');
+    $scope.today_date = function (event) {
+        var currentTarget = event.currentTarget;
+        if ($(currentTarget).val() == '') {
+            var select = document.querySelector('select[name="selected_review"]');
+            var opts = select.querySelectorAll('option');
+            var today = $filter('date')(new Date(), 'dd/MM/y');
 
-        var exists = false;
-        for (var i = 0; i < opts.length; i++) {
-            if (opts[i].innerHTML == today) {
-                exists = true;
-                break;
+            var exists = false;
+            for (var i = 0; i < opts.length; i++) {
+                if (opts[i].innerHTML == today) {
+                    exists = true;
+                    break;
+                }
             }
-        }
 
-        if ($scope.review.id == '' && !exists)
-            $scope.review.date = today;
-        else if ($scope.review.id == '' && exists) {
-            $scope.msg_today_already = true;
+            if ($scope.review.id == '' && !exists)
+                $scope.review.date = today;
+            else if ($scope.review.id == '' && exists) {
+                $scope.msg_today_already = true;
+            }
         }
     };
 

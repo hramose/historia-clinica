@@ -62,6 +62,7 @@ return array(
     'Reviewssist_digestiu' => 'Sist. Digestiu',
     'Reviewsaltres' => 'Altres',
     'Cclinic_title' => 'Curs clínic',
+    'Cclinicmsgsavedcorrectly' => 'Curs clínic guardat correctament',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
     'Billcreationdate' => 'Data',

@@ -42,7 +42,7 @@
                 <column cols="12" id="review-date-col">
                     <section class="width-5">
                         <label>{{ trans('models.Reviewdate') }}</label>
-                        {!! Form::text('date', null, ['ng-click' => 'today_date()', 'class'=> 'width-12', 'required' => 'required', 'ng-model' => 'review.date']) !!}
+                        {!! Form::text('date', null, ['ng-click' => 'today_date($event)', 'class'=> 'width-12', 'required' => 'required', 'ng-model' => 'review.date']) !!}
                         <div ng-show="msg_today_already">{{trans('messages.today_date_already_registered')}}</div>
                     </section>
                     <section class="width-5">

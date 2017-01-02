@@ -245,7 +245,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'cursoEliminar',
                 'uses' => 'ClinicalCourseController@destroy'
             ]);
-        Route::post('/pacient/{id}/save/',
+        Route::post('/pacient/{patient}/save/{clinicalCourse?}',
             [
                 'as' => 'cursoGuarda',
                 'uses' => 'ClinicalCourseController@store'

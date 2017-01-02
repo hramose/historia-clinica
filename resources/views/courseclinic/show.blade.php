@@ -39,7 +39,7 @@
                     </column>
                     <row>
                         <column cols="11">
-                            {!! Form::model($clinicalCourse, ['route' => ['cursoGuarda', $pacient->id], 'class' => 'forms login-form', 'name' => 'formCclinic', 'novalidate' => '', 'ng-submit' => 'submit_form($event)']) !!}
+                            {!! Form::model($clinicalCourse, ['route' => ['cursoGuarda', $pacient], 'class' => 'forms login-form', 'name' => 'formCclinic', 'novalidate' => '', 'ng-submit' => 'submit_form($event)']) !!}
                             <div id="cclinic" style="display: none">
                                 {!! $clinicalCourse->toJson() !!}
                             </div>

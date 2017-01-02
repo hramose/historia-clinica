@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Patient;
 use App\Review;
 use Illuminate\Http\Request;

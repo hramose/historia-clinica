@@ -46,5 +46,7 @@ return array(
     'dot_not_selected' => 'No s\'ha seleccionat cercle per indicar gravetat',
     'new_review' => 'Nova valoració',
     'today_date_already_registered' => 'La data d\'avui ja té un registre, si us plau, selecciona aquesta data per modificar-la.',
-    'btn_canvas_undo' => 'Refer'
+    'btn_canvas_undo' => 'Refer',
+    'save_cclinic' => 'Guardar',
+    'delete_cclinic' => 'Eliminar',
 );

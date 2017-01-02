@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ClinicalCourse;
-use App\Http\Requests;
+use App\Review;
+use Illuminate\Http\Request;
 use App\Patient;
 
 class ClinicalCourseController extends Controller
@@ -40,12 +41,25 @@ class ClinicalCourseController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request|\Illuminate\Http\Request $request
-     * @param $id
+     * @param Patient $patient
+     * @param ClinicalCourse $clinicalCourse
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Patient $patient, ClinicalCourse $clinicalCourse = null)
     {
+        if (is_null($clinicalCourse)) {
+            $clinicalCourse = new ClinicalCourse();
+            $clinicalCourse->patient = $patient;
+        }
+        $params = $request->get('cclinic');
+        $clinicalCourse->content = $params['content'];
 
+        $clinicalCourse->save();
+
+        Session::flash('alert', trans('models.Cclinicmsgsavedcorrectly'));
+        Session::flash('status', 'success');
+
+        return redirect()->back();
     }
 
     /**
