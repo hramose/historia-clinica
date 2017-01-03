@@ -16,7 +16,8 @@
     "guzzlehttp/guzzle": "~5.3|~6.0",
     "league/flysystem-ziparchive": "^1.0",
     "barryvdh/laravel-snappy": "^0.3.0",
-    "jenssegers/agent": "^2.3"
+    "jenssegers/agent": "^2.3",
+    "barryvdh/laravel-ide-helper": "^2.2"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

@@ -38,6 +38,8 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'VisitRequestController@requestsNewVisit'
     ]);
 
+    Route::get('convert_reviews', 'FrontController@convertReviewIntoClinicalCourse')->name('app.convert_reviews');
+
     // Authentication routes...
     Route::get('auth/login', ['as' => 'getLogin', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'auth/login', 'uses' => 'Auth\AuthController@postLogin']);

@@ -3,19 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\BirthdaysNotification;
+use App\ClinicalCourse;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests;
 use App\Menu;
 use App\Patient;
 use App\Review;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
+    protected $catalanMonths = [
+        "gen.",
+        "febr.",
+        "mar.",
+        "abr.",
+        "mai.",
+        "jun.",
+        "jul.",
+        "ag.",
+        "set.",
+        "oct.",
+        "nov.",
+        "des."
+    ];
 
     /**
      * Create a new authentication controller instance.
@@ -295,5 +312,68 @@ class FrontController extends Controller
     public function showGuestHome(Request $request)
     {
         return view('front.home_guest', ['foundPacient' => false, 'check' => true, 'mailSend' => false]);
+    }
+
+    public function convertReviewIntoClinicalCourse(Request $request)
+    {
+        DB::transaction(function () {
+            $reviews = Review::all();
+
+            $reviews->each(function (Review $review) {
+                $reviewContent = json_decode($review->review, true);
+                foreach ($reviewContent as $reviewJson) {
+                    $clinicalCourse = new ClinicalCourse();
+                    $clinicalCourse->content = $reviewJson['text'];
+                    if ($this->strpos_array($reviewJson['date'], $this->catalanMonths)) {
+                        $month = explode(' ', $reviewJson['date'])[1];
+                        $date = str_replace($month, ($this->catalanMonthsEquivalence($month)), $reviewJson['date']);
+                        $clinicalCourse->date = Carbon::createFromFormat('d M Y H:i', $date);
+                    } else {
+                        $clinicalCourse->date = Carbon::createFromFormat('d M Y H:i', $reviewJson['date']);
+                    }
+
+                    $clinicalCourse->patient_id = $review->patient->id;
+                    $clinicalCourse->save();
+                }
+                $review->delete();
+            });
+        });
+
+        return 'All working';
+    }
+
+    protected function catalanMonthsEquivalence($month)
+    {
+        $months = [
+            "gen." => 'Jan',
+            "febr." => 'Feb',
+            "mar." => 'Mar',
+            "abr." => 'Apr',
+            "mai." => 'May',
+            "jun." => 'Jun',
+            "jul." => 'Jul',
+            "ag." => 'Aug',
+            "set." => 'Sep',
+            "oct." => 'Oct',
+            "nov." => 'Nov',
+            "des." => 'Dec'
+        ];
+
+        return !is_null($months[$month]) ? $months[$month] : null;
+    }
+
+    protected function strpos_array($haystack, $needles, $offset = 0)
+    {
+        if (is_array($needles)) {
+            foreach ($needles as $needle) {
+                $pos = $this->strpos_array($haystack, $needle);
+                if ($pos !== false) {
+                    return $pos;
+                }
+            }
+            return false;
+        } else {
+            return strpos($haystack, $needles, $offset);
+        }
     }
 }

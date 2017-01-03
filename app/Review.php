@@ -9,4 +9,9 @@ class Review extends Model
     protected $fillable = ['review'];
     public $timestamps = false;
 
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
+
 }
