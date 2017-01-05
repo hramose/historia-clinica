@@ -225,7 +225,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
 
     Route::group(['prefix' => 'curs-clinic'], function () {
         /*Route::get('/', 'ClinicalCourseController@index');*/
-        Route::get('/pacient/{id}',
+        Route::get('/pacient/{patient}',
             [
                 'as' => 'curso.pacient.show',
                 'uses' => 'ClinicalCourseController@show'
@@ -245,12 +245,21 @@ Route::group(['middleware' => ['web', 'access']], function () {
                 'as' => 'cursoEliminar',
                 'uses' => 'ClinicalCourseController@destroy'
             ]);
-        Route::post('/pacient/{patient}/save/{clinicalCourse?}',
+        Route::post('/pacient/{patient}/save',
             [
                 'as' => 'cursoGuarda',
                 'uses' => 'ClinicalCourseController@store'
             ]);
-
+        Route::put('/pacient/{patient}/save/{clinicalCourse}',
+            [
+                'as' => 'cursoActualiza',
+                'uses' => 'ClinicalCourseController@update'
+            ]);
+        Route::delete('/pacient/{patient}/delete/{clinicalCourse}',
+            [
+                'as' => 'cursoElimina',
+                'uses' => 'ClinicalCourseController@destroy'
+            ]);
         Route::post('pacients/{term}',
             [
                 'as' => 'cursoGetPacients',

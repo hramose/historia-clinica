@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\ClinicalCourse;
 use App\Review;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Patient;
+use Illuminate\Support\Facades\Session;
 
 class ClinicalCourseController extends Controller
 {
@@ -42,17 +44,15 @@ class ClinicalCourseController extends Controller
      *
      * @param Request|\Illuminate\Http\Request $request
      * @param Patient $patient
-     * @param ClinicalCourse $clinicalCourse
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Patient $patient, ClinicalCourse $clinicalCourse = null)
+    public function store(Request $request, Patient $patient)
     {
-        if (is_null($clinicalCourse)) {
-            $clinicalCourse = new ClinicalCourse();
-            $clinicalCourse->patient = $patient;
-        }
+        $clinicalCourse = new ClinicalCourse();
+        $clinicalCourse->patient_id = $patient->id;
         $params = $request->get('cclinic');
         $clinicalCourse->content = $params['content'];
+        $clinicalCourse->date = Carbon::createFromFormat('d/m/Y', $params['date']);
 
         $clinicalCourse->save();
 
@@ -102,27 +102,38 @@ class ClinicalCourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param ClinicalCourse $clinicalCourse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient, ClinicalCourse $clinicalCourse)
     {
-        //
+        $params = $request->get('cclinic');
+        $clinicalCourse->content = $params['content'];
+
+        $clinicalCourse->save();
+
+        Session::flash('alert', trans('models.Cclinicmsgsavedcorrectly'));
+        Session::flash('status', 'success');
+
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Request $request
+     * @param Patient $patient
+     * @param ClinicalCourse $clinicalCourse
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $id_review)
+    public function destroy(Request $request, Patient $patient, ClinicalCourse $clinicalCourse)
     {
-
+        dd($clinicalCourse);
     }
 
-    public function getPacients($term) {
-        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('surname', 'like', '%'.$term.'%')->orWhere('lastname', 'like', '%'.$term.'%')->with('clinicalCourses')->limit(15)->get();
+    public function getPacients($term)
+    {
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->with('clinicalCourses')->limit(15)->get();
         echo $patients->toJson();
     }
 }

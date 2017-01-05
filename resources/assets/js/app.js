@@ -480,7 +480,9 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 
 function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce) {
     $scope.patient = {};
-    $scope.cclinic = {};
+    $scope.cclinic = {
+        id: '',
+    };
 
     $scope.timeout = null;
     $scope.term = '';
@@ -555,6 +557,29 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
 
     $scope.collapse_content = function (cc) {
         $scope['show' + cc.id] = !$scope['show' + cc.id];
+    };
+
+    $scope.today_date = function (event) {
+        var currentTarget = event.currentTarget;
+        if ($(currentTarget).val() == '') {
+            var select = document.querySelector('select[name="selected_cclinic"]');
+            var opts = select.querySelectorAll('option');
+            var today = $filter('date')(new Date(), 'dd/MM/y');
+
+            var exists = false;
+            for (var i = 0; i < opts.length; i++) {
+                if (opts[i].innerHTML == today) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if ($scope.cclinic.id == '' && !exists)
+                $scope.cclinic.date = today;
+            else if ($scope.cclinic.id == '' && exists) {
+                $scope.msg_today_already = true;
+            }
+        }
     };
 }
 

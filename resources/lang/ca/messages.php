@@ -47,6 +47,7 @@ return array(
     'new_review' => 'Nova valoració',
     'today_date_already_registered' => 'La data d\'avui ja té un registre, si us plau, selecciona aquesta data per modificar-la.',
     'btn_canvas_undo' => 'Refer',
+    'new_cclinic' => 'Nou',
     'save_cclinic' => 'Guardar',
     'delete_cclinic' => 'Eliminar',
 );
