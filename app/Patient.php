@@ -9,18 +9,25 @@ class Patient extends Model
 {
     protected $fillable = array('name', 'surname', 'lastname', 'email', 'phone', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city', 'postal_code');
 
+    protected $fillable = array('name', 'surname', 'lastname', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city');
+
     protected $dates = ['birth_date'];
 
     protected $appends = ['full_name'];
 
     public function visits()
     {
-        return $this->hasMany('App\Visit', 'patient_id');
+        return $this->hasMany('App\Visit');
     }
 
-    public function review()
+    public function reviews()
     {
-        return $this->hasOne('App\Review', 'patient_id');
+        return $this->hasMany('App\Review');
+    }
+
+    public function clinicalCourses()
+    {
+        return $this->hasMany('App\ClinicalCourse');
     }
 
     public function setBirthDateAttribute($date)
@@ -92,4 +99,9 @@ class Patient extends Model
     {
         return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
     }*/
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname . ' ' . $this->lastname;
+    }
 }

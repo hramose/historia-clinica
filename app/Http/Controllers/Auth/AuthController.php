@@ -262,7 +262,7 @@ class AuthController extends Controller
             $confirmation_code = $user->token;
             if ($confirmation_code != '') {
                 Mail::send('emails.verify', ['lang' => 'ca', 'title' => trans('messages.title_verify_email_doc'), 'confirmation_code' => $confirmation_code], function ($message) {
-                    $message->from('rcamara9@gmail.com', 'Administració');
+                    $message->from('fisioterapia@hcabosantos.cat', 'Administració');
                     $message->to(Input::get('email'), Input::get('name'))
                         ->subject(trans('messages.title_verify_email'));
                 });

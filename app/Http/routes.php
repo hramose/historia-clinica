@@ -161,6 +161,11 @@ Route::group(['middleware' => ['web', 'access']], function () {
             'uses' => 'PatientController@store'
         ]);
 
+        Route::post('/cerca/{term}', [
+            'as' => 'pacientsSearch',
+            'uses' => 'PatientController@getMatchPatients'
+        ]);
+
         Route::get('/dades/{id}', [
             'as' => 'pacientsDades',
             'uses' => 'PatientController@show'
@@ -242,7 +247,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
 
     Route::group(['prefix' => 'valoracions'], function () {
         Route::get('/', 'ReviewController@index');
-        Route::get('/pacient/{id}',
+        Route::get('/pacient/{patient}',
             [
                 'as' => 'valoracions.pacient.show',
                 'uses' => 'ReviewController@show'
@@ -251,6 +256,65 @@ Route::group(['middleware' => ['web', 'access']], function () {
             [
                 'as' => 'valoracions.pacient.nou',
                 'uses' => 'ReviewController@store'
+            ]);
+        Route::get('/pacient/{patient}/show/{review}',
+            [
+                'as' => 'valoracionsEditar',
+                'uses' => 'ReviewController@show'
+            ]);
+        Route::get('/pacient/{id}/delete/{id_review}',
+            [
+                'as' => 'valoracionsEliminar',
+                'uses' => 'ReviewController@destroy'
+            ]);
+        Route::post('/pacient/{id}/save/',
+            [
+                'as' => 'valoracionsGuarda',
+                'uses' => 'ReviewController@store'
+            ]);
+    });
+
+    Route::group(['prefix' => 'curs-clinic'], function () {
+        /*Route::get('/', 'ClinicalCourseController@index');*/
+        Route::get('/pacient/{patient}',
+            [
+                'as' => 'curso.pacient.show',
+                'uses' => 'ClinicalCourseController@show'
+            ]);
+        Route::post('/pacient/{id}',
+            [
+                'as' => 'curso.pacient.nou',
+                'uses' => 'ClinicalCourseController@store'
+            ]);
+        Route::get('/pacient/{id}/show/{id_review}',
+            [
+                'as' => 'cursoEditar',
+                'uses' => 'ClinicalCourseController@show'
+            ]);
+        Route::get('/pacient/{id}/delete/{id_review}',
+            [
+                'as' => 'cursoEliminar',
+                'uses' => 'ClinicalCourseController@destroy'
+            ]);
+        Route::post('/pacient/{patient}/save',
+            [
+                'as' => 'cursoGuarda',
+                'uses' => 'ClinicalCourseController@store'
+            ]);
+        Route::put('/pacient/{patient}/save/{clinicalCourse}',
+            [
+                'as' => 'cursoActualiza',
+                'uses' => 'ClinicalCourseController@update'
+            ]);
+        Route::delete('/pacient/{patient}/delete/{clinicalCourse}',
+            [
+                'as' => 'cursoElimina',
+                'uses' => 'ClinicalCourseController@destroy'
+            ]);
+        Route::post('pacients/{term}',
+            [
+                'as' => 'cursoGetPacients',
+                'uses' => 'ClinicalCourseController@getPacients'
             ]);
     });
 

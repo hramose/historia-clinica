@@ -4,8 +4,13 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "a082fe017bd9de8961c6bb23f7143829",
     "content-hash": "83bf6c5c5622c3d121ad2cb11815c4b1",
+=======
+    "hash": "24af1efa6bc78675c1c3d3969e32cc78",
+    "content-hash": "2433b0cefbb73589e3596d89f55639ad",
+>>>>>>> reviews
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -62,6 +67,7 @@
             "time": "2016-02-17 08:32:21"
         },
         {
+<<<<<<< HEAD
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.2.2",
             "source": {
@@ -128,6 +134,8 @@
             "time": "2016-11-15 08:21:23"
         },
         {
+=======
+>>>>>>> reviews
             "name": "barryvdh/laravel-snappy",
             "version": "v0.3.0",
             "source": {
@@ -180,6 +188,7 @@
             "time": "2016-02-25 12:03:44"
         },
         {
+<<<<<<< HEAD
             "name": "barryvdh/reflection-docblock",
             "version": "v2.0.4",
             "source": {
@@ -229,6 +238,8 @@
             "time": "2016-06-13 19:28:20"
         },
         {
+=======
+>>>>>>> reviews
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
             "source": {
@@ -1352,16 +1363,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.2.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5"
+                "reference": "5a8f1380a0d5ef21cdef37e775d86566307f8358"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/3a312d39ffe37da0f57b602618b61fd07c1fcec5",
-                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/5a8f1380a0d5ef21cdef37e775d86566307f8358",
+                "reference": "5a8f1380a0d5ef21cdef37e775d86566307f8358",
                 "shasum": ""
             },
             "require": {
@@ -1402,10 +1413,11 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
-            "time": "2016-01-27 22:29:54"
+            "time": "2015-12-23 07:46:46"
         },
         {
             "name": "league/flysystem",
+<<<<<<< HEAD
             "version": "1.0.20",
             "source": {
                 "type": "git",
@@ -1416,6 +1428,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
                 "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+=======
+            "version": "1.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "b334d6c5f95364948e06d2f620ab93d084074c6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b334d6c5f95364948e06d2f620ab93d084074c6e",
+                "reference": "b334d6c5f95364948e06d2f620ab93d084074c6e",
+>>>>>>> reviews
                 "shasum": ""
             },
             "require": {
@@ -1485,7 +1509,11 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
             "time": "2016-03-14 21:54:11"
+=======
+            "time": "2016-03-07 21:01:43"
+>>>>>>> reviews
         },
         {
             "name": "league/flysystem-ziparchive",
@@ -1650,6 +1678,7 @@
         },
         {
             "name": "monolog/monolog",
+<<<<<<< HEAD
             "version": "1.19.0",
             "source": {
                 "type": "git",
@@ -1660,6 +1689,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5f56ed5212dc509c8dc8caeba2715732abb32dbf",
                 "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf",
+=======
+            "version": "1.18.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+>>>>>>> reviews
                 "shasum": ""
             },
             "require": {
@@ -1689,7 +1730,10 @@
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+<<<<<<< HEAD
                 "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+=======
+>>>>>>> reviews
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -1724,7 +1768,11 @@
                 "logging",
                 "psr-3"
             ],
+<<<<<<< HEAD
             "time": "2016-04-12 18:29:35"
+=======
+            "time": "2016-03-01 18:00:40"
+>>>>>>> reviews
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1870,6 +1918,7 @@
         },
         {
             "name": "paragonie/random_compat",
+<<<<<<< HEAD
             "version": "v1.4.1",
             "source": {
                 "type": "git",
@@ -1880,6 +1929,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c7e26a21ba357863de030f0b9e701c7d04593774",
                 "reference": "c7e26a21ba357863de030f0b9e701c7d04593774",
+=======
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
+                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
+>>>>>>> reviews
                 "shasum": ""
             },
             "require": {
@@ -1914,7 +1975,11 @@
                 "pseudorandom",
                 "random"
             ],
+<<<<<<< HEAD
             "time": "2016-03-18 20:34:03"
+=======
+            "time": "2016-02-29 17:25:04"
+>>>>>>> reviews
         },
         {
             "name": "psr/http-message",
@@ -4355,7 +4420,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravelcollective/html": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
