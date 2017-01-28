@@ -40,14 +40,17 @@ class UpdateAges extends Command
     {
         $pacients = Patient::all();
 
-        $pacients->each(function(Patient $patient) {
-            if (!$patient->isTodayHisBirthday()) {
+        $pacients->each(function (Patient $patient) {
+            if (!$patient->isTodayBirthdayOrPrevious()) {
                 $birth_date = $patient->birth_date;
                 $now = Carbon::now();
 
                 $difference_in_years = $now->diffInYears($birth_date);
                 $patient->age = $difference_in_years;
+                $patient->save();
             }
         });
+
+        $this->comment(PHP_EOL . Carbon::now()->format("d/m/Y H:i:s") . ' Fin Actualizar edades' . PHP_EOL);
     }
 }

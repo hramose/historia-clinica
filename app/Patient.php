@@ -9,8 +9,6 @@ class Patient extends Model
 {
     protected $fillable = array('name', 'surname', 'lastname', 'email', 'phone', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city', 'postal_code');
 
-    protected $fillable = array('name', 'surname', 'lastname', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city');
-
     protected $dates = ['birth_date'];
 
     protected $appends = ['full_name'];
@@ -89,19 +87,20 @@ class Patient extends Model
         return $birthdays_wo_check;
     }
 
-    public function isTodayHisBirthday()
+    public function isTodayBirthdayOrPrevious()
     {
+        /**
+         * @var $birth_date Carbon
+         * @var $now Carbon
+         */
         $birth_date = $this->birth_date;
         $now = Carbon::now();
-    }
+        $birth_date->year($now->year);
 
-    /*public function getBirthDateAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
-    }*/
+        if ($now->diffInDays($birth_date) == 0 || $now->diffInDays($birth_date) < 0) {
+            return true;
+        }
 
-    public function getFullNameAttribute()
-    {
-        return $this->name . ' ' . $this->surname . ' ' . $this->lastname;
+        return false;
     }
 }

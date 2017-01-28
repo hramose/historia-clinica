@@ -1,4 +1,4 @@
-angular.module('app', ['ngAnimate', 'AngularPrint']);
+angular.module('app', ['ngAnimate', 'AngularPrint', 'ModalModule']);
 
 angular.module('app').config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
@@ -10,7 +10,9 @@ FrontController.$inject = ['$scope', '$timeout', '$filter', '$sce', '$http'];
 UsersController.$inject = ['$scope', '$filter'];
 PacientsController.$inject = ['$scope', '$filter', '$http', '$sce'];
 FlashController.$inject = ['$scope', '$timeout'];
-ReviewController.$inject = ['$scope', '$filter', '$timeout', '$window'];
+ReviewController.$inject = ['$scope', '$filter', '$timeout', '$window', 'ModalService'];
+ClinicCourseController.$inject = ['$scope', '$filter', '$interval', '$window', '$http', '$sce'];
+SearchController.$inject = ['$scope', '$filter', '$timeout', '$http', '$sce', '$window'];
 BillController.$inject = ['$scope', '$filter', '$timeout', '$http', '$sce', '$window'];
 TestController.$inject = ['$scope', '$http', '$filter', '$interval', '$timeout', '$window', '$sce'];
 
@@ -20,6 +22,8 @@ angular.module('app').controller('UsersController', UsersController);
 angular.module('app').controller('PacientsController', PacientsController);
 angular.module('app').controller('FlashController', FlashController);
 angular.module('app').controller('ReviewController', ReviewController);
+angular.module('app').controller('ClinicCourseController', ClinicCourseController);
+angular.module('app').controller('SearchController', SearchController);
 angular.module('app').controller('BillController', BillController);
 angular.module('app').controller('TestController', TestController);
 
@@ -189,16 +193,223 @@ function FlashController($scope, $timeout) {
     }, 3000);
 }
 
-function ReviewController($scope, $filter, $timeout, $window) {
+function ReviewController($scope, $filter, $timeout, $window, ModalService) {
     $scope.data = new Date();
     $scope.actualDate = new Date();
-    $scope.form = {};
-    $scope.review = [];
+    $scope.show_msg = false;
+    $scope.msg_today_already = false;
+    $scope.review = {
+        date: '',
+        review: {
+            antecedents: '',
+            motiu_consulta: '',
+            sist_musculesqueletic: '',
+            dolor: '',
+            transferencies: {},
+            sist_nervios: '',
+            sist_cardiovascular: '',
+            sist_respiratori: '',
+            sist_urogenital: '',
+            sist_digestiu: '',
+            altres: '',
+            dots_front: [],
+            dots_back: [],
+        },
+        id: '',
+        patient_id: ''
+    };
     $scope.dates = [];
+    $scope.patient = {};
+    $scope.clickCounts = 0;
+    $scope.dots_front = [];
+    $scope.dots_back = [];
 
-    if ($('#review').val() != '') {
-        $scope.review = JSON.parse($('#review').val());
+    $scope.convertImageToCanvas = function (id, src) {
+        var image = new Image();
+        image.src = src;
+        image.onload = function () {
+            var canvas = document.createElement("canvas");
+            canvas.width = image.width;
+            canvas.height = image.height;
+            canvas.className = 'canvas-in-front-of';
+            canvas.id = id;
+
+            $('#' + id).after(canvas);
+            canvas.onclick = function (e) {
+                $scope.drawPoint(e, id);
+            }
+        };
+    };
+
+    $scope.drawPoint = function (e, id) {
+        var pos = $scope.getMousePos(e.target, e);
+        var context = e.target.getContext("2d");
+        posx = pos.x;
+        posy = pos.y;
+        context.fillStyle = "#000000";
+        context.beginPath();
+        context.fillStyle = '#ebae99';
+        context.arc(posx, posy, 10, 0, 2 * Math.PI);
+        context.fill();
+
+        if (id == 'front') {
+            $scope.dots_front.push({
+                posx: posx, posy: posy
+            });
+            $scope.review.review.dots_front = $scope.dots_front;
+            $scope.$apply();
+        } else {
+            $scope.dots_back.push({
+                posx: posx, posy: posy
+            });
+            $scope.review.review.dots_back = $scope.dots_back;
+            $scope.$apply();
+        }
+
+    };
+
+    $scope.drawOnePoint = function (id, dot) {
+        var canvas = $('canvas#' + id)[0];
+        var context = canvas.getContext('2d');
+
+        context.fillStyle = "#000000";
+        context.beginPath();
+        context.fillStyle = '#ebae99';
+        context.arc(dot.posx, dot.posy, 10, 0, 2 * Math.PI);
+        context.fill();
+    };
+
+    $scope.getMousePos = function (canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    };
+
+    $scope.undoneDraw = function (context, x, y, radius) {
+        $timeout(function () {
+            context.clearRect(x - radius - 1, y - radius - 1, radius * 2 + 2, radius * 2 + 2);
+        }, 1000);
+    };
+
+    $scope.undoLastDraw = function (event, id) {
+        event.preventDefault();
+
+        var dots;
+        $('canvas#' + id).remove();
+        $scope.convertImageToCanvas(id, document.querySelector('img#' + id).src);
+        $timeout(function () {
+            var canvas = $('canvas#' + id);
+            var context = canvas[0].getContext('2d');
+
+            if (id == 'front') {
+                $scope.dots_front.splice(-1, 1);
+                dots = $scope.dots_front;
+                $scope.review.review.dots_front = $scope.dots_front;
+            } else {
+                $scope.dots_back.splice(-1, 1);
+                dots = $scope.dots_back;
+                $scope.review.review.dots_back = $scope.dots_back;
+            }
+
+            dots.forEach(function (dot) {
+                context.fillStyle = "#000000";
+                context.beginPath();
+                context.fillStyle = '#ebae99';
+                context.arc(dot.posx, dot.posy, 10, 0, 2 * Math.PI);
+                context.fill();
+            });
+        }, 0);
+    };
+
+    $scope.load_review = function (json) {
+        $scope.review.id = json.id;
+        $scope.review.review = typeof json.review != 'undefined' ? json.review : $scope.review.review;
+        $scope.review.patient_id = json.patient_id;
+        $scope.review.date = json.date;
+
+        /**
+         * Cargas los puntos en las dos imágenes
+         */
+        if (typeof $scope.review.review.dots_front != 'undefined') {
+            $scope.review.review.dots_front = JSON.parse($scope.review.review.dots_front);
+            $timeout(function () {
+                $scope.review.review.dots_front.forEach(function (dot) {
+                    $scope.drawOnePoint('front', dot);
+                });
+            }, 500);
+        }
+
+        if (typeof $scope.review.review.dots_back != 'undefined') {
+            $scope.review.review.dots_back = JSON.parse($scope.review.review.dots_back);
+            $timeout(function () {
+                $scope.review.review.dots_back.forEach(function (dot) {
+                    $scope.drawOnePoint('back', dot);
+                });
+            }, 500);
+        }
+        console.log($scope.review.review);
+    };
+
+    var $review = $('#review');
+    if ($review.length && $review.html().trim() != '[]') {
+        $scope.load_review(JSON.parse($review.html()));
+        $review.html('');
     }
+
+    var $patient = $('#patient');
+    if ($patient.length && $patient.html() != '') {
+        $scope.patient = JSON.parse($patient.html());
+        var str = $scope.patient.birth_date.replace(/-/g, '/');
+        $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
+        $patient.html('');
+    }
+
+    $scope.set_selected_dot = function (dot) {
+        $scope.selected_dot = dot;
+    };
+
+    $scope.today_date = function (event) {
+        var currentTarget = event.currentTarget;
+        if ($(currentTarget).val() == '') {
+            var select = document.querySelector('select[name="selected_review"]');
+            var opts = select.querySelectorAll('option');
+            var today = $filter('date')(new Date(), 'dd/MM/y');
+
+            var exists = false;
+            for (var i = 0; i < opts.length; i++) {
+                if (opts[i].innerHTML == today) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if ($scope.review.id == '' && !exists)
+                $scope.review.date = today;
+            else if ($scope.review.id == '' && exists) {
+                $scope.msg_today_already = true;
+            }
+        }
+    };
+
+    $scope.edit_review = function (element) {
+        if ($(element).val() != -1)
+            $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/show/' + $(element).val();
+    };
+
+    $scope.delete_review = function (e) {
+        e.preventDefault();
+        var modalId = ModalService.createModal({
+            title: 'Eliminar',
+            message: 'Vols eliminar aquesta valoració?',
+            buttonMsg: 'OK'
+        });
+        ModalService.showModal(modalId);
+        ModalService.callbackFunction(modalId, function (response) {
+            $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/delete/' + $scope.review.id;
+        });
+    };
 
     $scope.addDateToReview = function (e) {
         e.preventDefault();
@@ -216,13 +427,15 @@ function ReviewController($scope, $filter, $timeout, $window) {
             }
         }
 
-        if (obj === null) {
-            var date = new Date();
-            $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
-        } else {
-            $scope.animate = true;
-            $scope.editDateReview(obj, true);
-        }
+        /* if (obj === null) {
+         var date = new Date();
+         $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
+         } else {
+         $scope.animate = true;
+         $scope.editDateReview(obj, true);
+         }*/
+        var date = new Date();
+        $scope.dates.push({date: $filter('date')(date, 'dd MMM yyyy HH:mm'), text: '', id: date.getTime()});
     };
 
     $scope.submitForm = function (e) {
@@ -238,9 +451,10 @@ function ReviewController($scope, $filter, $timeout, $window) {
     }
 
     $scope.isToday = function (date) {
-        return moment(new Date(date)).isSame(moment(), 'day');
-        /*return true;*/
+        /*return moment(new Date(date)).isSame(moment(), 'day');*/
+        return true;
     }
+    /**/
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
         fromOtherFn = fromOtherFn || false;
@@ -263,8 +477,162 @@ function ReviewController($scope, $filter, $timeout, $window) {
 
     };
 
-    $scope.print = function () {
-        $window.print();
+    $scope.submit_form = function (e) {
+        /*e.preventDefault();
+         e.stopPropagation();
+         console.log($scope.review);*/
+    }
+}
+
+function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce) {
+    $scope.patient = {};
+    $scope.cclinic = {
+        id: '',
+    };
+
+    $scope.timeout = null;
+    $scope.term = '';
+    $scope.autocomplete = false;
+    $scope.pacients = [];
+    $scope.cclinics = [];
+    $scope.url = '';
+
+    var $cclinic = $('#cclinic');
+    if ($cclinic.length && $cclinic.html().trim() != '[]') {
+        $scope.cclinic = JSON.parse($cclinic.html());
+        var str = $scope.cclinic.date.split(' ');
+        var firstPart = str[0].split('/');
+        var date = firstPart[2] + '-' + firstPart[1] + '-' + firstPart[0];
+        str = date + ' ' + str[1];
+        $scope.cclinic.date = $filter('date')(new Date(str), 'dd/MM/y HH:m:ss');
+        var newline = String.fromCharCode(13, 10);
+        $scope.cclinic.content = $scope.cclinic.content.replace(/\\n/g, newline);
+        $cclinic.html('');
+    }
+
+    var $patient = $('#patient');
+    if ($patient.length && $patient.html() != '') {
+        $scope.patient = JSON.parse($patient.html());
+        var str = $scope.patient.birth_date.replace(/-/g, '/');
+        $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
+        $patient.html('');
+    }
+
+    $scope.edit_cclinic = function (element) {
+        if ($(element).val() != -1)
+            $window.location.href = base_url + '/curs-clinic/pacient/' + $scope.patient.id + '/show/' + $(element).val();
+    };
+
+    $scope.search_patient_cc = function (e) {
+        if ($scope.term == '') {
+            $scope.autocomplete = false;
+            return;
+        }
+        $http({
+            method: 'POST',
+            url: $scope.url + '/' + $scope.term,
+        }).then(function mySucces(response) {
+            $scope.pacients = response.data;
+            if ($scope.pacients.length) {
+                $scope.autocomplete = true;
+            } else {
+                $scope.autocomplete = false;
+            }
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.term, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.show_cclinic = function (pacient) {
+        $scope.term = '';
+        $scope.pacients = [];
+        $scope.patient = pacient;
+
+        $scope.cclinics = $scope.patient.clinical_courses;
+        for (var i = 0; i < $scope.cclinics.length; i++) {
+            var content = $scope.cclinics[i].content;
+            $scope.cclinics[i].content = content.replace(/\\n/g, "<br>");
+        }
+    };
+
+    $scope.collapse_content = function (cc) {
+        $scope['show' + cc.id] = !$scope['show' + cc.id];
+    };
+
+    $scope.today_date = function (event) {
+        var currentTarget = event.currentTarget;
+        if ($(currentTarget).val() == '') {
+            var select = document.querySelector('select[name="selected_cclinic"]');
+            var opts = select.querySelectorAll('option');
+            var today = $filter('date')(new Date(), 'dd/MM/y');
+
+            var exists = false;
+            for (var i = 0; i < opts.length; i++) {
+                if (opts[i].innerHTML == today) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if ($scope.cclinic.id == '' && !exists)
+                $scope.cclinic.date = today;
+            else if ($scope.cclinic.id == '' && exists) {
+                $scope.msg_today_already = true;
+            }
+        }
+    };
+}
+
+function SearchController($scope, $filter, $timeout, $http, $sce, $window) {
+    $scope.search = {term: '', url: $('#url').val()};
+    $scope.autocomplete = false;
+    $scope.pacients = [];
+    $scope.widthSearchInput = '100px';
+
+    $timeout(function () {
+        var $term = $('input[name="term"]');
+        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
+    });
+
+    angular.element($window).bind('resize', function () {
+        var $term = $('input[name="term"]');
+        $scope.widthSearchInput = ($term.outerWidth() - 1) + 'px';
+    });
+
+    $scope.search_pacient = function () {
+        if ($scope.search.term == '') {
+            $scope.autocomplete = false;
+            return;
+        }
+        $http({
+            method: 'POST',
+            url: $scope.search.url + '/' + $scope.search.term
+        }).then(function mySucces(response) {
+            $scope.pacients = response.data;
+            if ($scope.pacients.length) {
+                $scope.autocomplete = true;
+            } else {
+                $scope.autocomplete = false;
+            }
+        }, function myError(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.underline_word = function (word) {
+        var regex = new RegExp($scope.search.term, 'gi');
+        var t = word.replace(regex, '<strong>$&</strong>');
+        return $sce.trustAsHtml(t);
+    };
+
+    $scope.show_review_from = function (pacient) {
+        $window.location.href = $scope.pacientUrl + '/' + pacient.id;
     };
 }
 
