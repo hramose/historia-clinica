@@ -320,7 +320,11 @@ class FrontController extends Controller
             $reviews = Review::all();
 
             $reviews->each(function (Review $review) {
-                $reviewContent = json_decode($review->review, true);
+                if (is_array($review->review)) {
+                    $reviewContent = $review->review;
+                } else {
+                    $reviewContent = json_decode($review->review, true);
+                }
                 foreach ($reviewContent as $reviewJson) {
                     $clinicalCourse = new ClinicalCourse();
                     $clinicalCourse->content = $reviewJson['text'];
