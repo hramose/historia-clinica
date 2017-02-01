@@ -21,6 +21,8 @@ return array(
     'title_verify_email' => 'Verificació del compte d\'usuari',
     'title_verify_email_doc' => 'Verificació del compte d\'usuari',
     'save' => 'Guardar :name',
+    'save_review' => 'Guarda',
+    'delete_review' => 'Elimina',
     'create' => 'Crear :name',
     'create_user' => 'Crear usuari',
     'add_date' => 'Afegir data d\'avui ([[data|date]])',
@@ -64,5 +66,13 @@ return array(
     'surnames' => 'Cognoms',
     'dni' => 'DNI',
     'phone' => 'Telèfon',
-    'obsv' => 'Observacions'
+    'obsv' => 'Observacions',
+    'empty_option_reviews_dates' => 'Selecciona una data anterior',
+    'empty_option_cclinic_dates' => 'Selecciona una data anterior',
+    'new_review' => 'Nova valoració',
+    'today_date_already_registered' => 'La data d\'avui ja té un registre, si us plau, selecciona aquesta data per modificar-la.',
+    'btn_canvas_undo' => 'Refer',
+    'new_cclinic' => 'Nou',
+    'save_cclinic' => 'Guardar',
+    'delete_cclinic' => 'Eliminar',
 );

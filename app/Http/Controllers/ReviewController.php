@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Patient;
 use App\Review;
 use Illuminate\Http\Request;
@@ -46,14 +45,23 @@ class ReviewController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $review = Review::where('patient_id', $id)->first();
-        if (is_null($review)) {
+        /* $review = Review::where('patient_id', $id)->first();
+         if (is_null($review)) {
+             $review = new Review();
+         }*/
+        $inputs = Input::all();
+        $this->clean_dates($inputs);
+        if (Input::get('id') == '') {
             $review = new Review();
+        } else {
+            $review = Review::find(Input::get('id'));
         }
-        $review->fill(Input::all());
-        if ($review->patiend_id == '') $review->patient_id = $id;
+        $review->fill($inputs);
+        if ($review->patient_id == '') $review->patient_id = $id;
 
         $review->save();
+
+        $review->createOrStoreClinicalCourse();
 
         Session::flash('alert', trans('models.Reviewmsgsavedcorrectly'));
         Session::flash('status', 'success');
@@ -64,21 +72,19 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Patient $patient
+     * @param Review $review
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Patient $patient, Review $review)
     {
-        $patient = Patient::where('id', $id)->first();
-        $review = new Review();
-        if (!is_null($patient->review)) {
-            $review = $patient->review;
-        }
+        $allReviews = $patient->reviews;
 
         return view('review/show', [
             'lang' => 'ca',
             'review' => $review,
             'pacient' => $patient,
+            'reviews' => $allReviews,
             'title' => 'Valoració del pacient: ' . $patient->name . ' ' . $patient->surname . ' ' . $patient->lastname
         ]);
     }
@@ -112,8 +118,30 @@ class ReviewController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $id_review)
     {
-        //
+        /**
+         * @var $review Review
+         */
+        $review = Review::whereId($id_review)->first();
+        $review->delete();
+
+        Session::flash('alert', trans('models.Reviewmsgdeletedcorrectly'));
+        Session::flash('status', 'success');
+
+        return Redirect::route('valoracions.pacient.show', $id);
+    }
+
+
+    function clean_dates(&$input)
+    {
+        $date_names = array('date');
+
+        foreach ($input as $key => $value):
+            if (in_array($key, $date_names)):
+                $input[$key] = date('d-m-Y', strtotime(str_replace('/', '-', $input[$key])));
+            endif;
+        endforeach;
+
     }
 }

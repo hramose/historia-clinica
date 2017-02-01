@@ -15,12 +15,17 @@ class Patient extends Model
 
     public function visits()
     {
-        return $this->hasMany('App\Visit', 'patient_id');
+        return $this->hasMany('App\Visit');
     }
 
-    public function review()
+    public function reviews()
     {
-        return $this->hasOne('App\Review', 'patient_id');
+        return $this->hasMany('App\Review');
+    }
+
+    public function clinicalCourses()
+    {
+        return $this->hasMany('App\ClinicalCourse');
     }
 
     public function setBirthDateAttribute($date)
@@ -82,14 +87,20 @@ class Patient extends Model
         return $birthdays_wo_check;
     }
 
-    public function isTodayHisBirthday()
+    public function isTodayBirthdayOrPrevious()
     {
+        /**
+         * @var $birth_date Carbon
+         * @var $now Carbon
+         */
         $birth_date = $this->birth_date;
         $now = Carbon::now();
-    }
+        $birth_date->year($now->year);
 
-    /*public function getBirthDateAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
-    }*/
+        if ($now->diffInDays($birth_date) == 0 || $now->diffInDays($birth_date) < 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

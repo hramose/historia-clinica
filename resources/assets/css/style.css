@@ -1064,3 +1064,24 @@ li.active,
 .clearfix {
   clear: both;
 }
+
+#front-back-body-container {
+  width: 100%;
+  position: relative;
+  min-height: 558px;
+}
+
+#front-back-body-container column button {
+  display: block;
+  margin: 0 auto;
+}
+
+#front-back-body-container img {
+  position: absolute;
+  top: 40px;
+}
+
+#front-back-body-container canvas {
+  position: absolute;
+  top: 40px;
+}

@@ -20,8 +20,7 @@
                     <li><a href="{{ URL::to('pacients/nou') }}">Crear nous pacients</a></li>
                     <li><a href="{{ URL::to('pacients/llista') }}">Tots els pacients</a></li>
                 </ul>
-            </a></li>
-        <li><a href="{{ URL::to('histories') }}"><span class="retain-icon fa fa-folder"></span> <span class="text">Històries</span></a>
+            </a>
         </li>
         <li><a href="#"><span class="fa fa-user-md"></span> <span class="text">Usuaris</span> <span
                         class="fa arrow"></span></a>

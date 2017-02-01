@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\Backup::class,
         \App\Console\Commands\EmptyZipDirectory::class,
-        \App\Console\Commands\BirthdayCheck::class
+        \App\Console\Commands\BirthdayCheck::class,
+        \App\Console\Commands\UpdateAges::class
     ];
 
     /**
