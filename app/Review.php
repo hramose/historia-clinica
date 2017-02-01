@@ -19,7 +19,7 @@ class Review extends Model
         parent::boot();
 
         static::deleting(function (Review $review) { // before delete() method call this
-            $review->clinicalCourse->delete();
+            //$review->clinicalCourse->delete();
             // do the rest of the cleanup...
         });
     }
