@@ -19,6 +19,7 @@
                     <span>Días</span>
                 </div>
             </li>
+            <li>{{PHP_VERSION}}</li>
         </ul>
         <div id="datos-output">
             <label>[[title]]</label><span ng-show="time == 0">[[timeLoader]]</span><span class="ms">[[time|number]] secs</span><span ng-cloak ng-show="status != 0" id="check">&check;</span>
