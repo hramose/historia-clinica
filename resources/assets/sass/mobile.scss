@@ -327,3 +327,26 @@ footer {
     }
   }
 }
+
+//Reviews
+#front-back-body-container {
+  width: 100%;
+  position: relative;
+  column {
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  img {
+    width: 70%;
+    top: 40px;
+    margin: 0 auto;
+    display: block;
+  }
+  canvas {
+    top: 40px;
+    margin: 0 auto;
+    display: block;
+  }
+}

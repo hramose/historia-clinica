@@ -229,12 +229,17 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
         image.src = src;
         image.onload = function () {
             var canvas = document.createElement("canvas");
-            canvas.width = image.width;
-            canvas.height = image.height;
+            canvas.width = $('#' + id).width();
+            canvas.height = $('#' + id).height();
             canvas.className = 'canvas-in-front-of';
             canvas.id = id;
 
             $('#' + id).after(canvas);
+            if ($('#is_mobile').length) {
+                $(canvas).css({
+                    marginTop: -$('#' + id).height() + 'px'
+                });
+            }
             canvas.onclick = function (e) {
                 $scope.drawPoint(e, id);
             }
