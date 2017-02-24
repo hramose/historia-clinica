@@ -16,7 +16,7 @@ class ClinicalCourse extends Model
         parent::boot();
 
         static::creating(function ($cc) {
-            $cc->date = Carbon::now();
+            /*$cc->date = Carbon::now();*/
         });
     }
 
