@@ -235,7 +235,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
             canvas.id = id;
 
             $('#' + id).after(canvas);
-            if ($('#is_mobile').length) {
+            if ($('#is_mobile').length && $('#is_mobile').val() == 1) {
                 $(canvas).css({
                     marginTop: -$('#' + id).height() + 'px'
                 });
