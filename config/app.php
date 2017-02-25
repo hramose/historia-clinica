@@ -138,7 +138,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        /*Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,*/
 
         /*
          * Application Service Providers...

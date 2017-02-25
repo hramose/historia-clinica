@@ -105,6 +105,11 @@
                     <tbody>
                     <tr>
                         <td>{{--<input type="text" name="concept_code" ng-model="bill.concept_code">--}}</td>
+                        {{--<td>
+                            <select name="concept" ng-model="bill.concept" id="concept">
+
+                            </select>
+                        </td>--}}
                         <td><input type="text" name="concept" ng-model="bill.concept"></td>
                         <td><input type="text" class="small-input" name="qty"
                                    ng-model="bill.qty">
