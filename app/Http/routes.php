@@ -24,6 +24,7 @@ Route::group(['middleware' => ['jwt.auth', 'access']], function () {
     Route::group(['prefix' => 'r'], function () {
         Route::get('test', 'RestController@test');
     });
+    Route::get('patient/{patient}', 'PatientController@getPatientRest');
 });
 /**
  * End REST API URLS

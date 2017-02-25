@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -17,23 +18,6 @@ class PatientController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['findPacientByDni', 'requestNewPatient']]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $pacients = Patient::orderBy('surname', 'ASC')->paginate(15);
-        $pacients->setPath(URL::route('pacientsLlista'));
-        return view('pacients/index', [
-            'lang' => 'ca',
-            'title' => 'Crea un nou pacient',
-            'pacients' => /*Patient::all()->take($number)*/
-                $pacients
-        ]);
     }
 
     /**
@@ -64,6 +48,23 @@ class PatientController extends Controller
             'lang' => 'ca',
             'title' => 'Crea un nou pacient',
             'pacient' => $pacient
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $pacients = Patient::orderBy('surname', 'ASC')->paginate(15);
+        $pacients->setPath(URL::route('pacientsLlista'));
+        return view('pacients/index', [
+            'lang' => 'ca',
+            'title' => 'Crea un nou pacient',
+            'pacients' => /*Patient::all()->take($number)*/
+                $pacients
         ]);
     }
 
@@ -198,5 +199,10 @@ class PatientController extends Controller
         $data['mailSend'] = true;
 
         return view('front.home_guest', $data);
+    }
+
+    public function getPatientRest(Request $request, Patient $patient)
+    {
+        return response()->json($patient);
     }
 }
