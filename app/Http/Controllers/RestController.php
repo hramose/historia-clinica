@@ -83,4 +83,13 @@ class RestController extends Controller
     {
         //
     }
+    
+    /**
+    * Shows the access that the web has filtered by the user preferences 
+    *
+    * @return json
+    */
+    public function showAccess() {
+        //TODO tiene que mostrar los accesos, paginados, en json
+    }
 }
