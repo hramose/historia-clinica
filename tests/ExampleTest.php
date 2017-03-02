@@ -6,6 +6,12 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
+    public $domain;
+
+    public function __construct()
+    {
+        $this->domain = '{domain}';
+    }
 
     /**
      * A basic functional test example.
@@ -14,7 +20,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')
+        $this->visit($this->domain)
              ->see('Email')
              ->see('Contrasenya');
     }
@@ -26,10 +32,15 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample2()
     {
-        $this->visit('/')
+        $this->visit($this->domain)
             ->type('suport@hcabosantos.cat', 'email')
-            ->type('juninho01', 'password')
+            ->type('Juninho01', 'password')
             ->press('Inicia sessió')
-            ->seePageIs('/');
+            ->seePageIs($this->domain);
+    }
+
+    public function testBillConcepts()
+    {
+        return true;
     }
 }
