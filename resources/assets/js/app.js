@@ -6,7 +6,7 @@ angular.module('app').config(['$interpolateProvider', function ($interpolateProv
 }]);
 
 AppController.$inject = ['$scope', '$interval'];
-FrontController.$inject = ['$scope', '$timeout', '$filter', '$sce', '$http'];
+FrontController.$inject = ['$scope', '$sce', '$http'];
 UsersController.$inject = ['$scope', '$filter'];
 PacientsController.$inject = ['$scope', '$filter', '$http', '$sce'];
 FlashController.$inject = ['$scope', '$timeout'];
@@ -28,14 +28,14 @@ angular.module('app').controller('BillController', BillController);
 angular.module('app').controller('TestController', TestController);
 
 function AppController($scope, $interval) {
-    moment.locale('ca')
+    moment.locale('ca');
     $scope.actual_date = moment().format('LTS');
     $interval(function () {
         $scope.actual_date = moment().format('LTS');
     }, 1000);
 }
 
-function FrontController($scope, $timeout, $filter, $sce, $http) {
+function FrontController($scope, $sce, $http) {
     $scope.patients = [];
 
     $scope.underline_word = function (word) {
@@ -45,7 +45,7 @@ function FrontController($scope, $timeout, $filter, $sce, $http) {
     };
 
     $scope.search_pacients = function () {
-        if ($scope.patient == '') {
+        if ($scope.patient === '') {
             $scope.patients = [];
             return;
         }
@@ -89,8 +89,6 @@ function FrontController($scope, $timeout, $filter, $sce, $http) {
     var $grow = $('.grow');
     $.each($grow, function (index, element) {
         var $el = $(element);
-        var $parentWidth = $el.outerWidth();
-        var position = ($parentWidth / 2) - ($el.width() / 2);
         $el.css({
             'left': '50%',
             'marginLeft': -($el.width() / 2)
@@ -120,7 +118,7 @@ function UsersController($scope, $filter) {
 
     if (document.querySelector('.user_json')) {
         $scope.user = JSON.parse(document.querySelector('.user_json').innerHTML);
-        $scope.user.blocked = $scope.user.blocked == 1;
+        $scope.user.blocked = $scope.user.blocked === 1;
         $scope.user.password = $scope.randomStr(16);
         console.log($scope.user);
     }
@@ -135,8 +133,8 @@ function PacientsController($scope, $filter, $http, $sce) {
     if (document.querySelector('.pacient_json')) {
         $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
         var date = moment($scope.pacient.birth_date).toDate();
-        $scope.pacient.birth_date = typeof $scope.pacient.birth_date != 'undefined' ? $filter('date')(new Date(date), 'dd/MM/y') : '';
-        $scope.pacient.age = typeof $scope.pacient.age != 'undefined' ? parseInt($scope.pacient.age) : '';
+        $scope.pacient.birth_date = typeof $scope.pacient.birth_date !== 'undefined' ? $filter('date')(new Date(date), 'dd/MM/y') : '';
+        $scope.pacient.age = typeof $scope.pacient.age !== 'undefined' ? parseInt($scope.pacient.age) : '';
     }
 
     $scope.putAgeFromDate = function (date) {
@@ -151,7 +149,7 @@ function PacientsController($scope, $filter, $http, $sce) {
         } else {
             console.log('nop!');
         }
-    }
+    };
 
     $scope.showDeleteModal = function (e) {
         e.preventDefault();
@@ -163,7 +161,7 @@ function PacientsController($scope, $filter, $http, $sce) {
     };
 
     $scope.search_pacient = function (form) {
-        if ($scope.search.term == '') {
+        if ($scope.search.term === '') {
             $scope.patients = [];
             return;
         }
@@ -213,7 +211,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
             sist_digestiu: '',
             altres: '',
             dots_front: [],
-            dots_back: [],
+            dots_back: []
         },
         id: '',
         patient_id: ''
@@ -235,7 +233,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
             canvas.id = id;
 
             $('#' + id).after(canvas);
-            if ($('#is_mobile').length && $('#is_mobile').val() == 1) {
+            if ($('#is_mobile').length && $('#is_mobile').val() === 1) {
                 $(canvas).css({
                     marginTop: -$('#' + id).height() + 'px'
                 });
@@ -249,15 +247,15 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
     $scope.drawPoint = function (e, id) {
         var pos = $scope.getMousePos(e.target, e);
         var context = e.target.getContext("2d");
-        posx = pos.x;
-        posy = pos.y;
+        var posx = pos.x;
+        var posy = pos.y;
         context.fillStyle = "#000000";
         context.beginPath();
         context.fillStyle = '#ebae99';
         context.arc(posx, posy, 10, 0, 2 * Math.PI);
         context.fill();
 
-        if (id == 'front') {
+        if (id === 'front') {
             $scope.dots_front.push({
                 posx: posx, posy: posy
             });
@@ -308,7 +306,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
             var canvas = $('canvas#' + id);
             var context = canvas[0].getContext('2d');
 
-            if (id == 'front') {
+            if (id === 'front') {
                 $scope.dots_front.splice(-1, 1);
                 dots = $scope.dots_front;
                 $scope.review.review.dots_front = $scope.dots_front;
@@ -330,14 +328,14 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 
     $scope.load_review = function (json) {
         $scope.review.id = json.id;
-        $scope.review.review = typeof json.review != 'undefined' ? json.review : $scope.review.review;
+        $scope.review.review = typeof json.review !== 'undefined' ? json.review : $scope.review.review;
         $scope.review.patient_id = json.patient_id;
         $scope.review.date = json.date;
 
         /**
          * Cargas los puntos en las dos imágenes
          */
-        if (typeof $scope.review.review.dots_front != 'undefined') {
+        if (typeof $scope.review.review.dots_front !== 'undefined') {
             $scope.review.review.dots_front = JSON.parse($scope.review.review.dots_front);
             $timeout(function () {
                 $scope.review.review.dots_front.forEach(function (dot) {
@@ -346,7 +344,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
             }, 500);
         }
 
-        if (typeof $scope.review.review.dots_back != 'undefined') {
+        if (typeof $scope.review.review.dots_back !== 'undefined') {
             $scope.review.review.dots_back = JSON.parse($scope.review.review.dots_back);
             $timeout(function () {
                 $scope.review.review.dots_back.forEach(function (dot) {
@@ -358,13 +356,13 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
     };
 
     var $review = $('#review');
-    if ($review.length && $review.html().trim() != '[]') {
+    if ($review.length && $review.html().trim() !== '[]') {
         $scope.load_review(JSON.parse($review.html()));
         $review.html('');
     }
 
     var $patient = $('#patient');
-    if ($patient.length && $patient.html() != '') {
+    if ($patient.length && $patient.html() !== '') {
         $scope.patient = JSON.parse($patient.html());
         var str = $scope.patient.birth_date.replace(/-/g, '/');
         $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
@@ -377,29 +375,29 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 
     $scope.today_date = function (event) {
         var currentTarget = event.currentTarget;
-        if ($(currentTarget).val() == '') {
+        if ($(currentTarget).val() === '') {
             var select = document.querySelector('select[name="selected_review"]');
             var opts = select.querySelectorAll('option');
             var today = $filter('date')(new Date(), 'dd/MM/y');
 
             var exists = false;
             for (var i = 0; i < opts.length; i++) {
-                if (opts[i].innerHTML == today) {
+                if (opts[i].innerHTML === today) {
                     exists = true;
                     break;
                 }
             }
 
-            if ($scope.review.id == '' && !exists)
+            if ($scope.review.id === '' && !exists)
                 $scope.review.date = today;
-            else if ($scope.review.id == '' && exists) {
+            else if ($scope.review.id === '' && exists) {
                 $scope.msg_today_already = true;
             }
         }
     };
 
     $scope.edit_review = function (element) {
-        if ($(element).val() != -1)
+        if ($(element).val() !== -1)
             $window.location.href = base_url + '/valoracions/pacient/' + $scope.patient.id + '/show/' + $(element).val();
     };
 
@@ -453,12 +451,12 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 
     $scope.showActualHour = function () {
         $scope.actualDate = $filter('date')(new Date(), 'dd MMM yyyy HH:m');
-    }
+    };
 
     $scope.isToday = function (date) {
         /*return moment(new Date(date)).isSame(moment(), 'day');*/
         return true;
-    }
+    };
     /**/
 
     $scope.editDateReview = function (dateObject, fromOtherFn) {
@@ -470,13 +468,13 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
         $timeout(function () {
             $scope.animate = false;
         }, 500);
-    }
+    };
 
     $scope.checkKey = function (e) {
         /*if (e.keyCode == 13 && !e.shiftKey) {
          $scope.edit = '';
          }*/
-    }
+    };
 
     $scope.showReview = function (dateObj) {
 
@@ -492,7 +490,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
 function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce) {
     $scope.patient = {};
     $scope.cclinic = {
-        id: '',
+        id: ''
     };
 
     $scope.timeout = null;
@@ -503,7 +501,7 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
     $scope.url = '';
 
     var $cclinic = $('#cclinic');
-    if ($cclinic.length && $cclinic.html().trim() != '[]') {
+    if ($cclinic.length && $cclinic.html().trim() !== '[]') {
         $scope.cclinic = JSON.parse($cclinic.html());
         var str = $scope.cclinic.date.split(' ');
         var firstPart = str[0].split('/');
@@ -516,7 +514,7 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
     }
 
     var $patient = $('#patient');
-    if ($patient.length && $patient.html() != '') {
+    if ($patient.length && $patient.html() !== '') {
         $scope.patient = JSON.parse($patient.html());
         var str = $scope.patient.birth_date.replace(/-/g, '/');
         $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
@@ -524,25 +522,21 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
     }
 
     $scope.edit_cclinic = function (element) {
-        if ($(element).val() != -1)
+        if ($(element).val() !== -1)
             $window.location.href = base_url + '/curs-clinic/pacient/' + $scope.patient.id + '/show/' + $(element).val();
     };
 
     $scope.search_patient_cc = function (e) {
-        if ($scope.term == '') {
+        if ($scope.term === '') {
             $scope.autocomplete = false;
             return;
         }
         $http({
             method: 'POST',
-            url: $scope.url + '/' + $scope.term,
+            url: $scope.url + '/' + $scope.term
         }).then(function mySucces(response) {
             $scope.pacients = response.data;
-            if ($scope.pacients.length) {
-                $scope.autocomplete = true;
-            } else {
-                $scope.autocomplete = false;
-            }
+            $scope.autocomplete = !!$scope.pacients.length;
         }, function myError(response) {
             console.log(response);
         });
@@ -572,22 +566,22 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
 
     $scope.today_date = function (event) {
         var currentTarget = event.currentTarget;
-        if ($(currentTarget).val() == '') {
+        if ($(currentTarget).val() === '') {
             var select = document.querySelector('select[name="selected_cclinic"]');
             var opts = select.querySelectorAll('option');
             var today = $filter('date')(new Date(), 'dd/MM/y');
 
             var exists = false;
             for (var i = 0; i < opts.length; i++) {
-                if (opts[i].innerHTML == today) {
+                if (opts[i].innerHTML === today) {
                     exists = true;
                     break;
                 }
             }
 
-            if ($scope.cclinic.id == '' && !exists)
+            if ($scope.cclinic.id === '' && !exists)
                 $scope.cclinic.date = today;
-            else if ($scope.cclinic.id == '' && exists) {
+            else if ($scope.cclinic.id === '' && exists) {
                 $scope.msg_today_already = true;
             }
         }
@@ -611,7 +605,7 @@ function SearchController($scope, $filter, $timeout, $http, $sce, $window) {
     });
 
     $scope.search_pacient = function () {
-        if ($scope.search.term == '') {
+        if ($scope.search.term === '') {
             $scope.autocomplete = false;
             return;
         }
@@ -620,11 +614,7 @@ function SearchController($scope, $filter, $timeout, $http, $sce, $window) {
             url: $scope.search.url + '/' + $scope.search.term
         }).then(function mySucces(response) {
             $scope.pacients = response.data;
-            if ($scope.pacients.length) {
-                $scope.autocomplete = true;
-            } else {
-                $scope.autocomplete = false;
-            }
+            $scope.autocomplete = !!$scope.pacients.length;
         }, function myError(response) {
             console.log(response);
         });
@@ -783,7 +773,7 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
     };
 
     $scope.search_clients_and_patients = function () {
-        if ($scope.client.name == '') {
+        if ($scope.client.name === '') {
             $scope.autocomplete = false;
             return;
         }
@@ -794,11 +784,7 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
             }).then(function mySucces(response) {
                 $scope.pacients = response.data.patients;
                 $scope.clients = response.data.clients;
-                if ($scope.clients.length || $scope.pacients.length) {
-                    $scope.autocomplete = true;
-                } else {
-                    $scope.autocomplete = false;
-                }
+                $scope.autocomplete = !!($scope.clients.length || $scope.pacients.length);
             }, function myError(response) {
                 console.log(response);
             });
@@ -806,7 +792,7 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
     };
 
     $scope.put_on_bill = function (obj, model) {
-        if (model == 'client') {
+        if (model === 'client') {
             $scope.client = obj;
             $scope.bill.client_id = $scope.client.id;
             $scope.bill.patient_id = '';
@@ -822,11 +808,11 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
         }
 
         $scope.autocomplete = false;
-    }
+    };
 
     $scope.count = function (n) {
         return new Array(n);
-    }
+    };
 
     $scope.show_total = function (n1, n2) {
         $scope.bill.total_bill = (isNaN(n1) ? 0 : n1) - (isNaN(n2) ? 0 : n2);
@@ -841,14 +827,14 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
     };
 
     $scope.show_amount_irpf = function (n1, n2) {
-        if (n2.toString().indexOf(',') != -1)
+        if (n2.toString().indexOf(',') !== -1)
             n2 = n2.toString().replace(',', '.');
         $scope.bill.amount_irpf = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
         return $filter('currency')($scope.bill.amount_irpf.toFixed(2));
     };
 
     $scope.autocomplete_id = function () {
-        if ($scope.bill.id == "" || typeof $scope.bill.id == 'undefined') {
+        if ($scope.bill.id === "" || typeof $scope.bill.id === 'undefined') {
             $scope.bill.id = $scope.lastId + 1;
         }
     };
@@ -859,16 +845,16 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
     };
 
     var $bill = $('#bill');
-    if ($bill.length && $bill.html().trim() != '[]') {
+    if ($bill.length && $bill.html().trim() !== '[]') {
         $scope.bill = JSON.parse($bill.html());
         var str = $scope.bill.creation_date.replace(/-/g, '/');
         $scope.bill.creation_date = $filter('date')(new Date(str), 'dd/MM/y');
         var str = $scope.bill.expiration_date.replace(/-/g, '/');
         $scope.bill.expiration_date = $filter('date')(new Date(str), 'dd/MM/y');
-        if ($scope.bill.patient_id != "" && $scope.bill.patient_id != null) {
+        if ($scope.bill.patient_id !== "" && $scope.bill.patient_id !== null) {
             $scope.put_on_bill($scope.bill.patient, 'patient');
         }
-        if ($scope.bill.client_id != "" && $scope.bill.client_id != null) {
+        if ($scope.bill.client_id !== "" && $scope.bill.client_id !== null) {
             $scope.put_on_bill($scope.bill.client, 'client');
         }
     }
@@ -889,12 +875,12 @@ function TestController($scope, $http, $filter, $interval, $timeout, $window, $s
         $scope.timeLoader = '';
         $scope.time = 0;
         var stop = $interval(function () {
-            if ($scope.timeLoader.length == 3)
+            if ($scope.timeLoader.length === 3)
                 $scope.timeLoader = '';
             $scope.timeLoader += '.';
         }, 100);
         params = params || null;
-        if (params != null) {
+        if (params !== null) {
             url = url + '/' + $scope[params];
         }
 
@@ -902,7 +888,7 @@ function TestController($scope, $http, $filter, $interval, $timeout, $window, $s
 
         $http({
             method: 'GET',
-            url: url,
+            url: url
         }).then(function mySucces(response) {
             $interval.cancel(stop);
             $scope.output = $sce.trustAsHtml(response.data.output);
