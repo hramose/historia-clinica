@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    {!! Form::open(['route' => 'auth/login', 'class' => 'forms login-form']) !!}
+    {!! Form::open(['route' => 'postLogin', 'class' => 'forms login-form']) !!}
     <section>
         <label>{{ trans('models.Useremail') }}</label>
         {!! Form::email('email', '', ['class'=> '']) !!}

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BirthdaysNotification;
 use App\ClinicalCourse;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Requests;
 use App\Menu;
 use App\Patient;
@@ -53,11 +53,7 @@ class FrontController extends Controller
     {
         setlocale(LC_TIME, 'ca_ES.utf8');
 
-        if (!Auth::check()) {
-            return redirect()->action('Auth\AuthController@getLogin');
-        }
-
-        if (AuthController::checkForPasswordExpiration()) return redirect('auth/reset_password');
+        if (ResetPasswordController::checkForPasswordExpiration()) return redirect('auth/reset_password');
 
         $birthdays = Patient::checkBirthdaysNotNotified();
         $birthdays_wo_check = Patient::checkBirthdays();
