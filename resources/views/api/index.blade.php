@@ -5,7 +5,7 @@
         <ul id="lista-acciones">
             <li>
                 <div>
-                    <a href="#" ng-click="show_output($event, '{{URL::to('api/birthday')}}', 'BirthdayCheck', 'days')">BirthdayCheck</a>
+                    <a href="#" ng-click="show_output($event, '{{URL::route('apiBirthDay')}}', 'BirthdayCheck', 'days')">BirthdayCheck</a>
                     <input
                             type="text" ng-model="days">
                     <span>Días</span>

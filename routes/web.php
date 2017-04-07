@@ -78,7 +78,7 @@ Route::group(['middleware' => ['web', 'access']], function () {
         'uses' => 'ApiController@getIndex'
     ]);
 
-    Route::get('api/birthday', [
+    Route::get('api/birthday/{test_days?}', [
         'as' => 'apiBirthDay',
         'uses' => 'ApiController@getBirthday'
     ]);
