@@ -4,9 +4,12 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Patient extends Model
 {
+    use Searchable;
+
     protected $fillable = array('name', 'surname', 'lastname', 'email', 'phone', 'nif', 'gender', 'birth_date', 'age', 'profession', 'hobbies', 'address', 'city', 'postal_code');
 
     protected $dates = ['birth_date'];

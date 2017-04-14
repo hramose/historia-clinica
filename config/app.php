@@ -152,6 +152,8 @@ return [
         Jenssegers\Agent\AgentServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        Laravel\Scout\ScoutServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

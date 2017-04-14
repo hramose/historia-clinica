@@ -160,7 +160,8 @@ class PatientController extends Controller
 
     public function listaFront($term)
     {
-        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->get();
+        //$patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->get();
+        $patients = Patient::search($term)->get();
         echo json_encode($patients);
     }
 
