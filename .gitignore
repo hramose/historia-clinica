@@ -6,3 +6,4 @@ Homestead.json
 public/css/style.scss
 composer.lock
 /.idea
+config/snappy.php

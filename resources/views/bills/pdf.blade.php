@@ -142,7 +142,7 @@
             <div id="datos-total">
                 <strong>{{trans('models.Billtotalbill')}}</strong>
                 <span>
-                    {{--*/ @$total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 /*--}}
+                    @php $total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 @endphp
                     {{$formatter->formatCurrency($total, 'EUR')}}
                 </span>
             </div>

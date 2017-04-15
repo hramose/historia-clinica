@@ -63,13 +63,13 @@
                 </div>
             </div>
         </div>
-        <div class="box widget" id="stats">
+        {{--<div class="box widget" id="stats">
             <div class="content show-stats">
                 <div class="counter-box">
                     <i class="fa fa-calendar-check-o"></i>
 
                     <div class="statistics">
-                        <h5>{{count($stats_reviews)}} {{--<span>%</span>--}}</h5>
+                        <h5>{{count($stats_reviews)}} --}}{{--<span>%</span>--}}{{--</h5>
 
                         <div class="grow success-msg">
                             <p>{{trans('messages.stats_reviews')}}</p>
@@ -77,6 +77,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
     </div>
 @endsection
