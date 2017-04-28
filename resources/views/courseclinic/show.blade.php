@@ -64,6 +64,9 @@
                                 </section>
                             </column>
                             <section>
+                                CONCEPTS
+                            </section>
+                            <section>
                                 <textarea name="cclinic[content]" required ng-model="cclinic.content"></textarea>
                             </section>
 
