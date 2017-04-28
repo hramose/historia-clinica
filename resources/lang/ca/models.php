@@ -91,5 +91,6 @@ return array(
     'Reviewssist_digestiu' => 'Sist. Digestiu',
     'Reviewsaltres' => 'Altres',
     'Cclinic_title' => 'Curs clínic',
+    'Cclinic_concepts' => 'Conceptes',
     'Cclinicmsgsavedcorrectly' => 'Curs clínic guardat correctament',
 );

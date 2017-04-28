@@ -55,7 +55,7 @@ class CreateBillConceptsTable extends Migration
             ],
             [
                 'id' => 5,
-                'name' => 'Reeducació de moviments / Transferències / Marxa / Escalas',
+                'name' => 'Reeducació de moviments / Transferències / Marxa / Escales',
                 'parent_id' => 1,
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now()

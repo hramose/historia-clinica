@@ -1041,6 +1041,20 @@ nav, li.active, .wrap-content, #footer {
   top: 40px;
 }
 
+#concept-tags {
+  min-height: 170px;
+}
+
+#concept-tags label {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
 .metismenu .arrow {
     float: right;
     line-height: 1.42857;
