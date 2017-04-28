@@ -60,9 +60,21 @@
                             <h4>{{trans('models.Cclinic_title')}}</h4>
                             <column cols="3">
                                 <section>
-                                    <input type="text" ng-model="cclinic.date" name="cclinic[date]" required ng-click="today_date($event)">
+                                    <input type="text" ng-model="cclinic.date" name="cclinic[date]" required
+                                           ng-click="today_date($event)">
                                 </section>
                             </column>
+                            <h4>{{trans('models.Cclinic_concepts')}}</h4>
+                            <section>
+                                <span id="bill-concepts" style="display: none">
+                                    {{$billConcepts->toJson()}}
+                                </span>
+                                <div id="concept-tags">
+                                    <label ng-repeat="concept in bill_concepts" ng-click="addToContent(concept)">
+                                        [[concept.name]]
+                                    </label>
+                                </div>
+                            </section>
                             <section>
                                 <textarea name="cclinic[content]" required ng-model="cclinic.content"></textarea>
                             </section>
@@ -74,7 +86,8 @@
                                 @endif
                             </section>
                             {!! Form::close() !!}
-                            <form id="eliminarCurso" name="eliminarCurso" method="post" action="{{route('cursoElimina', ['patient' => $pacient, 'clinicalCourse' => $clinicalCourse])}}">
+                            <form id="eliminarCurso" name="eliminarCurso" method="post"
+                                  action="{{route('cursoElimina', ['patient' => $pacient, 'clinicalCourse' => $clinicalCourse])}}">
                                 {{method_field('DELETE')}}
                                 {{csrf_field()}}
                             </form>

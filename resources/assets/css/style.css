@@ -1,22 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
-body,
-button,
-select,
-textarea,
-input,
-.btn {
+body, button, select, textarea, input, .btn {
   /*font-family: 'Montserrat', sans-serif;*/
   /*font-family: 'Open Sans', sans-serif;*/
   font-family: 'Lato', sans-serif;
   height: 100%;
 }
 
-body .tooltip,
-button .tooltip,
-select .tooltip,
-textarea .tooltip,
-input .tooltip,
-.btn .tooltip {
+body .tooltip, button .tooltip, select .tooltip, textarea .tooltip, input .tooltip, .btn .tooltip {
   background: #000000;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -26,18 +16,11 @@ input .tooltip,
   padding: 5px;
 }
 
-body .tooltip p,
-button .tooltip p,
-select .tooltip p,
-textarea .tooltip p,
-input .tooltip p,
-.btn .tooltip p {
+body .tooltip p, button .tooltip p, select .tooltip p, textarea .tooltip p, input .tooltip p, .btn .tooltip p {
   margin: 0;
 }
 
-body.no-login #main-page,
-body.no-login #footer,
-body.no-login .wrap-content {
+body.no-login #main-page, body.no-login #footer, body.no-login .wrap-content {
   margin: 0;
 }
 
@@ -296,73 +279,38 @@ nav.closed .metismenu li a span {
   display: inline-block;
 }
 
-.wrap-content #main-page h1,
-.wrap-content #main-page h2,
-.wrap-content #main-page h3,
-.wrap-content #main-page h4,
-.wrap-content #main-page h5,
-.wrap-content #main-page h6 {
+.wrap-content #main-page h1, .wrap-content #main-page h2, .wrap-content #main-page h3, .wrap-content #main-page h4, .wrap-content #main-page h5, .wrap-content #main-page h6 {
   text-align: center;
 }
 
-.wrap-content #main-page #layout12-main,
-.wrap-content #main-page #layout11-main {
-  -ms-flex-wrap: wrap;
+.wrap-content #main-page #layout12-main, .wrap-content #main-page #layout11-main {
   flex-wrap: wrap;
 }
 
-.wrap-content #main-page #layout12-main > h2,
-.wrap-content #main-page #layout11-main > h2 {
-  -ms-flex: 1;
+.wrap-content #main-page #layout12-main > h2, .wrap-content #main-page #layout11-main > h2 {
+  -webkit-box-flex: 1;
   flex: 1;
-  -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
   text-align: center !important;
 }
 
-.wrap-content #main-page #layout12-main row,
-.wrap-content #main-page #layout11-main row {
-  -ms-flex-wrap: wrap;
+.wrap-content #main-page #layout12-main row, .wrap-content #main-page #layout11-main row {
   flex-wrap: wrap;
 }
 
-.wrap-content #main-page #layout12-main h1,
-.wrap-content #main-page #layout12-main h2,
-.wrap-content #main-page #layout12-main h3,
-.wrap-content #main-page #layout12-main h4,
-.wrap-content #main-page #layout12-main h5,
-.wrap-content #main-page #layout12-main h6,
-.wrap-content #main-page #layout11-main h1,
-.wrap-content #main-page #layout11-main h2,
-.wrap-content #main-page #layout11-main h3,
-.wrap-content #main-page #layout11-main h4,
-.wrap-content #main-page #layout11-main h5,
-.wrap-content #main-page #layout11-main h6 {
+.wrap-content #main-page #layout12-main h1, .wrap-content #main-page #layout12-main h2, .wrap-content #main-page #layout12-main h3, .wrap-content #main-page #layout12-main h4, .wrap-content #main-page #layout12-main h5, .wrap-content #main-page #layout12-main h6, .wrap-content #main-page #layout11-main h1, .wrap-content #main-page #layout11-main h2, .wrap-content #main-page #layout11-main h3, .wrap-content #main-page #layout11-main h4, .wrap-content #main-page #layout11-main h5, .wrap-content #main-page #layout11-main h6 {
   text-align: inherit;
 }
 
-.wrap-content #main-page #layout12-main h1.backup_title,
-.wrap-content #main-page #layout12-main h2.backup_title,
-.wrap-content #main-page #layout12-main h3.backup_title,
-.wrap-content #main-page #layout12-main h4.backup_title,
-.wrap-content #main-page #layout12-main h5.backup_title,
-.wrap-content #main-page #layout12-main h6.backup_title,
-.wrap-content #main-page #layout11-main h1.backup_title,
-.wrap-content #main-page #layout11-main h2.backup_title,
-.wrap-content #main-page #layout11-main h3.backup_title,
-.wrap-content #main-page #layout11-main h4.backup_title,
-.wrap-content #main-page #layout11-main h5.backup_title,
-.wrap-content #main-page #layout11-main h6.backup_title {
+.wrap-content #main-page #layout12-main h1.backup_title, .wrap-content #main-page #layout12-main h2.backup_title, .wrap-content #main-page #layout12-main h3.backup_title, .wrap-content #main-page #layout12-main h4.backup_title, .wrap-content #main-page #layout12-main h5.backup_title, .wrap-content #main-page #layout12-main h6.backup_title, .wrap-content #main-page #layout11-main h1.backup_title, .wrap-content #main-page #layout11-main h2.backup_title, .wrap-content #main-page #layout11-main h3.backup_title, .wrap-content #main-page #layout11-main h4.backup_title, .wrap-content #main-page #layout11-main h5.backup_title, .wrap-content #main-page #layout11-main h6.backup_title {
   text-align: center !important;
 }
 
-.wrap-content #main-page #layout12-main form,
-.wrap-content #main-page #layout11-main form {
+.wrap-content #main-page #layout12-main form, .wrap-content #main-page #layout11-main form {
   margin-top: 0;
 }
 
-.wrap-content #main-page #layout12-main form section,
-.wrap-content #main-page #layout11-main form section {
+.wrap-content #main-page #layout12-main form section, .wrap-content #main-page #layout11-main form section {
   text-align: inherit;
 }
 
@@ -1013,46 +961,52 @@ nav.closed .metismenu li a span {
   margin: 0 0 0 60px;
 }
 
-nav,
-li.active,
-.wrap-content,
-#footer {
+nav, li.active, .wrap-content, #footer {
   transition: all 0.5s;
 }
 
 /* when hiding the picture */
-
 .ng-hide-add {
+  -webkit-animation: 0.5s lightSpeedOut ease;
   animation: 0.5s lightSpeedOut ease;
 }
 
 .autocomplete.ng-hide-remove {
+  -webkit-animation: 0.5s slideInDown ease !important;
   animation: 0.5s slideInDown ease !important;
 }
 
 .autocomplete.ng-hide-add {
+  -webkit-animation: 0.5s slideOutUp ease !important;
   animation: 0.5s slideOutUp ease !important;
 }
 
 /* when showing the picture */
-
 .ng-hide-remove {
+  -webkit-animation: 0.5s flipInX ease;
   animation: 0.5s flipInX ease;
 }
 
 .show-review {
+  -webkit-animation: 0.5s shake ease;
   animation: 0.5s shake ease;
 }
 
 /* animations */
-
 #check {
   fill: none;
   stroke: green;
   stroke-width: 20;
   stroke-dasharray: 180;
   stroke-dashoffset: 180;
+  -webkit-animation: draw 2s infinite ease;
   animation: draw 2s infinite ease;
+}
+
+@-webkit-keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes draw {
@@ -1084,4 +1038,18 @@ li.active,
 #front-back-body-container canvas {
   position: absolute;
   top: 40px;
+}
+
+#concept-tags {
+  min-height: 170px;
+}
+
+#concept-tags label {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 10px;
 }
