@@ -11,7 +11,7 @@ UsersController.$inject = ['$scope', '$filter'];
 PacientsController.$inject = ['$scope', '$filter', '$http', '$sce'];
 FlashController.$inject = ['$scope', '$timeout'];
 ReviewController.$inject = ['$scope', '$filter', '$timeout', '$window', 'ModalService'];
-ClinicCourseController.$inject = ['$scope', '$filter', '$interval', '$window', '$http', '$sce'];
+ClinicCourseController.$inject = ['$scope', '$filter', '$interval', '$window', '$http', '$sce', '$timeout'];
 SearchController.$inject = ['$scope', '$filter', '$timeout', '$http', '$sce', '$window'];
 BillController.$inject = ['$scope', '$filter', '$timeout', '$http', '$sce', '$window'];
 TestController.$inject = ['$scope', '$http', '$filter', '$interval', '$timeout', '$window', '$sce'];
@@ -487,7 +487,7 @@ function ReviewController($scope, $filter, $timeout, $window, ModalService) {
     }
 }
 
-function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce) {
+function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce, $timeout) {
     $scope.patient = {};
     $scope.cclinic = {
         id: ''
@@ -498,6 +498,7 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
     $scope.autocomplete = false;
     $scope.pacients = [];
     $scope.cclinics = [];
+    $scope.bill_concepts = [];
     $scope.url = '';
 
     var $cclinic = $('#cclinic');
@@ -520,6 +521,14 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
         $scope.patient.birth_date = $filter('date')(new Date(str), 'dd/MM/y');
         $patient.html('');
     }
+
+    $timeout(function () {
+        var $bill_concepts = $('#bill-concepts');
+        if ($bill_concepts.length && $bill_concepts.html().trim() !== '[]') {
+            $scope.bill_concepts = JSON.parse($bill_concepts.html());
+            $bill_concepts.remove();
+        }
+    }, 0);
 
     $scope.edit_cclinic = function (element) {
         if ($(element).val() !== -1)
@@ -584,6 +593,14 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
             else if ($scope.cclinic.id === '' && exists) {
                 $scope.msg_today_already = true;
             }
+        }
+    };
+
+    $scope.addToContent = function (concept) {
+        if (typeof $scope.cclinic.content !== 'undefined') {
+            $scope.cclinic.content += '\n' + concept.name;
+        } else {
+            $scope.cclinic.content = concept.name;
         }
     };
 }

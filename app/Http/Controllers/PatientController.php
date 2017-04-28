@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -160,7 +161,12 @@ class PatientController extends Controller
 
     public function listaFront($term)
     {
-        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->get();
+        $patients = Patient::where('id', $term)
+            ->orWhere('name', 'like', '%' . $term . '%')
+            ->orWhere('surname', 'like', '%' . $term . '%')
+            ->orWhere('lastname', 'like', '%' . $term . '%')
+            ->orWhere(DB::raw('CONCAT(name, " ", surname, " ", lastname)'), 'like', '%' . $term . '%')
+            ->get();
         echo json_encode($patients);
     }
 
@@ -201,8 +207,9 @@ class PatientController extends Controller
         return view('front.home_guest', $data);
     }
 
-    public function getMatchPatients($term) {
-        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%'.$term.'%')->orWhere('surname', 'like', '%'.$term.'%')->orWhere('lastname', 'like', '%'.$term.'%')->limit(15)->get();
+    public function getMatchPatients($term)
+    {
+        $patients = Patient::where('id', $term)->orWhere('name', 'like', '%' . $term . '%')->orWhere('surname', 'like', '%' . $term . '%')->orWhere('lastname', 'like', '%' . $term . '%')->limit(15)->get();
         echo json_encode($patients);
     }
 }

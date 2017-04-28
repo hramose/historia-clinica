@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BillConcept;
 use App\ClinicalCourse;
 use App\Review;
 use Carbon\Carbon;
@@ -77,12 +78,14 @@ class ClinicalCourseController extends Controller
         }
 
         $allClinicalCourses = $patient->clinicalCourses;
+        $billConcepts = BillConcept::all();
 
         return view('courseclinic/show', [
             'lang' => 'ca',
             'pacient' => $patient,
             'clinicalCourses' => $allClinicalCourses,
             'clinicalCourse' => $clinicalCourse,
+            'billConcepts' => $billConcepts,
             'title' => 'Curs clínic del pacient: ' . $patient->name . ' ' . $patient->surname . ' ' . $patient->lastname
         ]);
     }
