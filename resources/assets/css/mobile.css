@@ -374,3 +374,13 @@ footer span.right {
   margin: 0 auto;
   display: block;
 }
+
+#cclinic-content #concept-tags label {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
