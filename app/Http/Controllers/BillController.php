@@ -189,11 +189,26 @@ class BillController extends Controller
          ]);*/
 
         $formatter = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
+        
+        $total = $bill->total;
+        $irpf = $bill->irpf;
+        $discount = $bill->discount;
+        
+        if ($irpf > 0) {
+            $irpf_cost = ($total * $irpf) / 100;
+            $total -= $irpf_cost;
+        }
+
+        if ($discount > 0) {
+            $discount_cost = ($total * $discount) / 100;
+            $total -= $discount_cost;
+        }
 
         $pdf = PDF::loadView('bills.pdf', [
             'bill' => $bill,
             'billInfo' => $config,
-            'formatter' => $formatter
+            'formatter' => $formatter,
+            'total_amount' => $total
         ]);
 
         $pdf->setOption('footer-html', utf8_decode(view('bills.footer')));
