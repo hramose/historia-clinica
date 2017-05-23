@@ -833,11 +833,11 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
 
     $scope.show_total = function (n1, n2) {
         $scope.bill.total_bill = (isNaN(n1) ? 0 : n1) - (isNaN(n2) ? 0 : n2);
-        console.log($scope.bill.total_bill);
         return $filter('currency')($scope.bill.total_bill.toFixed(2));
     };
 
     $scope.show_amount_discount = function (n1, n2) {
+        n2 = parseFloat(n2.toString().replace(',', '.'));
         $scope.bill.amount_discount = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
         $scope.bill.total_partial = $scope.bill.total - $scope.bill.amount_discount;
         return $filter('currency')($scope.bill.amount_discount.toFixed(2));
