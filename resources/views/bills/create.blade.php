@@ -141,7 +141,7 @@
                         <span class="percent">
                             <input type="text" name="discount" ng-model="bill.discount"> %
                         </span>
-                        <span class="discount-amount">[[show_amount_discount(bill.total, bill.discount.replace(',', '.'))]]</span>
+                        <span class="discount-amount">[[show_amount_discount(bill.total, bill.discount)]]</span>
                     </div>
                     <div class="bill-iva">
                         <label ng-if="bill.iva == '' || !bill.iva"><strong>{{trans('models.Billwoiva')}}</strong></label>

@@ -143,7 +143,7 @@
                 <strong>{{trans('models.Billtotalbill')}}</strong>
                 <span>
                     {{--*/ @$total = floor(($bill->qty * $bill->price_per_unit - (($bill->qty * $bill->price_per_unit) * $bill->irpf) / 100) * 100) / 100 /*--}}
-                    {{$formatter->formatCurrency($total, 'EUR')}}
+                    {{$formatter->formatCurrency($bill->amount, 'EUR')}}
                 </span>
             </div>
         </div>
