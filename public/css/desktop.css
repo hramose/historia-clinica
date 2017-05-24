@@ -1041,11 +1041,23 @@ nav, li.active, .wrap-content, #footer {
   top: 40px;
 }
 
-#concept-tags {
+#cclinic-content #reduced-pacient-date {
+  margin-bottom: 5px;
+}
+
+#cclinic-content #reduced-pacient-date section label {
+  font-weight: bold;
+}
+
+#cclinic-content #reduced-pacient-date section p {
+  margin-bottom: 5px;
+}
+
+#cclinic-content #concept-tags {
   min-height: 170px;
 }
 
-#concept-tags label {
+#cclinic-content #concept-tags label {
   border: 1px solid #ccc;
   padding: 10px;
   cursor: pointer;
@@ -1053,6 +1065,28 @@ nav, li.active, .wrap-content, #footer {
   float: left;
   margin-right: 5px;
   margin-bottom: 10px;
+}
+
+/**
+  Calendar styles
+ */
+#hcs-calendar h3 {
+  width: 231px;
+  text-align: center !important;
+}
+
+#hcs-calendar .hcs-day-name {
+  text-align: center;
+}
+
+#hcs-calendar .hcs-day {
+  text-align: center;
+  cursor: pointer;
+}
+
+#hcs-calendar .hcs-day.active {
+  background: #256bc9;
+  color: #fff;
 }
 
 .metismenu .arrow {

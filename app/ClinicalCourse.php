@@ -37,6 +37,13 @@ class ClinicalCourse extends Model
 
     public function getDateAttribute($date)
     {
+        if (!is_null($this->review)) {
+            $reviewDate = $this->review->date;
+            $explodedDate = explode('/', $reviewDate);
+            $correctedReviewDate = $explodedDate[2] . '-' . $explodedDate[1] . '-' . $explodedDate[0];
+            return date('Y-m-d H:i:s', strtotime($correctedReviewDate));
+        }
+
         return date('d/m/Y H:i:s', strtotime($date));
     }
 }

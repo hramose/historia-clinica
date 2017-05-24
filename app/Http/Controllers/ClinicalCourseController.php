@@ -52,6 +52,7 @@ class ClinicalCourseController extends Controller
         $clinicalCourse = new ClinicalCourse();
         $clinicalCourse->patient_id = $patient->id;
         $params = $request->get('cclinic');
+        $clinicalCourse->visit_reason = $params['visit_reason'];
         $clinicalCourse->content = $params['content'];
         $clinicalCourse->date = Carbon::createFromFormat('d/m/Y', $params['date']);
 
@@ -112,6 +113,7 @@ class ClinicalCourseController extends Controller
     {
         $params = $request->get('cclinic');
         $clinicalCourse->content = $params['content'];
+        $clinicalCourse->date = Carbon::createFromFormat('d/m/Y H:i:s', $params['date']);
 
         $clinicalCourse->save();
 

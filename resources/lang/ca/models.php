@@ -26,6 +26,8 @@ return array(
     'Pacientage' => 'Edat',
     'Pacientprofession' => 'Professió',
     'Pacienthobbies' => 'Aficions',
+    'Pacientpat_antecedents' => 'Antecedents patològics',
+    'Pacientnoantecedents' => 'No s\'han trobat antecedents',
     'Pacientcerca' => 'Cercador de pacients',
     'Billtitle' => 'Factura',
     'Billid' => 'Número',
@@ -91,6 +93,7 @@ return array(
     'Reviewssist_digestiu' => 'Sist. Digestiu',
     'Reviewsaltres' => 'Altres',
     'Cclinic_title' => 'Curs clínic',
+    'Cclinic_visit_reason' => 'Motiu consulta',
     'Cclinic_concepts' => 'Conceptes',
     'Cclinicmsgsavedcorrectly' => 'Curs clínic guardat correctament',
 );

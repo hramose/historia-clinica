@@ -4,30 +4,36 @@
     <column cols="11">
         <div id="cclinic-content" ng-controller="ClinicCourseController">
             <h2>Dades del pacient</h2>
-            {!! Form::model($pacient, array('class' => 'forms', 'name' => 'form')) !!}
+            {!! Form::model($pacient, array('id' => 'reduced-pacient-date', 'class' => 'forms', 'name' => 'form')) !!}
             <div id="patient" style="display: none">
                 {!! $pacient->toJson() !!}
             </div>
             <row>
-                <column cols="3">
+                <column cols="4">
                     <section>
                         <label>{{ trans('models.Pacientid') }}</label>
-                        {!! Form::text('id', null, ['class'=> 'width-11', 'readonly' => 'readonly', 'ng-model' => 'patient.id']) !!}
-                    </section>
-                    <section>
-                        <label>{{ trans('models.Pacientbirth_date') }}</label>
-                        {!! Form::text('birth_date', null, ['class'=> 'width-11', 'readonly' => 'readonly', 'ng-model' => 'patient.birth_date']) !!}
+                        <p>[[patient.id]]</p>
+                        <label>{{ trans('models.Pacientname') }}</label>
+                        <p>[[patient.full_name]]</p>
+                        <label>{{ trans('models.Pacientpat_antecedents') }}</label>
+                        [[patient.last_pathological_antecedents]]
+                        <p>
+                            <a target="_blank" href="{{URL::route('valoracions.pacient.show', '')}}/[[patient.id]]">
+                                <i class="fa fa-calendar-check-o"></i>{{ trans('messages.goto_review') }}
+                            </a>
+                        </p>
                     </section>
                 </column>
-                <column cols="6">
+                <column cols="3">
                     <section>
-                        <label>{{ trans('models.Pacientname') }}</label>
-                        {!! Form::text('fullname', null, ['class'=> 'width-12', 'readonly' => 'readonly', 'ng-model' => 'patient.full_name']) !!}
-                    </section>
-                    <section>
+                        <label>{{ trans('models.Pacientbirth_date') }}</label>
+                        <p>[[patient.birth_date]]</p>
                         <label>{{ trans('models.Pacientage') }}</label>
-                        {!! Form::text('age', null, ['class'=> 'width-12', 'readonly' => 'readonly', 'ng-model' => 'patient.age']) !!}
+                        <p>[[patient.age]]</p>
                     </section>
+                </column>
+                <column cols="5">
+                    <hcs-calendar events="{{$clinicalCourses->toJson()}}"></hcs-calendar>
                 </column>
             </row>
             {!! Form::close() !!}
@@ -64,6 +70,11 @@
                                            ng-click="today_date($event)">
                                 </section>
                             </column>
+                            <section>
+                                <label>{{ trans('models.Cclinic_visit_reason') }}</label>
+                                <input type="text" required ng-model="cclinic.visit_reason"
+                                       name="cclinic[visit_reason]">
+                            </section>
                             <h4>{{trans('models.Cclinic_concepts')}}</h4>
                             <section>
                                 <span id="bill-concepts" style="display: none">

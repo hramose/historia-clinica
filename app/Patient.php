@@ -11,7 +11,7 @@ class Patient extends Model
 
     protected $dates = ['birth_date'];
 
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'last_pathological_antecedents'];
 
     public function visits()
     {
@@ -102,5 +102,15 @@ class Patient extends Model
         }
 
         return false;
+    }
+
+    public function getLastPathologicalAntecedentsAttribute()
+    {
+        $review = $this->reviews()->latest()->first();
+        if ($review != null) {
+            return $review->review['antecedents'];
+        }
+
+        return trans('models.Pacientnoantecedents');
     }
 }
