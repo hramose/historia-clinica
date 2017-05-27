@@ -79,6 +79,9 @@ class ClinicalCourseController extends Controller
         }
 
         $allClinicalCourses = $patient->clinicalCourses;
+        $allClinicalCourses->each(function (ClinicalCourse $clinicalCourse) {
+           $clinicalCourse->setHidden(['patient_id', 'review_id', 'content', 'review']);
+        });
         $billConcepts = BillConcept::all();
 
         return view('courseclinic/show', [
