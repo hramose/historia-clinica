@@ -838,11 +838,11 @@ function BillController($scope, $filter, $timeout, $http, $sce, $window) {
 
     $scope.show_total = function (n1, n2) {
         $scope.bill.total_bill = (isNaN(n1) ? 0 : n1) - (isNaN(n2) ? 0 : n2);
-        console.log($scope.bill.total_bill);
         return $filter('currency')($scope.bill.total_bill.toFixed(2));
     };
 
     $scope.show_amount_discount = function (n1, n2) {
+        n2 = parseFloat(n2.toString().replace(',', '.'));
         $scope.bill.amount_discount = (isNaN(n1) ? 0 : n1) * (isNaN(n2) ? 0 : n2) / 100;
         $scope.bill.total_partial = $scope.bill.total - $scope.bill.amount_discount;
         return $filter('currency')($scope.bill.amount_discount.toFixed(2));
@@ -15960,9 +15960,9 @@ angular.module('app')
                  */
 
                 scope.getEventsOfThisMonth = function () {
-                    var date = moment();
+                    let date = moment();
                     return scope.events.filter(function (item) {
-                        var eventDate = moment(item.date);
+                        let eventDate = moment(item.date);
                         if ((date.get('month') == eventDate.get('month')) && (date.get('year') == eventDate.get('year'))) {
                             return true;
                         }
@@ -15973,30 +15973,30 @@ angular.module('app')
                     var now = moment();
 
                     if (typeof month !== 'undefined') {
-                        now = moment([(new Date()).getFullYear(), month, (new Date()).getDate()]);
+                        now = moment([(new Date()).getFullYear(), month, 1]);
                     }
                     if (typeof year !== 'undefined') {
-                        now = moment([year, (new Date()).getMonth(), (new Date()).getDate()]);
+                        now = moment([year, (new Date()).getMonth(), 1]);
                     }
                     if (typeof month !== 'undefined' && typeof year !== 'undefined') {
-                        now = moment([year, month, (new Date()).getDate()]);
+                        now = moment([year, month, 1]);
                     }
 
-                    var events_of_month = scope.getEventsOfThisMonth();
+                    let events_of_month = scope.getEventsOfThisMonth();
 
-                    var first_day = moment(now).startOf('month');
-                    var end_day = moment(now).endOf('month');
+                    let first_day = moment(now).startOf('month');
+                    let end_day = moment(now).endOf('month');
 
-                    var month_range = moment.range(first_day, end_day);
-                    var weeks = [];
+                    let month_range = moment.range(first_day, end_day);
+                    let weeks = [];
 
-                    for (var w of month_range.by('days')) {
+                    for (let w of month_range.by('days')) {
                         if (weeks.indexOf(w.week()) === -1)
                             weeks.push(w.week())
                     }
 
-                    var weekdays = moment.weekdaysMin();
-                    var sunday = weekdays[0];
+                    let weekdays = moment.weekdaysMin();
+                    let sunday = weekdays[0];
                     weekdays.splice(0, 1);
                     weekdays.push(sunday);
 
@@ -16007,12 +16007,12 @@ angular.module('app')
                     scope.actual_month = parseInt(now.format('M')) - 1;
                     scope.actual_year = parseInt(now.format('YYYY'));
 
-                    var day = 1;
-                    var days_in_month = first_day.daysInMonth();
-                    var start_day = first_day.toDate().getDay() - 1;
+                    let day = 1;
+                    let days_in_month = first_day.daysInMonth();
+                    let start_day = first_day.toDate().getDay() - 1;
                     if (start_day === -1) start_day = 6;
 
-                    var real_now_date = moment();
+                    let real_now_date = moment();
                     $timeout(function () {
                         $('#hcs-calendar .hcs-weeks .hcs-day').text('');
                         $('#hcs-calendar .hcs-weeks').each(function (index, value) {
@@ -16027,9 +16027,12 @@ angular.module('app')
                         });
                         events_of_month.forEach(function (item, index) {
                             if (moment(item.date).format('YYYY-MM') === real_now_date.format('YYYY-MM')) {
-                                var day = moment(item.date).format('DD');
-                                var domElement = $('#hcs-calendar .hcs-weeks').find('.hcs-day:contains(' + day + ')');
+                                var day = parseInt(moment(item.date).format('DD'));
+                                var domElement = $('#hcs-calendar .hcs-weeks .hcs-day').filter(function () {
+                                    return parseInt($(this).text()) === day;
+                                });
                                 domElement.addClass('has-events');
+                                domElement.prop('title', $.trim(`${domElement.prop('title')}\n${item.visit_reason}`));
                             }
                         });
                     }, 0);

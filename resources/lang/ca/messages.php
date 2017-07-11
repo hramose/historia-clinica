@@ -75,4 +75,5 @@ return array(
     'new_cclinic' => 'Nou',
     'save_cclinic' => 'Guardar',
     'delete_cclinic' => 'Eliminar',
+    'goto_review' => 'Mira les valoracions d\'aquest pacient'
 );
