@@ -21,7 +21,7 @@ class BillController extends Controller
 
     public function index()
     {
-        $bills = Bill::paginate(10);
+        $bills = Bill::orderBy('id', 'desc')->paginate(10);
         $bills->setPath('factures/llista');
         $formatter = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
 

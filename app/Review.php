@@ -70,6 +70,7 @@ class Review extends Model
         if ($reviewContent['motiu_consulta'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewmotiu_consulta')) . "\\n";
             $content .= $reviewContent['motiu_consulta'] . "\\n";
+            $clinicalCourse->visit_reason = $reviewContent['motiu_consulta'];
         }
         if ($reviewContent['sist_musculesqueletic']['observacions'] != "") {
             $content .= mb_strtoupper(trans('models.Reviewsist_musculesqueletic_observacions')) . "\\n";

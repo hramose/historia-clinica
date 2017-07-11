@@ -940,15 +940,70 @@ nav, li.active, .wrap-content, #footer {
   }
 }
 
-#concept-tags {
-  min-height: 170px;
-  label {
-    border: 1px solid #ccc;
-    padding: 10px;
+#cclinic-content {
+  #reduced-pacient-date {
+    margin-bottom: 5px;
+    section {
+      label {
+        font-weight: bold;
+      }
+      p {
+        margin-bottom: 5px;
+      }
+    }
+  }
+  #concept-tags {
+    min-height: 170px;
+    label {
+      border: 1px solid #ccc;
+      padding: 10px;
+      cursor: pointer;
+      display: inline-block;
+      float: left;
+      margin-right: 5px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+/**
+  Calendar styles
+ */
+#hcs-calendar {
+  h3 {
+    width: 231px;
+    text-align: center !important;
+  }
+  .hcs-day-name {
+    text-align: center;
+  }
+  .hcs-day {
+    text-align: center;
     cursor: pointer;
-    display: inline-block;
-    float: left;
-    margin-right: 5px;
-    margin-bottom: 10px;
+    &.active {
+      background: #256bc9;
+      color: #fff;
+      &.has-events {
+        background: repeating-linear-gradient(
+                        -55deg,
+                        #606dbc,
+                        #606dbc 10px,
+                        #465298 10px,
+                        #465298 20px
+        );
+      }
+    }
+    &.has-events {
+      background: repeating-linear-gradient(
+                      -55deg,
+                      #222,
+                      #222 10px,
+                      #333 10px,
+                      #333 20px
+      );
+      & {
+        color: #fff;
+      }
+    }
   }
 }

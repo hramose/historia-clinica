@@ -51,6 +51,21 @@ class Backup extends Command
 
     public function backup($tables = '*')
     {
+        /*$return_var = NULL;
+        $output = NULL;
+        $command = "mysqldump -P 3306 -h localhost --routines --triggers --single-transaction --quick --opt --skip-lock-tables -u root -p1234 --extended-insert=true hfisio -r /var/www/historia-clinica/storage/app/hfisio.dump";
+        exec($command, $output, $return_var);
+
+        if ($return_var) {
+            Log::error($this->signature . ' Command failed');
+            die();
+        }
+
+        $time = time();
+        $date = new Carbon();
+        $date = $date->setTimestamp($time)->format('d M Y H:i:s');
+        Log::info($this->signature . ' ' . $date . ': Backup generado');
+        die();*/
         if ($tables == '*') {
             $tables = array();
             $result = DB::select('SHOW TABLES');

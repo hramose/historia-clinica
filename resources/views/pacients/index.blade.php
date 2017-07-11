@@ -17,6 +17,8 @@
                                 <span class="actions">
                                     <a href="{{URL::route('pacientsDades', '')}}/[[p.id]]"><i
                                                 class="fa fa-user"></i></a>
+                                    <a href="{{URL::route('curso.pacient.show', '')}}/[[p.id]]"><i
+                                                class="fa fa-list"></i></a>
                                     <a href="{{URL::route('valoracions.pacient.show', '')}}/[[p.id]]"><i
                                                 class="fa fa-calendar-check-o"></i></a>
                                 </span>

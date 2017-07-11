@@ -1,0 +1,13 @@
+<div id="hcs-calendar" class="row">
+    <column cols="12">
+        <h3><span ng-click="changeMonth('substract')" class="fa fa-arrow-left left"></span> {{month_name}} <span ng-click="changeMonth('add')" class="fa fa-arrow-right right"></span></h3>
+        <column class="hcs-day-name" cols="1" ng-repeat="wd in weekdays_name">
+            {{wd}}
+        </column>
+    </column>
+    <column class="hcs-weeks" cols="12" ng-repeat="w in weeks">
+        <column class="hcs-day" ng-mouseover="showToolTip(w)" cols="1" ng-repeat="wd in weekdays track by $index">
+
+        </column>
+    </column>
+</div>
