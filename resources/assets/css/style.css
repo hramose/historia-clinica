@@ -1087,3 +1087,15 @@ nav, li.active, .wrap-content, #footer {
   background: #256bc9;
   color: #fff;
 }
+
+#hcs-calendar .hcs-day.active.has-events {
+  background: repeating-linear-gradient(-55deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
+}
+
+#hcs-calendar .hcs-day.has-events {
+  background: repeating-linear-gradient(-55deg, #222, #222 10px, #333 10px, #333 20px);
+}
+
+#hcs-calendar .hcs-day.has-events {
+  color: #fff;
+}

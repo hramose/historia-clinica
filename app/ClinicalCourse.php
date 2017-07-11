@@ -44,6 +44,6 @@ class ClinicalCourse extends Model
             return date('Y-m-d H:i:s', strtotime($correctedReviewDate));
         }
 
-        return date('d/m/Y H:i:s', strtotime($date));
+        return date('Y-m-d H:i:s', strtotime($date));
     }
 }
