@@ -46,7 +46,10 @@ class UpdateAges extends Command
                 $now = Carbon::now();
 
                 $difference_in_years = $now->diffInYears($birth_date);
+                $this->comment('Pacient: ' . $patient->full_name);
+                $this->comment('Before: ' . $patient->age);
                 $patient->age = $difference_in_years;
+                $this->comment('After: ' . $patient->age);
                 $patient->save();
             }
         });
