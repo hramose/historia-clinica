@@ -148,7 +148,8 @@ function PacientsController($scope, $filter, $http, $sce) {
     if (document.querySelector('.pacient_json')) {
         $scope.pacient = JSON.parse(document.querySelector('.pacient_json').innerHTML);
         var date = moment($scope.pacient.birth_date).toDate();
-        $scope.pacient.birth_date = typeof $scope.pacient.birth_date !== 'undefined' ? $filter('date')(new Date(date), 'dd/MM/y') : '';
+        $scope.pacient.birth_date = typeof $scope.pacient.birth_date !== 'undefined' ? new Date(date) : '';
+        console.log($scope.pacient.birth_date);
         $scope.pacient.age = typeof $scope.pacient.age !== 'undefined' ? parseInt($scope.pacient.age) : '';
     }
 
