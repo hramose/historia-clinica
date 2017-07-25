@@ -20,7 +20,7 @@
         </section>
         <section>
             <label>{{ trans('models.Pacientbirth_date') }}</label>
-            {!! Form::input('text', 'birth_date', '', ['class'=> '', 'ng-model' => 'pacient.birth_date', 'placeholder' => 'DD/MM/YYYY', 'ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
+            {!! Form::input('text', 'birth_date', '', ['class'=> '', 'datetime' => 'dd/MM/yyyy', 'ng-model' => 'pacient.birth_date', 'placeholder' => 'DD/MM/YYYY', 'ng-change' => 'putAgeFromDate(pacient.birth_date)']) !!}
         </section>
         <section>
             <label>{{ trans('models.Pacientage') }}</label>
