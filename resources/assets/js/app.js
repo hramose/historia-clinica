@@ -1,9 +1,24 @@
-angular.module('app', ['ngAnimate', 'AngularPrint', 'ModalModule']);
+angular.module('app', ['ngAnimate', 'AngularPrint', 'ModalModule', 'datetime']);
 
 angular.module('app').config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 }]);
+
+angular.module("app").constant("datetimePlaceholder", {
+    year: "(any)",
+    yearShort: "(any)",
+    month: "(mes)",
+    date: "(día)",
+    day: "(día)",
+    hour: "(hora)",
+    hour12: "(hora12)",
+    minute: "(minuts)",
+    second: "(segons)",
+    millisecond: "(milisegons)",
+    ampm: "(AM/PM)",
+    week: "(setmana)"
+});
 
 AppController.$inject = ['$scope', '$interval'];
 FrontController.$inject = ['$scope', '$sce', '$http'];
@@ -138,16 +153,12 @@ function PacientsController($scope, $filter, $http, $sce) {
     }
 
     $scope.putAgeFromDate = function (date) {
-        var regexp = /^\d{2}([./-])\d{2}\1\d{4}$/;
-
-        if (date.match(regexp)) {
-            var arrDate = date.split('/');
-            var dateUser = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
-            var ageDifMs = Date.now() - dateUser.getTime();
-            var ageDate = new Date(ageDifMs);
+        if (typeof date === 'object') {
+            /*var arrDate = date.split('/');
+            var dateUser = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);*/
+            let ageDifMs = Date.now() - date.getTime();
+            let ageDate = new Date(ageDifMs);
             $scope.pacient.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        } else {
-            console.log('nop!');
         }
     };
 

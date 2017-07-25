@@ -3,6 +3,8 @@
 {!! Html::script('bower_components/angularPrint/angularPrint.js') !!}
 <script src="{{asset(elixir('js/desktop.js'))}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.0.3/moment-range.min.js"></script>
+<script src="https://unpkg.com/custom-input/dist/custom-input.js"></script>
+<script src="https://unpkg.com/angular-datetime-input/dist/datetime.js"></script>
 <script>
     window['moment-range'].extendMoment(moment);
 </script>

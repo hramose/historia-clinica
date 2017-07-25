@@ -5,6 +5,7 @@
     "laravel-elixir": "^5.0.0"
   },
   "dependencies": {
+    "angular-datetime-input": "^5.1.3",
     "bootstrap-sass": "^3.3.0",
     "moment-range": "^3.0.3"
   }
