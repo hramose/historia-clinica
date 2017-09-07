@@ -2,6 +2,12 @@
 
 @section('content')
     <div ng-controller="PacientsController">
+        @include('pacients.pacient_urls', [
+            'links' => [
+                ['url' => URL::route('valoracions.pacient.show', '')."/{$patient->id}", 'icon' => 'fa-calendar-check-o'],
+                ['url' => URL::route('curso.pacient.show', '')."/{$patient->id}", 'icon' => 'fa-list']
+            ]
+        ])
         {!! Form::model($patient, array('route' => array('pacientsDadesUpdate', $patient->id), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
         <section>
             <label>{{ trans('models.Pacientname') }}</label>

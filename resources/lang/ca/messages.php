@@ -75,5 +75,7 @@ return array(
     'new_cclinic' => 'Nou',
     'save_cclinic' => 'Guardar',
     'delete_cclinic' => 'Eliminar',
-    'goto_review' => 'Mira les valoracions d\'aquest pacient'
+    'goto_review' => 'Mira les valoracions d\'aquest pacient',
+    'goto_pacient_data' => 'Mira les dades generals d\'aquest pacient',
+    'pacient_links' => 'Links ràpids'
 );

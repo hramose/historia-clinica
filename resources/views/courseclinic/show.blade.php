@@ -22,6 +22,11 @@
                                 <i class="fa fa-calendar-check-o"></i>{{ trans('messages.goto_review') }}
                             </a>
                         </p>
+                        <p>
+                            <a target="_blank" href="{{URL::route('pacientsDades', '')}}/[[patient.id]]">
+                                <i class="fa fa-user"></i>{{ trans('messages.goto_pacient_data') }}
+                            </a>
+                        </p>
                     </section>
                 </column>
                 <column cols="3">
