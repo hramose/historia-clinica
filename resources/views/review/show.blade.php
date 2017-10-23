@@ -2,6 +2,11 @@
 
 @section('content')
     <column cols="7">
+        <div class="back-to-list">
+            <a href="{{ URL::route('pacientsIndex') }}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> {{trans('messages.go_back_to_pacient_list')}}
+            </a>
+        </div>
         <div id="review-content" ng-controller="ReviewController">
             <h2>Dades del pacient</h2>
             {!! Form::model($pacient, array('class' => 'forms', 'name' => 'form')) !!}
@@ -29,6 +34,18 @@
                         {!! Form::text('age', null, ['class'=> 'width-12', 'readonly' => 'readonly', 'ng-model' => 'patient.age']) !!}
                     </section>
                 </column>
+                <div class="related-links">
+                    <p>
+                        <a target="_blank" href="{{URL::route('pacientsDades', $pacient->id)}}">
+                            <i class="fa fa-user"></i> {{ trans('messages.goto_data') }}
+                        </a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="{{URL::route('curso.pacient.show', $pacient->id)}}">
+                            <i class="fa fa-list"></i> {{ trans('messages.goto_course') }}
+                        </a>
+                    </p>
+                </div>
             </row>
             {!! Form::close() !!}
             <h2>Valoració de Fisioteràpia</h2>
@@ -59,13 +76,15 @@
                     <div id="front-back-body-container">
                         <column cols="5">
                             <button ng-click="undoLastDraw($event, 'front')">{{trans('messages.btn_canvas_undo')}}</button>
-                            <img id="front" src="{{ asset('img/front-body.png') }}" ng-init="convertImageToCanvas('front', '{{ asset('img/front-body.png') }}')" />
+                            <img id="front" src="{{ asset('img/front-body.png') }}"
+                                 ng-init="convertImageToCanvas('front', '{{ asset('img/front-body.png') }}')"/>
                             <input type="hidden" name="review[dots_front]"
                                    value="[[review.review.dots_front]]">
                         </column>
                         <column cols="5">
                             <button ng-click="undoLastDraw($event, 'back')">{{trans('messages.btn_canvas_undo')}}</button>
-                            <img id="back" src="{{ asset('img/back-body.png') }}" ng-init="convertImageToCanvas('back', '{{ asset('img/back-body.png') }}')" />
+                            <img id="back" src="{{ asset('img/back-body.png') }}"
+                                 ng-init="convertImageToCanvas('back', '{{ asset('img/back-body.png') }}')"/>
                             <input type="hidden" name="review[dots_back]"
                                    value="[[review.review.dots_back]]">
                         </column>
@@ -169,13 +188,13 @@
                     </section>
                     <section>
                         <label>{{trans('models.Reviewssist_respiratori') }}:</label>
-                            <textarea name="review[sist_respiratori]"
-                                      ng-model="review.review.sist_respiratori"></textarea>
+                        <textarea name="review[sist_respiratori]"
+                                  ng-model="review.review.sist_respiratori"></textarea>
                     </section>
                     <section>
                         <label>{{trans('models.Reviewssist_urogenital') }}:</label>
-                            <textarea name="review[sist_urogenital]"
-                                      ng-model="review.review.sist_urogenital"></textarea>
+                        <textarea name="review[sist_urogenital]"
+                                  ng-model="review.review.sist_urogenital"></textarea>
                     </section>
                     <section>
                         <label>{{trans('models.Reviewssist_digestiu') }}:</label>

@@ -2,6 +2,23 @@
 
 @section('content')
     <div ng-controller="PacientsController">
+        <div class="back-to-list">
+            <a href="{{ URL::route('pacientsIndex') }}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> {{trans('messages.go_back_to_pacient_list')}}
+            </a>
+        </div>
+        <div class="related-links">
+            <p>
+                <a target="_blank" href="{{URL::route('valoracions.pacient.show', $patient->id)}}">
+                    <i class="fa fa-calendar-check-o"></i> {{ trans('messages.goto_review') }}
+                </a>
+            </p>
+            <p>
+                <a target="_blank" href="{{URL::route('curso.pacient.show', $patient->id)}}">
+                    <i class="fa fa-list"></i> {{ trans('messages.goto_course') }}
+                </a>
+            </p>
+        </div>
         {!! Form::model($patient, array('route' => array('pacientsDadesUpdate', $patient->id), 'class' => 'forms login-form', 'name' => 'form', 'novalidate' => '')) !!}
         <section>
             <label>{{ trans('models.Pacientname') }}</label>

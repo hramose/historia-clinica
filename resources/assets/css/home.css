@@ -1,1 +1,191 @@
-@import url(https://fonts.googleapis.com/css?family=Lato);*{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body,html{font-family:Lato,sans-serif}header{border-bottom:1px solid rgba(0,0,0,.05);min-height:50px;padding:15px}header section{width:960px;margin:0 auto}header section img{width:180px}article{padding:15px;min-height:150px}article #language-selector a{width:30px;height:21px;display:inline-block;text-decoration:none}article #language-selector a.active{border:2px solid #00b3ee}article section{width:960px;margin:20px auto auto}@media (min-width:320px){article section{width:100%}}@media (min-width:961px){article section{width:960px}}@media (min-width:1025px){article section{width:960px}}article section h3{text-align:center;font-size:28px;margin-bottom:10px}@media (min-width:320px){article section h3{font-size:18px}}@media (min-width:481px){article section h3{font-size:20px}}@media (min-width:641px){article section h3{font-size:24px}}@media (min-width:961px){article section h3{font-size:28px}}article section p{text-align:center;font-size:24px}@media (min-width:320px){article section p{font-size:15px}}@media (min-width:481px){article section p{font-size:18px}}@media (min-width:641px){article section p{font-size:22px}}@media (min-width:961px){article section p{font-size:24px}}article section form.forms{text-align:center}article section form.forms .form-group{width:100%;margin-bottom:15px}article section form.forms .form-group label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700;font-size:24px}@media (min-width:320px){article section form.forms .form-group label{font-size:15px}}@media (min-width:481px){article section form.forms .form-group label{font-size:18px}}@media (min-width:641px){article section form.forms .form-group label{font-size:22px}}@media (min-width:961px){article section form.forms .form-group label{font-size:24px}}article section form.forms .form-group input{display:block}article section form.forms .form-group input[type=text]{width:50%;height:34px}article section form.forms .form-group input[type=text],article section form.forms .form-group select{border:1px solid rgba(0,0,0,.05);padding:6px 12px;margin:0 auto;border-radius:4px;text-align:center;font-family:Consolas,Lucida Console,monospace;font-size:24px}article section form.forms .form-group select{display:block;width:52%;height:48px}article section form.forms .form-group textarea{display:block;border:1px solid rgba(0,0,0,.05);width:50%;min-height:150px;padding:6px 12px;margin:0 auto;border-radius:4px;font-family:Consolas,Lucida Console,monospace;font-size:24px}article section form.forms input[type=submit]{width:200px;color:#fff;background-color:#337ab7;padding:6px 12px;font-size:20px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;border:1px solid #2e6da4;border-radius:4px}article section form.forms input[type=submit]:disabled{opacity:.65}@media (min-width:320px){article section form.forms input[type=submit]{font-size:14px}}@media (min-width:481px){article section form.forms input[type=submit]{font-size:16px}}@media (min-width:641px){article section form.forms input[type=submit]{font-size:18px}}@media (min-width:961px){article section form.forms input[type=submit]{font-size:20px}}footer{padding:15px;border-top:1px solid rgba(0,0,0,.05);font-size:13px;color:rgba(0,0,0,.6)}footer section{width:960px;margin:0 auto}
+@import url(https://fonts.googleapis.com/css?family=Lato);
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+html, body {
+  font-family: 'Lato', sans-serif; }
+
+header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  min-height: 50px;
+  padding: 15px; }
+  header section {
+    width: 960px;
+    margin: 0 auto; }
+    header section img {
+      width: 180px; }
+
+article {
+  padding: 15px;
+  min-height: 150px; }
+  article #language-selector a {
+    width: 30px;
+    height: 21px;
+    text-decoration: none;
+    display: inline-block;
+    text-decoration: none; }
+    article #language-selector a.active {
+      border: 2px solid #00b3ee; }
+  article section {
+    width: 960px;
+    margin: 20px auto auto auto; }
+    @media (min-width: 320px) {
+      article section {
+        /* smartphones, iPhone, portrait 480x320 phones */
+        width: 100%; } }
+    @media (min-width: 481px) {
+      article section {
+        /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ } }
+    @media (min-width: 641px) {
+      article section {
+        /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ } }
+    @media (min-width: 961px) {
+      article section {
+        width: 960px; } }
+    @media (min-width: 1025px) {
+      article section {
+        width: 960px; } }
+    article section h3 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 10px; }
+      @media (min-width: 320px) {
+        article section h3 {
+          /* smartphones, iPhone, portrait 480x320 phones */
+          font-size: 18px; } }
+      @media (min-width: 481px) {
+        article section h3 {
+          /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+          font-size: 20px; } }
+      @media (min-width: 641px) {
+        article section h3 {
+          /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+          font-size: 24px; } }
+      @media (min-width: 961px) {
+        article section h3 {
+          font-size: 28px; } }
+    article section p {
+      text-align: center;
+      font-size: 24px; }
+      @media (min-width: 320px) {
+        article section p {
+          /* smartphones, iPhone, portrait 480x320 phones */
+          font-size: 15px; } }
+      @media (min-width: 481px) {
+        article section p {
+          /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+          font-size: 18px; } }
+      @media (min-width: 641px) {
+        article section p {
+          /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+          font-size: 22px; } }
+      @media (min-width: 961px) {
+        article section p {
+          font-size: 24px; } }
+    article section form.forms {
+      text-align: center; }
+      article section form.forms .form-group {
+        width: 100%;
+        margin-bottom: 15px; }
+        article section form.forms .form-group label {
+          display: inline-block;
+          max-width: 100%;
+          margin-bottom: 5px;
+          font-weight: 700;
+          font-size: 24px; }
+          @media (min-width: 320px) {
+            article section form.forms .form-group label {
+              /* smartphones, iPhone, portrait 480x320 phones */
+              font-size: 15px; } }
+          @media (min-width: 481px) {
+            article section form.forms .form-group label {
+              /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+              font-size: 18px; } }
+          @media (min-width: 641px) {
+            article section form.forms .form-group label {
+              /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+              font-size: 22px; } }
+          @media (min-width: 961px) {
+            article section form.forms .form-group label {
+              font-size: 24px; } }
+        article section form.forms .form-group input {
+          display: block; }
+          article section form.forms .form-group input[type="text"] {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            width: 50%;
+            height: 34px;
+            padding: 6px 12px;
+            margin: 0 auto;
+            border-radius: 4px;
+            text-align: center;
+            font-family: Consolas, Lucida Console, monospace;
+            font-size: 24px; }
+        article section form.forms .form-group select {
+          display: block;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          width: 52%;
+          height: 48px;
+          padding: 6px 12px;
+          margin: 0 auto;
+          border-radius: 4px;
+          text-align: center;
+          font-family: Consolas, Lucida Console, monospace;
+          font-size: 24px; }
+        article section form.forms .form-group textarea {
+          display: block;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          width: 50%;
+          min-height: 150px;
+          padding: 6px 12px;
+          margin: 0 auto;
+          border-radius: 4px;
+          font-family: Consolas, Lucida Console, monospace;
+          font-size: 24px; }
+      article section form.forms input[type="submit"] {
+        width: 200px;
+        color: #fff;
+        background-color: #337ab7;
+        padding: 6px 12px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        border: 1px solid #2e6da4;
+        border-radius: 4px; }
+        article section form.forms input[type="submit"]:disabled {
+          opacity: .65; }
+        @media (min-width: 320px) {
+          article section form.forms input[type="submit"] {
+            /* smartphones, iPhone, portrait 480x320 phones */
+            font-size: 14px; } }
+        @media (min-width: 481px) {
+          article section form.forms input[type="submit"] {
+            /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+            font-size: 16px; } }
+        @media (min-width: 641px) {
+          article section form.forms input[type="submit"] {
+            /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+            font-size: 18px; } }
+        @media (min-width: 961px) {
+          article section form.forms input[type="submit"] {
+            font-size: 20px; } }
+
+footer {
+  padding: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6); }
+  footer section {
+    width: 960px;
+    margin: 0 auto; }
