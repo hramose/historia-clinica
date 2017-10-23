@@ -1363,6 +1363,11 @@
         "hoek": "2.16.3"
       }
     },
+    "bootstrap-sass": {
+      "version": "3.3.7",
+      "resolved": "https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.7.tgz",
+      "integrity": "sha1-ZZbHq0D2Y3OTMjqwvIDQZPxjBJg="
+    },
     "brace-expansion": {
       "version": "1.1.8",
       "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.8.tgz",
@@ -2408,6 +2413,14 @@
       "resolved": "https://registry.npmjs.org/custom-input/-/custom-input-0.2.1.tgz",
       "integrity": "sha512-WZrU1h/OXtjYxZAL79AU1bTR1GViTMXYGUEKE4tkPrJk9VM9owKvPgYg2dZjH3kpyhdWfHIT81yvQa0rzDKkQA=="
     },
+    "d": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/d/-/d-1.0.0.tgz",
+      "integrity": "sha1-dUu1v+VUUdpppYuU1F9MWwRi1Y8=",
+      "requires": {
+        "es5-ext": "0.10.35"
+      }
+    },
     "dashdash": {
       "version": "1.14.1",
       "resolved": "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz",
@@ -2854,11 +2867,39 @@
         "is-arrayish": "0.2.1"
       }
     },
+    "es5-ext": {
+      "version": "0.10.35",
+      "resolved": "https://registry.npmjs.org/es5-ext/-/es5-ext-0.10.35.tgz",
+      "integrity": "sha1-GO6FjOajxFx9eekcFfzKnsVoSU8=",
+      "requires": {
+        "es6-iterator": "2.0.3",
+        "es6-symbol": "3.1.1"
+      }
+    },
+    "es6-iterator": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/es6-iterator/-/es6-iterator-2.0.3.tgz",
+      "integrity": "sha1-p96IkUGgWpSwhUQDstCg+/qY87c=",
+      "requires": {
+        "d": "1.0.0",
+        "es5-ext": "0.10.35",
+        "es6-symbol": "3.1.1"
+      }
+    },
     "es6-promise": {
       "version": "2.3.0",
       "resolved": "https://registry.npmjs.org/es6-promise/-/es6-promise-2.3.0.tgz",
       "integrity": "sha1-lu258v2wGZWCKyY92KratnSBgbw=",
       "dev": true
+    },
+    "es6-symbol": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/es6-symbol/-/es6-symbol-3.1.1.tgz",
+      "integrity": "sha1-vwDvT9q2uhtG7Le2KbTH7VcVzHc=",
+      "requires": {
+        "d": "1.0.0",
+        "es5-ext": "0.10.35"
+      }
     },
     "escape-html": {
       "version": "1.0.3",
@@ -6709,6 +6750,14 @@
             "xtend": "4.0.1"
           }
         }
+      }
+    },
+    "moment-range": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/moment-range/-/moment-range-3.0.3.tgz",
+      "integrity": "sha1-96FWfHMijzF0acszFI6plvecy5o=",
+      "requires": {
+        "es6-symbol": "3.1.1"
       }
     },
     "ms": {

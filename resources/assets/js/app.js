@@ -516,14 +516,10 @@ function ClinicCourseController($scope, $filter, $interval, $window, $http, $sce
     var $cclinic = $('#cclinic');
     if ($cclinic.length && $cclinic.html().trim() !== '[]') {
         $scope.cclinic = JSON.parse($cclinic.html());
-        var str = $scope.cclinic.date.split(' ');
-        var firstPart = str[0].split('/');
-        var date = firstPart[2] + '-' + firstPart[1] + '-' + firstPart[0];
-        str = date + ' ' + str[1];
-        $scope.cclinic.date = $filter('date')(new Date(str), 'dd/MM/y HH:m:ss');
+        $scope.cclinic.date = $filter('date')(new Date($scope.cclinic.date.replace(/-/g, '/')), 'dd/MM/y HH:mm:ss');
         var newline = String.fromCharCode(13, 10);
         $scope.cclinic.content = $scope.cclinic.content.replace(/\\n/g, newline);
-        $cclinic.html('');
+        //$cclinic.html('');
     }
 
     var $patient = $('#patient');

@@ -2,6 +2,11 @@
 
 @section('content')
     <column cols="11">
+        <div class="back-to-list">
+            <a href="{{ URL::route('pacientsIndex') }}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> {{trans('messages.go_back_to_pacient_list')}}
+            </a>
+        </div>
         <div id="cclinic-content" ng-controller="ClinicCourseController">
             <h2>Dades del pacient</h2>
             {!! Form::model($pacient, array('id' => 'reduced-pacient-date', 'class' => 'forms', 'name' => 'form')) !!}
@@ -18,8 +23,13 @@
                         <label>{{ trans('models.Pacientpat_antecedents') }}</label>
                         [[patient.last_pathological_antecedents]]
                         <p>
+                            <a target="_blank" href="{{URL::route('pacientsDades', '')}}/[[patient.id]]">
+                                <i class="fa fa-user"></i> {{ trans('messages.goto_data') }}
+                            </a>
+                        </p>
+                        <p>
                             <a target="_blank" href="{{URL::route('valoracions.pacient.show', '')}}/[[patient.id]]">
-                                <i class="fa fa-calendar-check-o"></i>{{ trans('messages.goto_review') }}
+                                <i class="fa fa-calendar-check-o"></i> {{ trans('messages.goto_review') }}
                             </a>
                         </p>
                     </section>
