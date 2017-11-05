@@ -75,8 +75,8 @@ return array(
     'new_cclinic' => 'Nou',
     'save_cclinic' => 'Guardar',
     'delete_cclinic' => 'Eliminar',
-    'goto_review' => 'Mira les valoracions d\'aquest pacient',
-    'goto_data' => 'Mira les dades personals d\'aquest pacient',
-    'goto_course' => 'Mira la història clínica d\'aquest pacient',
+    'goto_review' => 'Valoracions d\'aquest pacient',
+    'goto_data' => 'Dades personals d\'aquest pacient',
+    'goto_course' => 'Història clínica d\'aquest pacient',
     'go_back_to_pacient_list' => 'Torna a la llista de pacients'
 );
